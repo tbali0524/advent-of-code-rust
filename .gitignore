@@ -1,1 +1,4 @@
+# git config file: exclude these directories from the git repo.
+
+# rust build directory
 /target

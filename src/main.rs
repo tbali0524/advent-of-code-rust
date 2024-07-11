@@ -10,21 +10,34 @@ mod aoc2017;
 // mod aoc2021;
 // mod aoc2022;
 // mod aoc2023;
+// mod aoc2024;
 
-use std::process::ExitCode;
 use crate::aoc::runner::*;
+use std::env;
+use std::process::ExitCode;
 
 pub fn main() -> ExitCode {
-    println!("{}\n", crate::aoc::runner::MSG_TITLE);
-    match crate::aoc::runner::parse_args() {
+    println!("{}\n", MSG_TITLE);
+    let args = env::args().collect::<Vec<_>>();
+    match parse_args(&args) {
         Err(msg) => {
-            crate::aoc::runner::print_help();
-            println!("{ANSI_RED}[ERROR]{ANSI_RESET} {}\n", msg);
+            if msg == ARG_VERSION {
+                return ExitCode::SUCCESS;
+            }
+            print_help();
+            if msg == ARG_HELP {
+                return ExitCode::SUCCESS;
+            }
+            println!("{ANSI_RED_INV}[ERROR]{ANSI_RESET} {}\n", msg);
             ExitCode::from(2)
         }
         Ok((year, day)) => {
-            let result = crate::aoc::runner::run_puzzles(year, day);
-            if result { ExitCode::SUCCESS } else { ExitCode::from(1) }
+            let result = run_puzzles(year, day);
+            if result {
+                ExitCode::SUCCESS
+            } else {
+                ExitCode::from(1)
+            }
         }
     }
 }

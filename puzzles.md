@@ -4,16 +4,16 @@
 
 |Year         |Status|
 |-------------|:-----|
-|[2015](#2015)|![-](https://img.shields.io/badge/stars%20⭐-2-yellow)|
+|[2015](#2015)|![-](https://img.shields.io/badge/stars%20⭐-4-yellow)|
 |[2016](#2016)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
-|[2017](#2017)|![-](https://img.shields.io/badge/stars%20⭐-6-yellow)|
+|[2017](#2017)|![-](https://img.shields.io/badge/stars%20⭐-16-yellow)|
 |[2018](#2018)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
 |[2019](#2019)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
 |[2020](#2020)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
 |[2021](#2021)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
 |[2022](#2022)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
 |[2023](#2023)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
-|__Total__|![total](https://img.shields.io/badge/stars%20⭐-8-yellow)|
+|__Total__|![total](https://img.shields.io/badge/stars%20⭐-20-yellow)|
 
 ## Puzzles
 
@@ -45,7 +45,7 @@
 |  -  |2015| 22|Wizard Simulator 20XX                     |game simulation, DFS, graph, PriorityQueue
 |  -  |2015| 23|Opening the Turing Lock                   |assembly simulation
 |  -  |2015| 24|It Hangs in the Balance                   |
-|  -  |2015| 25|Let It Snow                               |LCG, linear congruence
+|  +  |2015| 25|Let It Snow                               |LCG, linear congruence
 
 Hint from `subreddit` was used for Day 19.
 
@@ -88,14 +88,14 @@ Hint from `subreddit` was used for Day 19.
 |  +  |2017|  1|Inverse Captcha                           |
 |  +  |2017|  2|Corruption Checksum                       |
 |  +  |2017|  3|Spiral Memory                             |
-|  -  |2017|  4|High-Entropy Passphrases                  |
-|  -  |2017|  5|A Maze of Twisty Trampolines, All Alike   |
-|  -  |2017|  6|Memory Reallocation                       |
+|  +  |2017|  4|High-Entropy Passphrases                  |
+|  +  |2017|  5|A Maze of Twisty Trampolines, All Alike   |
+|  +  |2017|  6|Memory Reallocation                       |
 |  -  |2017|  7|Recursive Circus                          |tree graph, recursion
 |  -  |2017|  8|I Heard You Like Registers                |assembly simulation
-|  -  |2017|  9|Stream Processing                         |parsing, state machine
+|  +  |2017|  9|Stream Processing                         |parsing, state machine
 |  -  |2017| 10|Knot Hash                                 |
-|  -  |2017| 11|Hex Ed                                    |walking simulation on hex grid
+|  +  |2017| 11|Hex Ed                                    |walking simulation on hex grid
 |  -  |2017| 12|Digital Plumber                           |graph, BFS, components
 |  -  |2017| 13|Packet Scanners                           |
 |  -  |2017| 14|Disk Defragmentation                      |flood fill

@@ -1,3 +1,5 @@
+// module aoc: generic definitions and CLI runner
+
 pub mod runner;
 
 pub const START_SEASON: usize = 2015;

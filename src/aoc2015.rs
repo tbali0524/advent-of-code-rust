@@ -1,4 +1,4 @@
-// This is module aoc2015: solutions for a season
+// module aoc2015: solutions for a season
 
 pub mod aoc2015day01;
 // pub mod aoc2015day02;
@@ -24,7 +24,7 @@ pub mod aoc2015day01;
 // pub mod aoc2015day22;
 // pub mod aoc2015day23;
 // pub mod aoc2015day24;
-// pub mod aoc2015day25;
+pub mod aoc2015day25;
 
 pub const PUZZLES: crate::aoc::Season = [
     Some(crate::aoc2015::aoc2015day01::run),
@@ -51,5 +51,5 @@ pub const PUZZLES: crate::aoc::Season = [
     None, // Some(crate::aoc2015::aoc2015day22::run),
     None, // Some(crate::aoc2015::aoc2015day23::run),
     None, // Some(crate::aoc2015::aoc2015day24::run),
-    None, // Some(crate::aoc2015::aoc2015day25::run),
+    Some(crate::aoc2015::aoc2015day25::run),
 ];

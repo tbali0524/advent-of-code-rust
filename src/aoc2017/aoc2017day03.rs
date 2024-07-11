@@ -14,16 +14,16 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     example_string_inputs: ["12", "1024"],
 };
 
+type ItemType = i32;
+
 pub fn solve(input: &[String]) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 1 {
-        return Err("Input must have a single line")
+        return Err("Input must have a single line");
     }
-    let line = input[0].parse::<i64>();
-    if line.is_err() {
-        return Err("Input must be an int");
-    }
-    let n = line.unwrap();
+    let n = input[0]
+        .parse::<ItemType>()
+        .map_err(|_| "Input must be a single integer")?;
     // ---------- Part 1
     let mut r = 1;
     while (r + 2) * (r + 2) < n {
@@ -56,10 +56,26 @@ pub fn solve(input: &[String]) -> PuzzleResult {
         }
         memo.insert((y, x), ans2);
         match (dx, dy) {
-            (1, 0) => if !memo.contains_key(&(y - 1, x)) { (dx, dy) = (0, -1); },
-            (0, -1) => if !memo.contains_key(&(y, x - 1)) { (dx, dy) = (-1, 0); },
-            (-1, 0) => if !memo.contains_key(&(y + 1, x)) { (dx, dy) = (0, 1); },
-            (0, 1) => if !memo.contains_key(&(y, x + 1)) { (dx, dy) = (1, 0); },
+            (1, 0) => {
+                if !memo.contains_key(&(y - 1, x)) {
+                    (dx, dy) = (0, -1);
+                }
+            }
+            (0, -1) => {
+                if !memo.contains_key(&(y, x - 1)) {
+                    (dx, dy) = (-1, 0);
+                }
+            }
+            (-1, 0) => {
+                if !memo.contains_key(&(y + 1, x)) {
+                    (dx, dy) = (0, 1);
+                }
+            }
+            (0, 1) => {
+                if !memo.contains_key(&(y, x + 1)) {
+                    (dx, dy) = (1, 0);
+                }
+            }
             (_, _) => return Err("Impossible"),
         }
     }
@@ -94,12 +110,16 @@ mod tests {
     }
 
     #[test]
-    fn invalid_only_int() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("a")], solve);
+    fn invalid_single_line() {
+        test_invalid(
+            &PUZZLE_METADATA,
+            &[String::from("123"), String::from("1")],
+            solve,
+        );
     }
 
     #[test]
-    fn invalid_single_line() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("123"), String::from("1")], solve);
+    fn invalid_only_int() {
+        test_invalid(&PUZZLE_METADATA, &[String::from("a")], solve);
     }
 }

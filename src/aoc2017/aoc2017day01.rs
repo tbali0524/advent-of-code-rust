@@ -15,12 +15,12 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
 pub fn solve(input: &[String]) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 1 {
-        return Err("Input must have a single line")
+        return Err("Input must have a single line");
     }
     let line = &input[0];
     for c in line.chars() {
         if !c.is_ascii_digit() {
-            return Err("Input must contain only digits")
+            return Err("Input must contain only digits");
         }
     }
     // ---------- Part 1
@@ -76,6 +76,10 @@ mod tests {
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("123"), String::from("1")], solve);
+        test_invalid(
+            &PUZZLE_METADATA,
+            &[String::from("123"), String::from("1")],
+            solve,
+        );
     }
 }

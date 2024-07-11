@@ -1,4 +1,4 @@
-// https://adventofcode.com/2025/day/0
+// https://adventofcode.com/2024/day/0
 
 use crate::aoc::PuzzleMetaData;
 use crate::aoc::PuzzleResult;
@@ -13,7 +13,10 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
 };
 
 pub fn solve(input: &[String]) -> PuzzleResult {
-    let _line = &input[0];
+    // ---------- Check input
+    if input.len() != 1 {
+        return Err("Input must have a single line");
+    }
     // ---------- Part 1
     let mut ans1 = 0;
     // ---------- Part 2

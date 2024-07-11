@@ -1,43 +1,42 @@
-// https://adventofcode.com/2015/day/25
+// https://adventofcode.com/2015/day/1
 
 use crate::aoc::PuzzleMetaData;
 use crate::aoc::PuzzleResult;
 
 pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2015,
-    day: 1,
-    title: "Not Quite Lisp",
-    solutions: (74, 1795),
-    example_solutions: [(-3, 1), (0, 5)],
-    example_string_inputs: [")())())", "()())"],
+    day: 25,
+    title: "Let It Snow",
+    solutions: (19980801, 0),
+    example_solutions: [(31916031, 0), (27995004, 0)],
+    example_string_inputs: ["", ""],
 };
+
+type ItemType = u64;
 
 pub fn solve(input: &[String]) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 1 {
         return Err("Input must have a single line");
     }
-    let line = &input[0];
-    for c in line.chars() {
-        if c != '(' && c != ')' {
-            return Err("Input must contain only ( or ) chars");
-        }
+    let a = input[0].split_whitespace().collect::<Vec<_>>();
+    if a.len() != 18 {
+        return Err("Invalid input sentence");
     }
-    // ---------- Part 1
-    let ans1 = line.matches('(').collect::<Vec<_>>().len() as i64
-        - line.matches(')').collect::<Vec<_>>().len() as i64;
-    // ---------- Part 2
-    let mut ans2 = 0;
-    let mut floor = 0;
-    while ans2 < line.len() && floor >= 0 {
-        let c = line.chars().nth(ans2).unwrap();
-        if c == '(' {
-            floor += 1;
-        } else if c == ')' {
-            floor -= 1;
-        }
-        ans2 += 1;
+    let row = a[15][0..a[15].len() - 1]
+        .parse::<ItemType>()
+        .map_err(|_| "Invalid input")?;
+    let column = a[17][0..a[17].len() - 1]
+        .parse::<ItemType>()
+        .map_err(|_| "Invalid input")?;
+    let n = row + column - 2;
+    let steps = (n * (n + 1)) / 2 + column - 1;
+    // ---------- Part 1 + 2
+    let mut ans1: ItemType = 20151125;
+    for _ in 0..steps {
+        ans1 = (ans1 * 252533) % 33554393;
     }
+    let ans2 = 0;
     Ok((ans1.to_string(), ans2.to_string()))
 }
 
@@ -72,13 +71,13 @@ mod tests {
     fn invalid_single_line() {
         test_invalid(
             &PUZZLE_METADATA,
-            &[String::from("(())"), String::from("()")],
+            &[String::from("a"), String::from("b")],
             solve,
         );
     }
 
     #[test]
-    fn invalid_only_parentheses() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("(a)")], solve);
+    fn invalid_input_sentence() {
+        test_invalid(&PUZZLE_METADATA, &[String::from("a b c")], solve);
     }
 }

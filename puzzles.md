@@ -4,16 +4,16 @@
 
 |Year         |Status|
 |-------------|:-----|
-|[2015](#2015)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
+|[2015](#2015)|![-](https://img.shields.io/badge/stars%20⭐-1-yellow)|
 |[2016](#2016)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
-|[2017](#2017)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
+|[2017](#2017)|![-](https://img.shields.io/badge/stars%20⭐-2-yellow)|
 |[2018](#2018)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
 |[2019](#2019)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
 |[2020](#2020)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
 |[2021](#2021)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
 |[2022](#2022)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
 |[2023](#2023)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
-|__Total__|![total](https://img.shields.io/badge/stars%20⭐-0-red)|
+|__Total__|![total](https://img.shields.io/badge/stars%20⭐-3-yellow)|
 
 ## Puzzles
 
@@ -21,7 +21,7 @@
 
 |Done?|Year|Day| Title                                    | Topics   |
 |:---:|----|--:|:-----------------------------------------|:---------|
-|  -  |2015|  1|Not Quite Lisp                            |
+|  +  |2015|  1|Not Quite Lisp                            |
 |  -  |2015|  2|I Was Told There Would Be No Math         |
 |  -  |2015|  3|Perfectly Spherical Houses in a Vacuum    |walk simulation
 |  -  |2015|  4|The Ideal Stocking Stuffer                |
@@ -85,8 +85,8 @@ Hint from `subreddit` was used for Day 19.
 
 |Done?|Year|Day| Title                                    | Topics   |
 |:---:|----|--:|:-----------------------------------------|:---------|
-|  -  |2017|  1|Inverse Captcha                           |
-|  -  |2017|  2|Corruption Checksum                       |
+|  +  |2017|  1|Inverse Captcha                           |
+|  +  |2017|  2|Corruption Checksum                       |
 |  -  |2017|  3|Spiral Memory                             |
 |  -  |2017|  4|High-Entropy Passphrases                  |
 |  -  |2017|  5|A Maze of Twisty Trampolines, All Alike   |

@@ -4,7 +4,7 @@ pub type Runner = fn() -> bool;
 
 pub fn get_puzzles() -> Vec<(usize, Vec<Runner>)> {
     vec![
-        // crate::aoc2015::get_puzzles(),
+        crate::aoc2015::get_puzzles(),
         // crate::aoc2016::get_puzzles(),
         crate::aoc2017::get_puzzles(),
         // crate::aoc2018::get_puzzles(),

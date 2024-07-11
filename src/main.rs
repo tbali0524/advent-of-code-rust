@@ -1,7 +1,7 @@
 // Advent of Code - CLI runner
 
 mod aoc;
-// mod aoc2015;
+mod aoc2015;
 // mod aoc2016;
 mod aoc2017;
 // mod aoc2018;

@@ -12,8 +12,19 @@ mod aoc2017;
 // mod aoc2023;
 
 use std::process::ExitCode;
+use crate::aoc::runner::*;
 
 pub fn main() -> ExitCode {
-    let result = crate::aoc::runner::run_all();
-    if result { ExitCode::SUCCESS } else { ExitCode::from(1) }
+    println!("{}\n", crate::aoc::runner::MSG_TITLE);
+    match crate::aoc::runner::parse_args() {
+        Err(msg) => {
+            crate::aoc::runner::print_help();
+            println!("{ANSI_RED}[ERROR]{ANSI_RESET} {}\n", msg);
+            ExitCode::from(2)
+        }
+        Ok((year, day)) => {
+            let result = crate::aoc::runner::run_puzzles(year, day);
+            if result { ExitCode::SUCCESS } else { ExitCode::from(1) }
+        }
+    }
 }

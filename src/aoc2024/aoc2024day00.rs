@@ -1,38 +1,23 @@
-// https://adventofcode.com/2017/day/2
+// https://adventofcode.com/2025/day/0
 
 use crate::aoc::PuzzleMetaData;
 use crate::aoc::PuzzleResult;
 
 pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2017,
-    day: 2,
-    title: "Corruption Checksum",
-    solutions: (48357, 351),
-    example_solutions: [(18, 0), (0, 9)],
+    year: 2024,
+    day: 0,
+    title: "",
+    solutions: (0, 0),
+    example_solutions: [(0, 0), (0, 0)],
     example_string_inputs: ["", ""],
 };
 
 pub fn solve(input: &[String]) -> PuzzleResult {
-    let data = input.iter().map(
-        |line|line.split_whitespace().map(
-            |x|x.parse::<i64>().unwrap()).collect::<Vec<_>>()).collect::<Vec<_>>();
+    let _line = &input[0];
     // ---------- Part 1
-    let ans1: i64 = data.iter().map(|row|row.iter().max().unwrap_or(&0) - row.iter().min().unwrap_or(&0)).sum();
+    let mut ans1 = 0;
     // ---------- Part 2
     let mut ans2 = 0;
-    for row0 in data {
-        let mut row = row0.to_owned();
-        row.sort();
-        row.reverse();
-        'to_break: for i in 0..row.len() - 1 {
-            for j in (i + 1)..row.len() {
-                if row[j] != 0 && row[i] % row[j] == 0 {
-                    ans2 += row[i] / row[j];
-                    break 'to_break;
-                }
-            }
-        }
-    }
     Ok((ans1.to_string(), ans2.to_string()))
 }
 
@@ -61,5 +46,17 @@ mod tests {
     #[test]
     fn puzzle() {
         test_case(&PUZZLE_METADATA, 0, solve);
+    }
+
+    #[test]
+    #[ignore]
+    fn invalid_single_line() {
+        test_invalid(&PUZZLE_METADATA, &[String::from("a"), String::from("b")], solve);
+    }
+
+    #[test]
+    #[ignore]
+    fn invalid() {
+        test_invalid(&PUZZLE_METADATA, &[String::from("a")], solve);
     }
 }

@@ -4,16 +4,16 @@
 
 |Year         |Status|
 |-------------|:-----|
-|[2015](#2015)|![-](https://img.shields.io/badge/stars%20⭐-1-yellow)|
+|[2015](#2015)|![-](https://img.shields.io/badge/stars%20⭐-2-yellow)|
 |[2016](#2016)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
-|[2017](#2017)|![-](https://img.shields.io/badge/stars%20⭐-2-yellow)|
+|[2017](#2017)|![-](https://img.shields.io/badge/stars%20⭐-6-yellow)|
 |[2018](#2018)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
 |[2019](#2019)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
 |[2020](#2020)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
 |[2021](#2021)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
 |[2022](#2022)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
 |[2023](#2023)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
-|__Total__|![total](https://img.shields.io/badge/stars%20⭐-3-yellow)|
+|__Total__|![total](https://img.shields.io/badge/stars%20⭐-8-yellow)|
 
 ## Puzzles
 
@@ -87,7 +87,7 @@ Hint from `subreddit` was used for Day 19.
 |:---:|----|--:|:-----------------------------------------|:---------|
 |  +  |2017|  1|Inverse Captcha                           |
 |  +  |2017|  2|Corruption Checksum                       |
-|  -  |2017|  3|Spiral Memory                             |
+|  +  |2017|  3|Spiral Memory                             |
 |  -  |2017|  4|High-Entropy Passphrases                  |
 |  -  |2017|  5|A Maze of Twisty Trampolines, All Alike   |
 |  -  |2017|  6|Memory Reallocation                       |

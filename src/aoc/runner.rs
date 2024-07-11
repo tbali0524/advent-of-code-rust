@@ -132,7 +132,7 @@ pub fn get_example_count(puzzle: &PuzzleMetaData) -> usize {
     }
     let mut case = 0;
     loop {
-        let input_path = format!("input\\{}\\Aoc{}Day{:0>2}ex{}.txt", puzzle.year, puzzle.year, puzzle.day, case + 1);
+        let input_path = format!("./input/{}/Aoc{}Day{:0>2}ex{}.txt", puzzle.year, puzzle.year, puzzle.day, case + 1);
         if !Path::new(&input_path).exists() {
             return case
         }
@@ -151,11 +151,11 @@ pub fn read_input(puzzle: &PuzzleMetaData, case: usize) -> PuzzleInput {
         vec![puzzle.example_string_inputs[case - 1].to_owned()]
     } else {
         let input_path = if case == 0 {
-            format!("input\\{}\\Aoc{}Day{:0>2}.txt", puzzle.year, puzzle.year, puzzle.day)
+            format!("./input/{}/Aoc{}Day{:0>2}.txt", puzzle.year, puzzle.year, puzzle.day)
         } else {
-            format!("input\\{}\\Aoc{}Day{:0>2}ex{}.txt", puzzle.year, puzzle.year, puzzle.day, case)
+            format!("./input/{}/Aoc{}Day{:0>2}ex{}.txt", puzzle.year, puzzle.year, puzzle.day, case)
         };
-        let binding = fs::read_to_string(input_path);
+        let binding = fs::read_to_string(Path::new(&input_path));
         if binding.is_err() {
             return Err("missing input");
         }

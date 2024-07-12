@@ -1,14 +1,16 @@
-// https://adventofcode.com/2017/day/5
+// https://adventofcode.com/2020/day/1
 
 use crate::aoc::PuzzleMetaData;
 use crate::aoc::PuzzleResult;
+use std::collections::HashMap;
+use std::collections::HashSet;
 
 pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2017,
-    day: 5,
-    title: "A Maze of Twisty Trampolines, All Alike",
-    solutions: (396086, 28675390),
-    example_solutions: [(5, 10), (0, 0)],
+    year: 2020,
+    day: 1,
+    title: "Report Repair",
+    solutions: (988771, 171933104),
+    example_solutions: [(514579, 241861950), (0, 0)],
     example_string_inputs: ["", ""],
 };
 
@@ -25,29 +27,29 @@ pub fn solve(input: &[String]) -> PuzzleResult {
         .collect::<Result<Vec<_>, _>>()?;
     // ---------- Part 1
     let mut ans1 = 0;
-    let mut data1 = data.clone();
-    let mut pc = 0;
-    loop {
-        if pc < 0 || pc >= data1.len() as ItemType {
+    let mut visited = HashSet::new();
+    for item in &data {
+        if visited.contains(&(2020 - item)) {
+            ans1 = item * (2020 - item);
             break;
         }
-        ans1 += 1;
-        let delta = data1[pc as usize];
-        data1[pc as usize] += 1;
-        pc += delta;
+        visited.insert(item);
     }
     // ---------- Part 2
     let mut ans2 = 0;
-    let mut data2 = data.clone();
-    let mut pc = 0;
-    loop {
-        if pc < 0 || pc >= data1.len() as ItemType {
+    let mut memo = HashMap::new();
+    for (idx1, item1) in data.iter().enumerate() {
+        for (idx2, item2) in data.iter().enumerate() {
+            if idx1 != idx2 {
+                memo.insert(item1 + item2, item1 * item2);
+            }
+        }
+    }
+    for item in &data {
+        if memo.contains_key(&(2020 - item)) {
+            ans2 = item * memo.get(&(2020 - item)).unwrap();
             break;
         }
-        ans2 += 1;
-        let delta = data2[pc as usize];
-        data2[pc as usize] += if data2[pc as usize] >= 3 { -1 } else { 1 };
-        pc += delta;
     }
     Ok((ans1.to_string(), ans2.to_string()))
 }

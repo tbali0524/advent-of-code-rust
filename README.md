@@ -2,7 +2,7 @@
 
 ![rust v1.79](https://shields.io/badge/rust-1.79-blue?logo=rust)
 ![build](https://img.shields.io/github/actions/workflow/status/tbali0524/advent-of-code-rust/qa.yml)
-![AoC stars](https://img.shields.io/badge/total%20AoC%20⭐-20-yellow)
+![AoC stars](https://img.shields.io/badge/total%20AoC%20⭐-38-yellow)
 ![license](https://img.shields.io/github/license/tbali0524/advent-of-code-rust)
 
 * [AoC website](https://adventofcode.com/)
@@ -15,26 +15,35 @@ This repo contains the _partial_ rewrite of my complete (__450__ ⭐) [AoC solut
 ## Usage
 
 ```sh
+# -- setup
 # install Rust: https://www.rust-lang.org/tools/install
 rustup update stable
 cargo version
 cargo install
+# -- lint
 cargo fmt
 cargo clippy
+# -- test
 cargo test
 cargo test 2017
 cargo test 2017day02
+cargo test runner
 cargo run
 cargo run -- 2017
 cargo run -- 2017 2
+# -- run
 cargo build --release
+target\release\advent-of-code-rust.exe
+target\release\advent-of-code-rust.exe 2017
+target\release\advent-of-code-rust.exe 2017 2
+# -- shortcut run
 .\aoc.bat
 .\aoc.bat 2017
 .\aoc.bat 2017 2
 .\aoc.bat --help
-target\release\advent-of-code-rust.exe
-target\release\advent-of-code-rust.exe 2017
-target\release\advent-of-code-rust.exe 2017 2
+# -- shortcut qa
+.\qa.bat
+# -- cleanup
 cargo clean
 ```
 

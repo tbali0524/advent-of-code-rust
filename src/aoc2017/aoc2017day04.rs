@@ -13,7 +13,7 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
 };
 
 pub fn solve(input: &[String]) -> PuzzleResult {
-    // ---------- Check input
+    // ---------- Parse and Check input
     let data = input
         .iter()
         .map(|line| line.split_whitespace().collect::<Vec<_>>())

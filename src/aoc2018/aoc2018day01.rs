@@ -1,14 +1,15 @@
-// https://adventofcode.com/2017/day/5
+// https://adventofcode.com/2018/day/1
 
 use crate::aoc::PuzzleMetaData;
 use crate::aoc::PuzzleResult;
+use std::collections::HashSet;
 
 pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2017,
-    day: 5,
-    title: "A Maze of Twisty Trampolines, All Alike",
-    solutions: (396086, 28675390),
-    example_solutions: [(5, 10), (0, 0)],
+    year: 2018,
+    day: 1,
+    title: "Chronal Calibration",
+    solutions: (590, 83445),
+    example_solutions: [(3, 2), (0, 0)],
     example_string_inputs: ["", ""],
 };
 
@@ -24,30 +25,20 @@ pub fn solve(input: &[String]) -> PuzzleResult {
         })
         .collect::<Result<Vec<_>, _>>()?;
     // ---------- Part 1
-    let mut ans1 = 0;
-    let mut data1 = data.clone();
-    let mut pc = 0;
-    loop {
-        if pc < 0 || pc >= data1.len() as ItemType {
-            break;
-        }
-        ans1 += 1;
-        let delta = data1[pc as usize];
-        data1[pc as usize] += 1;
-        pc += delta;
-    }
+    let ans1 = data.iter().sum::<ItemType>();
     // ---------- Part 2
-    let mut ans2 = 0;
-    let mut data2 = data.clone();
-    let mut pc = 0;
-    loop {
-        if pc < 0 || pc >= data1.len() as ItemType {
-            break;
+    let ans2;
+    let mut memo = HashSet::new();
+    let mut freq = 0;
+    'outer: loop {
+        for delta in &data {
+            freq += delta;
+            if memo.contains(&freq) {
+                ans2 = freq;
+                break 'outer;
+            }
+            memo.insert(freq);
         }
-        ans2 += 1;
-        let delta = data2[pc as usize];
-        data2[pc as usize] += if data2[pc as usize] >= 3 { -1 } else { 1 };
-        pc += delta;
     }
     Ok((ans1.to_string(), ans2.to_string()))
 }

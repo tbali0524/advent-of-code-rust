@@ -1,15 +1,17 @@
-// https://adventofcode.com/2015/day/1
+// https://adventofcode.com/2015/day/4
 
 use crate::aoc::PuzzleMetaData;
 use crate::aoc::PuzzleResult;
+use md5;
 
 pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2015,
-    day: 1,
-    title: "Not Quite Lisp",
-    solutions: (74, 1795),
-    example_solutions: [(-3, 1), (0, 5)],
-    example_string_inputs: [")())())", "()())"],
+    day: 4,
+    title: "The Ideal Stocking Stuffer",
+    solutions: (254575, 1038736),
+    example_solutions: [(609043, 0), (1048970, 0)],
+    // example_string_inputs: ["abcdef", "pqrstuv"],
+    example_string_inputs: ["", ""], // examples excluded, taking ~5 sec in release mode
 };
 
 pub fn solve(input: &[String]) -> PuzzleResult {
@@ -17,24 +19,23 @@ pub fn solve(input: &[String]) -> PuzzleResult {
     if input.len() != 1 {
         return Err("Input must have a single line");
     }
-    let line = &input[0];
-    for c in line.chars() {
-        if c != '(' && c != ')' {
-            return Err("Input must contain only ( or ) chars");
-        }
-    }
     // ---------- Part 1
-    let ans1 = line.matches('(').collect::<Vec<_>>().len() as i64
-        - line.matches(')').collect::<Vec<_>>().len() as i64;
+    let mut ans1 = 1;
+    loop {
+        let item = input[0].to_owned() + &ans1.to_string();
+        let hash = format!("{:x}", md5::compute(&item));
+        if &hash[0..5] == "00000" {
+            break;
+        }
+        ans1 += 1;
+    }
     // ---------- Part 2
-    let mut ans2 = 0;
-    let mut floor = 0;
-    while ans2 < line.len() && floor >= 0 {
-        let c = line.chars().nth(ans2).unwrap();
-        if c == '(' {
-            floor += 1;
-        } else if c == ')' {
-            floor -= 1;
+    let mut ans2 = 1;
+    loop {
+        let item = input[0].to_owned() + &ans2.to_string();
+        let hash = format!("{:x}", md5::compute(&item));
+        if &hash[0..6] == "000000" {
+            break;
         }
         ans2 += 1;
     }
@@ -54,11 +55,13 @@ mod tests {
     use crate::aoc::runner::tests::*;
 
     #[test]
+    #[ignore]
     fn example1() {
         test_case(&PUZZLE_METADATA, 1, solve);
     }
 
     #[test]
+    #[ignore]
     fn example2() {
         test_case(&PUZZLE_METADATA, 2, solve);
     }
@@ -72,13 +75,8 @@ mod tests {
     fn invalid_single_line() {
         test_invalid(
             &PUZZLE_METADATA,
-            &[String::from("(())"), String::from("()")],
+            &[String::from("a"), String::from("b")],
             solve,
         );
-    }
-
-    #[test]
-    fn invalid_only_parentheses() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("(a)")], solve);
     }
 }

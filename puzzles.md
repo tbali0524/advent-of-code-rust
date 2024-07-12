@@ -4,16 +4,16 @@
 
 |Year         |Status|
 |-------------|:-----|
-|[2015](#2015)|![-](https://img.shields.io/badge/stars%20⭐-4-yellow)|
-|[2016](#2016)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
+|[2015](#2015)|![-](https://img.shields.io/badge/stars%20⭐-10-yellow)|
+|[2016](#2016)|![-](https://img.shields.io/badge/stars%20⭐-2-yellow)|
 |[2017](#2017)|![-](https://img.shields.io/badge/stars%20⭐-16-yellow)|
-|[2018](#2018)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
-|[2019](#2019)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
-|[2020](#2020)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
-|[2021](#2021)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
-|[2022](#2022)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
+|[2018](#2018)|![-](https://img.shields.io/badge/stars%20⭐-2-yellow)|
+|[2019](#2019)|![-](https://img.shields.io/badge/stars%20⭐-2-yellow)|
+|[2020](#2020)|![-](https://img.shields.io/badge/stars%20⭐-2-yellow)|
+|[2021](#2021)|![-](https://img.shields.io/badge/stars%20⭐-2-yellow)|
+|[2022](#2022)|![-](https://img.shields.io/badge/stars%20⭐-2-yellow)|
 |[2023](#2023)|![-](https://img.shields.io/badge/stars%20⭐-0-red)|
-|__Total__|![total](https://img.shields.io/badge/stars%20⭐-20-yellow)|
+|__Total__|![total](https://img.shields.io/badge/stars%20⭐-38-yellow)|
 
 ## Puzzles
 
@@ -22,9 +22,9 @@
 |Done?|Year|Day| Title                                    | Topics   |
 |:---:|----|--:|:-----------------------------------------|:---------|
 |  +  |2015|  1|Not Quite Lisp                            |
-|  -  |2015|  2|I Was Told There Would Be No Math         |
-|  -  |2015|  3|Perfectly Spherical Houses in a Vacuum    |walk simulation
-|  -  |2015|  4|The Ideal Stocking Stuffer                |
+|  +  |2015|  2|I Was Told There Would Be No Math         |
+|  +  |2015|  3|Perfectly Spherical Houses in a Vacuum    |walk simulation
+|  +  |2015|  4|The Ideal Stocking Stuffer                |
 |  -  |2015|  5|Doesn't He Have Intern-Elves For This?    |string validation
 |  -  |2015|  6|Probably a Fire Hazard                    |
 |  -  |2015|  7|Some Assembly Required                    |circuit emulation, tree graph
@@ -53,7 +53,7 @@ Hint from `subreddit` was used for Day 19.
 
 |Done?|Year|Day| Title                                    | Topics   |
 |:---:|----|--:|:-----------------------------------------|:---------|
-|  -  |2016|  1|No Time for a Taxicab                     |
+|  +  |2016|  1|No Time for a Taxicab                     |
 |  -  |2016|  2|Bathroom Security                         |walk simulation
 |  -  |2016|  3|Squares With Three Sides                  |
 |  -  |2016|  4|Security Through Obscurity                |
@@ -117,7 +117,7 @@ Hint from `subreddit` was used for Day 23 Part 2.
 
 |Done?|Year|Day| Title                                    | Topics   |
 |:---:|----|--:|:-----------------------------------------|:---------|
-|  -  |2018|  1|Chronal Calibration                       |
+|  +  |2018|  1|Chronal Calibration                       |
 |  -  |2018|  2|Inventory Management System               |
 |  -  |2018|  3|No Matter How You Slice It                |
 |  -  |2018|  4|Repose Record                             |
@@ -149,7 +149,7 @@ Hint from `subreddit` was used for Day 23 part 2.
 
 |Done?|Year|Day| Title                                    | Topics   |
 |:---:|----|--:|:-----------------------------------------|:---------|
-|  -  |2019|  1|The Tyranny of the Rocket Equation        |
+|  +  |2019|  1|The Tyranny of the Rocket Equation        |
 |  -  |2019|  2|1202 Program Alarm                        |assembly simulation
 |  -  |2019|  3|Crossed Wires                             |walking simulation
 |  -  |2019|  4|Secure Container                          |
@@ -181,7 +181,7 @@ Hint from `subreddit` was used for Day 14, 16, 18, 21 and 22 (all for part 2 onl
 
 |Done?|Year|Day| Title                                    | Topics   |
 |:---:|----|--:|:-----------------------------------------|:---------|
-|  -  |2020|  1|Report Repair                             |
+|  +  |2020|  1|Report Repair                             |
 |  -  |2020|  2|Password Philosophy                       |string validation
 |  -  |2020|  3|Toboggan Trajectory                       |
 |  -  |2020|  4|Passport Processing                       |input parsing, object validation
@@ -213,7 +213,7 @@ Hint from `subreddit` was used for Day 23.
 
 |Done?|Year|Day| Title                                    | Topics   |
 |:---:|----|--:|:-----------------------------------------|:---------|
-|  -  |2021|  1|Sonar Sweep                               |
+|  +  |2021|  1|Sonar Sweep                               |
 |  -  |2021|  2|Dive!                                     |walking simulation
 |  -  |2021|  3|Binary Diagnostic                         |
 |  -  |2021|  4|Giant Squid                               |Bingo simulation
@@ -245,7 +245,7 @@ No external hint was used in this season.
 
 |Done?|Year|Day| Title                                    | Topics   |
 |:---:|----|--:|:-----------------------------------------|:---------|
-|  -  |2022|  1|Calorie Counting                          |
+|  +  |2022|  1|Calorie Counting                          |
 |  -  |2022|  2|Rock Paper Scissors                       |
 |  -  |2022|  2|Rucksack Reorganization                   |
 |  -  |2022|  4|Camp Cleanup                              |

@@ -17,7 +17,7 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
 type ItemType = i32;
 
 pub fn solve(input: &[String]) -> PuzzleResult {
-    // ---------- Check input
+    // ---------- Parse and Check input
     if input.len() != 1 {
         return Err("Input must have a single line");
     }

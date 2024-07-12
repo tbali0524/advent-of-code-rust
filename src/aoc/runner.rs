@@ -140,45 +140,41 @@ fn run_case(puzzle: &PuzzleMetaData, case: usize, solve: Solver) -> (bool, Strin
         puzzle.example_solutions[case - 1]
     };
     let mut all_passed = true;
-    // part 1
-    let mut pre_msg = MSG_NONE;
-    let mut post_msg = String::new();
-    if expected1 != 0 {
-        if ans1 == expected1.to_string() {
-            pre_msg = MSG_PASS;
+    for part in 1..=2 {
+        if part == 2 && puzzle.day == crate::aoc::MAX_DAYS {
+            continue;
+        }
+        let expected;
+        let ans;
+        if part == 1 {
+            expected = expected1;
+            ans = &ans1;
         } else {
-            all_passed = false;
-            pre_msg = MSG_FAIL;
-            post_msg = format!(" [expected: {ANSI_YELLOW}{}{ANSI_RESET}]", expected1);
-        };
-    }
-    if case == 0 {
-        all_message += &format!("{} Puzzle     part #1 : {}{}\n", pre_msg, ans1, post_msg);
-    } else {
-        all_message += &format!(
-            "{} Example #{} part #1 : {}{}\n",
-            pre_msg, case, ans1, post_msg
-        );
-    }
-    // part 2
-    let mut pre_msg = MSG_NONE;
-    let mut post_msg = String::new();
-    if expected2 != 0 {
-        if ans2 == expected2.to_string() {
-            pre_msg = MSG_PASS;
+            expected = expected2;
+            ans = &ans2;
+        }
+        let mut pre_msg = MSG_NONE;
+        let mut post_msg = String::new();
+        if expected != 0 {
+            if *ans == expected.to_string() {
+                pre_msg = MSG_PASS;
+            } else {
+                all_passed = false;
+                pre_msg = MSG_FAIL;
+                post_msg = format!(" [expected: {ANSI_YELLOW}{}{ANSI_RESET}]", expected1);
+            };
+        }
+        if case == 0 {
+            all_message += &format!(
+                "{} Puzzle     part #{} : {}{}\n",
+                pre_msg, part, ans, post_msg
+            );
         } else {
-            all_passed = false;
-            pre_msg = MSG_FAIL;
-            post_msg = format!(" [expected: {ANSI_YELLOW}{}{ANSI_RESET}]", expected2);
-        };
-    }
-    if case == 0 {
-        all_message += &format!("{} Puzzle     part #2 : {}{}\n", pre_msg, ans2, post_msg);
-    } else {
-        all_message += &format!(
-            "{} Example #{} part #2 : {}{}\n",
-            pre_msg, case, ans2, post_msg
-        );
+            all_message += &format!(
+                "{} Example #{} part #{} : {}{}\n",
+                pre_msg, case, part, ans, post_msg
+            );
+        }
     }
     (all_passed, all_message)
 }

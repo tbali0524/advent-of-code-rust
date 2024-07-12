@@ -1,4 +1,4 @@
-// https://adventofcode.com/2015/day/1
+// https://adventofcode.com/2015/day/25
 
 use crate::aoc::PuzzleMetaData;
 use crate::aoc::PuzzleResult;
@@ -15,7 +15,7 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
 type ItemType = u64;
 
 pub fn solve(input: &[String]) -> PuzzleResult {
-    // ---------- Check input
+    // ---------- Parse and Check input
     if input.len() != 1 {
         return Err("Input must have a single line");
     }
@@ -29,9 +29,9 @@ pub fn solve(input: &[String]) -> PuzzleResult {
     let column = a[17][0..a[17].len() - 1]
         .parse::<ItemType>()
         .map_err(|_| "Invalid input")?;
+    // ---------- Part 1 + 2
     let n = row + column - 2;
     let steps = (n * (n + 1)) / 2 + column - 1;
-    // ---------- Part 1 + 2
     let mut ans1: ItemType = 20151125;
     for _ in 0..steps {
         ans1 = (ans1 * 252533) % 33554393;

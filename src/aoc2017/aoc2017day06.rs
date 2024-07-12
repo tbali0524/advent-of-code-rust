@@ -17,7 +17,7 @@ type ItemType = i32;
 
 #[allow(clippy::needless_range_loop)]
 pub fn solve(input: &[String]) -> PuzzleResult {
-    // ---------- Check input
+    // ---------- Parse and Check input
     if input.len() != 1 {
         return Err("Input must have a single line");
     }

@@ -1,14 +1,14 @@
-// https://adventofcode.com/2017/day/5
+// https://adventofcode.com/2019/day/1
 
 use crate::aoc::PuzzleMetaData;
 use crate::aoc::PuzzleResult;
 
 pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2017,
-    day: 5,
-    title: "A Maze of Twisty Trampolines, All Alike",
-    solutions: (396086, 28675390),
-    example_solutions: [(5, 10), (0, 0)],
+    year: 2019,
+    day: 1,
+    title: "The Tyranny of the Rocket Equation",
+    solutions: (3287620, 4928567),
+    example_solutions: [(34241, 51316), (0, 0)],
     example_string_inputs: ["", ""],
 };
 
@@ -24,30 +24,20 @@ pub fn solve(input: &[String]) -> PuzzleResult {
         })
         .collect::<Result<Vec<_>, _>>()?;
     // ---------- Part 1
-    let mut ans1 = 0;
-    let mut data1 = data.clone();
-    let mut pc = 0;
-    loop {
-        if pc < 0 || pc >= data1.len() as ItemType {
-            break;
-        }
-        ans1 += 1;
-        let delta = data1[pc as usize];
-        data1[pc as usize] += 1;
-        pc += delta;
-    }
+    let ans1 = data.iter().map(|x| x / 3 - 2).sum::<ItemType>();
     // ---------- Part 2
     let mut ans2 = 0;
-    let mut data2 = data.clone();
-    let mut pc = 0;
-    loop {
-        if pc < 0 || pc >= data1.len() as ItemType {
-            break;
+    for mass in &data {
+        let mut total = 0;
+        let mut fuel = *mass;
+        loop {
+            fuel = std::cmp::max(0, fuel / 3 - 2);
+            total += fuel;
+            if fuel == 0 {
+                break;
+            }
         }
-        ans2 += 1;
-        let delta = data2[pc as usize];
-        data2[pc as usize] += if data2[pc as usize] >= 3 { -1 } else { 1 };
-        pc += delta;
+        ans2 += total;
     }
     Ok((ans1.to_string(), ans2.to_string()))
 }

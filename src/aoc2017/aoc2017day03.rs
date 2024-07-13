@@ -2,16 +2,17 @@
 
 use crate::aoc::PuzzleMetaData;
 use crate::aoc::PuzzleResult;
-
 use std::collections::HashMap;
 
 pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2017,
     day: 3,
     title: "Spiral Memory",
-    solutions: (475, 279138),
+    solution: (475, 279138),
     example_solutions: [(3, 23), (31, 1968)],
-    example_string_inputs: ["12", "1024"],
+    string_solution: None,
+    example_string_solutions: None,
+    example_string_inputs: Some(["12", "1024"]),
 };
 
 type ItemType = i32;

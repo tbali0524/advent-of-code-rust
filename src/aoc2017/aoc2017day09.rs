@@ -7,9 +7,11 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2017,
     day: 9,
     title: "Stream Processing",
-    solutions: (14204, 6622),
+    solution: (14204, 6622),
     example_solutions: [(50, 0), (0, 32)],
-    example_string_inputs: ["", ""],
+    string_solution: None,
+    example_string_solutions: None,
+    example_string_inputs: None,
 };
 
 pub fn solve(input: &[String]) -> PuzzleResult {

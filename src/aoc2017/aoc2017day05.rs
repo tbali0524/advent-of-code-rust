@@ -7,9 +7,11 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2017,
     day: 5,
     title: "A Maze of Twisty Trampolines, All Alike",
-    solutions: (396086, 28675390),
+    solution: (396086, 28675390),
     example_solutions: [(5, 10), (0, 0)],
-    example_string_inputs: ["", ""],
+    string_solution: None,
+    example_string_solutions: None,
+    example_string_inputs: None,
 };
 
 type ItemType = i32;

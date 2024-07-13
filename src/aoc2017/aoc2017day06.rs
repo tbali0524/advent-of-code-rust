@@ -8,9 +8,11 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2017,
     day: 6,
     title: "Memory Reallocation",
-    solutions: (7864, 1695),
+    solution: (7864, 1695),
     example_solutions: [(5, 4), (0, 0)],
-    example_string_inputs: ["", ""],
+    string_solution: None,
+    example_string_solutions: None,
+    example_string_inputs: None,
 };
 
 type ItemType = i32;

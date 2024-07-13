@@ -9,7 +9,7 @@ mod aoc2019;
 mod aoc2020;
 mod aoc2021;
 mod aoc2022;
-// mod aoc2023;
+mod aoc2023;
 // mod aoc2024;
 
 use crate::aoc::runner::*;

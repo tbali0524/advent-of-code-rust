@@ -8,10 +8,12 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2015,
     day: 4,
     title: "The Ideal Stocking Stuffer",
-    solutions: (254575, 1038736),
+    solution: (254575, 1038736),
     example_solutions: [(609043, 0), (1048970, 0)],
-    // example_string_inputs: ["abcdef", "pqrstuv"],
-    example_string_inputs: ["", ""], // examples excluded, taking ~5 sec in release mode
+    string_solution: None,
+    example_string_solutions: None,
+    // example_string_inputs: Some(["abcdef", "pqrstuv"]),
+    example_string_inputs: None, // examples excluded because taking +5 sec in release mode
 };
 
 pub fn solve(input: &[String]) -> PuzzleResult {

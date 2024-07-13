@@ -7,9 +7,11 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2019,
     day: 1,
     title: "The Tyranny of the Rocket Equation",
-    solutions: (3287620, 4928567),
+    solution: (3287620, 4928567),
     example_solutions: [(34241, 51316), (0, 0)],
-    example_string_inputs: ["", ""],
+    string_solution: None,
+    example_string_solutions: None,
+    example_string_inputs: None,
 };
 
 type ItemType = i32;

@@ -7,9 +7,11 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2015,
     day: 1,
     title: "Not Quite Lisp",
-    solutions: (74, 1795),
+    solution: (74, 1795),
     example_solutions: [(-3, 1), (0, 5)],
-    example_string_inputs: [")())())", "()())"],
+    string_solution: None,
+    example_string_solutions: None,
+    example_string_inputs: Some([")())())", "()())"]),
 };
 
 pub fn solve(input: &[String]) -> PuzzleResult {

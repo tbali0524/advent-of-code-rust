@@ -7,9 +7,11 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2017,
     day: 2,
     title: "Corruption Checksum",
-    solutions: (48357, 351),
+    solution: (48357, 351),
     example_solutions: [(18, 0), (0, 9)],
-    example_string_inputs: ["", ""],
+    string_solution: None,
+    example_string_solutions: None,
+    example_string_inputs: None,
 };
 
 type ItemType = i32;

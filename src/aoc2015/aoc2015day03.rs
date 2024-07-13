@@ -8,9 +8,11 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2015,
     day: 3,
     title: "Perfectly Spherical Houses in a Vacuum",
-    solutions: (2592, 2360),
+    solution: (2592, 2360),
     example_solutions: [(4, 3), (2, 11)],
-    example_string_inputs: ["^>v<", "^v^v^v^v^v"],
+    string_solution: None,
+    example_string_solutions: None,
+    example_string_inputs: Some(["^>v<", "^v^v^v^v^v"]),
 };
 
 pub fn delta(dir: char) -> Result<(i32, i32), &'static str> {

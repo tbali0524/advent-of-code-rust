@@ -8,9 +8,11 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2016,
     day: 1,
     title: "No Time for a Taxicab",
-    solutions: (262, 131),
+    solution: (262, 131),
     example_solutions: [(8, 4), (0, 0)],
-    example_string_inputs: ["R8, R4, R4, R8", ""],
+    string_solution: None,
+    example_string_solutions: None,
+    example_string_inputs: Some(["R8, R4, R4, R8", ""]),
 };
 
 pub fn solve(input: &[String]) -> PuzzleResult {

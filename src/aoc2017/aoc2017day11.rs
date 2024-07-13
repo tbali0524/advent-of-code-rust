@@ -8,9 +8,11 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2017,
     day: 11,
     title: "Hex Ed",
-    solutions: (824, 1548),
+    solution: (824, 1548),
     example_solutions: [(3, 3), (3, 3)],
-    example_string_inputs: ["ne,ne,ne", "se,sw,se,sw,sw"],
+    string_solution: None,
+    example_string_solutions: None,
+    example_string_inputs: Some(["ne,ne,ne", "se,sw,se,sw,sw"]),
 };
 
 pub fn cube_delta(dir: &str) -> Result<(i32, i32, i32), &'static str> {

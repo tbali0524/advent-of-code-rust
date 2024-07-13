@@ -7,9 +7,11 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2015,
     day: 2,
     title: "I Was Told There Would Be No Math",
-    solutions: (1606483, 3842356),
+    solution: (1606483, 3842356),
     example_solutions: [(58, 34), (43, 14)],
-    example_string_inputs: ["2x3x4", "1x1x10"],
+    string_solution: None,
+    example_string_solutions: None,
+    example_string_inputs: Some(["2x3x4", "1x1x10"]),
 };
 
 type ItemType = i32;

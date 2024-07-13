@@ -7,9 +7,11 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2021,
     day: 1,
     title: "Sonar Sweep",
-    solutions: (1477, 1523),
+    solution: (1477, 1523),
     example_solutions: [(7, 5), (0, 0)],
-    example_string_inputs: ["", ""],
+    string_solution: None,
+    example_string_solutions: None,
+    example_string_inputs: None,
 };
 
 type ItemType = i32;

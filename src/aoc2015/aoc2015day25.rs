@@ -7,9 +7,11 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2015,
     day: 25,
     title: "Let It Snow",
-    solutions: (19980801, 0),
+    solution: (19980801, 0),
     example_solutions: [(31916031, 0), (27995004, 0)],
-    example_string_inputs: ["", ""],
+    string_solution: None,
+    example_string_solutions: None,
+    example_string_inputs: None,
 };
 
 type ItemType = u64;

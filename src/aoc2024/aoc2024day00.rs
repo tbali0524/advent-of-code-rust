@@ -7,9 +7,11 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2024,
     day: 0,
     title: "",
-    solutions: (0, 0),
+    solution: (0, 0),
     example_solutions: [(0, 0), (0, 0)],
-    example_string_inputs: ["", ""],
+    string_solution: None,
+    example_string_solutions: None,
+    example_string_inputs: None,
 };
 
 pub fn solve(input: &[String]) -> PuzzleResult {

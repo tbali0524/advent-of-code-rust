@@ -8,9 +8,11 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2018,
     day: 1,
     title: "Chronal Calibration",
-    solutions: (590, 83445),
+    solution: (590, 83445),
     example_solutions: [(3, 2), (0, 0)],
-    example_string_inputs: ["", ""],
+    string_solution: None,
+    example_string_solutions: None,
+    example_string_inputs: None,
 };
 
 type ItemType = i32;

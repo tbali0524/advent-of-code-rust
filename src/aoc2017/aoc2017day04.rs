@@ -7,9 +7,11 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2017,
     day: 4,
     title: "High-Entropy Passphrases",
-    solutions: (386, 208),
+    solution: (386, 208),
     example_solutions: [(2, 0), (0, 3)],
-    example_string_inputs: ["", ""],
+    string_solution: None,
+    example_string_solutions: None,
+    example_string_inputs: None,
 };
 
 pub fn solve(input: &[String]) -> PuzzleResult {

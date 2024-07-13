@@ -7,9 +7,11 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2022,
     day: 1,
     title: "Calorie Counting",
-    solutions: (72070, 211805),
+    solution: (72070, 211805),
     example_solutions: [(24000, 45000), (0, 0)],
-    example_string_inputs: ["", ""],
+    string_solution: None,
+    example_string_solutions: None,
+    example_string_inputs: None,
 };
 
 type ItemType = i32;

@@ -7,9 +7,11 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2017,
     day: 1,
     title: "Inverse Captcha",
-    solutions: (1102, 1076),
+    solution: (1102, 1076),
     example_solutions: [(9, 0), (0, 4)],
-    example_string_inputs: ["91212129", "12131415"],
+    string_solution: None,
+    example_string_solutions: None,
+    example_string_inputs: Some(["91212129", "12131415"]),
 };
 
 pub fn solve(input: &[String]) -> PuzzleResult {

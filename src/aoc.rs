@@ -16,12 +16,14 @@ pub struct PuzzleMetaData<'a> {
     pub year: usize,
     pub day: usize,
     pub title: &'a str,
-    pub solutions: (i64, i64),
+    pub solution: (i64, i64),
     pub example_solutions: [(i64, i64); 2],
-    pub example_string_inputs: [&'a str; 2],
+    pub string_solution: Option<(&'a str, &'a str)>, // use only for non-integer solutions
+    pub example_string_solutions: Option<[(&'a str, &'a str); 2]>, // use only for non-integer solutions
+    pub example_string_inputs: Option<[&'a str; 2]>, // use only for short, single-line example inputs
 }
 
-pub const PUZZLES: [Option<crate::aoc::Season>; MAX_SEASONS] = [
+pub const PUZZLES: [Option<Season>; MAX_SEASONS] = [
     Some(crate::aoc2015::PUZZLES),
     Some(crate::aoc2016::PUZZLES),
     Some(crate::aoc2017::PUZZLES),
@@ -30,6 +32,6 @@ pub const PUZZLES: [Option<crate::aoc::Season>; MAX_SEASONS] = [
     Some(crate::aoc2020::PUZZLES),
     Some(crate::aoc2021::PUZZLES),
     Some(crate::aoc2022::PUZZLES),
-    None, // Some(crate::aoc2023::PUZZLES),
+    Some(crate::aoc2023::PUZZLES),
     None, // Some(crate::aoc2024::PUZZLES),
 ];

@@ -1,4 +1,4 @@
-// template for module aoc2022: solutions for a season
+//! Solutions for a season 2022
 
 pub mod aoc2022day01;
 // pub mod aoc2022day02;
@@ -26,6 +26,7 @@ pub mod aoc2022day01;
 // pub mod aoc2022day24;
 // pub mod aoc2022day25;
 
+/// array of implemented solutions for the season
 pub const PUZZLES: crate::aoc::Season = [
     Some(crate::aoc2022::aoc2022day01::run),
     None, // Some(crate::aoc2022::aoc2022day02::run),

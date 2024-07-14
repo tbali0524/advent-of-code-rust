@@ -1,4 +1,4 @@
-// module aoc: generic definitions and CLI runner
+//! General definitions and a CLI runner.
 
 pub mod runner;
 
@@ -7,11 +7,13 @@ pub const MAX_SEASONS: usize = 10;
 pub const MAX_DAYS: usize = 25;
 
 pub type PuzzleInput = Result<Vec<String>, &'static str>;
-pub type PuzzleResult = Result<(String, String), &'static str>;
+pub type PuzzleSolution = (String, String);
+pub type PuzzleResult = Result<PuzzleSolution, &'static str>;
 pub type Solver = fn(&[String]) -> PuzzleResult;
 pub type Runner = fn() -> bool;
 pub type Season = [Option<Runner>; MAX_DAYS];
 
+/// Each solution must have a constant containing its metadata with this type.
 pub struct PuzzleMetaData<'a> {
     pub year: usize,
     pub day: usize,
@@ -23,6 +25,7 @@ pub struct PuzzleMetaData<'a> {
     pub example_string_inputs: Option<[&'a str; 2]>, // use only for short, single-line example inputs
 }
 
+/// array of seasons that have implemented solutions
 pub const PUZZLES: [Option<Season>; MAX_SEASONS] = [
     Some(crate::aoc2015::PUZZLES),
     Some(crate::aoc2016::PUZZLES),

@@ -1,4 +1,4 @@
-// template for module aoc2020: solutions for a season
+//! Solutions for a season 2020
 
 pub mod aoc2020day01;
 // pub mod aoc2020day02;
@@ -26,6 +26,7 @@ pub mod aoc2020day01;
 // pub mod aoc2020day24;
 // pub mod aoc2020day25;
 
+/// array of implemented solutions for the season
 pub const PUZZLES: crate::aoc::Season = [
     Some(crate::aoc2020::aoc2020day01::run),
     None, // Some(crate::aoc2020::aoc2020day02::run),

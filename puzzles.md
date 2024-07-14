@@ -6,14 +6,14 @@
 |-------------|:-----|
 |[2015](#2015)|![-](https://img.shields.io/badge/stars%20⭐-10-yellow)|
 |[2016](#2016)|![-](https://img.shields.io/badge/stars%20⭐-2-yellow)|
-|[2017](#2017)|![-](https://img.shields.io/badge/stars%20⭐-22-yellow)|
+|[2017](#2017)|![-](https://img.shields.io/badge/stars%20⭐-30-yellow)|
 |[2018](#2018)|![-](https://img.shields.io/badge/stars%20⭐-2-yellow)|
 |[2019](#2019)|![-](https://img.shields.io/badge/stars%20⭐-2-yellow)|
 |[2020](#2020)|![-](https://img.shields.io/badge/stars%20⭐-2-yellow)|
 |[2021](#2021)|![-](https://img.shields.io/badge/stars%20⭐-2-yellow)|
 |[2022](#2022)|![-](https://img.shields.io/badge/stars%20⭐-2-yellow)|
 |[2023](#2023)|![-](https://img.shields.io/badge/stars%20⭐-2-yellow)|
-|__Total__|![total](https://img.shields.io/badge/stars%20⭐-46-yellow)|
+|__Total__|![total](https://img.shields.io/badge/stars%20⭐-54-yellow)|
 
 ## Puzzles
 
@@ -92,14 +92,14 @@ Hint from `subreddit` was used for Day 19.
 |  +  |2017|  5|A Maze of Twisty Trampolines, All Alike   |
 |  +  |2017|  6|Memory Reallocation                       |
 |  +  |2017|  7|Recursive Circus                          |tree graph, recursion
-|  -  |2017|  8|I Heard You Like Registers                |assembly simulation
+|  +  |2017|  8|I Heard You Like Registers                |assembly simulation
 |  +  |2017|  9|Stream Processing                         |parsing, state machine
-|  -  |2017| 10|Knot Hash                                 |
+|  +  |2017| 10|Knot Hash                                 |
 |  +  |2017| 11|Hex Ed                                    |walking simulation on hex grid
 |  +  |2017| 12|Digital Plumber                           |graph, BFS, components
 |  +  |2017| 13|Packet Scanners                           |
-|  -  |2017| 14|Disk Defragmentation                      |flood fill
-|  -  |2017| 15|Dueling Generators                        |
+|  +  |2017| 14|Disk Defragmentation                      |flood fill
+|  +  |2017| 15|Dueling Generators                        |
 |  -  |2017| 16|Permutation Promenade                     |simulation, cycle detection
 |  -  |2017| 17|Spinlock                                  |circular linked list
 |  -  |2017| 18|Duet                                      |assembly simulation, coroutines

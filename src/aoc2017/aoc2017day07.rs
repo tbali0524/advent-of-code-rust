@@ -1,4 +1,4 @@
-// https://adventofcode.com/2017/day/7
+//! [aoc](https://adventofcode.com/2017/day/7)
 
 use crate::aoc::PuzzleMetaData;
 use crate::aoc::PuzzleResult;
@@ -17,6 +17,7 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
 
 type ItemType = i32;
 
+#[derive(Default)]
 struct Node {
     name: String,
     parent: Option<String>,
@@ -27,16 +28,11 @@ struct Node {
 
 impl Node {
     fn new() -> Self {
-        Self {
-            name: String::new(),
-            parent: None,
-            children: Vec::new(),
-            weight: 0,
-            total: 0,
-        }
+        Default::default()
     }
 }
 
+#[derive(Default)]
 struct Tree {
     nodes: HashMap<String, Node>,
     root: Option<String>,
@@ -44,14 +40,11 @@ struct Tree {
 
 impl Tree {
     fn new() -> Self {
-        Self {
-            nodes: HashMap::new(),
-            root: None,
-        }
+        Default::default()
     }
 
     fn from_input(input: &[String]) -> Result<Tree, &'static str> {
-        let mut tree = Self::new();
+        let mut tree = Tree::new();
         let mut parent_child_pairs = Vec::new();
         for line in input {
             let mut a = line.split(" -> ");

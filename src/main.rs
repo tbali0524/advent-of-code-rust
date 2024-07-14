@@ -1,4 +1,4 @@
-// Advent of Code - CLI runner
+//! # Advent of Code solutions and a CLI runner
 
 mod aoc;
 mod aoc2015;
@@ -10,7 +10,7 @@ mod aoc2020;
 mod aoc2021;
 mod aoc2022;
 mod aoc2023;
-// mod aoc2024;
+// mod aoc2024; // empty template only
 
 use crate::aoc::runner::*;
 use std::env;

@@ -1,4 +1,4 @@
-// helper module to run any puzzles
+//! Helper module to run any puzzle solution.
 
 use super::*;
 use std::fs;
@@ -23,10 +23,11 @@ const MSG_FAIL_TOTAL: &str = "\x1b[1;37;41m[FAIL] SOME TESTS FAILED \x1b[0m";
 const DURATION_THRESHOLD_MILLIS: u64 = 500;
 
 // ------------------------------------------------------------
-// Runs multiple puzzles, print results
-//   year == None, day == None : run all seasons, all days
-//   year == Some, day == None : run a single season, all days
-//   year == Some, day == Some : run a single puzzle
+/// Runs multiple puzzles, prints results to stdout.
+///
+/// * `year == None && day == None` : run all seasons, all days
+/// * `year == Some && day == None` : run a single season, all days
+/// * `year == Some && day == Some` : run a single puzzle
 pub fn run_puzzles(year: Option<usize>, day: Option<usize>) -> bool {
     let now = time::Instant::now();
     let mut all_passed = true;
@@ -72,7 +73,7 @@ pub fn run_puzzles(year: Option<usize>, day: Option<usize>) -> bool {
 }
 
 // ------------------------------------------------------------
-// Runs a single puzzle, including all examples
+/// Runs a single puzzle, including all examples.
 pub fn run_puzzle(puzzle: &PuzzleMetaData, solve: Solver) -> bool {
     let now = time::Instant::now();
     let mut all_passed = true;
@@ -109,7 +110,7 @@ pub fn run_puzzle(puzzle: &PuzzleMetaData, solve: Solver) -> bool {
 }
 
 // ------------------------------------------------------------
-// Runs a single puzzle with a single input test case
+/// Runs a single puzzle with a single input test case.
 pub fn run_case(puzzle: &PuzzleMetaData, case: usize, solve: Solver) -> (bool, String) {
     let mut all_message = String::new();
     let input_result = read_input(puzzle, case);
@@ -192,7 +193,7 @@ fn get_expected(puzzle: &PuzzleMetaData, case: usize) -> (String, String) {
 }
 
 // ------------------------------------------------------------
-// calculates how many examples exists for a given puzzle, based on input file availability
+/// Calculates how many examples exists for a given puzzle, based on input file availability.
 fn get_example_count(puzzle: &PuzzleMetaData) -> usize {
     if puzzle.example_string_inputs.is_some() {
         return if puzzle.example_string_inputs.unwrap()[1].is_empty() {
@@ -218,8 +219,9 @@ fn get_example_count(puzzle: &PuzzleMetaData) -> usize {
 }
 
 // ------------------------------------------------------------
-// Gets the input for a specific test case by reading from the input file (or taken from a constant).
-// case is 0 for the the normal puzzle input; 1 or 2 for an example input
+/// Gets the input for a specific test case by reading from the input file (or taken from a constant).
+///
+/// `case == 0` means the the normal puzzle input; 1 or 2 means an example input
 pub fn read_input(puzzle: &PuzzleMetaData, case: usize) -> PuzzleInput {
     let input = if case > 0 && puzzle.example_string_inputs.is_some() {
         if case > 2 {
@@ -264,7 +266,7 @@ pub fn print_help() {
 }
 
 // ------------------------------------------------------------
-// Tries to parse CLI arguments to year and day, no output
+/// Tries to parse CLI arguments to year and day, no output.
 pub fn parse_args(args: &[String]) -> Result<(Option<usize>, Option<usize>), &'static str> {
     match args.len() {
         1 => Ok((None, None)),
@@ -410,8 +412,9 @@ pub mod tests {
     };
 
     // ------------------------------------------------------------
-    // helper function to be used in puzzle solution tests
-    // similar to run_case() but using assertions and no output.
+    /// Helper function to be used in puzzle solution tests.
+    ///
+    /// Similar to `run_case()` but using assertions and no output.
     pub fn test_case(puzzle: &PuzzleMetaData, case: usize, solve: Solver) {
         let input = read_input(puzzle, case).unwrap();
         let result = solve(&input);
@@ -428,7 +431,7 @@ pub mod tests {
         }
     }
 
-    // helper function to test the checking for invalid puzzle input
+    /// Helper function to test the checking for invalid puzzle input.
     pub fn test_invalid(_puzzle: &PuzzleMetaData, input: &[String], solve: Solver) {
         let result = solve(&input);
         assert!(result.is_err());

@@ -1,4 +1,4 @@
-// https://adventofcode.com/2023/day/11
+//! [aoc](https://adventofcode.com/2023/day/11)
 
 use crate::aoc::PuzzleMetaData;
 use crate::aoc::PuzzleResult;

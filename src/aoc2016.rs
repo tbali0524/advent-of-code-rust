@@ -1,4 +1,4 @@
-//! Solutions for a season 2016
+//! Solutions for season 2016
 
 pub mod aoc2016day01;
 // pub mod aoc2016day02;

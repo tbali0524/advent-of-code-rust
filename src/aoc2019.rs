@@ -1,4 +1,4 @@
-//! Solutions for a season 2019
+//! Solutions for season 2019
 
 pub mod aoc2019day01;
 // pub mod aoc2019day02;

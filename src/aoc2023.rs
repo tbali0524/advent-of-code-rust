@@ -1,4 +1,4 @@
-//! Solutions for a season 2023
+//! Solutions for season 2023
 
 // pub mod aoc2023day01;
 // pub mod aoc2023day02;

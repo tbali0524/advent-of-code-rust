@@ -148,6 +148,8 @@ pub fn run_case(puzzle: &PuzzleMetaData, case: usize, solve: Solver) -> (bool, S
                 pre_msg = MSG_FAIL;
                 post_msg = format!(" [expected: {ANSI_YELLOW}{}{ANSI_RESET}]", expected_case);
             };
+        } else if case == 0 {
+            post_msg = format!(" {ANSI_YELLOW}[missing expected solution]{ANSI_RESET}");
         }
         if case == 0 {
             all_message += &format!(

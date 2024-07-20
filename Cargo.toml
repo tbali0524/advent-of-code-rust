@@ -14,4 +14,5 @@ license = "MIT"
 keywords = ["aoc", "algorithms"]
 
 [dependencies]
-md5 = "0.7.0" # used by aoc2015day04.rs
+md5 = "0.7"     # used by aoc2015day04.rs
+regex = "1.10"  # used by aoc2017day20.rs

@@ -6,14 +6,14 @@
 |-------------|:-----|
 |[2015](#2015)|![-](https://img.shields.io/badge/stars%20⭐-10-yellow)|
 |[2016](#2016)|![-](https://img.shields.io/badge/stars%20⭐-2-yellow)|
-|[2017](#2017)|![-](https://img.shields.io/badge/stars%20⭐-36-yellow)|
+|[2017](#2017)|![-](https://img.shields.io/badge/stars%20⭐-44-yellow)|
 |[2018](#2018)|![-](https://img.shields.io/badge/stars%20⭐-2-yellow)|
 |[2019](#2019)|![-](https://img.shields.io/badge/stars%20⭐-2-yellow)|
 |[2020](#2020)|![-](https://img.shields.io/badge/stars%20⭐-2-yellow)|
 |[2021](#2021)|![-](https://img.shields.io/badge/stars%20⭐-2-yellow)|
 |[2022](#2022)|![-](https://img.shields.io/badge/stars%20⭐-2-yellow)|
 |[2023](#2023)|![-](https://img.shields.io/badge/stars%20⭐-2-yellow)|
-|__Total__|![total](https://img.shields.io/badge/stars%20⭐-60-yellow)|
+|__Total__|![total](https://img.shields.io/badge/stars%20⭐-68-yellow)|
 
 ## Puzzles
 
@@ -102,13 +102,13 @@ Hint from `subreddit` was used for Day 19.
 |  +  |2017| 15|Dueling Generators                        |
 |  -  |2017| 16|Permutation Promenade                     |simulation, cycle detection
 |  +  |2017| 17|Spinlock                                  |circular linked list
-|  -  |2017| 18|Duet                                      |assembly simulation, coroutines
+|  +  |2017| 18|Duet                                      |assembly simulation, coroutines
 |  +  |2017| 19|A Series of Tubes                         |walking simulation
-|  -  |2017| 20|Particle Swarm                            |simulation
+|  +  |2017| 20|Particle Swarm                            |simulation
 |  -  |2017| 21|Fractal Art                               |image transformation
 |  +  |2017| 22|Sporifica Virus                           |walking simulation
-|  -  |2017| 23|Coprocessor Conflagration                 |assembly simulation
-|  -  |2017| 24|Electromagnetic Moat                      |BFS
+|  +  |2017| 23|Coprocessor Conflagration                 |assembly simulation
+|  +  |2017| 24|Electromagnetic Moat                      |BFS
 |  -  |2017| 25|The Halting Problem                       |Turing machine
 
 Hint from `subreddit` was used for Day 23 Part 2.

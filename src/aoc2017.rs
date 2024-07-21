@@ -15,16 +15,16 @@ pub mod aoc2017day12;
 pub mod aoc2017day13;
 pub mod aoc2017day14;
 pub mod aoc2017day15;
-// pub mod aoc2017day16;
+pub mod aoc2017day16;
 pub mod aoc2017day17;
 pub mod aoc2017day18;
 pub mod aoc2017day19;
 pub mod aoc2017day20;
-// pub mod aoc2017day21;
+pub mod aoc2017day21;
 pub mod aoc2017day22;
 pub mod aoc2017day23;
 pub mod aoc2017day24;
-// pub mod aoc2017day25;
+pub mod aoc2017day25;
 
 /// array of implemented solutions for the season
 pub const PUZZLES: crate::aoc::Season = [
@@ -43,14 +43,14 @@ pub const PUZZLES: crate::aoc::Season = [
     Some(crate::aoc2017::aoc2017day13::run),
     Some(crate::aoc2017::aoc2017day14::run),
     Some(crate::aoc2017::aoc2017day15::run),
-    None, // Some(crate::aoc2017::aoc2017day16::run),
+    Some(crate::aoc2017::aoc2017day16::run),
     Some(crate::aoc2017::aoc2017day17::run),
     Some(crate::aoc2017::aoc2017day18::run),
     Some(crate::aoc2017::aoc2017day19::run),
     Some(crate::aoc2017::aoc2017day20::run),
-    None, // Some(crate::aoc2017::aoc2017day21::run),
+    Some(crate::aoc2017::aoc2017day21::run),
     Some(crate::aoc2017::aoc2017day22::run),
     Some(crate::aoc2017::aoc2017day23::run),
     Some(crate::aoc2017::aoc2017day24::run),
-    None, // Some(crate::aoc2017::aoc2017day25::run),
+    Some(crate::aoc2017::aoc2017day25::run),
 ];

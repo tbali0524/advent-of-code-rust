@@ -1,7 +1,6 @@
 //! [aoc](https://adventofcode.com/2015/day/25)
 
-use crate::aoc::PuzzleMetaData;
-use crate::aoc::PuzzleResult;
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 
 pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2015,
@@ -16,7 +15,7 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
 
 type ItemType = u64;
 
-pub fn solve(input: &[String]) -> PuzzleResult {
+pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     if input.len() != 1 {
         return Err("Input must have a single line");
@@ -43,12 +42,6 @@ pub fn solve(input: &[String]) -> PuzzleResult {
 }
 
 // ------------------------------------------------------------
-// --- boilerplate below ---
-
-pub fn run() -> bool {
-    crate::aoc::runner::run_puzzle(&PUZZLE_METADATA, solve)
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;

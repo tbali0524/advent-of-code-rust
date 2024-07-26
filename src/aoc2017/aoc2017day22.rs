@@ -1,7 +1,6 @@
 //! [aoc](https://adventofcode.com/2017/day/22)
 
-use crate::aoc::PuzzleMetaData;
-use crate::aoc::PuzzleResult;
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::collections::HashMap;
 
 pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
@@ -22,7 +21,7 @@ const _FLAGGED: i32 = 3;
 const DIRS: [(i32, i32); 4] = [(0, -1), (1, 0), (0, 1), (-1, 0)]; // dir == 0 must be up, list in clockwise order
 
 #[allow(clippy::map_entry)]
-pub fn solve(input: &[String]) -> PuzzleResult {
+pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse input
     let mut start_nodes = HashMap::new();
     let delta = input.len() / 2;

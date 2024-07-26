@@ -1,6 +1,6 @@
 # Advent of Code solutions in Rust by TBali
 
-![rust v1.79](https://shields.io/badge/rust-1.79-blue?logo=rust)
+![rust v1.79](https://shields.io/badge/rust-1.80-blue?logo=rust)
 ![build](https://img.shields.io/github/actions/workflow/status/tbali0524/advent-of-code-rust/qa.yml)
 ![AoC stars](https://img.shields.io/badge/total%20AoC%20⭐-74-yellow)
 ![license](https://img.shields.io/github/license/tbali0524/advent-of-code-rust)
@@ -35,16 +35,16 @@ cargo run -- 2017
 cargo run -- 2017 2
 # -- run
 cargo build --release
-target\release\advent-of-code-rust.exe
-target\release\advent-of-code-rust.exe 2017
-target\release\advent-of-code-rust.exe 2017 2
+target/release/aoc.exe
+target/release/aoc.exe 2017
+target/release/aoc.exe 2017 2
 # -- shortcut run
-.\aoc.bat
-.\aoc.bat 2017
-.\aoc.bat 2017 2
-.\aoc.bat --help
+./aoc.bat
+./aoc.bat 2017
+./aoc.bat 2017 2
+./aoc.bat --help
 # -- shortcut qa
-.\qa.bat
+./qa.bat
 # -- cleanup
 cargo clean
 ```

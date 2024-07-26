@@ -1,7 +1,6 @@
 //! [aoc](https://adventofcode.com/2017/day/1)
 
-use crate::aoc::PuzzleMetaData;
-use crate::aoc::PuzzleResult;
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 
 pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2017,
@@ -14,7 +13,7 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     example_string_inputs: Some(["91212129", "12131415"]),
 };
 
-pub fn solve(input: &[String]) -> PuzzleResult {
+pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 1 {
         return Err("Input must have a single line");

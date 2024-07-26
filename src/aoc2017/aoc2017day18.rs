@@ -1,7 +1,6 @@
 //! [aoc](https://adventofcode.com/2017/day/18)
 
-use crate::aoc::PuzzleMetaData;
-use crate::aoc::PuzzleResult;
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::collections::HashMap;
 use std::collections::VecDeque;
 
@@ -34,7 +33,7 @@ struct Thread {
 }
 
 impl Thread {
-    fn new(input: &[String], id: ItemType, is_part1: bool) -> Self {
+    fn new(input: PuzzleInput, id: ItemType, is_part1: bool) -> Self {
         let mut p = Thread {
             _id: id,
             is_part1,
@@ -138,7 +137,7 @@ impl Thread {
     }
 }
 
-pub fn solve(input: &[String]) -> PuzzleResult {
+pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Part 1
     let mut thread = Thread::new(input, 0, true);
     thread.execute()?;

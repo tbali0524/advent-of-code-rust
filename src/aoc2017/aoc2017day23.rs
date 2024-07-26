@@ -1,7 +1,6 @@
 //! [aoc](https://adventofcode.com/2017/day/23)
 
-use crate::aoc::PuzzleMetaData;
-use crate::aoc::PuzzleResult;
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::collections::HashMap;
 
 pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
@@ -25,7 +24,7 @@ struct CoProcessor {
 }
 
 impl CoProcessor {
-    fn new(input: &[String]) -> Self {
+    fn new(input: PuzzleInput) -> Self {
         CoProcessor {
             instructions: input.to_owned(),
             total_muls: 0,
@@ -108,7 +107,7 @@ fn is_prime(n: ItemType) -> bool {
     true
 }
 
-pub fn solve(input: &[String]) -> PuzzleResult {
+pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Part 1
     let mut proc = CoProcessor::new(input);
     proc.execute()?;

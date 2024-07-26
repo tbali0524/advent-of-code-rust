@@ -1,7 +1,6 @@
 //! [aoc](https://adventofcode.com/2017/day/7)
 
-use crate::aoc::PuzzleMetaData;
-use crate::aoc::PuzzleResult;
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::collections::HashMap;
 
 pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
@@ -43,7 +42,7 @@ impl Tree {
         Default::default()
     }
 
-    fn from_input(input: &[String]) -> Result<Tree, &'static str> {
+    fn from_input(input: PuzzleInput) -> Result<Tree, &'static str> {
         let mut tree = Tree::new();
         let mut parent_child_pairs = Vec::new();
         for line in input {
@@ -159,7 +158,7 @@ impl Tree {
     }
 }
 
-pub fn solve(input: &[String]) -> PuzzleResult {
+pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     let mut tree = Tree::from_input(input)?;
     // ---------- Part 1

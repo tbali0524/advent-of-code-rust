@@ -1,7 +1,6 @@
 //! [aoc](https://adventofcode.com/2017/day/16)
 
-use crate::aoc::PuzzleMetaData;
-use crate::aoc::PuzzleResult;
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::collections::HashMap;
 
 pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
@@ -27,7 +26,7 @@ struct Command {
 }
 
 #[allow(clippy::field_reassign_with_default)]
-pub fn solve(input: &[String]) -> PuzzleResult {
+pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     if input.len() != 1 {
         return Err("Input must have a single line");

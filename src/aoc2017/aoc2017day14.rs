@@ -1,7 +1,6 @@
 //! [aoc](https://adventofcode.com/2017/day/14)
 
-use crate::aoc::PuzzleMetaData;
-use crate::aoc::PuzzleResult;
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 
 pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2017,
@@ -18,7 +17,7 @@ const GRID_SIZE: usize = 128;
 type GridType = [[char; GRID_SIZE]; GRID_SIZE];
 
 #[allow(clippy::needless_range_loop)]
-pub fn solve(input: &[String]) -> PuzzleResult {
+pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 1 {
         return Err("Input must have a single line");

@@ -1,1 +1,1 @@
-@target\release\advent-of-code-rust.exe %*
+@target\release\aoc.exe %*

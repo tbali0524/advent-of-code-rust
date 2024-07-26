@@ -1,20 +1,11 @@
 //! Helper module to run any puzzle solution.
 
 use super::*;
+use crate::aoc::ansi::*;
 use std::fs;
 use std::path;
 use std::time;
 
-pub const MSG_TITLE: &str = "Advent of Code - solutions in Rust, (c) 2024 by TBali";
-pub const ARG_HELP: &str = "--help";
-pub const ARG_VERSION: &str = "--version";
-
-pub const ANSI_RED_INV: &str = "\x1b[1;37;41m";
-pub const ANSI_RESET: &str = "\x1b[0m";
-
-const _ANSI_GREEN_INV: &str = "\x1b[1;37;42m";
-const ANSI_GREEN: &str = "\x1b[32m";
-const ANSI_YELLOW: &str = "\x1b[33m";
 const MSG_NONE: &str = "      ";
 const MSG_PASS: &str = "\x1b[1;37;42m[ OK ]\x1b[0m";
 const MSG_FAIL: &str = "\x1b[1;37;41m[FAIL]\x1b[0m";
@@ -44,11 +35,12 @@ pub fn run_puzzles(year: Option<usize>, day: Option<usize>) -> bool {
             "======= {} ===================================================",
             season
         );
-        for (day0, run) in season_puzzles.unwrap().iter().enumerate() {
-            if run.is_none() || (day.is_some() && day.unwrap() != day0 + 1) {
+        for (day0, puzzle) in season_puzzles.as_ref().unwrap().iter().enumerate() {
+            if puzzle.is_none() || (day.is_some() && day.unwrap() != day0 + 1) {
                 continue;
             }
-            let passed = run.unwrap()();
+            let (meta_data, solver) = &puzzle.as_ref().unwrap();
+            let passed = run_puzzle(meta_data, *solver);
             all_passed = all_passed && passed;
             count_puzzles += 1;
         }
@@ -85,7 +77,7 @@ pub fn run_puzzle(puzzle: &PuzzleMetaData, solve: Solver) -> bool {
     }
     cases.push(0);
     for case in cases {
-        let (passed, message) = run_case(puzzle, case, solve);
+        let (passed, message) = run_case(puzzle, solve, case);
         all_passed = all_passed && passed;
         all_message += &message;
     }
@@ -111,7 +103,7 @@ pub fn run_puzzle(puzzle: &PuzzleMetaData, solve: Solver) -> bool {
 
 // ------------------------------------------------------------
 /// Runs a single puzzle with a single input test case.
-pub fn run_case(puzzle: &PuzzleMetaData, case: usize, solve: Solver) -> (bool, String) {
+pub fn run_case(puzzle: &PuzzleMetaData, solve: Solver, case: usize) -> (bool, String) {
     let mut all_message = String::new();
     let input_result = read_input(puzzle, case);
     if let Err(e) = input_result {
@@ -224,7 +216,7 @@ fn get_example_count(puzzle: &PuzzleMetaData) -> usize {
 /// Gets the input for a specific test case by reading from the input file (or taken from a constant).
 ///
 /// `case == 0` means the the normal puzzle input; 1 or 2 means an example input
-pub fn read_input(puzzle: &PuzzleMetaData, case: usize) -> PuzzleInput {
+pub fn read_input(puzzle: &PuzzleMetaData, case: usize) -> ReadInputResult {
     let input = if case > 0 && puzzle.example_string_inputs.is_some() {
         if case > 2 {
             return Err("missing input");
@@ -260,53 +252,6 @@ pub fn read_input(puzzle: &PuzzleMetaData, case: usize) -> PuzzleInput {
 }
 
 // ------------------------------------------------------------
-pub fn print_help() {
-    println!(
-        "You can run the solutions for a specific puzzle, for a full seasonm or for all seasons."
-    );
-    println!("Usage:  aoc.bat [year] [day]\n");
-}
-
-// ------------------------------------------------------------
-/// Tries to parse CLI arguments to year and day, no output.
-pub fn parse_args(args: &[String]) -> Result<(Option<usize>, Option<usize>), &'static str> {
-    match args.len() {
-        1 => Ok((None, None)),
-        2 => {
-            if args[1] == ARG_HELP {
-                return Err(ARG_HELP);
-            }
-            if args[1] == ARG_VERSION {
-                return Err(ARG_VERSION);
-            }
-            let year = args[1]
-                .parse::<usize>()
-                .map_err(|_| "Invalid argument: year must be integer")?;
-            if !(START_SEASON..START_SEASON + MAX_SEASONS).contains(&year) {
-                return Err("Invalid argument: year out of range (valid: 2015-2024)");
-            }
-            Ok((Some(year), None))
-        }
-        3 => {
-            let year = args[1]
-                .parse::<usize>()
-                .map_err(|_| "Invalid argument: year must be integer")?;
-            let day = args[2]
-                .parse::<usize>()
-                .map_err(|_| "Invalid argument: day must be integer")?;
-            if !(START_SEASON..START_SEASON + MAX_SEASONS).contains(&year) {
-                return Err("Invalid argument: year out of range (valid: 2015-2024)");
-            }
-            if !(1..=MAX_DAYS).contains(&day) {
-                return Err("Invalid argument: day out of range (valid: 1-25)");
-            }
-            Ok((Some(year), Some(day)))
-        }
-        _ => Err("Too many arguments"),
-    }
-}
-
-// ------------------------------------------------------------
 #[cfg(test)]
 pub mod tests {
     use super::*;
@@ -322,84 +267,6 @@ pub mod tests {
         assert_eq!(result, Err("empty input"));
         let result = read_input(&TEST_PUZZLE_METADATA, 2);
         assert_eq!(result, Err("missing input"));
-    }
-
-    #[test]
-    fn parse_args_invalid_arguments() {
-        let args = [
-            String::from("aoc"),
-            String::from("2017"),
-            String::from("2"),
-            String::from("3"),
-        ];
-        assert_eq!(parse_args(&args), Err("Too many arguments"));
-        let args = [String::from("aoc"), String::from("year")];
-        assert_eq!(
-            parse_args(&args),
-            Err("Invalid argument: year must be integer")
-        );
-        let args = [String::from("aoc"), String::from("2014")];
-        assert_eq!(
-            parse_args(&args),
-            Err("Invalid argument: year out of range (valid: 2015-2024)")
-        );
-        let args = [String::from("aoc"), String::from("2030")];
-        assert_eq!(
-            parse_args(&args),
-            Err("Invalid argument: year out of range (valid: 2015-2024)")
-        );
-        let args = [String::from("aoc"), String::from("year"), String::from("2")];
-        assert_eq!(
-            parse_args(&args),
-            Err("Invalid argument: year must be integer")
-        );
-        let args = [String::from("aoc"), String::from("2014"), String::from("2")];
-        assert_eq!(
-            parse_args(&args),
-            Err("Invalid argument: year out of range (valid: 2015-2024)")
-        );
-        let args = [String::from("aoc"), String::from("2030"), String::from("2")];
-        assert_eq!(
-            parse_args(&args),
-            Err("Invalid argument: year out of range (valid: 2015-2024)")
-        );
-        let args = [
-            String::from("aoc"),
-            String::from("2017"),
-            String::from("day"),
-        ];
-        assert_eq!(
-            parse_args(&args),
-            Err("Invalid argument: day must be integer")
-        );
-        let args = [String::from("aoc"), String::from("2017"), String::from("0")];
-        assert_eq!(
-            parse_args(&args),
-            Err("Invalid argument: day out of range (valid: 1-25)")
-        );
-        let args = [
-            String::from("aoc"),
-            String::from("2017"),
-            String::from("26"),
-        ];
-        assert_eq!(
-            parse_args(&args),
-            Err("Invalid argument: day out of range (valid: 1-25)")
-        );
-    }
-
-    #[test]
-    fn parse_args_valid_arguments() {
-        let args = [String::from("aoc"), String::from("--version")];
-        assert_eq!(parse_args(&args), Err("--version"));
-        let args = [String::from("aoc"), String::from("--help")];
-        assert_eq!(parse_args(&args), Err("--help"));
-        let args = [String::from("aoc")];
-        assert_eq!(parse_args(&args), Ok((None, None)));
-        let args = [String::from("aoc"), String::from("2017")];
-        assert_eq!(parse_args(&args), Ok((Some(2017), None)));
-        let args = [String::from("aoc"), String::from("2017"), String::from("2")];
-        assert_eq!(parse_args(&args), Ok((Some(2017), Some(2))));
     }
 
     const TEST_PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
@@ -434,7 +301,7 @@ pub mod tests {
     }
 
     /// Helper function to test the checking for invalid puzzle input.
-    pub fn test_invalid(_puzzle: &PuzzleMetaData, input: &[String], solve: Solver) {
+    pub fn test_invalid(_puzzle: &PuzzleMetaData, input: PuzzleInput, solve: Solver) {
         let result = solve(&input);
         assert!(result.is_err());
     }

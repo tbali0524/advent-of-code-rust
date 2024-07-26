@@ -1,10 +1,8 @@
 //! [aoc](https://adventofcode.com/2017/day/20)
 
-use crate::aoc::PuzzleMetaData;
-use crate::aoc::PuzzleResult;
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 use regex::Regex;
-use std::collections::HashMap;
-use std::collections::HashSet;
+use std::collections::{HashMap, HashSet};
 
 pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2017,
@@ -81,7 +79,7 @@ impl Particle {
     }
 }
 
-pub fn solve(input: &[String]) -> PuzzleResult {
+pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     let mut particles = Vec::new();
     for (i, line) in input.iter().enumerate() {

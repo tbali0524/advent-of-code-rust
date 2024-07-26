@@ -1,7 +1,6 @@
 //! [aoc](https://adventofcode.com/2017/day/11)
 
-use crate::aoc::PuzzleMetaData;
-use crate::aoc::PuzzleResult;
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::cmp::max;
 
 pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
@@ -27,7 +26,7 @@ pub fn cube_delta(dir: &str) -> Result<(i32, i32, i32), &'static str> {
     }
 }
 
-pub fn solve(input: &[String]) -> PuzzleResult {
+pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 1 {
         return Err("Input must have a single line");

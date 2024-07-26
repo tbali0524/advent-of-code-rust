@@ -1,10 +1,8 @@
 //! [aoc](https://adventofcode.com/2017/day/24)
 
-use crate::aoc::PuzzleMetaData;
-use crate::aoc::PuzzleResult;
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::cmp;
-use std::collections::HashMap;
-use std::collections::HashSet;
+use std::collections::{HashMap, HashSet};
 
 pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2017,
@@ -19,7 +17,7 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
 
 type ItemType = i64;
 
-pub fn solve(input: &[String]) -> PuzzleResult {
+pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     let components = input
         .iter()

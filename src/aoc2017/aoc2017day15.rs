@@ -1,7 +1,6 @@
 //! [aoc](https://adventofcode.com/2017/day/15)
 
-use crate::aoc::PuzzleMetaData;
-use crate::aoc::PuzzleResult;
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 
 pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2017,
@@ -16,7 +15,7 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
 
 type ItemType = u64;
 
-pub fn solve(input: &[String]) -> PuzzleResult {
+pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 2 {
         return Err("Input must have contain two lines");

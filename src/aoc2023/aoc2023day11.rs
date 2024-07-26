@@ -1,7 +1,6 @@
 //! [aoc](https://adventofcode.com/2023/day/11)
 
-use crate::aoc::PuzzleMetaData;
-use crate::aoc::PuzzleResult;
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 
 pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2023,
@@ -15,7 +14,7 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
 };
 
 #[allow(clippy::needless_range_loop)]
-pub fn solve(input: &[String]) -> PuzzleResult {
+pub fn solve(input: PuzzleInput) -> PuzzleResult {
     const EXPANSE_PART1: usize = 2;
     const EXPANSE_EXAMPLE_PART2: usize = 100;
     const EXPANSE_PART2: usize = 1_000_000;
@@ -72,12 +71,6 @@ pub fn solve(input: &[String]) -> PuzzleResult {
 }
 
 // ------------------------------------------------------------
-// --- boilerplate below ---
-
-pub fn run() -> bool {
-    crate::aoc::runner::run_puzzle(&PUZZLE_METADATA, solve)
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;

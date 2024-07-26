@@ -1,7 +1,6 @@
 //! [aoc](https://adventofcode.com/2015/day/3)
 
-use crate::aoc::PuzzleMetaData;
-use crate::aoc::PuzzleResult;
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::collections::HashSet;
 
 pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
@@ -25,7 +24,7 @@ pub fn delta(dir: char) -> Result<(i32, i32), &'static str> {
     }
 }
 
-pub fn solve(input: &[String]) -> PuzzleResult {
+pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 1 {
         return Err("Input must have a single line");
@@ -65,12 +64,6 @@ pub fn solve(input: &[String]) -> PuzzleResult {
 }
 
 // ------------------------------------------------------------
-// --- boilerplate below ---
-
-pub fn run() -> bool {
-    crate::aoc::runner::run_puzzle(&PUZZLE_METADATA, solve)
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;

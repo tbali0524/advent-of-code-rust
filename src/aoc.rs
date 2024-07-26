@@ -1,17 +1,22 @@
-//! General definitions and a CLI runner.
+//! Advent of Code general types, runners and the CLI.
 
+pub mod ansi;
+pub mod cli;
 pub mod runner;
 
 pub const START_SEASON: usize = 2015;
 pub const MAX_SEASONS: usize = 10;
 pub const MAX_DAYS: usize = 25;
 
-pub type PuzzleInput = Result<Vec<String>, &'static str>;
+pub type ReadInputResult = Result<Vec<String>, &'static str>;
+pub type PuzzleInput<'a> = &'a [String];
 pub type PuzzleSolution = (String, String);
-pub type PuzzleResult = Result<PuzzleSolution, &'static str>;
-pub type Solver = fn(&[String]) -> PuzzleResult;
-pub type Runner = fn() -> bool;
-pub type Season = [Option<Runner>; MAX_DAYS];
+
+pub struct PuzzleError(pub String);
+pub type PuzzleResult<'a> = Result<PuzzleSolution, &'a str>;
+pub type Solver = fn(PuzzleInput) -> PuzzleResult;
+pub type Puzzle<'a> = (PuzzleMetaData<'a>, Solver);
+pub type Season<'a> = [Option<Puzzle<'a>>; MAX_DAYS];
 
 /// Each solution must have a constant containing its metadata with this type.
 pub struct PuzzleMetaData<'a> {

@@ -1,7 +1,6 @@
 //! [aoc](https://adventofcode.com/2017/day/21)
 
-use crate::aoc::PuzzleMetaData;
-use crate::aoc::PuzzleResult;
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::collections::HashMap;
 
 pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
@@ -82,7 +81,7 @@ fn get_orientations(image: &ImageType) -> Result<Vec<ImageType>, &'static str> {
     Ok(ans)
 }
 
-pub fn solve(input: &[String]) -> PuzzleResult {
+pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     let mut input_rules = HashMap::new();
     for line in input {

@@ -1,9 +1,7 @@
 //! [aoc](https://adventofcode.com/2017/day/12)
 
-use crate::aoc::PuzzleMetaData;
-use crate::aoc::PuzzleResult;
-use std::collections::HashMap;
-use std::collections::HashSet;
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
+use std::collections::{HashMap, HashSet};
 
 pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2017,
@@ -18,7 +16,7 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
 
 type ItemType = usize;
 
-pub fn solve(input: &[String]) -> PuzzleResult {
+pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     let mut adj_list = HashMap::new();
     for line in input {

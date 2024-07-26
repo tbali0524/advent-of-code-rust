@@ -6,12 +6,20 @@ name = "advent-of-code-rust"
 version = "0.1.0"
 authors = ["Balint Toth"]
 edition = "2021"
-rust-version = "1.79"
+rust-version = "1.80"
 description = "Advent of Code puzzle solutions in Rust by TBali"
 homepage = "https://adventofcode.com/"
 repository = "https://github.com/tbali0524/advent-of-code-rust/"
 license = "MIT"
 keywords = ["aoc", "algorithms"]
+
+[lib]
+path = "src/lib.rs"
+name = "aoc"
+
+[[bin]]
+path = "src/main.rs"
+name = "aoc"
 
 [dependencies]
 md5 = "0.7"     # used by aoc2015day04.rs

@@ -1,7 +1,6 @@
 //! [aoc](https://adventofcode.com/2015/day/2)
 
-use crate::aoc::PuzzleMetaData;
-use crate::aoc::PuzzleResult;
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 
 pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
     year: 2015,
@@ -16,7 +15,7 @@ pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
 
 type ItemType = i32;
 
-pub fn solve(input: &[String]) -> PuzzleResult {
+pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     let data = input
         .iter()
@@ -48,13 +47,6 @@ pub fn solve(input: &[String]) -> PuzzleResult {
         ans2 += 2 * (row[0] + row[1]) + row.iter().product::<ItemType>();
     }
     Ok((ans1.to_string(), ans2.to_string()))
-}
-
-// ------------------------------------------------------------
-// --- boilerplate below ---
-
-pub fn run() -> bool {
-    crate::aoc::runner::run_puzzle(&PUZZLE_METADATA, solve)
 }
 
 #[cfg(test)]

@@ -15,59 +15,16 @@ pub fn metadata() -> PuzzleMetaData<'static> {
 
 type ItemType = usize;
 
-#[derive(Default)]
-struct Command {
-    command: char,
-    op1: Option<ItemType>,
-    op2: Option<ItemType>,
-    op1s: Option<char>,
-    op2s: Option<char>,
-}
-
 #[allow(clippy::field_reassign_with_default)]
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     if input.len() != 1 {
         return Err(PuzzleError("Input must have a single line".into()));
     }
-    let instructions = input[0]
-        .split(',')
-        .map(|x| x.to_owned())
-        .collect::<Vec<String>>();
+    let instructions = input[0].split(',').map(String::from).collect::<Vec<_>>();
     let mut commands = Vec::new();
     for instruction in &instructions {
-        let mut command = Command::default();
-        command.command = instruction.chars().next().unwrap();
-        let mut s = instruction[1..].split('/');
-        let a = s.next().unwrap();
-        match command.command {
-            's' => {
-                command.op1 = Some(a.parse::<ItemType>().map_err(|_| {
-                    PuzzleError("Invalid input: s argument must be integer".into())
-                })?);
-            }
-            'x' => {
-                command.op1 = Some(a.parse::<ItemType>().map_err(|_| {
-                    PuzzleError("Invalid input: x first argument must be integer".into())
-                })?);
-                let b = s.next().ok_or(PuzzleError(
-                    "Invalid input: x command needs 2 arguments".into(),
-                ))?;
-                command.op2 = Some(b.parse::<ItemType>().map_err(|_| {
-                    PuzzleError("Invalid input: x second argument must be integer".into())
-                })?);
-            }
-            'p' => {
-                command.op1s = Some(a.chars().next().unwrap());
-                let b = s.next().ok_or(PuzzleError(
-                    "Invalid input: x command needs 2 arguments".into(),
-                ))?;
-                command.op2s = Some(b.chars().next().unwrap());
-            }
-            _ => {
-                return Err(PuzzleError("Command must be s, x, or p".into()));
-            }
-        }
+        let command = Command::try_from(instruction.as_str())?;
         commands.push(command);
     }
     let start = if instructions.len() == 3 {
@@ -143,6 +100,56 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     }
     let ans2 = String::from_utf8(progs).unwrap();
     Ok((ans1, ans2))
+}
+
+#[derive(Default)]
+struct Command {
+    command: char,
+    op1: Option<ItemType>,
+    op2: Option<ItemType>,
+    op1s: Option<char>,
+    op2s: Option<char>,
+}
+
+impl TryFrom<&str> for Command {
+    type Error = PuzzleError;
+
+    #[allow(clippy::field_reassign_with_default)]
+    fn try_from(instruction: &str) -> Result<Command, PuzzleError> {
+        let mut command = Command::default();
+        command.command = instruction.chars().next().unwrap();
+        let mut s = instruction[1..].split('/');
+        let a = s.next().unwrap();
+        match command.command {
+            's' => {
+                command.op1 = Some(a.parse::<ItemType>().map_err(|_| {
+                    PuzzleError("Invalid input: s argument must be integer".into())
+                })?);
+            }
+            'x' => {
+                command.op1 = Some(a.parse::<ItemType>().map_err(|_| {
+                    PuzzleError("Invalid input: x first argument must be integer".into())
+                })?);
+                let b = s.next().ok_or(PuzzleError(
+                    "Invalid input: x command needs 2 arguments".into(),
+                ))?;
+                command.op2 = Some(b.parse::<ItemType>().map_err(|_| {
+                    PuzzleError("Invalid input: x second argument must be integer".into())
+                })?);
+            }
+            'p' => {
+                command.op1s = Some(a.chars().next().unwrap());
+                let b = s.next().ok_or(PuzzleError(
+                    "Invalid input: x command needs 2 arguments".into(),
+                ))?;
+                command.op2s = Some(b.chars().next().unwrap());
+            }
+            _ => {
+                return Err(PuzzleError("Command must be s, x, or p".into()));
+            }
+        }
+        Ok(command)
+    }
 }
 
 // ------------------------------------------------------------

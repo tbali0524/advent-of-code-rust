@@ -1,4 +1,4 @@
-//! CLI runner
+//! The CLI runner.
 
 use super::ansi::{ANSI_RED_INV, ANSI_RESET};
 use super::runner::run_puzzles;

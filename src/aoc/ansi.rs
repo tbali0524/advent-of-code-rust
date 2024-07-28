@@ -1,4 +1,4 @@
-//! ANSI color codes for terminal output
+//! ANSI color codes for terminal output.
 
 pub const ANSI_RED_INV: &str = "\x1b[1;37;41m";
 pub const ANSI_RESET: &str = "\x1b[0m";

@@ -13,16 +13,6 @@ pub fn metadata() -> PuzzleMetaData<'static> {
     }
 }
 
-pub fn delta(dir: char) -> Result<(i32, i32), PuzzleError> {
-    match dir {
-        '>' => Ok((1, 0)),
-        'v' => Ok((0, 1)),
-        '<' => Ok((-1, 0)),
-        '^' => Ok((0, -1)),
-        _ => Err(PuzzleError("Invalid direction".into())),
-    }
-}
-
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 1 {
@@ -60,6 +50,16 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         memo.insert((x[parity], y[parity]).to_owned());
     }
     Ok((ans1.to_string(), ans2.to_string()))
+}
+
+pub fn delta(dir: char) -> Result<(i32, i32), PuzzleError> {
+    match dir {
+        '>' => Ok((1, 0)),
+        'v' => Ok((0, 1)),
+        '<' => Ok((-1, 0)),
+        '^' => Ok((0, -1)),
+        _ => Err(PuzzleError("Invalid direction".into())),
+    }
 }
 
 // ------------------------------------------------------------

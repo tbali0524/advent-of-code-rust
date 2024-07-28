@@ -20,66 +20,6 @@ const MAX_STEPS_INPUT_PART1: usize = 5;
 const MAX_STEPS_INPUT_PART2: usize = 18;
 const START_IMAGE: &str = ".#./..#/###";
 
-fn image_size(image: &ImageType) -> Result<usize, PuzzleError> {
-    match image.len() {
-        4 => Ok(2),
-        9 => Ok(3),
-        _ => Err(PuzzleError("Invalid image size".into())),
-    }
-}
-
-fn rotate_right(image: &ImageType) -> Result<ImageType, PuzzleError> {
-    let size = image_size(image)?;
-    let mut ans = vec![0; image.len()];
-    for y in 0..size {
-        for x in 0..size {
-            ans[x * size + size - 1 - y] = image[y * size + x];
-        }
-    }
-    Ok(ans)
-}
-
-fn flip_x(image: &ImageType) -> Result<ImageType, PuzzleError> {
-    let size = image_size(image)?;
-    let mut ans = vec![0; image.len()];
-    for y in 0..size {
-        for x in 0..size {
-            ans[y * size + x] = image[y * size + size - 1 - x];
-        }
-    }
-    Ok(ans)
-}
-
-fn flip_y(image: &ImageType) -> Result<ImageType, PuzzleError> {
-    let size = image_size(image)?;
-    let mut ans = vec![0; image.len()];
-    for y in 0..size {
-        for x in 0..size {
-            ans[y * size + x] = image[(size - 1 - y) * size + x];
-        }
-    }
-    Ok(ans)
-}
-
-fn get_orientations(image: &ImageType) -> Result<Vec<ImageType>, PuzzleError> {
-    let flips = [
-        image.to_owned(),
-        flip_x(image)?,
-        flip_y(image)?,
-        flip_y(&flip_x(image)?)?,
-    ];
-    let mut ans = Vec::new();
-    for flipped_image in flips {
-        ans.push(flipped_image.to_owned());
-        let mut rotated_image = flipped_image.to_owned();
-        for _ in 1..4 {
-            rotated_image = rotate_right(&rotated_image)?;
-            ans.push(rotated_image.clone());
-        }
-    }
-    Ok(ans)
-}
-
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     let mut input_rules = HashMap::new();
@@ -148,6 +88,66 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     }
     let ans2 = image.iter().filter(|&x| *x == b'#').count();
     Ok((ans1.to_string(), ans2.to_string()))
+}
+
+fn image_size(image: &ImageType) -> Result<usize, PuzzleError> {
+    match image.len() {
+        4 => Ok(2),
+        9 => Ok(3),
+        _ => Err(PuzzleError("Invalid image size".into())),
+    }
+}
+
+fn rotate_right(image: &ImageType) -> Result<ImageType, PuzzleError> {
+    let size = image_size(image)?;
+    let mut ans = vec![0; image.len()];
+    for y in 0..size {
+        for x in 0..size {
+            ans[x * size + size - 1 - y] = image[y * size + x];
+        }
+    }
+    Ok(ans)
+}
+
+fn flip_x(image: &ImageType) -> Result<ImageType, PuzzleError> {
+    let size = image_size(image)?;
+    let mut ans = vec![0; image.len()];
+    for y in 0..size {
+        for x in 0..size {
+            ans[y * size + x] = image[y * size + size - 1 - x];
+        }
+    }
+    Ok(ans)
+}
+
+fn flip_y(image: &ImageType) -> Result<ImageType, PuzzleError> {
+    let size = image_size(image)?;
+    let mut ans = vec![0; image.len()];
+    for y in 0..size {
+        for x in 0..size {
+            ans[y * size + x] = image[(size - 1 - y) * size + x];
+        }
+    }
+    Ok(ans)
+}
+
+fn get_orientations(image: &ImageType) -> Result<Vec<ImageType>, PuzzleError> {
+    let flips = [
+        image.to_owned(),
+        flip_x(image)?,
+        flip_y(image)?,
+        flip_y(&flip_x(image)?)?,
+    ];
+    let mut ans = Vec::new();
+    for flipped_image in flips {
+        ans.push(flipped_image.to_owned());
+        let mut rotated_image = flipped_image.to_owned();
+        for _ in 1..4 {
+            rotated_image = rotate_right(&rotated_image)?;
+            ans.push(rotated_image.clone());
+        }
+    }
+    Ok(ans)
 }
 
 // ------------------------------------------------------------

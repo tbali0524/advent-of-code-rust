@@ -15,6 +15,41 @@ pub fn metadata() -> PuzzleMetaData<'static> {
 
 type ItemType = i64;
 
+pub fn solve(input: PuzzleInput) -> PuzzleResult {
+    // ---------- Part 1
+    let mut proc = CoProcessor::new(input);
+    proc.execute()?;
+    let ans1 = proc.total_muls;
+    // ---------- Part 2
+    if input.len() != 32 {
+        return Ok((ans1.to_string(), "0".to_string()));
+    }
+    let mut ans2 = 0;
+    let start_b = input[0][6..]
+        .parse::<ItemType>()
+        .map_err(|_| PuzzleError("Invalid input".into()))?;
+    let mul_b = input[4][6..]
+        .parse::<ItemType>()
+        .map_err(|_| PuzzleError("Invalid input".into()))?;
+    let sub_b = input[5][6..]
+        .parse::<ItemType>()
+        .map_err(|_| PuzzleError("Invalid input".into()))?;
+    let sub_c = input[7][6..]
+        .parse::<ItemType>()
+        .map_err(|_| PuzzleError("Invalid input".into()))?;
+    let step = -input[30][6..]
+        .parse::<ItemType>()
+        .map_err(|_| PuzzleError("Invalid input".into()))?;
+    let from = start_b * mul_b - sub_b;
+    let to = from - sub_c;
+    for n in (from..=to).step_by(step as usize) {
+        if !is_prime(n) {
+            ans2 += 1;
+        }
+    }
+    Ok((ans1.to_string(), ans2.to_string()))
+}
+
 struct CoProcessor {
     instructions: Vec<String>,
     total_muls: ItemType,
@@ -104,41 +139,6 @@ fn is_prime(n: ItemType) -> bool {
         i += 6;
     }
     true
-}
-
-pub fn solve(input: PuzzleInput) -> PuzzleResult {
-    // ---------- Part 1
-    let mut proc = CoProcessor::new(input);
-    proc.execute()?;
-    let ans1 = proc.total_muls;
-    // ---------- Part 2
-    if input.len() != 32 {
-        return Ok((ans1.to_string(), "0".to_string()));
-    }
-    let mut ans2 = 0;
-    let start_b = input[0][6..]
-        .parse::<ItemType>()
-        .map_err(|_| PuzzleError("Invalid input".into()))?;
-    let mul_b = input[4][6..]
-        .parse::<ItemType>()
-        .map_err(|_| PuzzleError("Invalid input".into()))?;
-    let sub_b = input[5][6..]
-        .parse::<ItemType>()
-        .map_err(|_| PuzzleError("Invalid input".into()))?;
-    let sub_c = input[7][6..]
-        .parse::<ItemType>()
-        .map_err(|_| PuzzleError("Invalid input".into()))?;
-    let step = -input[30][6..]
-        .parse::<ItemType>()
-        .map_err(|_| PuzzleError("Invalid input".into()))?;
-    let from = start_b * mul_b - sub_b;
-    let to = from - sub_c;
-    for n in (from..=to).step_by(step as usize) {
-        if !is_prime(n) {
-            ans2 += 1;
-        }
-    }
-    Ok((ans1.to_string(), ans2.to_string()))
 }
 
 // ------------------------------------------------------------

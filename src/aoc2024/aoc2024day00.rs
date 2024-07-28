@@ -48,12 +48,12 @@ mod tests {
     #[test]
     #[ignore]
     fn invalid_single_line() {
-        test_invalid(&[String::from("a"), String::from("b")], solve);
+        test_invalid(&vec![String::from("a"), String::from("b")], solve);
     }
 
     #[test]
     #[ignore]
     fn invalid() {
-        test_invalid(&[String::from("a")], solve);
+        test_invalid(&vec![String::from("a")], solve);
     }
 }

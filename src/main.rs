@@ -1,4 +1,4 @@
-//! # Advent of Code solutions CLI runner binary crate
+//! # Advent of Code solutions CLI runner binary crate.
 
 use aoc::aoc::cli::run;
 use std::process::ExitCode;

@@ -17,6 +17,61 @@ pub fn metadata() -> PuzzleMetaData<'static> {
 
 type ItemType = i32;
 
+pub fn solve(input: PuzzleInput) -> PuzzleResult {
+    // ---------- Check input
+    let mut particles = Vec::new();
+    for (i, line) in input.iter().enumerate() {
+        particles.push(Particle::from_string(i, line)?);
+    }
+    // println!("{:?}", particles);
+    // ---------- Part 1
+    particles.sort_by(|a, b| {
+        a.a.manhattan()
+            .cmp(&b.a.manhattan())
+            .then_with(|| a.v.manhattan().cmp(&b.v.manhattan()))
+            .then_with(|| a.p.manhattan().cmp(&b.p.manhattan()))
+    });
+    let ans1 = "p".to_string() + &particles.first().unwrap().id.to_string();
+    // ---------- Part 2
+    let mut ans2 = particles.len();
+    let mut last_col_turn = 0;
+    particles.sort_by(|a, b| a.id.cmp(&b.id));
+    let mut particles_map = HashMap::new();
+    for particle in particles {
+        particles_map.insert(particle.id, particle);
+    }
+    let mut t = 0;
+    loop {
+        for particle in particles_map.values_mut() {
+            particle.tick();
+        }
+        t += 1;
+        let mut collisions = HashSet::new();
+        let mut visited = HashMap::new();
+        for particle in particles_map.values() {
+            let hash = particle.p.clone();
+            if !visited.contains_key(&hash) {
+                visited.insert(hash.to_owned(), particle.id);
+                continue;
+            }
+            let vis_id = visited.get(&hash).unwrap();
+            collisions.insert(*vis_id);
+            collisions.insert(particle.id);
+        }
+        if !collisions.is_empty() {
+            ans2 -= collisions.len();
+            for idx in collisions {
+                particles_map.remove(&idx);
+            }
+            last_col_turn = t;
+        }
+        if t - last_col_turn > 50 || particles_map.len() < 2 {
+            break;
+        }
+    }
+    Ok((ans1.to_string(), ans2.to_string()))
+}
+
 #[derive(Clone, PartialEq, Eq, Hash)]
 struct Vector3D {
     x: ItemType,
@@ -79,61 +134,6 @@ impl Particle {
         self.p.y += self.v.y;
         self.p.z += self.v.z;
     }
-}
-
-pub fn solve(input: PuzzleInput) -> PuzzleResult {
-    // ---------- Check input
-    let mut particles = Vec::new();
-    for (i, line) in input.iter().enumerate() {
-        particles.push(Particle::from_string(i, line)?);
-    }
-    // println!("{:?}", particles);
-    // ---------- Part 1
-    particles.sort_by(|a, b| {
-        a.a.manhattan()
-            .cmp(&b.a.manhattan())
-            .then_with(|| a.v.manhattan().cmp(&b.v.manhattan()))
-            .then_with(|| a.p.manhattan().cmp(&b.p.manhattan()))
-    });
-    let ans1 = "p".to_string() + &particles.first().unwrap().id.to_string();
-    // ---------- Part 2
-    let mut ans2 = particles.len();
-    let mut last_col_turn = 0;
-    particles.sort_by(|a, b| a.id.cmp(&b.id));
-    let mut particles_map = HashMap::new();
-    for particle in particles {
-        particles_map.insert(particle.id, particle);
-    }
-    let mut t = 0;
-    loop {
-        for particle in particles_map.values_mut() {
-            particle.tick();
-        }
-        t += 1;
-        let mut collisions = HashSet::new();
-        let mut visited = HashMap::new();
-        for particle in particles_map.values() {
-            let hash = particle.p.clone();
-            if !visited.contains_key(&hash) {
-                visited.insert(hash.to_owned(), particle.id);
-                continue;
-            }
-            let vis_id = visited.get(&hash).unwrap();
-            collisions.insert(*vis_id);
-            collisions.insert(particle.id);
-        }
-        if !collisions.is_empty() {
-            ans2 -= collisions.len();
-            for idx in collisions {
-                particles_map.remove(&idx);
-            }
-            last_col_turn = t;
-        }
-        if t - last_col_turn > 50 || particles_map.len() < 2 {
-            break;
-        }
-    }
-    Ok((ans1.to_string(), ans2.to_string()))
 }
 
 // ------------------------------------------------------------

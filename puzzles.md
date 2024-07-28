@@ -4,7 +4,7 @@
 
 |Year         |Status|
 |-------------|:-----|
-|[2015](#2015)|![-](https://img.shields.io/badge/stars%20⭐-10-yellow)|
+|[2015](#2015)|![-](https://img.shields.io/badge/stars%20⭐-30-yellow)|
 |[2016](#2016)|![-](https://img.shields.io/badge/stars%20⭐-2-red)|
 |[2017](#2017)|![-](https://img.shields.io/badge/stars%20⭐-50-green)|
 |[2018](#2018)|![-](https://img.shields.io/badge/stars%20⭐-2-red)|
@@ -13,7 +13,7 @@
 |[2021](#2021)|![-](https://img.shields.io/badge/stars%20⭐-2-red)|
 |[2022](#2022)|![-](https://img.shields.io/badge/stars%20⭐-2-red)|
 |[2023](#2023)|![-](https://img.shields.io/badge/stars%20⭐-2-red)|
-|__Total__|![total](https://img.shields.io/badge/stars%20⭐-74-yellow)|
+|__Total__|![total](https://img.shields.io/badge/stars%20⭐-94-yellow)|
 
 ## Puzzles
 
@@ -25,20 +25,20 @@
 |  +  |2015|  2|I Was Told There Would Be No Math         |
 |  +  |2015|  3|Perfectly Spherical Houses in a Vacuum    |walk simulation
 |  +  |2015|  4|The Ideal Stocking Stuffer                |
-|  -  |2015|  5|Doesn't He Have Intern-Elves For This?    |string validation
-|  -  |2015|  6|Probably a Fire Hazard                    |
-|  -  |2015|  7|Some Assembly Required                    |circuit emulation, tree graph
-|  -  |2015|  8|Matchsticks                               |
-|  -  |2015|  9|All in a Single Night                     |permutations, Heap's algorithm, Hamiltonian paths, graph
-|  -  |2015| 10|Elves Look, Elves Say                     |Conway's look-and-say sequence, simulation
-|  -  |2015| 11|Corporate Policy                          |string validation
+|  +  |2015|  5|Doesn't He Have Intern-Elves For This?    |string validation
+|  +  |2015|  6|Probably a Fire Hazard                    |
+|  +  |2015|  7|Some Assembly Required                    |circuit emulation, tree graph
+|  +  |2015|  8|Matchsticks                               |
+|  +  |2015|  9|All in a Single Night                     |permutations, Heap's algorithm, Hamiltonian paths, graph
+|  +  |2015| 10|Elves Look, Elves Say                     |Conway's look-and-say sequence, simulation
+|  +  |2015| 11|Corporate Policy                          |string validation
 |  -  |2015| 12|JSAbacusFramework .io                     |recursive walk of json object
-|  -  |2015| 13|Knights of the Dinner Table               |permutations, Heap's algorithm, Hamiltonian circle, graph
+|  +  |2015| 13|Knights of the Dinner Table               |permutations, Heap's algorithm, Hamiltonian circle, graph
 |  -  |2015| 14|Reindeer Olympics                         |
 |  -  |2015| 15|Science for Hungry People                 |
 |  -  |2015| 16|Aunt Sue                                  |find matching object based on properties
-|  -  |2015| 17|No Such Thing as Too Much                 |combinations
-|  -  |2015| 18|Like a GIF For Your Yard                  |Conway's Game of Life, simulation
+|  +  |2015| 17|No Such Thing as Too Much                 |combinations
+|  +  |2015| 18|Like a GIF For Your Yard                  |Conway's Game of Life, simulation
 |  -  |2015| 19|Medicine for Rudolph                      |DFS, graph
 |  -  |2015| 20|Infinite Elves and Infinite Houses        |prime factorization, sigma function, sum-of-divisors function
 |  -  |2015| 21|RPG Simulator 20XX                        |game simulation

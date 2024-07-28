@@ -13,18 +13,6 @@ pub fn metadata() -> PuzzleMetaData<'static> {
     }
 }
 
-pub fn cube_delta(dir: &str) -> Result<(i32, i32, i32), PuzzleError> {
-    match dir {
-        "n" => Ok((0, -1, 1)),
-        "s" => Ok((0, 1, -1)),
-        "nw" => Ok((-1, 0, 1)),
-        "se" => Ok((1, 0, -1)),
-        "ne" => Ok((1, -1, 0)),
-        "sw" => Ok((-1, 1, 0)),
-        _ => Err(PuzzleError("Invalid direction".into())),
-    }
-}
-
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 1 {
@@ -44,6 +32,18 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         ans2 = max(ans1, ans2);
     }
     Ok((ans1.to_string(), ans2.to_string()))
+}
+
+pub fn cube_delta(dir: &str) -> Result<(i32, i32, i32), PuzzleError> {
+    match dir {
+        "n" => Ok((0, -1, 1)),
+        "s" => Ok((0, 1, -1)),
+        "nw" => Ok((-1, 0, 1)),
+        "se" => Ok((1, 0, -1)),
+        "ne" => Ok((1, -1, 0)),
+        "sw" => Ok((-1, 1, 0)),
+        _ => Err(PuzzleError("Invalid direction".into())),
+    }
 }
 
 // ------------------------------------------------------------

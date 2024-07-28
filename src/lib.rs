@@ -1,4 +1,4 @@
-//! Advent of Code solutions and CLI runner library crate
+//! Advent of Code solutions and CLI runner library crate.
 
 pub mod aoc;
 pub mod aoc2015;

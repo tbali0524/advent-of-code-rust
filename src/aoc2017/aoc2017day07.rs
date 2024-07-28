@@ -15,6 +15,17 @@ pub fn metadata() -> PuzzleMetaData<'static> {
 
 type ItemType = i32;
 
+pub fn solve(input: PuzzleInput) -> PuzzleResult {
+    // ---------- Parse and Check input
+    let mut tree = Tree::try_from(input)?;
+    // ---------- Part 1
+    let ans1 = tree.find_root()?;
+    // ---------- Part 2
+    tree.calc_total_weight(&ans1)?;
+    let ans2 = tree.find_unbalanced(&ans1)?;
+    Ok((ans1, ans2.to_string()))
+}
+
 #[derive(Default)]
 struct Node {
     name: String,
@@ -24,25 +35,18 @@ struct Node {
     total: ItemType,
 }
 
-impl Node {
-    fn new() -> Self {
-        Default::default()
-    }
-}
-
 #[derive(Default)]
 struct Tree {
     nodes: HashMap<String, Node>,
     root: Option<String>,
 }
 
-impl Tree {
-    fn new() -> Self {
-        Default::default()
-    }
+impl TryFrom<PuzzleInput<'_>> for Tree {
+    type Error = PuzzleError;
 
-    fn from_input(input: PuzzleInput) -> Result<Tree, PuzzleError> {
-        let mut tree = Tree::new();
+    #[allow(clippy::field_reassign_with_default)]
+    fn try_from(input: PuzzleInput) -> Result<Tree, PuzzleError> {
+        let mut tree = Tree::default();
         let mut parent_child_pairs = Vec::new();
         for line in input {
             let mut a = line.split(" -> ");
@@ -63,7 +67,7 @@ impl Tree {
             if a.next().is_some() || b.next().is_some() {
                 return Err(PuzzleError("Invalid input".into()));
             }
-            let mut node = Node::new();
+            let mut node = Node::default();
             node.name = name.to_string();
             for child in &children {
                 parent_child_pairs.push((name.to_owned(), child.to_owned()));
@@ -82,7 +86,9 @@ impl Tree {
         }
         Ok(tree)
     }
+}
 
+impl Tree {
     fn find_root(&mut self) -> Result<String, PuzzleError> {
         if let Some(r) = &self.root {
             return Ok(r.to_owned());
@@ -161,17 +167,6 @@ impl Tree {
             )),
         }
     }
-}
-
-pub fn solve(input: PuzzleInput) -> PuzzleResult {
-    // ---------- Parse and Check input
-    let mut tree = Tree::from_input(input)?;
-    // ---------- Part 1
-    let ans1 = tree.find_root()?;
-    // ---------- Part 2
-    tree.calc_total_weight(&ans1)?;
-    let ans2 = tree.find_unbalanced(&ans1)?;
-    Ok((ans1, ans2.to_string()))
 }
 
 // ------------------------------------------------------------

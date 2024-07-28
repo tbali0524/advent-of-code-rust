@@ -8,34 +8,52 @@ pub mod cli;
 pub mod runner;
 
 pub const START_SEASON: usize = 2015;
-pub const MAX_SEASONS: usize = 10;
+pub const MAX_SEASONS: usize = 10; // empty 2024 season also included as a template
 pub const MAX_DAYS: usize = 25;
 
+/// The custom error type for puzzle input parsing and runner errors.
 #[derive(PartialEq)]
 pub struct PuzzleError(pub String);
 impl error::Error for PuzzleError {}
 impl fmt::Debug for PuzzleError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "Input Error: {}", self.0)
+        write!(f, "Input error: {}", self.0)
     }
 }
 impl fmt::Display for PuzzleError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "Input Error: {}", self.0)
+        write!(f, "Input error: {}", self.0)
     }
 }
 
-pub type ReadInputResult = Result<Vec<String>, PuzzleError>;
-pub type PuzzleInput<'a> = &'a Vec<String>;
+/// The expected solution for a test case, containing both parts of the puzzle.
 pub type PuzzleExpected<'a> = (&'a str, &'a str);
+
+/// A candidate solution for a test case, containing both parts of the puzzle.
 pub type PuzzleSolution = (String, String);
+
+/// The result type of `runner::read_input()`.
+pub type ReadInputResult = Result<Vec<String>, PuzzleError>;
+
+/// The parameter type of `solver()`.
+pub type PuzzleInput<'a> = &'a Vec<String>;
+
+/// The return type of `solver()`.
 pub type PuzzleResult = Result<PuzzleSolution, PuzzleError>;
+
+/// Each solution must have a `metadata()` function with this signature.
 pub type MetaData<'a> = fn() -> PuzzleMetaData<'a>;
+
+/// Each solution must have a `solve()` function with this signature.
 pub type Solver = fn(PuzzleInput) -> PuzzleResult;
+
+/// An implemented puzzle: its metadata() and solve() functions, used by the `PUZZLES` constants in all season modules.
 pub type Puzzle<'a> = (MetaData<'a>, Solver);
+
+/// The array of the implemented puzzles, used by the `PUZZLES` constant in this (`aoc`) module.
 pub type Season<'a> = [Option<Puzzle<'a>>; MAX_DAYS];
 
-/// Each solution must have a constant containing its metadata with this type.
+/// Each solution must have a metadata() function returning an instance of this struct.
 pub struct PuzzleMetaData<'a> {
     pub year: usize,
     pub day: usize,
@@ -44,7 +62,7 @@ pub struct PuzzleMetaData<'a> {
     pub example_solutions: Vec<PuzzleExpected<'a>>,
 }
 
-/// array of seasons that have implemented solutions
+/// Array of seasons containing the arrays of the implemented puzzles.
 pub const PUZZLES: [Option<Season>; MAX_SEASONS] = [
     Some(crate::aoc2015::PUZZLES),
     Some(crate::aoc2016::PUZZLES),

@@ -16,6 +16,41 @@ pub fn metadata() -> PuzzleMetaData<'static> {
 
 type ItemType = i64;
 
+pub fn solve(input: PuzzleInput) -> PuzzleResult {
+    // ---------- Part 1
+    let mut thread = Thread::new(input, 0, true);
+    thread.execute()?;
+    let ans1 = thread.sound;
+    // ---------- Part 2
+    let mut thread0 = Thread::new(input, 0, false);
+    let mut thread1 = Thread::new(input, 1, false);
+    loop {
+        let mut was_comm = false;
+        thread0.execute()?;
+        while !thread0.snd_queue.is_empty() {
+            thread1
+                .rcv_queue
+                .push_back(thread0.snd_queue.pop_front().unwrap());
+            was_comm = true;
+        }
+        thread1.execute()?;
+        while !thread1.snd_queue.is_empty() {
+            thread0
+                .rcv_queue
+                .push_back(thread1.snd_queue.pop_front().unwrap());
+            was_comm = true;
+        }
+        if thread0.completed && thread1.completed {
+            break;
+        }
+        if !was_comm {
+            break;
+        }
+    }
+    let ans2 = thread1.total_sent;
+    Ok((ans1.to_string(), ans2.to_string()))
+}
+
 #[derive(Default)]
 struct Thread {
     is_part1: bool,
@@ -134,41 +169,6 @@ impl Thread {
             }
         }
     }
-}
-
-pub fn solve(input: PuzzleInput) -> PuzzleResult {
-    // ---------- Part 1
-    let mut thread = Thread::new(input, 0, true);
-    thread.execute()?;
-    let ans1 = thread.sound;
-    // ---------- Part 2
-    let mut thread0 = Thread::new(input, 0, false);
-    let mut thread1 = Thread::new(input, 1, false);
-    loop {
-        let mut was_comm = false;
-        thread0.execute()?;
-        while !thread0.snd_queue.is_empty() {
-            thread1
-                .rcv_queue
-                .push_back(thread0.snd_queue.pop_front().unwrap());
-            was_comm = true;
-        }
-        thread1.execute()?;
-        while !thread1.snd_queue.is_empty() {
-            thread0
-                .rcv_queue
-                .push_back(thread1.snd_queue.pop_front().unwrap());
-            was_comm = true;
-        }
-        if thread0.completed && thread1.completed {
-            break;
-        }
-        if !was_comm {
-            break;
-        }
-    }
-    let ans2 = thread1.total_sent;
-    Ok((ans1.to_string(), ans2.to_string()))
 }
 
 // ------------------------------------------------------------

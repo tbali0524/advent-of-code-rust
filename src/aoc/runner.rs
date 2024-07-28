@@ -9,8 +9,8 @@ use std::time;
 const MSG_NONE: &str = "      ";
 const MSG_PASS: &str = "\x1b[1;37;42m[ OK ]\x1b[0m"; // cannot build &str const from mod ansi &str constants...
 const MSG_FAIL: &str = "\x1b[1;37;41m[FAIL]\x1b[0m";
-const MSG_PASS_TOTAL: &str = "\x1b[1;37;42m[ OK ] ALL TESTS PASSED \x1b[0m";
-const MSG_FAIL_TOTAL: &str = "\x1b[1;37;41m[FAIL] SOME TESTS FAILED \x1b[0m";
+const MSG_PASS_TOTAL: &str = "\x1b[1;37;42m[ OK ] All tests passed. \x1b[0m";
+const MSG_FAIL_TOTAL: &str = "\x1b[1;37;41m[FAIL] Some tests failed. \x1b[0m";
 const DURATION_THRESHOLD_MILLIS: u64 = 500;
 
 // ------------------------------------------------------------
@@ -53,13 +53,16 @@ pub fn run_puzzles(year: Option<usize>, day: Option<usize>) -> bool {
     }
     let elapsed = now.elapsed();
     println!(
-        "=================== [Total time: {:5} ms]  [{} seasons, {}{}{} puzzles, {} examples]\n",
+        "=================== [Total time: {:5} ms]  [{} season{}, {}{}{} puzzle{}, {} example{}]\n",
         elapsed.as_millis(),
         count_seasons,
+        get_plural(count_seasons),
         ANSI_GREEN,
         count_puzzles,
         ANSI_RESET,
+        get_plural(count_puzzles),
         count_examples,
+        get_plural(count_examples),
     );
     let msg = if all_passed {
         MSG_PASS_TOTAL
@@ -73,7 +76,7 @@ pub fn run_puzzles(year: Option<usize>, day: Option<usize>) -> bool {
 }
 
 // ------------------------------------------------------------
-/// Runs a single puzzle, including all examples.
+/// Runs a single puzzle, including all examples, prints results to stdout, returns true if all cases are passing.
 pub fn run_puzzle(puzzle: &PuzzleMetaData, solve: Solver) -> bool {
     let now = time::Instant::now();
     let mut all_passed = true;
@@ -107,7 +110,7 @@ pub fn run_puzzle(puzzle: &PuzzleMetaData, solve: Solver) -> bool {
 }
 
 // ------------------------------------------------------------
-/// Runs a single puzzle with a single input test case.
+/// Runs a single puzzle with a single input test case, returns bool with passing and a single line message.
 pub fn run_case(puzzle: &PuzzleMetaData, solve: Solver, case: usize) -> (bool, String) {
     let mut all_message = String::new();
     let input_result = read_input(puzzle, case);
@@ -163,6 +166,14 @@ pub fn run_case(puzzle: &PuzzleMetaData, solve: Solver, case: usize) -> (bool, S
     (all_passed, all_message)
 }
 
+fn get_plural(item: usize) -> String {
+    if item == 1 {
+        String::new()
+    } else {
+        String::from('s')
+    }
+}
+
 // ------------------------------------------------------------
 fn get_case_error(case: usize, e: PuzzleError) -> String {
     if case == 0 {
@@ -174,21 +185,19 @@ fn get_case_error(case: usize, e: PuzzleError) -> String {
 
 // ------------------------------------------------------------
 fn get_expected<'a>(puzzle: &'a PuzzleMetaData, case: usize) -> PuzzleExpected<'a> {
-    // let expected =
     if case == 0 {
         puzzle.solution
     } else {
         puzzle.example_solutions[case - 1]
     }
-    // (expected.0.to_string(), expected.1.to_string())
 }
 
 // ------------------------------------------------------------
-/// Reads input from file for a specific test case (case == 0 for puzzle input, 1, 2, ... for example input.
+/// Reads input from file for a specific test case (case == 0 for the puzzle input, 1, 2, ... for example inputs).
 pub fn read_input(puzzle: &PuzzleMetaData, case: usize) -> ReadInputResult {
     if case > puzzle.example_solutions.len() {
         return Err(PuzzleError(format!(
-            "missing expected example #{} solution",
+            "missing expected solution for example #{}",
             case
         )));
     }
@@ -219,7 +228,7 @@ pub fn read_input(puzzle: &PuzzleMetaData, case: usize) -> ReadInputResult {
 pub mod tests {
     use super::*;
 
-    pub fn invalid_puzzle_metadata() -> PuzzleMetaData<'static> {
+    fn invalid_puzzle_metadata() -> PuzzleMetaData<'static> {
         PuzzleMetaData {
             year: 2024,
             day: 0,
@@ -237,14 +246,16 @@ pub mod tests {
         let result = read_input(&puzzle, 3);
         assert_eq!(
             result,
-            Err(PuzzleError("missing expected example #3 solution".into()))
+            Err(PuzzleError(
+                "missing expected solution for example #3".into()
+            ))
         );
-        let result = read_input(&puzzle, 3);
+        let result = read_input(&puzzle, 2);
         assert!(result.is_err()); // cannot read input file: ...
     }
 
     // ------------------------------------------------------------
-    /// Helper function to be used in puzzle solution tests.
+    /// Helper function to be used in puzzle solution tests, running a single test case from file input.
     ///
     /// Similar to `run_case()` but using assertions and no output.
     pub fn test_case(metadata: MetaData, solve: Solver, case: usize) {
@@ -264,7 +275,7 @@ pub mod tests {
         }
     }
 
-    /// Helper function to test the checking for invalid puzzle input.
+    /// Helper function to be used in puzzle solution tests, for checking handling of invalid puzzle inputs.
     pub fn test_invalid(input: PuzzleInput, solve: Solver) {
         let result = solve(input);
         assert!(result.is_err());

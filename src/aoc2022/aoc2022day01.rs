@@ -1,17 +1,16 @@
 //! [aoc](https://adventofcode.com/2022/day/1)
 
-use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
 
-pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2022,
-    day: 1,
-    title: "Calorie Counting",
-    solution: (72070, 211805),
-    example_solutions: [(24000, 45000), (0, 0)],
-    string_solution: None,
-    example_string_solutions: None,
-    example_string_inputs: None,
-};
+pub fn metadata() -> PuzzleMetaData<'static> {
+    PuzzleMetaData {
+        year: 2022,
+        day: 1,
+        title: "Calorie Counting",
+        solution: ("72070", "211805"),
+        example_solutions: vec![("24000", "45000")],
+    }
+}
 
 type ItemType = i32;
 
@@ -26,7 +25,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         }
         calories.last_mut().unwrap().push(
             line.parse::<ItemType>()
-                .map_err(|_| "Input must contain only integers")?,
+                .map_err(|_| PuzzleError("Input must contain only integers".into()))?,
         );
     }
     // ---------- Part 1 + 2
@@ -49,16 +48,16 @@ mod tests {
 
     #[test]
     fn example1() {
-        test_case(&PUZZLE_METADATA, 1, solve);
+        test_case(metadata, solve, 1);
     }
 
     #[test]
     fn puzzle() {
-        test_case(&PUZZLE_METADATA, 0, solve);
+        test_case(metadata, solve, 0);
     }
 
     #[test]
     fn invalid_only_contains_int() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("a")], solve);
+        test_invalid(&vec![String::from("a")], solve);
     }
 }

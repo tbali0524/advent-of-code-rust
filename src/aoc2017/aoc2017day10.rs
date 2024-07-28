@@ -1,17 +1,16 @@
 //! [aoc](https://adventofcode.com/2017/day/10)
 
-use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
 
-pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2017,
-    day: 10,
-    title: "Knot Hash",
-    solution: (0, 0),
-    example_solutions: [(0, 0), (0, 0)],
-    string_solution: Some(("52070", "7f94112db4e32e19cf6502073c66f9bb")),
-    example_string_solutions: Some([("12", "0"), ("0", "3efbe78a8d82f29979031a4aa0b16a9d")]),
-    example_string_inputs: Some(["3,4,1,5", "1,2,3"]),
-};
+pub fn metadata() -> PuzzleMetaData<'static> {
+    PuzzleMetaData {
+        year: 2017,
+        day: 10,
+        title: "Knot Hash",
+        solution: ("52070", "7f94112db4e32e19cf6502073c66f9bb"),
+        example_solutions: vec![("12", "0"), ("0", "3efbe78a8d82f29979031a4aa0b16a9d")],
+    }
+}
 
 type ItemType = usize;
 
@@ -19,13 +18,13 @@ type ItemType = usize;
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     if input.len() != 1 {
-        return Err("Input must have a single line");
+        return Err(PuzzleError("Input must have a single line".into()));
     }
     let data = input[0]
         .split(',')
         .map(|x| {
             x.parse::<ItemType>()
-                .map_err(|_| "Input must contain only integers")
+                .map_err(|_| PuzzleError("Input must contain only integers".into()))
         })
         .collect::<Result<Vec<_>, _>>()?;
     // ---------- Part 1
@@ -41,7 +40,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     let mut skip_size = 0;
     for len in data {
         if len > list_size {
-            Err("Invalid input")?
+            Err(PuzzleError("Invalid input".into()))?
         }
         for i in 0..(len / 2) {
             let p1 = (pos + i) % list_size;
@@ -88,12 +87,6 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
 }
 
 // ------------------------------------------------------------
-// --- boilerplate below ---
-
-pub fn run() -> bool {
-    crate::aoc::runner::run_puzzle(&PUZZLE_METADATA, solve)
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -101,30 +94,26 @@ mod tests {
 
     #[test]
     fn example1() {
-        test_case(&PUZZLE_METADATA, 1, solve);
+        test_case(metadata, solve, 1);
     }
 
     #[test]
     fn example2() {
-        test_case(&PUZZLE_METADATA, 2, solve);
+        test_case(metadata, solve, 2);
     }
 
     #[test]
     fn puzzle() {
-        test_case(&PUZZLE_METADATA, 0, solve);
+        test_case(metadata, solve, 0);
     }
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(
-            &PUZZLE_METADATA,
-            &[String::from("123"), String::from("1")],
-            solve,
-        );
+        test_invalid(&vec![String::from("123"), String::from("1")], solve);
     }
 
     #[test]
     fn invalid_only_contains_int() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("1,a,3")], solve);
+        test_invalid(&vec![String::from("1,a,3")], solve);
     }
 }

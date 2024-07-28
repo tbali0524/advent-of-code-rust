@@ -1,25 +1,24 @@
 //! [aoc](https://adventofcode.com/2017/day/25)
 
-use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::collections::HashMap;
 
-pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2017,
-    day: 25,
-    title: "The Halting Problem",
-    solution: (2832, 0),
-    example_solutions: [(3, 0), (0, 0)],
-    string_solution: None,
-    example_string_solutions: None,
-    example_string_inputs: None,
-};
+pub fn metadata() -> PuzzleMetaData<'static> {
+    PuzzleMetaData {
+        year: 2017,
+        day: 25,
+        title: "The Halting Problem",
+        solution: ("2832", "0"),
+        example_solutions: vec![("3", "0")],
+    }
+}
 
 type ItemType = i32;
 
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     if input.len() < 2 {
-        return Err("Invalid input");
+        return Err(PuzzleError("Invalid input".into()));
     }
     let count_states = (input.len() - 2) / 10;
     if count_states < 2
@@ -29,7 +28,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         || input[0].len() != 17
         || input[1].len() < 42
     {
-        return Err("Invalid input");
+        return Err(PuzzleError("Invalid input".into()));
     }
     let start_state = input[0].as_bytes()[15] as char;
     let max_steps = input[1][36..]
@@ -37,7 +36,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         .next()
         .unwrap()
         .parse::<ItemType>()
-        .map_err(|_| "Input must contain only integers")?;
+        .map_err(|_| PuzzleError("Input must contain only integers".into()))?;
     let mut states = HashMap::new();
     for i in 0..count_states {
         if !input[10 * i + 2].is_empty()
@@ -58,7 +57,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             || !input[10 * i + 11].starts_with("    - Continue with state ")
             || input[10 * i + 11].len() != 28
         {
-            return Err("Invalid input");
+            return Err(PuzzleError("Invalid input".into()));
         }
         let state = input[10 * i + 3].as_bytes()[9] as char;
         states.insert(
@@ -82,7 +81,9 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     for _ in 0..max_steps {
         let slot = *tape.get(&cursor).unwrap_or(&0);
         let todo = states.get(&state).unwrap();
-        let new_slot = *slot_lookup.get(&todo[3 * slot]).ok_or("Invalid input")?;
+        let new_slot = *slot_lookup
+            .get(&todo[3 * slot])
+            .ok_or(PuzzleError("Invalid input".into()))?;
         if new_slot {
             tape.insert(cursor, 1);
         } else {
@@ -90,7 +91,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         }
         cursor += cursor_lookup
             .get(&todo[3 * slot + 1])
-            .ok_or("Invalid input")?;
+            .ok_or(PuzzleError("Invalid input".into()))?;
         state = todo[3 * slot + 2];
     }
     let ans1 = tape.len();
@@ -98,12 +99,6 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
 }
 
 // ------------------------------------------------------------
-// --- boilerplate below ---
-
-pub fn run() -> bool {
-    crate::aoc::runner::run_puzzle(&PUZZLE_METADATA, solve)
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -111,16 +106,16 @@ mod tests {
 
     #[test]
     fn example1() {
-        test_case(&PUZZLE_METADATA, 1, solve);
+        test_case(metadata, solve, 1);
     }
 
     #[test]
     fn puzzle() {
-        test_case(&PUZZLE_METADATA, 0, solve);
+        test_case(metadata, solve, 0);
     }
 
     #[test]
     fn invalid_input() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("a")], solve);
+        test_invalid(&vec![String::from("a")], solve);
     }
 }

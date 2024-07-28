@@ -1,24 +1,24 @@
 //! [aoc](https://adventofcode.com/2015/day/4)
 
-use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
 use md5;
 
-pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2015,
-    day: 4,
-    title: "The Ideal Stocking Stuffer",
-    solution: (254575, 1038736),
-    example_solutions: [(609043, 0), (1048970, 0)],
-    string_solution: None,
-    example_string_solutions: None,
-    // example_string_inputs: Some(["abcdef", "pqrstuv"]),
-    example_string_inputs: None, // examples excluded because taking +5 sec in release mode
-};
+pub fn metadata() -> PuzzleMetaData<'static> {
+    PuzzleMetaData {
+        year: 2015,
+        day: 4,
+        title: "The Ideal Stocking Stuffer",
+        solution: ("254575", "1038736"),
+        // examples excluded because taking +8 sec in release mode
+        example_solutions: vec![],
+        // example_solutions: vec![("609043", "0"), ("1048970", "0")],
+    }
+}
 
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 1 {
-        return Err("Input must have a single line");
+        return Err(PuzzleError("Input must have a single line".into()));
     }
     // ---------- Part 1
     let mut ans1 = 1;
@@ -52,26 +52,22 @@ mod tests {
     #[test]
     #[ignore]
     fn example1() {
-        test_case(&PUZZLE_METADATA, 1, solve);
+        test_case(metadata, solve, 1);
     }
 
     #[test]
     #[ignore]
     fn example2() {
-        test_case(&PUZZLE_METADATA, 2, solve);
+        test_case(metadata, solve, 2);
     }
 
     #[test]
     fn puzzle() {
-        test_case(&PUZZLE_METADATA, 0, solve);
+        test_case(metadata, solve, 0);
     }
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(
-            &PUZZLE_METADATA,
-            &[String::from("a"), String::from("b")],
-            solve,
-        );
+        test_invalid(&vec![String::from("a"), String::from("b")], solve);
     }
 }

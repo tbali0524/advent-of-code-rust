@@ -1,18 +1,17 @@
 //! [aoc](https://adventofcode.com/2017/day/23)
 
-use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::collections::HashMap;
 
-pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2017,
-    day: 23,
-    title: "Coprocessor Conflagration",
-    solution: (8281, 911),
-    example_solutions: [(0, 0), (0, 0)],
-    string_solution: None,
-    example_string_solutions: None,
-    example_string_inputs: None,
-};
+pub fn metadata() -> PuzzleMetaData<'static> {
+    PuzzleMetaData {
+        year: 2017,
+        day: 23,
+        title: "Coprocessor Conflagration",
+        solution: ("8281", "911"),
+        example_solutions: vec![],
+    }
+}
 
 type ItemType = i64;
 
@@ -33,7 +32,7 @@ impl CoProcessor {
         }
     }
 
-    fn execute(&mut self) -> Result<(), &'static str> {
+    fn execute(&mut self) -> Result<(), PuzzleError> {
         loop {
             self.pc += 1;
             if self.pc < 0 || self.pc >= self.instructions.len() as ItemType {
@@ -44,7 +43,7 @@ impl CoProcessor {
                 || line.as_bytes()[3] as char != ' '
                 || line.as_bytes()[5] as char != ' '
             {
-                return Err("Invalid input");
+                return Err(PuzzleError("Invalid input".into()));
             }
             let instruction = &line[0..3];
             let x_reg = line.as_bytes()[4] as char;
@@ -53,7 +52,7 @@ impl CoProcessor {
             } else if x_reg.is_ascii_digit() {
                 x_reg.to_digit(10).unwrap() as ItemType
             } else {
-                return Err("Invalid first argument in input");
+                return Err(PuzzleError("Invalid first argument in input".into()));
             };
             let y_reg = line.as_bytes()[6] as char;
             let y_value = if y_reg.is_ascii_lowercase() {
@@ -61,7 +60,7 @@ impl CoProcessor {
             } else {
                 line[6..]
                     .parse::<ItemType>()
-                    .map_err(|_| "Invalid second argument in input")?
+                    .map_err(|_| PuzzleError("Invalid second argument in input".into()))?
             };
             match instruction {
                 "set" => {
@@ -83,7 +82,7 @@ impl CoProcessor {
                     }
                 }
                 _ => {
-                    return Err("Invalid instruction");
+                    return Err(PuzzleError("Invalid instruction".into()));
                 }
             }
         }
@@ -119,19 +118,19 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     let mut ans2 = 0;
     let start_b = input[0][6..]
         .parse::<ItemType>()
-        .map_err(|_| "Invalid input")?;
+        .map_err(|_| PuzzleError("Invalid input".into()))?;
     let mul_b = input[4][6..]
         .parse::<ItemType>()
-        .map_err(|_| "Invalid input")?;
+        .map_err(|_| PuzzleError("Invalid input".into()))?;
     let sub_b = input[5][6..]
         .parse::<ItemType>()
-        .map_err(|_| "Invalid input")?;
+        .map_err(|_| PuzzleError("Invalid input".into()))?;
     let sub_c = input[7][6..]
         .parse::<ItemType>()
-        .map_err(|_| "Invalid input")?;
+        .map_err(|_| PuzzleError("Invalid input".into()))?;
     let step = -input[30][6..]
         .parse::<ItemType>()
-        .map_err(|_| "Invalid input")?;
+        .map_err(|_| PuzzleError("Invalid input".into()))?;
     let from = start_b * mul_b - sub_b;
     let to = from - sub_c;
     for n in (from..=to).step_by(step as usize) {
@@ -143,12 +142,6 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
 }
 
 // ------------------------------------------------------------
-// --- boilerplate below ---
-
-pub fn run() -> bool {
-    crate::aoc::runner::run_puzzle(&PUZZLE_METADATA, solve)
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -156,31 +149,31 @@ mod tests {
 
     #[test]
     fn puzzle() {
-        test_case(&PUZZLE_METADATA, 0, solve);
+        test_case(metadata, solve, 0);
     }
 
     #[test]
     fn invalid_short_line() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("a")], solve);
+        test_invalid(&vec![String::from("a")], solve);
     }
 
     #[test]
     fn invalid_instruction_too_long() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("setaa 1")], solve);
+        test_invalid(&vec![String::from("setaa 1")], solve);
     }
 
     #[test]
     fn invalid_istruction() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("abc a 1")], solve);
+        test_invalid(&vec![String::from("abc a 1")], solve);
     }
 
     #[test]
     fn invalid_first_argument() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("set - 1")], solve);
+        test_invalid(&vec![String::from("set - 1")], solve);
     }
 
     #[test]
     fn invalid_second_argument() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("set a *")], solve);
+        test_invalid(&vec![String::from("set a *")], solve);
     }
 }

@@ -1,28 +1,27 @@
 //! [aoc](https://adventofcode.com/2017/day/17)
 
-use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
 
-pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2017,
-    day: 17,
-    title: "Spinlock",
-    solution: (1642, 33601318),
-    example_solutions: [(638, 0), (0, 0)],
-    string_solution: None,
-    example_string_solutions: None,
-    example_string_inputs: Some(["3", ""]),
-};
+pub fn metadata() -> PuzzleMetaData<'static> {
+    PuzzleMetaData {
+        year: 2017,
+        day: 17,
+        title: "Spinlock",
+        solution: ("1642", "33601318"),
+        example_solutions: vec![("638", "0")],
+    }
+}
 
 type ItemType = i32;
 
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     if input.len() != 1 {
-        return Err("Input must have a single line");
+        return Err(PuzzleError("Input must have a single line".into()));
     }
     let max_steps = input[0]
         .parse::<ItemType>()
-        .map_err(|_| "Input must contain only a single integer")?;
+        .map_err(|_| PuzzleError("Input must contain only a single integer".into()))?;
     // ---------- Part 1
     const MAX_TURNS_PART1: usize = 2017;
     const MAX_SIZE: usize = MAX_TURNS_PART1 + 1;
@@ -37,7 +36,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             delta -= 1;
         }
         if size == MAX_SIZE {
-            return Err("Maximum list size exceeded");
+            return Err(PuzzleError("Maximum list size exceeded".into()));
         }
         values[size] = turn;
         nexts[size] = nexts[idx_current];
@@ -64,12 +63,6 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
 }
 
 // ------------------------------------------------------------
-// --- boilerplate below ---
-
-pub fn run() -> bool {
-    crate::aoc::runner::run_puzzle(&PUZZLE_METADATA, solve)
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -77,25 +70,21 @@ mod tests {
 
     #[test]
     fn example1() {
-        test_case(&PUZZLE_METADATA, 1, solve);
+        test_case(metadata, solve, 1);
     }
 
     #[test]
     fn puzzle() {
-        test_case(&PUZZLE_METADATA, 0, solve);
+        test_case(metadata, solve, 0);
     }
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(
-            &PUZZLE_METADATA,
-            &[String::from("1"), String::from("2")],
-            solve,
-        );
+        test_invalid(&vec![String::from("1"), String::from("2")], solve);
     }
 
     #[test]
     fn invalid_integer() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("a")], solve);
+        test_invalid(&vec![String::from("a")], solve);
     }
 }

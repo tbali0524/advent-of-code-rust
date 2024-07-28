@@ -1,17 +1,16 @@
 //! [aoc](https://adventofcode.com/2015/day/2)
 
-use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
 
-pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2015,
-    day: 2,
-    title: "I Was Told There Would Be No Math",
-    solution: (1606483, 3842356),
-    example_solutions: [(58, 34), (43, 14)],
-    string_solution: None,
-    example_string_solutions: None,
-    example_string_inputs: Some(["2x3x4", "1x1x10"]),
-};
+pub fn metadata() -> PuzzleMetaData<'static> {
+    PuzzleMetaData {
+        year: 2015,
+        day: 2,
+        title: "I Was Told There Would Be No Math",
+        solution: ("1606483", "3842356"),
+        example_solutions: vec![("58", "34"), ("43", "14")],
+    }
+}
 
 type ItemType = i32;
 
@@ -23,14 +22,14 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             line.split('x')
                 .map(|x| {
                     x.parse::<ItemType>()
-                        .map_err(|_| "Input must contain only integers")
+                        .map_err(|_| PuzzleError("Input must contain only integers".into()))
                 })
                 .collect::<Result<Vec<_>, _>>()
         })
         .collect::<Result<Vec<Vec<_>>, _>>()?;
     for row in &data {
         if row.len() != 3 {
-            return Err("Input must contain 3 integers per line");
+            return Err(PuzzleError("Input must contain 3 integers per line".into()));
         }
     }
     // ---------- Part 1
@@ -56,30 +55,26 @@ mod tests {
 
     #[test]
     fn example1() {
-        test_case(&PUZZLE_METADATA, 1, solve);
+        test_case(metadata, solve, 1);
     }
 
     #[test]
     fn example2() {
-        test_case(&PUZZLE_METADATA, 2, solve);
+        test_case(metadata, solve, 2);
     }
 
     #[test]
     fn puzzle() {
-        test_case(&PUZZLE_METADATA, 0, solve);
+        test_case(metadata, solve, 0);
     }
 
     #[test]
     fn invalid_only_2d_array_of_ints() {
-        test_invalid(
-            &PUZZLE_METADATA,
-            &[String::from("1x2x3"), String::from("4xax6")],
-            solve,
-        );
+        test_invalid(&vec![String::from("1x2x3"), String::from("4xax6")], solve);
     }
 
     #[test]
     fn invalid_only_triplets_of_ints() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("1x2x3x4")], solve);
+        test_invalid(&vec![String::from("1x2x3x4")], solve);
     }
 }

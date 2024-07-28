@@ -1,18 +1,17 @@
 //! [aoc](https://adventofcode.com/2017/day/13)
 
-use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::collections::HashMap;
 
-pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2017,
-    day: 13,
-    title: "Packet Scanners",
-    solution: (1728, 3946838),
-    example_solutions: [(24, 10), (0, 0)],
-    string_solution: None,
-    example_string_solutions: None,
-    example_string_inputs: None,
-};
+pub fn metadata() -> PuzzleMetaData<'static> {
+    PuzzleMetaData {
+        year: 2017,
+        day: 13,
+        title: "Packet Scanners",
+        solution: ("1728", "3946838"),
+        example_solutions: vec![("24", "10")],
+    }
+}
 
 type ItemType = i32;
 
@@ -24,11 +23,13 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             .split(": ")
             .map(|x| {
                 x.parse::<ItemType>()
-                    .map_err(|_| "Input must contain only integers")
+                    .map_err(|_| PuzzleError("Input must contain only integers".into()))
             })
             .collect::<Result<Vec<_>, _>>()?;
         if a.len() != 2 {
-            return Err("Input lines must have 2 items separated by a : and a whitespace");
+            return Err(PuzzleError(
+                "Input lines must have 2 items separated by a : and a whitespace".into(),
+            ));
         }
         scanners.insert(a[0], a[1]);
     }
@@ -58,12 +59,6 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
 }
 
 // ------------------------------------------------------------
-// --- boilerplate below ---
-
-pub fn run() -> bool {
-    crate::aoc::runner::run_puzzle(&PUZZLE_METADATA, solve)
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -71,21 +66,21 @@ mod tests {
 
     #[test]
     fn example1() {
-        test_case(&PUZZLE_METADATA, 1, solve);
+        test_case(metadata, solve, 1);
     }
 
     #[test]
     fn puzzle() {
-        test_case(&PUZZLE_METADATA, 0, solve);
+        test_case(metadata, solve, 0);
     }
 
     #[test]
     fn invalid_must_have_two_data_per_line() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("1: 2: 3")], solve);
+        test_invalid(&vec![String::from("1: 2: 3")], solve);
     }
 
     #[test]
     fn invalid_only_contains_int() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("1: a")], solve);
+        test_invalid(&vec![String::from("1: a")], solve);
     }
 }

@@ -1,19 +1,18 @@
 //! [aoc](https://adventofcode.com/2017/day/24)
 
-use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::cmp;
 use std::collections::{HashMap, HashSet};
 
-pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2017,
-    day: 24,
-    title: "Electromagnetic Moat",
-    solution: (1656, 1642),
-    example_solutions: [(31, 19), (0, 0)],
-    string_solution: None,
-    example_string_solutions: None,
-    example_string_inputs: None,
-};
+pub fn metadata() -> PuzzleMetaData<'static> {
+    PuzzleMetaData {
+        year: 2017,
+        day: 24,
+        title: "Electromagnetic Moat",
+        solution: ("1656", "1642"),
+        example_solutions: vec![("31", "19")],
+    }
+}
 
 type ItemType = i64;
 
@@ -25,7 +24,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             line.split('/')
                 .map(|x| {
                     x.parse::<ItemType>()
-                        .map_err(|_| "Input must contain only integers")
+                        .map_err(|_| PuzzleError("Input must contain only integers".into()))
                 })
                 .collect::<Result<Vec<_>, _>>()
         })
@@ -71,12 +70,6 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
 }
 
 // ------------------------------------------------------------
-// --- boilerplate below ---
-
-pub fn run() -> bool {
-    crate::aoc::runner::run_puzzle(&PUZZLE_METADATA, solve)
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -84,16 +77,16 @@ mod tests {
 
     #[test]
     fn example1() {
-        test_case(&PUZZLE_METADATA, 1, solve);
+        test_case(metadata, solve, 1);
     }
 
     #[test]
     fn puzzle() {
-        test_case(&PUZZLE_METADATA, 0, solve);
+        test_case(metadata, solve, 0);
     }
 
     #[test]
     fn invalid_must_be_integers() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("1/a")], solve);
+        test_invalid(&vec![String::from("1/a")], solve);
     }
 }

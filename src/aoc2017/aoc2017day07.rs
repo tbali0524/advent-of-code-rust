@@ -1,18 +1,17 @@
 //! [aoc](https://adventofcode.com/2017/day/7)
 
-use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::collections::HashMap;
 
-pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2017,
-    day: 7,
-    title: "Recursive Circus",
-    solution: (0, 0),
-    example_solutions: [(0, 0), (0, 0)],
-    string_solution: Some(("gynfwly", "1526")),
-    example_string_solutions: Some([("tknk", "60"), ("", "")]),
-    example_string_inputs: None,
-};
+pub fn metadata() -> PuzzleMetaData<'static> {
+    PuzzleMetaData {
+        year: 2017,
+        day: 7,
+        title: "Recursive Circus",
+        solution: ("gynfwly", "1526"),
+        example_solutions: vec![("tknk", "60")],
+    }
+}
 
 type ItemType = i32;
 
@@ -42,17 +41,19 @@ impl Tree {
         Default::default()
     }
 
-    fn from_input(input: PuzzleInput) -> Result<Tree, &'static str> {
+    fn from_input(input: PuzzleInput) -> Result<Tree, PuzzleError> {
         let mut tree = Tree::new();
         let mut parent_child_pairs = Vec::new();
         for line in input {
             let mut a = line.split(" -> ");
             let mut b = a.next().unwrap().split(" (");
             let name = b.next().unwrap();
-            let c = b.next().ok_or("missing (weight) in input line")?;
+            let c = b
+                .next()
+                .ok_or(PuzzleError("missing (weight) in input line".into()))?;
             let weight = c[..(c.len() - 1)]
                 .parse::<ItemType>()
-                .map_err(|_| "weight must be an integer")?;
+                .map_err(|_| PuzzleError("weight must be an integer".into()))?;
             let d = a.next();
             let children = if let Some(e) = d {
                 e.split(", ").map(|x| x.to_owned()).collect::<Vec<_>>()
@@ -60,7 +61,7 @@ impl Tree {
                 Vec::new()
             };
             if a.next().is_some() || b.next().is_some() {
-                return Err("Invalid input");
+                return Err(PuzzleError("Invalid input".into()));
             }
             let mut node = Node::new();
             node.name = name.to_string();
@@ -74,13 +75,15 @@ impl Tree {
         for (parent, child) in &parent_child_pairs {
             tree.nodes
                 .get_mut(child)
-                .ok_or("invalid node referenced in children list")?
+                .ok_or(PuzzleError(
+                    "invalid node referenced in children list".into(),
+                ))?
                 .parent = Some(parent.to_owned());
         }
         Ok(tree)
     }
 
-    fn find_root(&mut self) -> Result<String, &'static str> {
+    fn find_root(&mut self) -> Result<String, PuzzleError> {
         if let Some(r) = &self.root {
             return Ok(r.to_owned());
         }
@@ -90,15 +93,15 @@ impl Tree {
                 return Ok(name.to_owned());
             }
         }
-        Err("No root node found")
+        Err(PuzzleError("No root node found".into()))
     }
 
-    fn calc_total_weight(&mut self, name: &str) -> Result<ItemType, &'static str> {
+    fn calc_total_weight(&mut self, name: &str) -> Result<ItemType, PuzzleError> {
         let mut total = 0;
         let children = self
             .nodes
             .get(name)
-            .ok_or("invalid node name")?
+            .ok_or(PuzzleError("invalid node name".into()))?
             .children
             .to_owned();
         for child in &children {
@@ -109,11 +112,11 @@ impl Tree {
         Ok(node.total)
     }
 
-    fn find_unbalanced(&mut self, name: &str) -> Result<ItemType, &'static str> {
+    fn find_unbalanced(&mut self, name: &str) -> Result<ItemType, PuzzleError> {
         let children = self
             .nodes
             .get(name)
-            .ok_or("invalid node name")?
+            .ok_or(PuzzleError("invalid node name".into()))?
             .children
             .to_owned();
         let mut count_same_totals = HashMap::<ItemType, usize>::new();
@@ -153,7 +156,9 @@ impl Tree {
                             .weight)
                 }
             }
-            _ => Err("Invalid input, multiple unbalance nodes"),
+            _ => Err(PuzzleError(
+                "Invalid input, multiple unbalance nodes".into(),
+            )),
         }
     }
 }
@@ -170,12 +175,6 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
 }
 
 // ------------------------------------------------------------
-// --- boilerplate below ---
-
-pub fn run() -> bool {
-    crate::aoc::runner::run_puzzle(&PUZZLE_METADATA, solve)
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -183,29 +182,28 @@ mod tests {
 
     #[test]
     fn example1() {
-        test_case(&PUZZLE_METADATA, 1, solve);
+        test_case(metadata, solve, 1);
     }
 
     #[test]
     fn puzzle() {
-        test_case(&PUZZLE_METADATA, 0, solve);
+        test_case(metadata, solve, 0);
     }
 
     #[test]
     fn invalid_missing_weight() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("a")], solve);
+        test_invalid(&vec![String::from("a")], solve);
     }
 
     #[test]
     fn invalid_weight_must_be_int() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("a (b)")], solve);
+        test_invalid(&vec![String::from("a (b)")], solve);
     }
 
     #[test]
     fn invalid_node_reference() {
         test_invalid(
-            &PUZZLE_METADATA,
-            &[String::from("a (1)"), String::from("b (2) -> c")],
+            &vec![String::from("a (1)"), String::from("b (2) -> c")],
             solve,
         );
     }

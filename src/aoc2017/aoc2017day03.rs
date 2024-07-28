@@ -1,29 +1,28 @@
 //! [aoc](https://adventofcode.com/2017/day/3)
 
-use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::collections::HashMap;
 
-pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2017,
-    day: 3,
-    title: "Spiral Memory",
-    solution: (475, 279138),
-    example_solutions: [(3, 23), (31, 1968)],
-    string_solution: None,
-    example_string_solutions: None,
-    example_string_inputs: Some(["12", "1024"]),
-};
+pub fn metadata() -> PuzzleMetaData<'static> {
+    PuzzleMetaData {
+        year: 2017,
+        day: 3,
+        title: "Spiral Memory",
+        solution: ("475", "279138"),
+        example_solutions: vec![("3", "23"), ("31", "1968")],
+    }
+}
 
 type ItemType = i32;
 
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     if input.len() != 1 {
-        return Err("Input must have a single line");
+        return Err(PuzzleError("Input must have a single line".into()));
     }
     let n = input[0]
         .parse::<ItemType>()
-        .map_err(|_| "Input must be a single integer")?;
+        .map_err(|_| PuzzleError("Input must be a single integer".into()))?;
     // ---------- Part 1
     let mut r = 1;
     while (r + 2) * (r + 2) < n {
@@ -76,19 +75,13 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
                     (dx, dy) = (1, 0);
                 }
             }
-            (_, _) => return Err("Impossible"),
+            (_, _) => return Err(PuzzleError("Impossible".into())),
         }
     }
     Ok((ans1.to_string(), ans2.to_string()))
 }
 
 // ------------------------------------------------------------
-// --- boilerplate below ---
-
-pub fn run() -> bool {
-    crate::aoc::runner::run_puzzle(&PUZZLE_METADATA, solve)
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -96,30 +89,26 @@ mod tests {
 
     #[test]
     fn example1() {
-        test_case(&PUZZLE_METADATA, 1, solve);
+        test_case(metadata, solve, 1);
     }
 
     #[test]
     fn example2() {
-        test_case(&PUZZLE_METADATA, 2, solve);
+        test_case(metadata, solve, 2);
     }
 
     #[test]
     fn puzzle() {
-        test_case(&PUZZLE_METADATA, 0, solve);
+        test_case(metadata, solve, 0);
     }
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(
-            &PUZZLE_METADATA,
-            &[String::from("123"), String::from("1")],
-            solve,
-        );
+        test_invalid(&vec![String::from("123"), String::from("1")], solve);
     }
 
     #[test]
     fn invalid_only_int() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("a")], solve);
+        test_invalid(&vec![String::from("a")], solve);
     }
 }

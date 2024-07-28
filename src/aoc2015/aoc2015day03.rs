@@ -1,33 +1,32 @@
 //! [aoc](https://adventofcode.com/2015/day/3)
 
-use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::collections::HashSet;
 
-pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2015,
-    day: 3,
-    title: "Perfectly Spherical Houses in a Vacuum",
-    solution: (2592, 2360),
-    example_solutions: [(4, 3), (2, 11)],
-    string_solution: None,
-    example_string_solutions: None,
-    example_string_inputs: Some(["^>v<", "^v^v^v^v^v"]),
-};
+pub fn metadata() -> PuzzleMetaData<'static> {
+    PuzzleMetaData {
+        year: 2015,
+        day: 3,
+        title: "Perfectly Spherical Houses in a Vacuum",
+        solution: ("2592", "2360"),
+        example_solutions: vec![("4", "3"), ("2", "11")],
+    }
+}
 
-pub fn delta(dir: char) -> Result<(i32, i32), &'static str> {
+pub fn delta(dir: char) -> Result<(i32, i32), PuzzleError> {
     match dir {
         '>' => Ok((1, 0)),
         'v' => Ok((0, 1)),
         '<' => Ok((-1, 0)),
         '^' => Ok((0, -1)),
-        _ => Err("Invalid direction"),
+        _ => Err(PuzzleError("Invalid direction".into())),
     }
 }
 
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 1 {
-        return Err("Input must have a single line");
+        return Err(PuzzleError("Input must have a single line".into()));
     }
     // ---------- Part 1
     let mut ans1 = 1;
@@ -71,30 +70,26 @@ mod tests {
 
     #[test]
     fn example1() {
-        test_case(&PUZZLE_METADATA, 1, solve);
+        test_case(metadata, solve, 1);
     }
 
     #[test]
     fn example2() {
-        test_case(&PUZZLE_METADATA, 2, solve);
+        test_case(metadata, solve, 2);
     }
 
     #[test]
     fn puzzle() {
-        test_case(&PUZZLE_METADATA, 0, solve);
+        test_case(metadata, solve, 0);
     }
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(
-            &PUZZLE_METADATA,
-            &[String::from("<>"), String::from("><")],
-            solve,
-        );
+        test_invalid(&vec![String::from("<>"), String::from("><")], solve);
     }
 
     #[test]
     fn invalid_only_directions() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("<a>")], solve);
+        test_invalid(&vec![String::from("<a>")], solve);
     }
 }

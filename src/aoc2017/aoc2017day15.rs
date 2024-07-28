@@ -1,33 +1,32 @@
 //! [aoc](https://adventofcode.com/2017/day/15)
 
-use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
 
-pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2017,
-    day: 15,
-    title: "Dueling Generators",
-    solution: (650, 336),
-    example_solutions: [(588, 309), (0, 0)],
-    string_solution: None,
-    example_string_solutions: None,
-    example_string_inputs: None,
-};
+pub fn metadata() -> PuzzleMetaData<'static> {
+    PuzzleMetaData {
+        year: 2017,
+        day: 15,
+        title: "Dueling Generators",
+        solution: ("650", "336"),
+        example_solutions: vec![("588", "309")],
+    }
+}
 
 type ItemType = u64;
 
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 2 {
-        return Err("Input must have contain two lines");
+        return Err(PuzzleError("Input must have contain two lines".into()));
     }
     let mut starts = [0; 2];
     for idx in 0..2 {
         if !input[idx].starts_with("Generator ") {
-            return Err("Invalid input");
+            return Err(PuzzleError("Invalid input".into()));
         }
         starts[idx] = input[idx][24..]
             .parse::<ItemType>()
-            .map_err(|_| "Input must contain only integers")?
+            .map_err(|_| PuzzleError("Input must contain only integers".into()))?
     }
     const MULTIPLIERS: [ItemType; 2] = [16807, 48271];
     const MODULUS: ItemType = 2147483647;
@@ -65,12 +64,6 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
 }
 
 // ------------------------------------------------------------
-// --- boilerplate below ---
-
-pub fn run() -> bool {
-    crate::aoc::runner::run_puzzle(&PUZZLE_METADATA, solve)
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -78,28 +71,23 @@ mod tests {
 
     #[test]
     fn example1() {
-        test_case(&PUZZLE_METADATA, 1, solve);
+        test_case(metadata, solve, 1);
     }
 
     #[test]
     fn puzzle() {
-        test_case(&PUZZLE_METADATA, 0, solve);
+        test_case(metadata, solve, 0);
     }
 
     #[test]
     fn invalid_not_two_lines() {
-        test_invalid(
-            &PUZZLE_METADATA,
-            &[String::from("Generator A starts with 1")],
-            solve,
-        );
+        test_invalid(&vec![String::from("Generator A starts with 1")], solve);
     }
 
     #[test]
     fn invalid_input_format() {
         test_invalid(
-            &PUZZLE_METADATA,
-            &[String::from("Generator A starts with 1"), String::from("a")],
+            &vec![String::from("Generator A starts with 1"), String::from("a")],
             solve,
         );
     }
@@ -107,8 +95,7 @@ mod tests {
     #[test]
     fn invalid_parameter_mas_be_int() {
         test_invalid(
-            &PUZZLE_METADATA,
-            &[
+            &vec![
                 String::from("Generator B starts with 1"),
                 String::from("Generator A starts with a"),
             ],

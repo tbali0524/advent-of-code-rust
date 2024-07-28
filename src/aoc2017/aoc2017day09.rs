@@ -2,16 +2,15 @@
 
 use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 
-pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2017,
-    day: 9,
-    title: "Stream Processing",
-    solution: (14204, 6622),
-    example_solutions: [(50, 0), (0, 32)],
-    string_solution: None,
-    example_string_solutions: None,
-    example_string_inputs: None,
-};
+pub fn metadata() -> PuzzleMetaData<'static> {
+    PuzzleMetaData {
+        year: 2017,
+        day: 9,
+        title: "Stream Processing",
+        solution: ("14204", "6622"),
+        example_solutions: vec![("50", "0"), ("0", "32")],
+    }
+}
 
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Part 1 + 2
@@ -55,12 +54,6 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
 }
 
 // ------------------------------------------------------------
-// --- boilerplate below ---
-
-pub fn run() -> bool {
-    crate::aoc::runner::run_puzzle(&PUZZLE_METADATA, solve)
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -68,11 +61,11 @@ mod tests {
 
     #[test]
     fn example1() {
-        test_case(&PUZZLE_METADATA, 1, solve);
+        test_case(metadata, solve, 1);
     }
 
     #[test]
     fn puzzle() {
-        test_case(&PUZZLE_METADATA, 0, solve);
+        test_case(metadata, solve, 0);
     }
 }

@@ -51,12 +51,13 @@ cargo clean
 
 ## Adding a new solution
 
-* add puzzle input in `input/year/AocXXXXDayXX.txt` and example inputs `...exX.txt`
-* add and edit source in `src/year/aocXXXXdayXX.rs`, use the template in `src/2024/aoc2024day00.rs`
-    * update `PUZZLE_METADATA`, write `solve()`, add unit tests as needed
-* uncomment the `pub mod aocXXXXdayXX;` line in `src/aocXXXX.rs`,
-* update the `PUZZLES` list in `src/aocXXXX.rs`, replacing `None` with `Some(...)`
+* add puzzle input in `input/year/AocXXXXDayXX.txt` and example inputs in `...exX.txt`
+* add and edit source in `src/year/aocXXXXdayXX.rs`, using the template in `src/2024/aoc2024day00.rs`
+    * update `pub fn metadata()`, write `solve()`, add unit tests as needed
+* edit `src/aocXXXX.rs`:
+    * uncomment the `pub mod aocXXXXdayXX;` line
+    * update the `PUZZLES` list: replace `None` with `Some(...)`
 * for a completely new season:
-    * uncomment the `mod aocXXXX;` line in `src/main.rs`
-    * update the `PUZZLES` list in `src/aoc.rs`, replacing `None` with `Some(...)`
-    * add and update `src/aocXXXX.rs` based on template in `src/aoc2024.rs`
+    * edit `src/lib.rs`: add a `pub mod aocXXXX;` line
+    * edit `src/aoc.rs`: increase `MAX_SEASONS` and add a `Some(...)` item to `PUZZLES`
+    * add and update `src/aocXXXX.rs` using the template in `src/aoc2024.rs`

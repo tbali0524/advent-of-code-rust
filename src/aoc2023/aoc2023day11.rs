@@ -2,16 +2,15 @@
 
 use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 
-pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2023,
-    day: 11,
-    title: "Cosmic Expansion",
-    solution: (9329143, 710674907809),
-    example_solutions: [(374, 8410), (0, 0)],
-    string_solution: None,
-    example_string_solutions: None,
-    example_string_inputs: None,
-};
+pub fn metadata() -> PuzzleMetaData<'static> {
+    PuzzleMetaData {
+        year: 2023,
+        day: 11,
+        title: "Cosmic Expansion",
+        solution: ("9329143", "710674907809"),
+        example_solutions: vec![("374", "8410")],
+    }
+}
 
 #[allow(clippy::needless_range_loop)]
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
@@ -78,11 +77,11 @@ mod tests {
 
     #[test]
     fn example1() {
-        test_case(&PUZZLE_METADATA, 1, solve);
+        test_case(metadata, solve, 1);
     }
 
     #[test]
     fn puzzle() {
-        test_case(&PUZZLE_METADATA, 0, solve);
+        test_case(metadata, solve, 0);
     }
 }

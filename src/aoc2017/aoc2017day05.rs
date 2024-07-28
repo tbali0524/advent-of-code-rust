@@ -1,17 +1,16 @@
 //! [aoc](https://adventofcode.com/2017/day/5)
 
-use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
 
-pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2017,
-    day: 5,
-    title: "A Maze of Twisty Trampolines, All Alike",
-    solution: (396086, 28675390),
-    example_solutions: [(5, 10), (0, 0)],
-    string_solution: None,
-    example_string_solutions: None,
-    example_string_inputs: None,
-};
+pub fn metadata() -> PuzzleMetaData<'static> {
+    PuzzleMetaData {
+        year: 2017,
+        day: 5,
+        title: "A Maze of Twisty Trampolines, All Alike",
+        solution: ("396086", "28675390"),
+        example_solutions: vec![("5", "10")],
+    }
+}
 
 type ItemType = i32;
 
@@ -21,7 +20,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         .iter()
         .map(|line| {
             line.parse::<ItemType>()
-                .map_err(|_| "Input must contain only integers")
+                .map_err(|_| PuzzleError("Input must contain only integers".into()))
         })
         .collect::<Result<Vec<_>, _>>()?;
     // ---------- Part 1
@@ -54,12 +53,6 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
 }
 
 // ------------------------------------------------------------
-// --- boilerplate below ---
-
-pub fn run() -> bool {
-    crate::aoc::runner::run_puzzle(&PUZZLE_METADATA, solve)
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -67,16 +60,16 @@ mod tests {
 
     #[test]
     fn example1() {
-        test_case(&PUZZLE_METADATA, 1, solve);
+        test_case(metadata, solve, 1);
     }
 
     #[test]
     fn puzzle() {
-        test_case(&PUZZLE_METADATA, 0, solve);
+        test_case(metadata, solve, 0);
     }
 
     #[test]
     fn invalid_only_contains_int() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("a")], solve);
+        test_invalid(&vec![String::from("a")], solve);
     }
 }

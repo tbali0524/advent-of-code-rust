@@ -1,37 +1,38 @@
 //! [aoc](https://adventofcode.com/2016/day/1)
 
-use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::collections::HashSet;
 
-pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2016,
-    day: 1,
-    title: "No Time for a Taxicab",
-    solution: (262, 131),
-    example_solutions: [(8, 4), (0, 0)],
-    string_solution: None,
-    example_string_solutions: None,
-    example_string_inputs: Some(["R8, R4, R4, R8", ""]),
-};
+pub fn metadata() -> PuzzleMetaData<'static> {
+    PuzzleMetaData {
+        year: 2016,
+        day: 1,
+        title: "No Time for a Taxicab",
+        solution: ("262", "131"),
+        example_solutions: vec![("8", "4")],
+    }
+}
 
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     if input.len() != 1 {
-        return Err("Input must have a single line");
+        return Err(PuzzleError("Input must have a single line".into()));
     }
     let instructions = input[0]
         .split(", ")
         .map(|x| {
             if x.len() < 2 {
-                Err("Instruction must be at least 2 digits")
+                Err(PuzzleError("Instruction must be at least 2 digits".into()))
             } else if !['R', 'L'].contains(&x.chars().next().unwrap()) {
-                Err("Instruction must start with R or L")
+                Err(PuzzleError("Instruction must start with R or L".into()))
             } else {
                 let moves_result = x[1..].parse::<i32>();
                 if let Ok(moves) = moves_result {
                     Ok((if x.starts_with('R') { 1i32 } else { -1 }, moves))
                 } else {
-                    Err("Instruction must contain number of moves as integer")
+                    Err(PuzzleError(
+                        "Instruction must contain number of moves as integer".into(),
+                    ))
                 }
             }
         })
@@ -79,20 +80,16 @@ mod tests {
 
     #[test]
     fn example1() {
-        test_case(&PUZZLE_METADATA, 1, solve);
+        test_case(metadata, solve, 1);
     }
 
     #[test]
     fn puzzle() {
-        test_case(&PUZZLE_METADATA, 0, solve);
+        test_case(metadata, solve, 0);
     }
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(
-            &PUZZLE_METADATA,
-            &[String::from("R8"), String::from("R4")],
-            solve,
-        );
+        test_invalid(&vec![String::from("R8"), String::from("R4")], solve);
     }
 }

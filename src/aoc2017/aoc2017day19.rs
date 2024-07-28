@@ -1,24 +1,23 @@
 //! [aoc](https://adventofcode.com/2017/day/19)
 
-use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
 
-pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2017,
-    day: 19,
-    title: "A Series of Tubes",
-    solution: (0, 0),
-    example_solutions: [(0, 0), (0, 0)],
-    string_solution: Some(("LXWCKGRAOY", "17302")),
-    example_string_solutions: Some([("ABCDEF", "38"), ("", "")]),
-    example_string_inputs: None,
-};
+pub fn metadata() -> PuzzleMetaData<'static> {
+    PuzzleMetaData {
+        year: 2017,
+        day: 19,
+        title: "A Series of Tubes",
+        solution: ("LXWCKGRAOY", "17302"),
+        example_solutions: vec![("ABCDEF", "38")],
+    }
+}
 
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     let max_y = input.len() as i32;
-    let start_x = input[0]
-        .find('|')
-        .ok_or("First line of input must contain a starting point |")?;
+    let start_x = input[0].find('|').ok_or(PuzzleError(
+        "First line of input must contain a starting point |".into(),
+    ))?;
     // ---------- Part 1 + 2
     let mut ans1 = String::new();
     let mut ans2 = -1;
@@ -67,12 +66,6 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
 }
 
 // ------------------------------------------------------------
-// --- boilerplate below ---
-
-pub fn run() -> bool {
-    crate::aoc::runner::run_puzzle(&PUZZLE_METADATA, solve)
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -80,20 +73,16 @@ mod tests {
 
     #[test]
     fn example1() {
-        test_case(&PUZZLE_METADATA, 1, solve);
+        test_case(metadata, solve, 1);
     }
 
     #[test]
     fn puzzle() {
-        test_case(&PUZZLE_METADATA, 0, solve);
+        test_case(metadata, solve, 0);
     }
 
     #[test]
     fn invalid_no_start_position() {
-        test_invalid(
-            &PUZZLE_METADATA,
-            &[String::from(" - "), String::from(" | ")],
-            solve,
-        );
+        test_invalid(&vec![String::from(" - "), String::from(" | ")], solve);
     }
 }

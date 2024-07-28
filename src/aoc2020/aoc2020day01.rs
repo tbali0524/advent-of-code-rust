@@ -1,18 +1,17 @@
 //! [aoc](https://adventofcode.com/2020/day/1)
 
-use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::collections::{HashMap, HashSet};
 
-pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2020,
-    day: 1,
-    title: "Report Repair",
-    solution: (988771, 171933104),
-    example_solutions: [(514579, 241861950), (0, 0)],
-    string_solution: None,
-    example_string_solutions: None,
-    example_string_inputs: None,
-};
+pub fn metadata() -> PuzzleMetaData<'static> {
+    PuzzleMetaData {
+        year: 2020,
+        day: 1,
+        title: "Report Repair",
+        solution: ("988771", "171933104"),
+        example_solutions: vec![("514579", "241861950")],
+    }
+}
 
 type ItemType = i32;
 
@@ -22,7 +21,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         .iter()
         .map(|line| {
             line.parse::<ItemType>()
-                .map_err(|_| "Input must contain only integers")
+                .map_err(|_| PuzzleError("Input must contain only integers".into()))
         })
         .collect::<Result<Vec<_>, _>>()?;
     // ---------- Part 1
@@ -62,16 +61,16 @@ mod tests {
 
     #[test]
     fn example1() {
-        test_case(&PUZZLE_METADATA, 1, solve);
+        test_case(metadata, solve, 1);
     }
 
     #[test]
     fn puzzle() {
-        test_case(&PUZZLE_METADATA, 0, solve);
+        test_case(metadata, solve, 0);
     }
 
     #[test]
     fn invalid_only_contains_int() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("a")], solve);
+        test_invalid(&vec![String::from("a")], solve);
     }
 }

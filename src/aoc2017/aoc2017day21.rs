@@ -1,18 +1,17 @@
 //! [aoc](https://adventofcode.com/2017/day/21)
 
-use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::collections::HashMap;
 
-pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2017,
-    day: 21,
-    title: "Fractal Art",
-    solution: (125, 1782917),
-    example_solutions: [(12, 12), (0, 0)],
-    string_solution: None,
-    example_string_solutions: None,
-    example_string_inputs: None,
-};
+pub fn metadata() -> PuzzleMetaData<'static> {
+    PuzzleMetaData {
+        year: 2017,
+        day: 21,
+        title: "Fractal Art",
+        solution: ("125", "1782917"),
+        example_solutions: vec![("12", "12")],
+    }
+}
 
 type ImageType = Vec<u8>;
 
@@ -21,15 +20,15 @@ const MAX_STEPS_INPUT_PART1: usize = 5;
 const MAX_STEPS_INPUT_PART2: usize = 18;
 const START_IMAGE: &str = ".#./..#/###";
 
-fn image_size(image: &ImageType) -> Result<usize, &'static str> {
+fn image_size(image: &ImageType) -> Result<usize, PuzzleError> {
     match image.len() {
         4 => Ok(2),
         9 => Ok(3),
-        _ => Err("Invalid image size"),
+        _ => Err(PuzzleError("Invalid image size".into())),
     }
 }
 
-fn rotate_right(image: &ImageType) -> Result<ImageType, &'static str> {
+fn rotate_right(image: &ImageType) -> Result<ImageType, PuzzleError> {
     let size = image_size(image)?;
     let mut ans = vec![0; image.len()];
     for y in 0..size {
@@ -40,7 +39,7 @@ fn rotate_right(image: &ImageType) -> Result<ImageType, &'static str> {
     Ok(ans)
 }
 
-fn flip_x(image: &ImageType) -> Result<ImageType, &'static str> {
+fn flip_x(image: &ImageType) -> Result<ImageType, PuzzleError> {
     let size = image_size(image)?;
     let mut ans = vec![0; image.len()];
     for y in 0..size {
@@ -51,7 +50,7 @@ fn flip_x(image: &ImageType) -> Result<ImageType, &'static str> {
     Ok(ans)
 }
 
-fn flip_y(image: &ImageType) -> Result<ImageType, &'static str> {
+fn flip_y(image: &ImageType) -> Result<ImageType, PuzzleError> {
     let size = image_size(image)?;
     let mut ans = vec![0; image.len()];
     for y in 0..size {
@@ -62,7 +61,7 @@ fn flip_y(image: &ImageType) -> Result<ImageType, &'static str> {
     Ok(ans)
 }
 
-fn get_orientations(image: &ImageType) -> Result<Vec<ImageType>, &'static str> {
+fn get_orientations(image: &ImageType) -> Result<Vec<ImageType>, PuzzleError> {
     let flips = [
         image.to_owned(),
         flip_x(image)?,
@@ -89,7 +88,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         let a = s.next().unwrap().replace('/', "").into_bytes();
         let b = s
             .next()
-            .ok_or("Invalid input")?
+            .ok_or(PuzzleError("Invalid input".into()))?
             .replace('/', "")
             .into_bytes();
         input_rules.insert(a, b);
@@ -130,7 +129,9 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
                             image[(y * size_tile + yt) * size + x * size_tile + xt];
                     }
                 }
-                let new_tile = rules.get(&tile).ok_or("No rule exists for this tile")?;
+                let new_tile = rules
+                    .get(&tile)
+                    .ok_or(PuzzleError("No rule exists for this tile".into()))?;
                 for yt in 0..=size_tile {
                     for xt in 0..=size_tile {
                         new_image[(y * new_size_tile + yt) * new_size + x * new_size_tile + xt] =
@@ -150,12 +151,6 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
 }
 
 // ------------------------------------------------------------
-// --- boilerplate below ---
-
-pub fn run() -> bool {
-    crate::aoc::runner::run_puzzle(&PUZZLE_METADATA, solve)
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -163,25 +158,21 @@ mod tests {
 
     #[test]
     fn example1() {
-        test_case(&PUZZLE_METADATA, 1, solve);
+        test_case(metadata, solve, 1);
     }
 
     #[test]
     fn puzzle() {
-        test_case(&PUZZLE_METADATA, 0, solve);
+        test_case(metadata, solve, 0);
     }
 
     #[test]
     fn invalid_missing_arrow() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("a")], solve);
+        test_invalid(&vec![String::from("a")], solve);
     }
 
     #[test]
     fn invalid_missing_rule() {
-        test_invalid(
-            &PUZZLE_METADATA,
-            &[String::from("../.# => ##./#../...")],
-            solve,
-        );
+        test_invalid(&vec![String::from("../.# => ##./#../...")], solve);
     }
 }

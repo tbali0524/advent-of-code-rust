@@ -1,18 +1,17 @@
 //! [aoc](https://adventofcode.com/2017/day/16)
 
-use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::collections::HashMap;
 
-pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2017,
-    day: 16,
-    title: "Permutation Promenade",
-    solution: (0, 0),
-    example_solutions: [(0, 0), (0, 0)],
-    string_solution: Some(("eojfmbpkldghncia", "iecopnahgdflmkjb")),
-    example_string_solutions: Some([("baedc", "0"), ("0", "0")]),
-    example_string_inputs: None,
-};
+pub fn metadata() -> PuzzleMetaData<'static> {
+    PuzzleMetaData {
+        year: 2017,
+        day: 16,
+        title: "Permutation Promenade",
+        solution: ("eojfmbpkldghncia", "iecopnahgdflmkjb"),
+        example_solutions: vec![("baedc", "0")],
+    }
+}
 
 type ItemType = usize;
 
@@ -29,7 +28,7 @@ struct Command {
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     if input.len() != 1 {
-        return Err("Input must have a single line");
+        return Err(PuzzleError("Input must have a single line".into()));
     }
     let instructions = input[0]
         .split(',')
@@ -43,33 +42,30 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         let a = s.next().unwrap();
         match command.command {
             's' => {
-                command.op1 = Some(
-                    a.parse::<ItemType>()
-                        .map_err(|_| "Invalid input: s argument must be integer")?,
-                );
+                command.op1 = Some(a.parse::<ItemType>().map_err(|_| {
+                    PuzzleError("Invalid input: s argument must be integer".into())
+                })?);
             }
             'x' => {
-                command.op1 = Some(
-                    a.parse::<ItemType>()
-                        .map_err(|_| "Invalid input: x first argument must be integer")?,
-                );
-                let b = s
-                    .next()
-                    .ok_or("Invalid input: x command needs 2 arguments")?;
-                command.op2 = Some(
-                    b.parse::<ItemType>()
-                        .map_err(|_| "Invalid input: x second argument must be integer")?,
-                );
+                command.op1 = Some(a.parse::<ItemType>().map_err(|_| {
+                    PuzzleError("Invalid input: x first argument must be integer".into())
+                })?);
+                let b = s.next().ok_or(PuzzleError(
+                    "Invalid input: x command needs 2 arguments".into(),
+                ))?;
+                command.op2 = Some(b.parse::<ItemType>().map_err(|_| {
+                    PuzzleError("Invalid input: x second argument must be integer".into())
+                })?);
             }
             'p' => {
                 command.op1s = Some(a.chars().next().unwrap());
-                let b = s
-                    .next()
-                    .ok_or("Invalid input: x command needs 2 arguments")?;
+                let b = s.next().ok_or(PuzzleError(
+                    "Invalid input: x command needs 2 arguments".into(),
+                ))?;
                 command.op2s = Some(b.chars().next().unwrap());
             }
             _ => {
-                return Err("Command must be s, x, or p");
+                return Err(PuzzleError("Command must be s, x, or p".into()));
             }
         }
         commands.push(command);
@@ -93,15 +89,15 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
                 let pos1 = progs
                     .iter()
                     .position(|&x| x == c.op1s.unwrap() as u8)
-                    .ok_or("Impossible")?;
+                    .ok_or(PuzzleError("Impossible".into()))?;
                 let pos2 = progs
                     .iter()
                     .position(|&x| x == c.op2s.unwrap() as u8)
-                    .ok_or("Impossible")?;
+                    .ok_or(PuzzleError("Impossible".into()))?;
                 progs.swap(pos1, pos2);
             }
             _ => {
-                return Err("Command must be s, x, or p");
+                return Err(PuzzleError("Command must be s, x, or p".into()));
             }
         }
     }
@@ -124,15 +120,15 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
                     let pos1 = progs
                         .iter()
                         .position(|&x| x == c.op1s.unwrap() as u8)
-                        .ok_or("Impossible")?;
+                        .ok_or(PuzzleError("Impossible".into()))?;
                     let pos2 = progs
                         .iter()
                         .position(|&x| x == c.op2s.unwrap() as u8)
-                        .ok_or("Impossible")?;
+                        .ok_or(PuzzleError("Impossible".into()))?;
                     progs.swap(pos1, pos2);
                 }
                 _ => {
-                    return Err("Command must be s, x, or p");
+                    return Err(PuzzleError("Command must be s, x, or p".into()));
                 }
             }
         }
@@ -150,12 +146,6 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
 }
 
 // ------------------------------------------------------------
-// --- boilerplate below ---
-
-pub fn run() -> bool {
-    crate::aoc::runner::run_puzzle(&PUZZLE_METADATA, solve)
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -163,40 +153,36 @@ mod tests {
 
     #[test]
     fn example1() {
-        test_case(&PUZZLE_METADATA, 1, solve);
+        test_case(metadata, solve, 1);
     }
 
     #[test]
     fn puzzle() {
-        test_case(&PUZZLE_METADATA, 0, solve);
+        test_case(metadata, solve, 0);
     }
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(
-            &PUZZLE_METADATA,
-            &[String::from("a"), String::from("b")],
-            solve,
-        );
+        test_invalid(&vec![String::from("a"), String::from("b")], solve);
     }
 
     #[test]
     fn invalid_command() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("a1")], solve);
+        test_invalid(&vec![String::from("a1")], solve);
     }
 
     #[test]
     fn invalid_command_s_argument_must_be_int() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("sa")], solve);
+        test_invalid(&vec![String::from("sa")], solve);
     }
 
     #[test]
     fn invalid_command_x_must_have_2_arguments() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("p1")], solve);
+        test_invalid(&vec![String::from("p1")], solve);
     }
 
     #[test]
     fn invalid_command_x_argument_must_be_int() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("pa/1")], solve);
+        test_invalid(&vec![String::from("pa/1")], solve);
     }
 }

@@ -1,27 +1,26 @@
 //! [aoc](https://adventofcode.com/2017/day/1)
 
-use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
 
-pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2017,
-    day: 1,
-    title: "Inverse Captcha",
-    solution: (1102, 1076),
-    example_solutions: [(9, 0), (0, 4)],
-    string_solution: None,
-    example_string_solutions: None,
-    example_string_inputs: Some(["91212129", "12131415"]),
-};
+pub fn metadata() -> PuzzleMetaData<'static> {
+    PuzzleMetaData {
+        year: 2017,
+        day: 1,
+        title: "Inverse Captcha",
+        solution: ("1102", "1076"),
+        example_solutions: vec![("9", "0"), ("0", "4")],
+    }
+}
 
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 1 {
-        return Err("Input must have a single line");
+        return Err(PuzzleError("Input must have a single line".into()));
     }
     let line = &input[0];
     for c in line.chars() {
         if !c.is_ascii_digit() {
-            return Err("Input must contain only digits");
+            return Err(PuzzleError("Input must contain only digits".into()));
         }
     }
     // ---------- Part 1
@@ -44,12 +43,6 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
 }
 
 // ------------------------------------------------------------
-// --- boilerplate below ---
-
-pub fn run() -> bool {
-    crate::aoc::runner::run_puzzle(&PUZZLE_METADATA, solve)
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -57,30 +50,26 @@ mod tests {
 
     #[test]
     fn example1() {
-        test_case(&PUZZLE_METADATA, 1, solve);
+        test_case(metadata, solve, 1);
     }
 
     #[test]
     fn example2() {
-        test_case(&PUZZLE_METADATA, 2, solve);
+        test_case(metadata, solve, 2);
     }
 
     #[test]
     fn puzzle() {
-        test_case(&PUZZLE_METADATA, 0, solve);
+        test_case(metadata, solve, 0);
     }
 
     #[test]
     fn invalid_only_digits() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("1a3")], solve);
+        test_invalid(&vec![String::from("1a3")], solve);
     }
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(
-            &PUZZLE_METADATA,
-            &[String::from("123"), String::from("1")],
-            solve,
-        );
+        test_invalid(&vec![String::from("123"), String::from("1")], solve);
     }
 }

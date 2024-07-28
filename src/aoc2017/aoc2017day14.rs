@@ -1,17 +1,16 @@
 //! [aoc](https://adventofcode.com/2017/day/14)
 
-use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
 
-pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2017,
-    day: 14,
-    title: "Disk Defragmentation",
-    solution: (8204, 1089),
-    example_solutions: [(8108, 1242), (0, 0)],
-    string_solution: None,
-    example_string_solutions: None,
-    example_string_inputs: Some(["flqrgnkx", ""]),
-};
+pub fn metadata() -> PuzzleMetaData<'static> {
+    PuzzleMetaData {
+        year: 2017,
+        day: 14,
+        title: "Disk Defragmentation",
+        solution: ("8204", "1089"),
+        example_solutions: vec![("8108", "1242")],
+    }
+}
 
 const GRID_SIZE: usize = 128;
 type GridType = [[char; GRID_SIZE]; GRID_SIZE];
@@ -20,7 +19,7 @@ type GridType = [[char; GRID_SIZE]; GRID_SIZE];
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 1 {
-        return Err("Input must have a single line");
+        return Err(PuzzleError("Input must have a single line".into()));
     }
     // ---------- Part 1
     let mut ans1 = 0;
@@ -102,12 +101,6 @@ fn flood_fill(grid: &mut GridType, x: usize, y: usize) {
 }
 
 // ------------------------------------------------------------
-// --- boilerplate below ---
-
-pub fn run() -> bool {
-    crate::aoc::runner::run_puzzle(&PUZZLE_METADATA, solve)
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -115,20 +108,16 @@ mod tests {
 
     #[test]
     fn example1() {
-        test_case(&PUZZLE_METADATA, 1, solve);
+        test_case(metadata, solve, 1);
     }
 
     #[test]
     fn puzzle() {
-        test_case(&PUZZLE_METADATA, 0, solve);
+        test_case(metadata, solve, 0);
     }
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(
-            &PUZZLE_METADATA,
-            &[String::from("a"), String::from("b")],
-            solve,
-        );
+        test_invalid(&vec![String::from("a"), String::from("b")], solve);
     }
 }

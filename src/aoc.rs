@@ -1,4 +1,7 @@
-//! Advent of Code general types, runners and the CLI.
+//! Advent of Code general types, runner and the CLI.
+
+use std::error;
+use std::fmt;
 
 pub mod ansi;
 pub mod cli;
@@ -8,14 +11,28 @@ pub const START_SEASON: usize = 2015;
 pub const MAX_SEASONS: usize = 10;
 pub const MAX_DAYS: usize = 25;
 
-pub type ReadInputResult = Result<Vec<String>, &'static str>;
-pub type PuzzleInput<'a> = &'a [String];
-pub type PuzzleSolution = (String, String);
-
+#[derive(PartialEq)]
 pub struct PuzzleError(pub String);
-pub type PuzzleResult<'a> = Result<PuzzleSolution, &'a str>;
+impl error::Error for PuzzleError {}
+impl fmt::Debug for PuzzleError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "Input Error: {}", self.0)
+    }
+}
+impl fmt::Display for PuzzleError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "Input Error: {}", self.0)
+    }
+}
+
+pub type ReadInputResult = Result<Vec<String>, PuzzleError>;
+pub type PuzzleInput<'a> = &'a Vec<String>;
+pub type PuzzleExpected<'a> = (&'a str, &'a str);
+pub type PuzzleSolution = (String, String);
+pub type PuzzleResult = Result<PuzzleSolution, PuzzleError>;
+pub type MetaData<'a> = fn() -> PuzzleMetaData<'a>;
 pub type Solver = fn(PuzzleInput) -> PuzzleResult;
-pub type Puzzle<'a> = (PuzzleMetaData<'a>, Solver);
+pub type Puzzle<'a> = (MetaData<'a>, Solver);
 pub type Season<'a> = [Option<Puzzle<'a>>; MAX_DAYS];
 
 /// Each solution must have a constant containing its metadata with this type.
@@ -23,11 +40,8 @@ pub struct PuzzleMetaData<'a> {
     pub year: usize,
     pub day: usize,
     pub title: &'a str,
-    pub solution: (i64, i64),
-    pub example_solutions: [(i64, i64); 2],
-    pub string_solution: Option<(&'a str, &'a str)>, // use only for non-integer solutions
-    pub example_string_solutions: Option<[(&'a str, &'a str); 2]>, // use only for non-integer solutions
-    pub example_string_inputs: Option<[&'a str; 2]>, // use only for short, single-line example inputs
+    pub solution: PuzzleExpected<'a>,
+    pub example_solutions: Vec<PuzzleExpected<'a>>,
 }
 
 /// array of seasons that have implemented solutions

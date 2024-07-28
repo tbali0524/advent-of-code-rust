@@ -1,19 +1,19 @@
 //! [aoc](https://adventofcode.com/2017/day/20)
 
-use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
 use regex::Regex;
 use std::collections::{HashMap, HashSet};
 
-pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2017,
-    day: 20,
-    title: "Particle Swarm",
-    solution: (0, 0),
-    example_solutions: [(0, 0), (0, 0)],
-    string_solution: Some(("p243", "648")), // extra p prefix added, because example 1 part 1 solution is 0.
-    example_string_solutions: Some([("p0", "2"), ("p2", "1")]),
-    example_string_inputs: None,
-};
+pub fn metadata() -> PuzzleMetaData<'static> {
+    PuzzleMetaData {
+        year: 2017,
+        day: 20,
+        title: "Particle Swarm",
+        solution: ("p243", "648"),
+        // extra p prefix added, because example 1 part 1 solution is 0.
+        example_solutions: vec![("p0", "2"), ("p2", "1")],
+    }
+}
 
 type ItemType = i32;
 
@@ -48,18 +48,20 @@ impl Particle {
     }
 
     #[allow(clippy::needless_range_loop)]
-    fn from_string(id: usize, line: &str) -> Result<Self, &'static str> {
+    fn from_string(id: usize, line: &str) -> Result<Self, PuzzleError> {
         let r = Regex::new(r"p=<( ?-?\d+),( ?-?\d+),( ?-?\d+)>, v=<( ?-?\d+),( ?-?\d+),( ?-?\d+)>, a=<( ?-?\d+),( ?-?\d+),( ?-?\d+)>").unwrap();
-        let caps = r.captures(line).ok_or("Invalid input")?;
+        let caps = r
+            .captures(line)
+            .ok_or(PuzzleError("Invalid input".into()))?;
         let mut values = [0; 9];
         for i in 0..9 {
             values[i] = caps
                 .get(i + 1)
-                .ok_or("Invalid input: missing coordinate")?
+                .ok_or(PuzzleError("Invalid input: missing coordinate".into()))?
                 .as_str()
                 .trim()
                 .parse::<ItemType>()
-                .map_err(|_| "Invalid input: coordinate must be integer")?;
+                .map_err(|_| PuzzleError("Invalid input: coordinate must be integer".into()))?;
         }
         Ok(Particle::new(
             id,
@@ -135,12 +137,6 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
 }
 
 // ------------------------------------------------------------
-// --- boilerplate below ---
-
-pub fn run() -> bool {
-    crate::aoc::runner::run_puzzle(&PUZZLE_METADATA, solve)
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -148,24 +144,23 @@ mod tests {
 
     #[test]
     fn example1() {
-        test_case(&PUZZLE_METADATA, 1, solve);
+        test_case(metadata, solve, 1);
     }
 
     #[test]
     fn example2() {
-        test_case(&PUZZLE_METADATA, 2, solve);
+        test_case(metadata, solve, 2);
     }
 
     #[test]
     fn puzzle() {
-        test_case(&PUZZLE_METADATA, 0, solve);
+        test_case(metadata, solve, 0);
     }
 
     #[test]
     fn invalid_variable() {
         test_invalid(
-            &PUZZLE_METADATA,
-            &[String::from("p=<0,0,0>, x=<1,2,3>, a=<0,0,0>")],
+            &vec![String::from("p=<0,0,0>, x=<1,2,3>, a=<0,0,0>")],
             solve,
         );
     }
@@ -173,8 +168,7 @@ mod tests {
     #[test]
     fn invalid_vector_must_have_ints() {
         test_invalid(
-            &PUZZLE_METADATA,
-            &[String::from("p=<0,a,0>, a=<1,2,3>, a=<0,0,0>")],
+            &vec![String::from("p=<0,a,0>, a=<1,2,3>, a=<0,0,0>")],
             solve,
         );
     }

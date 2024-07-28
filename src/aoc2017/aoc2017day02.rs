@@ -1,17 +1,16 @@
 //! [aoc](https://adventofcode.com/2017/day/2)
 
-use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
 
-pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2017,
-    day: 2,
-    title: "Corruption Checksum",
-    solution: (48357, 351),
-    example_solutions: [(18, 0), (0, 9)],
-    string_solution: None,
-    example_string_solutions: None,
-    example_string_inputs: None,
-};
+pub fn metadata() -> PuzzleMetaData<'static> {
+    PuzzleMetaData {
+        year: 2017,
+        day: 2,
+        title: "Corruption Checksum",
+        solution: ("48357", "351"),
+        example_solutions: vec![("18", "0"), ("0", "9")],
+    }
+}
 
 type ItemType = i32;
 
@@ -24,7 +23,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             line.split_whitespace()
                 .map(|x| {
                     x.parse::<ItemType>()
-                        .map_err(|_| "Input must contain only integers")
+                        .map_err(|_| PuzzleError("Input must contain only integers".into()))
                 })
                 .collect::<Result<Vec<_>, _>>()
         })
@@ -53,12 +52,6 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
 }
 
 // ------------------------------------------------------------
-// --- boilerplate below ---
-
-pub fn run() -> bool {
-    crate::aoc::runner::run_puzzle(&PUZZLE_METADATA, solve)
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -66,25 +59,21 @@ mod tests {
 
     #[test]
     fn example1() {
-        test_case(&PUZZLE_METADATA, 1, solve);
+        test_case(metadata, solve, 1);
     }
 
     #[test]
     fn example2() {
-        test_case(&PUZZLE_METADATA, 2, solve);
+        test_case(metadata, solve, 2);
     }
 
     #[test]
     fn puzzle() {
-        test_case(&PUZZLE_METADATA, 0, solve);
+        test_case(metadata, solve, 0);
     }
 
     #[test]
     fn invalid_only_2d_array_of_ints() {
-        test_invalid(
-            &PUZZLE_METADATA,
-            &[String::from("1 2 3"), String::from("4 a 6")],
-            solve,
-        );
+        test_invalid(&vec![String::from("1 2 3"), String::from("4 a 6")], solve);
     }
 }

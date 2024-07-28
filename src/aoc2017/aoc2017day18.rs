@@ -1,19 +1,18 @@
 //! [aoc](https://adventofcode.com/2017/day/18)
 
-use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::collections::HashMap;
 use std::collections::VecDeque;
 
-pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2017,
-    day: 18,
-    title: "Duet",
-    solution: (9423, 7620),
-    example_solutions: [(4, 0), (0, 3)],
-    string_solution: None,
-    example_string_solutions: None,
-    example_string_inputs: None,
-};
+pub fn metadata() -> PuzzleMetaData<'static> {
+    PuzzleMetaData {
+        year: 2017,
+        day: 18,
+        title: "Duet",
+        solution: ("9423", "7620"),
+        example_solutions: vec![("4", "0"), ("0", "3")],
+    }
+}
 
 type ItemType = i64;
 
@@ -46,7 +45,7 @@ impl Thread {
         p
     }
 
-    fn execute(&mut self) -> Result<(), &'static str> {
+    fn execute(&mut self) -> Result<(), PuzzleError> {
         'outer: loop {
             if !self.wait_to_receive {
                 self.pc += 1;
@@ -60,7 +59,7 @@ impl Thread {
             }
             let line = &self.instructions[self.pc as usize];
             if line.len() < 5 || line.as_bytes()[3] as char != ' ' {
-                return Err("Invalid input");
+                return Err(PuzzleError("Invalid input".into()));
             }
             let instruction = &line[0..3];
             let x_reg = line.as_bytes()[4] as char;
@@ -69,7 +68,7 @@ impl Thread {
             } else if x_reg.is_ascii_digit() {
                 x_reg.to_digit(10).unwrap() as ItemType
             } else {
-                return Err("Invalid first argument in input");
+                return Err(PuzzleError("Invalid first argument in input".into()));
             };
             match instruction {
                 "snd" => {
@@ -101,7 +100,7 @@ impl Thread {
                 _ => (),
             }
             if line.len() < 7 || line.as_bytes()[5] as char != ' ' {
-                return Err("Invalid input");
+                return Err(PuzzleError("Invalid input".into()));
             }
             let y_reg = line.as_bytes()[6] as char;
             let y_value = if y_reg.is_ascii_lowercase() {
@@ -109,7 +108,7 @@ impl Thread {
             } else {
                 line[6..]
                     .parse::<ItemType>()
-                    .map_err(|_| "Invalid second argument in input")?
+                    .map_err(|_| PuzzleError("Invalid second argument in input".into()))?
             };
             match instruction {
                 "set" => {
@@ -130,7 +129,7 @@ impl Thread {
                     }
                 }
                 _ => {
-                    return Err("Invalid instruction");
+                    return Err(PuzzleError("Invalid instruction".into()));
                 }
             }
         }
@@ -173,12 +172,6 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
 }
 
 // ------------------------------------------------------------
-// --- boilerplate below ---
-
-pub fn run() -> bool {
-    crate::aoc::runner::run_puzzle(&PUZZLE_METADATA, solve)
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -186,41 +179,41 @@ mod tests {
 
     #[test]
     fn example1() {
-        test_case(&PUZZLE_METADATA, 1, solve);
+        test_case(metadata, solve, 1);
     }
 
     #[test]
     fn example2() {
-        test_case(&PUZZLE_METADATA, 2, solve);
+        test_case(metadata, solve, 2);
     }
 
     #[test]
     fn puzzle() {
-        test_case(&PUZZLE_METADATA, 0, solve);
+        test_case(metadata, solve, 0);
     }
 
     #[test]
     fn invalid_short_line() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("a")], solve);
+        test_invalid(&vec![String::from("a")], solve);
     }
 
     #[test]
     fn invalid_instruction_too_long() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("sndda 1")], solve);
+        test_invalid(&vec![String::from("sndda 1")], solve);
     }
 
     #[test]
     fn invalid_istruction() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("abc a 1")], solve);
+        test_invalid(&vec![String::from("abc a 1")], solve);
     }
 
     #[test]
     fn invalid_first_argument() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("add - 1")], solve);
+        test_invalid(&vec![String::from("add - 1")], solve);
     }
 
     #[test]
     fn invalid_second_argument() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("add a *")], solve);
+        test_invalid(&vec![String::from("add a *")], solve);
     }
 }

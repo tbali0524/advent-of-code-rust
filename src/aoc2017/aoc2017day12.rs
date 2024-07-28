@@ -1,18 +1,17 @@
 //! [aoc](https://adventofcode.com/2017/day/12)
 
-use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::collections::{HashMap, HashSet};
 
-pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2017,
-    day: 12,
-    title: "Digital Plumber",
-    solution: (288, 211),
-    example_solutions: [(6, 2), (0, 0)],
-    string_solution: None,
-    example_string_solutions: None,
-    example_string_inputs: None,
-};
+pub fn metadata() -> PuzzleMetaData<'static> {
+    PuzzleMetaData {
+        year: 2017,
+        day: 12,
+        title: "Digital Plumber",
+        solution: ("288", "211"),
+        example_solutions: vec![("6", "2")],
+    }
+}
 
 type ItemType = usize;
 
@@ -25,14 +24,14 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             .next()
             .unwrap()
             .parse::<ItemType>()
-            .map_err(|_| "Input lines must start with an integer")?;
+            .map_err(|_| PuzzleError("Input lines must start with an integer".into()))?;
         let list = a
             .next()
-            .ok_or("Input lines must contain an <-> arrow")?
+            .ok_or(PuzzleError("Input lines must contain an <-> arrow".into()))?
             .split(", ")
             .map(|x| {
                 x.parse::<ItemType>()
-                    .map_err(|_| "Adjacence list must contain only integers")
+                    .map_err(|_| PuzzleError("Adjacence list must contain only integers".into()))
             })
             .collect::<Result<Vec<_>, _>>()?;
         adj_list.insert(node, list);
@@ -68,12 +67,6 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
 }
 
 // ------------------------------------------------------------
-// --- boilerplate below ---
-
-pub fn run() -> bool {
-    crate::aoc::runner::run_puzzle(&PUZZLE_METADATA, solve)
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -81,34 +74,29 @@ mod tests {
 
     #[test]
     fn example1() {
-        test_case(&PUZZLE_METADATA, 1, solve);
+        test_case(metadata, solve, 1);
     }
 
     #[test]
     fn puzzle() {
-        test_case(&PUZZLE_METADATA, 0, solve);
+        test_case(metadata, solve, 0);
     }
 
     #[test]
     fn invalid_lines_must_have_a_single_arrow() {
-        test_invalid(
-            &PUZZLE_METADATA,
-            &[String::from("0 <-> 1, 2"), String::from("1")],
-            solve,
-        );
+        test_invalid(&vec![String::from("0 <-> 1, 2"), String::from("1")], solve);
     }
 
     #[test]
     fn invalid_right_of_arrow_only_contains_int() {
         test_invalid(
-            &PUZZLE_METADATA,
-            &[String::from("0 <-> 1, 2"), String::from("1 <-> 2, a")],
+            &vec![String::from("0 <-> 1, 2"), String::from("1 <-> 2, a")],
             solve,
         );
     }
 
     #[test]
     fn invalid_left_of_arrow_only_single_int() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("a <-> 1, 2")], solve);
+        test_invalid(&vec![String::from("a <-> 1, 2")], solve);
     }
 }

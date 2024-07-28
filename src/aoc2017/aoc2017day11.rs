@@ -1,20 +1,19 @@
 //! [aoc](https://adventofcode.com/2017/day/11)
 
-use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::cmp::max;
 
-pub const PUZZLE_METADATA: PuzzleMetaData<'static> = PuzzleMetaData {
-    year: 2017,
-    day: 11,
-    title: "Hex Ed",
-    solution: (824, 1548),
-    example_solutions: [(3, 3), (3, 3)],
-    string_solution: None,
-    example_string_solutions: None,
-    example_string_inputs: Some(["ne,ne,ne", "se,sw,se,sw,sw"]),
-};
+pub fn metadata() -> PuzzleMetaData<'static> {
+    PuzzleMetaData {
+        year: 2017,
+        day: 11,
+        title: "Hex Ed",
+        solution: ("824", "1548"),
+        example_solutions: vec![("3", "3"), ("3", "3")],
+    }
+}
 
-pub fn cube_delta(dir: &str) -> Result<(i32, i32, i32), &'static str> {
+pub fn cube_delta(dir: &str) -> Result<(i32, i32, i32), PuzzleError> {
     match dir {
         "n" => Ok((0, -1, 1)),
         "s" => Ok((0, 1, -1)),
@@ -22,14 +21,14 @@ pub fn cube_delta(dir: &str) -> Result<(i32, i32, i32), &'static str> {
         "se" => Ok((1, 0, -1)),
         "ne" => Ok((1, -1, 0)),
         "sw" => Ok((-1, 1, 0)),
-        _ => Err("Invalid direction"),
+        _ => Err(PuzzleError("Invalid direction".into())),
     }
 }
 
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 1 {
-        return Err("Input must have a single line");
+        return Err(PuzzleError("Input must have a single line".into()));
     }
     let data = input[0].split(',').collect::<Vec<_>>();
     // ---------- Part 1 + 2
@@ -48,12 +47,6 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
 }
 
 // ------------------------------------------------------------
-// --- boilerplate below ---
-
-pub fn run() -> bool {
-    crate::aoc::runner::run_puzzle(&PUZZLE_METADATA, solve)
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -61,25 +54,21 @@ mod tests {
 
     #[test]
     fn example1() {
-        test_case(&PUZZLE_METADATA, 1, solve);
+        test_case(metadata, solve, 1);
     }
 
     #[test]
     fn puzzle() {
-        test_case(&PUZZLE_METADATA, 0, solve);
+        test_case(metadata, solve, 0);
     }
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(
-            &PUZZLE_METADATA,
-            &[String::from("se,n"), String::from("s")],
-            solve,
-        );
+        test_invalid(&vec![String::from("se,n"), String::from("s")], solve);
     }
 
     #[test]
     fn invalid_direction() {
-        test_invalid(&PUZZLE_METADATA, &[String::from("se,a,n")], solve);
+        test_invalid(&vec![String::from("se,a,n")], solve);
     }
 }

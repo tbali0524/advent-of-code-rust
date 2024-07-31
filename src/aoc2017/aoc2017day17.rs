@@ -80,11 +80,11 @@ mod tests {
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(&vec![String::from("1"), String::from("2")], solve);
+        test_invalid(&[&"1", &"2"], solve);
     }
 
     #[test]
     fn invalid_integer() {
-        test_invalid(&vec![String::from("a")], solve);
+        test_invalid(&[&"a"], solve);
     }
 }

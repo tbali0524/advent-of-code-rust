@@ -65,11 +65,11 @@ mod tests {
 
     #[test]
     fn invalid_only_digits() {
-        test_invalid(&vec![String::from("1a3")], solve);
+        test_invalid(&[&"1a3"], solve);
     }
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(&vec![String::from("123"), String::from("1")], solve);
+        test_invalid(&[&"123", &"1"], solve);
     }
 }

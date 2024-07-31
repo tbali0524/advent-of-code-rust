@@ -187,19 +187,16 @@ mod tests {
 
     #[test]
     fn invalid_missing_weight() {
-        test_invalid(&vec![String::from("a")], solve);
+        test_invalid(&[&"a"], solve);
     }
 
     #[test]
     fn invalid_weight_must_be_int() {
-        test_invalid(&vec![String::from("a (b)")], solve);
+        test_invalid(&[&"a (b)"], solve);
     }
 
     #[test]
     fn invalid_node_reference() {
-        test_invalid(
-            &vec![String::from("a (1)"), String::from("b (2) -> c")],
-            solve,
-        );
+        test_invalid(&[&"a (1)", &"b (2) -> c"], solve);
     }
 }

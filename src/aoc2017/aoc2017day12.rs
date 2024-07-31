@@ -84,19 +84,16 @@ mod tests {
 
     #[test]
     fn invalid_lines_must_have_a_single_arrow() {
-        test_invalid(&vec![String::from("0 <-> 1, 2"), String::from("1")], solve);
+        test_invalid(&[&"0 <-> 1, 2", &"1"], solve);
     }
 
     #[test]
     fn invalid_right_of_arrow_only_contains_int() {
-        test_invalid(
-            &vec![String::from("0 <-> 1, 2"), String::from("1 <-> 2, a")],
-            solve,
-        );
+        test_invalid(&[&"0 <-> 1, 2", &"1 <-> 2, a"], solve);
     }
 
     #[test]
     fn invalid_left_of_arrow_only_single_int() {
-        test_invalid(&vec![String::from("a <-> 1, 2")], solve);
+        test_invalid(&[&"a <-> 1, 2"], solve);
     }
 }

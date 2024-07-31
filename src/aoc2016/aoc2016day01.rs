@@ -90,6 +90,6 @@ mod tests {
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(&vec![String::from("R8"), String::from("R4")], solve);
+        test_invalid(&[&"R8", &"R4"], solve);
     }
 }

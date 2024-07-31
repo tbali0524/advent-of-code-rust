@@ -83,6 +83,6 @@ mod tests {
 
     #[test]
     fn invalid_no_start_position() {
-        test_invalid(&vec![String::from(" - "), String::from(" | ")], solve);
+        test_invalid(&[&" - ", &" | "], solve);
     }
 }

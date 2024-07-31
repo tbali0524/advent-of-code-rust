@@ -63,11 +63,11 @@ mod tests {
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(&vec![String::from("a"), String::from("b")], solve);
+        test_invalid(&[&"a", &"b"], solve);
     }
 
     #[test]
     fn invalid_input_sentence() {
-        test_invalid(&vec![String::from("a b c")], solve);
+        test_invalid(&[&"a b c"], solve);
     }
 }

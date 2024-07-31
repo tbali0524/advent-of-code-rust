@@ -117,7 +117,8 @@ pub fn run_case(puzzle: &PuzzleMetaData, solve: Solver, case: usize) -> (bool, S
     if let Err(e) = input_result {
         return (false, get_case_error(case, e));
     }
-    let input = input_result.unwrap();
+    let input_s = input_result.unwrap();
+    let input = input_s.lines().collect::<Vec<&str>>();
     let result = solve(&input);
     if let Err(e) = result {
         return (false, get_case_error(case, e));
@@ -166,6 +167,7 @@ pub fn run_case(puzzle: &PuzzleMetaData, solve: Solver, case: usize) -> (bool, S
     (all_passed, all_message)
 }
 
+// ------------------------------------------------------------
 fn get_plural(item: usize) -> String {
     if item == 1 {
         String::new()
@@ -194,7 +196,7 @@ fn get_expected<'a>(puzzle: &'a PuzzleMetaData, case: usize) -> PuzzleExpected<'
 
 // ------------------------------------------------------------
 /// Reads input from file for a specific test case (case == 0 for the puzzle input, 1, 2, ... for example inputs).
-pub fn read_input(puzzle: &PuzzleMetaData, case: usize) -> ReadInputResult {
+pub fn read_input(puzzle: &PuzzleMetaData, case: usize) -> Result<String, PuzzleError> {
     if case > puzzle.example_solutions.len() {
         return Err(PuzzleError(format!(
             "missing expected solution for example #{}",
@@ -213,10 +215,7 @@ pub fn read_input(puzzle: &PuzzleMetaData, case: usize) -> ReadInputResult {
         )
     };
     let input = fs::read_to_string(path::Path::new(&input_path))
-        .map_err(|_| PuzzleError(format!("cannot read input file: {}", input_path)))?
-        .lines()
-        .map(|x| x.to_owned())
-        .collect::<Vec<_>>();
+        .map_err(|_| PuzzleError(format!("cannot read input file: {}", input_path)))?;
     if input.is_empty() {
         return Err(PuzzleError("empty input".into()));
     }
@@ -260,24 +259,20 @@ pub mod tests {
     /// Similar to `run_case()` but using assertions and no output.
     pub fn test_case(metadata: MetaData, solve: Solver, case: usize) {
         let puzzle = metadata();
-        let input = read_input(&puzzle, case).unwrap();
-        let result = solve(&input);
-        if result.is_err() {
-            assert!(false);
-        }
-        let ans = result.unwrap();
+        let input_s = read_input(&puzzle, case).unwrap();
+        let input = input_s.lines().collect::<Vec<&str>>();
+        let ans = solve(&input).unwrap();
         let expected = get_expected(&puzzle, case);
         if !expected.0.is_empty() && expected.0 != "0" {
-            assert_eq!(&ans.0, &expected.0);
+            assert_eq!(&ans.0, expected.0);
         }
         if !expected.1.is_empty() && expected.1 != "0" {
-            assert_eq!(&ans.1, &expected.1);
+            assert_eq!(&ans.1, expected.1);
         }
     }
 
     /// Helper function to be used in puzzle solution tests, for checking handling of invalid puzzle inputs.
     pub fn test_invalid(input: PuzzleInput, solve: Solver) {
-        let result = solve(input);
-        assert!(result.is_err());
+        assert!(solve(input).is_err());
     }
 }

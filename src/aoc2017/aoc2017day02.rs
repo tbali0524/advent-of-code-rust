@@ -74,6 +74,6 @@ mod tests {
 
     #[test]
     fn invalid_only_2d_array_of_ints() {
-        test_invalid(&vec![String::from("1 2 3"), String::from("4 a 6")], solve);
+        test_invalid(&[&"1 2 3", &"4 a 6"], solve);
     }
 }

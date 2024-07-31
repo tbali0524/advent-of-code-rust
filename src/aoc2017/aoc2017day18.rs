@@ -52,10 +52,10 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
 }
 
 #[derive(Default)]
-struct Thread {
+struct Thread<'a> {
     is_part1: bool,
     _id: ItemType,
-    instructions: Vec<String>,
+    instructions: PuzzleInput<'a>,
     snd_queue: VecDeque<ItemType>,
     rcv_queue: VecDeque<ItemType>,
     wait_to_receive: bool,
@@ -66,12 +66,12 @@ struct Thread {
     pc: ItemType,
 }
 
-impl Thread {
-    fn new(input: PuzzleInput, id: ItemType, is_part1: bool) -> Self {
+impl<'a> Thread<'a> {
+    fn new(input: PuzzleInput<'a>, id: ItemType, is_part1: bool) -> Self {
         let mut p = Thread {
             _id: id,
             is_part1,
-            instructions: input.to_owned(),
+            instructions: input,
             sound: -1,
             pc: -1,
             ..Default::default()
@@ -194,26 +194,26 @@ mod tests {
 
     #[test]
     fn invalid_short_line() {
-        test_invalid(&vec![String::from("a")], solve);
+        test_invalid(&[&"a"], solve);
     }
 
     #[test]
     fn invalid_instruction_too_long() {
-        test_invalid(&vec![String::from("sndda 1")], solve);
+        test_invalid(&[&"sndda 1"], solve);
     }
 
     #[test]
     fn invalid_istruction() {
-        test_invalid(&vec![String::from("abc a 1")], solve);
+        test_invalid(&[&"abc a 1"], solve);
     }
 
     #[test]
     fn invalid_first_argument() {
-        test_invalid(&vec![String::from("add - 1")], solve);
+        test_invalid(&[&"add - 1"], solve);
     }
 
     #[test]
     fn invalid_second_argument() {
-        test_invalid(&vec![String::from("add a *")], solve);
+        test_invalid(&[&"add a *"], solve);
     }
 }

@@ -1,4 +1,4 @@
-//! Advent of Code general types, runner and the CLI.
+//! Advent of Code common type definitions, and submodules with runner and CLI functions.
 
 use std::error;
 use std::fmt;
@@ -22,21 +22,18 @@ impl fmt::Debug for PuzzleError {
 }
 impl fmt::Display for PuzzleError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "Input error: {}", self.0)
+        fmt::Debug::fmt(self, f)
     }
 }
 
 /// The expected solution for a test case, containing both parts of the puzzle.
 pub type PuzzleExpected<'a> = (&'a str, &'a str);
 
+/// The parameter type of `solver()`: the puzzle input, already split to lines
+pub type PuzzleInput<'a> = &'a [&'a str];
+
 /// A candidate solution for a test case, containing both parts of the puzzle.
 pub type PuzzleSolution = (String, String);
-
-/// The result type of `runner::read_input()`.
-pub type ReadInputResult = Result<Vec<String>, PuzzleError>;
-
-/// The parameter type of `solver()`.
-pub type PuzzleInput<'a> = &'a Vec<String>;
 
 /// The return type of `solver()`.
 pub type PuzzleResult = Result<PuzzleSolution, PuzzleError>;

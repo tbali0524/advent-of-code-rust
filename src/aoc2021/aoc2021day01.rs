@@ -59,6 +59,6 @@ mod tests {
 
     #[test]
     fn invalid_only_contains_int() {
-        test_invalid(&vec![String::from("a")], solve);
+        test_invalid(&[&"a"], solve);
     }
 }

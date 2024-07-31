@@ -12,6 +12,7 @@ pub fn metadata() -> PuzzleMetaData<'static> {
     }
 }
 
+type ItemType = i64;
 const GRID_SIZE: usize = 128;
 type GridType = [[char; GRID_SIZE]; GRID_SIZE];
 
@@ -30,7 +31,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         key.push_str(&y.to_string());
         let hash = knot_hash(&key);
         for i in 0..4 {
-            let dec = i64::from_str_radix(&hash[(8 * i)..(8 * i + 8)], 16).unwrap();
+            let dec = ItemType::from_str_radix(&hash[(8 * i)..(8 * i + 8)], 16).unwrap();
             let bin = format!("{:032b}", dec);
             for (j, digit) in bin.chars().enumerate() {
                 grid[y][32 * i + j] = digit;
@@ -88,9 +89,9 @@ fn knot_hash(key: &str) -> String {
 fn flood_fill(grid: &mut GridType, x: usize, y: usize) {
     grid[y][x] = '0';
     for (dx, dy) in [(1, 0), (0, 1), (-1, 0), (0, -1)] {
-        let x1 = x as i64 + dx;
-        let y1 = y as i64 + dy;
-        if x1 < 0 || x1 >= GRID_SIZE as i64 || y1 < 0 || y1 >= GRID_SIZE as i64 {
+        let x1 = x as ItemType + dx;
+        let y1 = y as ItemType + dy;
+        if x1 < 0 || x1 >= GRID_SIZE as ItemType || y1 < 0 || y1 >= GRID_SIZE as ItemType {
             continue;
         }
         if grid[y1 as usize][x1 as usize] == '0' {
@@ -118,6 +119,6 @@ mod tests {
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(&vec![String::from("a"), String::from("b")], solve);
+        test_invalid(&[&"a", &"b"], solve);
     }
 }

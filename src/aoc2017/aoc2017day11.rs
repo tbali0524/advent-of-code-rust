@@ -64,11 +64,11 @@ mod tests {
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(&vec![String::from("se,n"), String::from("s")], solve);
+        test_invalid(&[&"se,n", &"s"], solve);
     }
 
     #[test]
     fn invalid_direction() {
-        test_invalid(&vec![String::from("se,a,n")], solve);
+        test_invalid(&[&"se,a,n"], solve);
     }
 }

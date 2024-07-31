@@ -13,7 +13,7 @@ pub fn metadata() -> PuzzleMetaData<'static> {
     }
 }
 
-type ItemType = i64;
+type ItemType = i32;
 
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Part 1
@@ -50,17 +50,17 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     Ok((ans1.to_string(), ans2.to_string()))
 }
 
-struct CoProcessor {
-    instructions: Vec<String>,
+struct CoProcessor<'a> {
+    instructions: PuzzleInput<'a>,
     total_muls: ItemType,
     registers: HashMap<char, ItemType>,
     pc: ItemType,
 }
 
-impl CoProcessor {
-    fn new(input: PuzzleInput) -> Self {
+impl<'a> CoProcessor<'a> {
+    fn new(input: PuzzleInput<'a>) -> Self {
         CoProcessor {
-            instructions: input.to_owned(),
+            instructions: input,
             total_muls: 0,
             registers: HashMap::new(),
             pc: -1,
@@ -154,26 +154,26 @@ mod tests {
 
     #[test]
     fn invalid_short_line() {
-        test_invalid(&vec![String::from("a")], solve);
+        test_invalid(&[&"a"], solve);
     }
 
     #[test]
     fn invalid_instruction_too_long() {
-        test_invalid(&vec![String::from("setaa 1")], solve);
+        test_invalid(&[&"setaa 1"], solve);
     }
 
     #[test]
     fn invalid_istruction() {
-        test_invalid(&vec![String::from("abc a 1")], solve);
+        test_invalid(&[&"abc a 1"], solve);
     }
 
     #[test]
     fn invalid_first_argument() {
-        test_invalid(&vec![String::from("set - 1")], solve);
+        test_invalid(&[&"set - 1"], solve);
     }
 
     #[test]
     fn invalid_second_argument() {
-        test_invalid(&vec![String::from("set a *")], solve);
+        test_invalid(&[&"set a *"], solve);
     }
 }

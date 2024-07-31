@@ -70,11 +70,11 @@ mod tests {
 
     #[test]
     fn invalid_only_2d_array_of_ints() {
-        test_invalid(&vec![String::from("1x2x3"), String::from("4xax6")], solve);
+        test_invalid(&[&"1x2x3", &"4xax6"], solve);
     }
 
     #[test]
     fn invalid_only_triplets_of_ints() {
-        test_invalid(&vec![String::from("1x2x3x4")], solve);
+        test_invalid(&[&"1x2x3x4"], solve);
     }
 }

@@ -42,7 +42,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             .and_modify(|v| *v = cmp::max(strength, *v))
             .or_insert(strength);
         for (idx, component) in components.iter().enumerate() {
-            if (used_bitmap & (1i64 << idx)) != 0 {
+            if (used_bitmap & ((1 as ItemType) << idx)) != 0 {
                 continue;
             }
             for i in 0..2 {
@@ -87,6 +87,6 @@ mod tests {
 
     #[test]
     fn invalid_must_be_integers() {
-        test_invalid(&vec![String::from("1/a")], solve);
+        test_invalid(&[&"1/a"], solve);
     }
 }

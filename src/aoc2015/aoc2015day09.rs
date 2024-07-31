@@ -117,21 +117,21 @@ mod tests {
 
     #[test]
     fn invalid_missing_equal_sign() {
-        test_invalid(&vec![String::from("a")], solve);
+        test_invalid(&[&"a"], solve);
     }
 
     #[test]
     fn invalid_missing_to() {
-        test_invalid(&vec![String::from("a = 1")], solve);
+        test_invalid(&[&"a = 1"], solve);
     }
 
     #[test]
     fn invalid_distance_must_be_integer() {
-        test_invalid(&vec![String::from("a to b = c")], solve);
+        test_invalid(&[&"a to b = c"], solve);
     }
 
     #[test]
     fn invalid_source_and_destination_must_be_different() {
-        test_invalid(&vec![String::from("a to a = 1")], solve);
+        test_invalid(&[&"a to a = 1"], solve);
     }
 }

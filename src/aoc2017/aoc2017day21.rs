@@ -168,11 +168,11 @@ mod tests {
 
     #[test]
     fn invalid_missing_arrow() {
-        test_invalid(&vec![String::from("a")], solve);
+        test_invalid(&[&"a"], solve);
     }
 
     #[test]
     fn invalid_missing_rule() {
-        test_invalid(&vec![String::from("../.# => ##./#../...")], solve);
+        test_invalid(&[&"../.# => ##./#../..."], solve);
     }
 }

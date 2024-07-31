@@ -1,6 +1,6 @@
 # Advent of Code solutions in Rust by TBali
 
-![rust v1.79](https://shields.io/badge/rust-1.80-blue?logo=rust)
+![rust v1.80](https://shields.io/badge/rust-1.80-blue?logo=rust)
 ![build](https://img.shields.io/github/actions/workflow/status/tbali0524/advent-of-code-rust/qa.yml)
 ![AoC stars](https://img.shields.io/badge/total%20AoC%20⭐-94-yellow)
 ![license](https://img.shields.io/github/license/tbali0524/advent-of-code-rust)

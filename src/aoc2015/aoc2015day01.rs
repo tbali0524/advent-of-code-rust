@@ -12,6 +12,8 @@ pub fn metadata() -> PuzzleMetaData<'static> {
     }
 }
 
+type ItemType = i32;
+
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 1 {
@@ -24,8 +26,8 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         }
     }
     // ---------- Part 1
-    let ans1 = line.matches('(').collect::<Vec<_>>().len() as i64
-        - line.matches(')').collect::<Vec<_>>().len() as i64;
+    let ans1 = line.matches('(').collect::<Vec<_>>().len() as ItemType
+        - line.matches(')').collect::<Vec<_>>().len() as ItemType;
     // ---------- Part 2
     let mut ans2 = 0;
     let mut floor = 0;
@@ -64,11 +66,11 @@ mod tests {
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(&vec![String::from("(())"), String::from("()")], solve);
+        test_invalid(&[&"(())", &"()"], solve);
     }
 
     #[test]
     fn invalid_only_parentheses() {
-        test_invalid(&vec![String::from("(a)")], solve);
+        test_invalid(&[&"(a)"], solve);
     }
 }

@@ -81,6 +81,6 @@ mod tests {
 
     #[test]
     fn invalid_must_be_integers() {
-        test_invalid(&vec![String::from("a")], solve);
+        test_invalid(&[&"a"], solve);
     }
 }

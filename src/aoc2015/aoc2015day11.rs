@@ -19,7 +19,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         return Err(PuzzleError("Input must have a single line".into()));
     }
     // ---------- Part 1
-    let ans1 = next_password(&input[0])?;
+    let ans1 = next_password(input[0])?;
     // ---------- Part 2
     let ans2 = next_password(&ans1)?;
     Ok((ans1, ans2))
@@ -96,6 +96,6 @@ mod tests {
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(&vec![String::from("a"), String::from("b")], solve);
+        test_invalid(&[&"a", &"b"], solve);
     }
 }

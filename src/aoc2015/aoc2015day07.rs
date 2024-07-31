@@ -13,7 +13,7 @@ pub fn metadata() -> PuzzleMetaData<'static> {
     }
 }
 
-type ItemType = i64;
+type ItemType = i32;
 
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
@@ -97,7 +97,7 @@ impl Circuit {
     fn new(input: PuzzleInput) -> Result<Self, PuzzleError> {
         let mut circuit = Self::default();
         for line in input {
-            let gate = Gate::try_from(line.as_str())?;
+            let gate = Gate::try_from(*line)?;
             circuit.gates.insert(gate.id.to_owned(), gate);
         }
         Ok(circuit)
@@ -160,26 +160,26 @@ mod tests {
 
     #[test]
     fn invalid_must_have_arrow() {
-        test_invalid(&vec![String::from("a")], solve);
+        test_invalid(&[&"a"], solve);
     }
 
     #[test]
     fn invalid_too_many_operands() {
-        test_invalid(&vec![String::from("x LSHIFT 2 3 -> y")], solve);
+        test_invalid(&[&"x LSHIFT 2 3 -> y"], solve);
     }
 
     #[test]
     fn invalid_unary_operator() {
-        test_invalid(&vec![String::from("AND x -> y")], solve);
+        test_invalid(&[&"AND x -> y"], solve);
     }
 
     #[test]
     fn invalid_binary_operator() {
-        test_invalid(&vec![String::from("x XOR y -> z")], solve);
+        test_invalid(&[&"x XOR y -> z"], solve);
     }
 
     #[test]
     fn invalid_wire_id() {
-        test_invalid(&vec![String::from("x AND 1 -> y")], solve);
+        test_invalid(&[&"x AND 1 -> y"], solve);
     }
 }

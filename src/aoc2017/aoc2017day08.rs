@@ -82,26 +82,26 @@ mod tests {
 
     #[test]
     fn invalid_line_must_contain_7_items() {
-        test_invalid(&vec![String::from("b inc 5 if a >")], solve);
+        test_invalid(&[&"b inc 5 if a >"], solve);
     }
 
     #[test]
     fn invalid_operator() {
-        test_invalid(&vec![String::from("b pow 5 if a > 1")], solve);
+        test_invalid(&[&"b pow 5 if a > 1"], solve);
     }
 
     #[test]
     fn invalid_by_operand_must_be_integer() {
-        test_invalid(&vec![String::from("b inc a if a > 1")], solve);
+        test_invalid(&[&"b inc a if a > 1"], solve);
     }
 
     #[test]
     fn invalid_by_second_comparison_operand_must_be_integer() {
-        test_invalid(&vec![String::from("b inc a if a > c")], solve);
+        test_invalid(&[&"b inc a if a > c"], solve);
     }
 
     #[test]
     fn invalid_by_comparison_operator() {
-        test_invalid(&vec![String::from("b inc a if a ?= 1")], solve);
+        test_invalid(&[&"b inc a if a ?= 1"], solve);
     }
 }

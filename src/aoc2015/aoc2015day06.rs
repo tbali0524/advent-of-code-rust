@@ -21,7 +21,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     let mut instructions = Vec::new();
     for line in input {
-        instructions.push(Instruction::try_from(line.as_str())?);
+        instructions.push(Instruction::try_from(*line)?);
     }
     // ---------- Part 1
     let mut grid = vec![[0usize; GRID_SIZE]; GRID_SIZE];
@@ -140,21 +140,21 @@ mod tests {
 
     #[test]
     fn invalid_number_of_words() {
-        test_invalid(&vec![String::from("a")], solve);
+        test_invalid(&[&"a"], solve);
     }
 
     #[test]
     fn invalid_position_number() {
-        test_invalid(&vec![String::from("turn on 0,0,1 through 0,0")], solve);
+        test_invalid(&[&"turn on 0,0,1 through 0,0"], solve);
     }
 
     #[test]
     fn invalid_positions_must_be_integers() {
-        test_invalid(&vec![String::from("turn on 0,a through 0,0")], solve);
+        test_invalid(&[&"turn on 0,a through 0,0"], solve);
     }
 
     #[test]
     fn invalid_verb() {
-        test_invalid(&vec![String::from("discard 0,0 through 0,0")], solve);
+        test_invalid(&[&"discard 0,0 through 0,0"], solve);
     }
 }

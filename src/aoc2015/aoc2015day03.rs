@@ -85,11 +85,11 @@ mod tests {
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(&vec![String::from("<>"), String::from("><")], solve);
+        test_invalid(&[&"<>", &"><"], solve);
     }
 
     #[test]
     fn invalid_only_directions() {
-        test_invalid(&vec![String::from("<a>")], solve);
+        test_invalid(&[&"<a>"], solve);
     }
 }

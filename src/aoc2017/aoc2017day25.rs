@@ -116,6 +116,6 @@ mod tests {
 
     #[test]
     fn invalid_input() {
-        test_invalid(&vec![String::from("a")], solve);
+        test_invalid(&[&"a"], solve);
     }
 }

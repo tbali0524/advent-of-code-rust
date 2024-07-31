@@ -98,11 +98,11 @@ mod tests {
 
     #[test]
     fn invalid_must_be_square() {
-        test_invalid(&vec![String::from("#."), String::from(".")], solve);
+        test_invalid(&[&"#.", &"."], solve);
     }
 
     #[test]
     fn invalid_must_contain_only_hashmark_and_point() {
-        test_invalid(&vec![String::from("#."), String::from(".a")], solve);
+        test_invalid(&[&"#.", &".a"], solve);
     }
 }

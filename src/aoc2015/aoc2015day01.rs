@@ -17,12 +17,12 @@ type ItemType = i32;
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 1 {
-        return Err(PuzzleError("Input must have a single line".into()));
+        return Err(PuzzleError("input must have a single line".into()));
     }
     let line = &input[0];
     for c in line.chars() {
         if c != '(' && c != ')' {
-            return Err(PuzzleError("Input must contain only ( or ) chars".into()));
+            return Err(PuzzleError("input must contain only ( or ) chars".into()));
         }
     }
     // ---------- Part 1

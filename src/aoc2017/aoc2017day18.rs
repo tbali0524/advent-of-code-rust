@@ -94,7 +94,7 @@ impl<'a> Thread<'a> {
             }
             let line = &self.instructions[self.pc as usize];
             if line.len() < 5 || line.as_bytes()[3] as char != ' ' {
-                return Err(PuzzleError("Invalid input".into()));
+                return Err(PuzzleError("invalid input".into()));
             }
             let instruction = &line[0..3];
             let x_reg = line.as_bytes()[4] as char;
@@ -103,7 +103,7 @@ impl<'a> Thread<'a> {
             } else if x_reg.is_ascii_digit() {
                 x_reg.to_digit(10).unwrap() as ItemType
             } else {
-                return Err(PuzzleError("Invalid first argument in input".into()));
+                return Err(PuzzleError("invalid first argument in input".into()));
             };
             match instruction {
                 "snd" => {
@@ -135,7 +135,7 @@ impl<'a> Thread<'a> {
                 _ => (),
             }
             if line.len() < 7 || line.as_bytes()[5] as char != ' ' {
-                return Err(PuzzleError("Invalid input".into()));
+                return Err(PuzzleError("invalid input".into()));
             }
             let y_reg = line.as_bytes()[6] as char;
             let y_value = if y_reg.is_ascii_lowercase() {
@@ -143,7 +143,7 @@ impl<'a> Thread<'a> {
             } else {
                 line[6..]
                     .parse::<ItemType>()
-                    .map_err(|_| PuzzleError("Invalid second argument in input".into()))?
+                    .map_err(|_| PuzzleError("invalid second argument in input".into()))?
             };
             match instruction {
                 "set" => {
@@ -164,7 +164,7 @@ impl<'a> Thread<'a> {
                     }
                 }
                 _ => {
-                    return Err(PuzzleError("Invalid instruction".into()));
+                    return Err(PuzzleError("invalid instruction".into()));
                 }
             }
         }

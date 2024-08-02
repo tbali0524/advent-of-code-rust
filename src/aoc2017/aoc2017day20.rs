@@ -19,11 +19,10 @@ type ItemType = i32;
 
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
-    let mut particles = Vec::new();
+    let mut particles = Vec::with_capacity(input.len());
     for (i, line) in input.iter().enumerate() {
         particles.push(Particle::from_string(i, line)?);
     }
-    // println!("{:?}", particles);
     // ---------- Part 1
     particles.sort_by(|a, b| {
         a.a.manhattan()
@@ -107,16 +106,16 @@ impl Particle {
         let r = Regex::new(r"p=<( ?-?\d+),( ?-?\d+),( ?-?\d+)>, v=<( ?-?\d+),( ?-?\d+),( ?-?\d+)>, a=<( ?-?\d+),( ?-?\d+),( ?-?\d+)>").unwrap();
         let caps = r
             .captures(line)
-            .ok_or(PuzzleError("Invalid input".into()))?;
+            .ok_or(PuzzleError("invalid input".into()))?;
         let mut values = [0; 9];
         for i in 0..9 {
             values[i] = caps
                 .get(i + 1)
-                .ok_or(PuzzleError("Invalid input: missing coordinate".into()))?
+                .ok_or(PuzzleError("invalid input: missing coordinate".into()))?
                 .as_str()
                 .trim()
                 .parse::<ItemType>()
-                .map_err(|_| PuzzleError("Invalid input: coordinate must be integer".into()))?;
+                .map_err(|_| PuzzleError("invalid input: coordinate must be integer".into()))?;
         }
         Ok(Particle::new(
             id,

@@ -39,7 +39,7 @@ fn simulate(grid: &[u8], size: isize, stuck_corners: bool) -> usize {
             prev[(y * size + x) as usize] = b'#';
         }
     }
-    let mut next = Vec::new();
+    let mut next = Vec::with_capacity(size as usize * size as usize);
     for _ in 0..max_steps {
         next = prev.clone();
         for y in 0..size {

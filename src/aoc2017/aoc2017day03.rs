@@ -18,11 +18,11 @@ type ItemType = i32;
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     if input.len() != 1 {
-        return Err(PuzzleError("Input must have a single line".into()));
+        return Err(PuzzleError("input must have a single line".into()));
     }
     let n = input[0]
         .parse::<ItemType>()
-        .map_err(|_| PuzzleError("Input must be a single integer".into()))?;
+        .map_err(|_| PuzzleError("input must be a single integer".into()))?;
     // ---------- Part 1
     let mut r = 1;
     while (r + 2) * (r + 2) < n {
@@ -75,7 +75,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
                     (dx, dy) = (1, 0);
                 }
             }
-            (_, _) => return Err(PuzzleError("Impossible".into())),
+            (_, _) => return Err(PuzzleError("impossible".into())),
         }
     }
     Ok((ans1.to_string(), ans2.to_string()))

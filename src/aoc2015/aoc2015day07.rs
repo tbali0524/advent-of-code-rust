@@ -107,7 +107,7 @@ impl Circuit {
         let gate = self
             .gates
             .get(id)
-            .ok_or(PuzzleError("Invalid wire id".into()))?;
+            .ok_or(PuzzleError("invalid wire id".into()))?;
         if let Some(x) = gate.value {
             return Ok(x);
         }
@@ -132,7 +132,7 @@ impl Circuit {
                     "OR" => a | b,
                     "LSHIFT" => a << b,
                     "RSHIFT" => a >> b,
-                    _ => return Err(PuzzleError("Invalid wire id".into())),
+                    _ => return Err(PuzzleError("invalid wire id".into())),
                 }
             }
         };

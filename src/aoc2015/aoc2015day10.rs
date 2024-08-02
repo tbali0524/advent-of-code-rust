@@ -19,7 +19,7 @@ const EXAMPLE_MAX: usize = 5;
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 1 {
-        return Err(PuzzleError("Input must have a single line".into()));
+        return Err(PuzzleError("input must have a single line".into()));
     }
     let mut prev = input[0].to_owned();
     // ---------- Part 1 + 2

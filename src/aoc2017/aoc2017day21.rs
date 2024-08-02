@@ -28,7 +28,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         let a = s.next().unwrap().replace('/', "").into_bytes();
         let b = s
             .next()
-            .ok_or(PuzzleError("Invalid input".into()))?
+            .ok_or(PuzzleError("invalid input".into()))?
             .replace('/', "")
             .into_bytes();
         input_rules.insert(a, b);
@@ -71,7 +71,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
                 }
                 let new_tile = rules
                     .get(&tile)
-                    .ok_or(PuzzleError("No rule exists for this tile".into()))?;
+                    .ok_or(PuzzleError("no rule exists for this tile".into()))?;
                 for yt in 0..=size_tile {
                     for xt in 0..=size_tile {
                         new_image[(y * new_size_tile + yt) * new_size + x * new_size_tile + xt] =
@@ -94,7 +94,7 @@ fn image_size(image: &ImageType) -> Result<usize, PuzzleError> {
     match image.len() {
         4 => Ok(2),
         9 => Ok(3),
-        _ => Err(PuzzleError("Invalid image size".into())),
+        _ => Err(PuzzleError("invalid image size".into())),
     }
 }
 
@@ -138,7 +138,7 @@ fn get_orientations(image: &ImageType) -> Result<Vec<ImageType>, PuzzleError> {
         flip_y(image)?,
         flip_y(&flip_x(image)?)?,
     ];
-    let mut ans = Vec::new();
+    let mut ans = Vec::with_capacity(4);
     for flipped_image in flips {
         ans.push(flipped_image.to_owned());
         let mut rotated_image = flipped_image.to_owned();

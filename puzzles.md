@@ -4,7 +4,7 @@
 
 |Year         |Status|
 |-------------|:-----|
-|[2015](#2015)|![-](https://img.shields.io/badge/stars%20⭐-30-yellow)|
+|[2015](#2015)|![-](https://img.shields.io/badge/stars%20⭐-46-yellow)|
 |[2016](#2016)|![-](https://img.shields.io/badge/stars%20⭐-2-red)|
 |[2017](#2017)|![-](https://img.shields.io/badge/stars%20⭐-50-green)|
 |[2018](#2018)|![-](https://img.shields.io/badge/stars%20⭐-2-red)|
@@ -13,7 +13,7 @@
 |[2021](#2021)|![-](https://img.shields.io/badge/stars%20⭐-2-red)|
 |[2022](#2022)|![-](https://img.shields.io/badge/stars%20⭐-2-red)|
 |[2023](#2023)|![-](https://img.shields.io/badge/stars%20⭐-2-red)|
-|__Total__|![total](https://img.shields.io/badge/stars%20⭐-94-yellow)|
+|__Total__|![total](https://img.shields.io/badge/stars%20⭐-110-yellow)|
 
 ## Puzzles
 
@@ -34,16 +34,16 @@
 |  +  |2015| 11|Corporate Policy                          |string validation
 |  -  |2015| 12|JSAbacusFramework .io                     |recursive walk of json object
 |  +  |2015| 13|Knights of the Dinner Table               |permutations, Heap's algorithm, Hamiltonian circle, graph
-|  -  |2015| 14|Reindeer Olympics                         |
-|  -  |2015| 15|Science for Hungry People                 |
-|  -  |2015| 16|Aunt Sue                                  |find matching object based on properties
+|  +  |2015| 14|Reindeer Olympics                         |
+|  +  |2015| 15|Science for Hungry People                 |
+|  +  |2015| 16|Aunt Sue                                  |find matching object based on properties
 |  +  |2015| 17|No Such Thing as Too Much                 |combinations
 |  +  |2015| 18|Like a GIF For Your Yard                  |Conway's Game of Life, simulation
-|  -  |2015| 19|Medicine for Rudolph                      |DFS, graph
-|  -  |2015| 20|Infinite Elves and Infinite Houses        |prime factorization, sigma function, sum-of-divisors function
-|  -  |2015| 21|RPG Simulator 20XX                        |game simulation
-|  -  |2015| 22|Wizard Simulator 20XX                     |game simulation, DFS, graph, PriorityQueue
-|  -  |2015| 23|Opening the Turing Lock                   |assembly simulation
+|  +  |2015| 19|Medicine for Rudolph                      |DFS, graph
+|  +  |2015| 20|Infinite Elves and Infinite Houses        |prime factorization, sigma function, sum-of-divisors function
+|  +  |2015| 21|RPG Simulator 20XX                        |game simulation
+|  +  |2015| 22|Wizard Simulator 20XX                     |game simulation, DFS, graph, priority queue
+|  +  |2015| 23|Opening the Turing Lock                   |assembly simulation
 |  -  |2015| 24|It Hangs in the Balance                   |
 |  +  |2015| 25|Let It Snow                               |LCG, linear congruence
 
@@ -63,7 +63,7 @@ Hint from `subreddit` was used for Day 19.
 |  -  |2016|  8|Two-Factor Authentication                 |simulation
 |  -  |2016|  9|Explosives in Cyberspace                  |
 |  -  |2016| 10|Balance Bots                              |bot simulation
-|  -  |2016| 11|Radioisotope Thermoelectric Generators    |BFS, Beam Search
+|  -  |2016| 11|Radioisotope Thermoelectric Generators    |BFS, beam search
 |  -  |2016| 12|Leonardo's Monorail                       |assembly simulation
 |  -  |2016| 13|A Maze of Twisty Little Cubicles          |BFS
 |  -  |2016| 14|One-Time Pad                              |
@@ -123,7 +123,7 @@ Hint from `subreddit` was used for Day 23 Part 2.
 |  -  |2018|  4|Repose Record                             |
 |  -  |2018|  5|Alchemical Reduction                      |
 |  -  |2018|  6|Chronal Coordinates                       |
-|  -  |2018|  7|The Sum of Its Parts                      |Job scheduling
+|  -  |2018|  7|The Sum of Its Parts                      |job scheduling
 |  -  |2018|  8|Memory Maneuver                           |tree graph
 |  -  |2018|  9|Marble Mania                              |circular linked list
 |  -  |2018| 10|The Stars Align                           |simulation
@@ -201,7 +201,7 @@ Hint from `subreddit` was used for Day 14, 16, 18, 21 and 22 (all for part 2 onl
 |  -  |2020| 18|Operation Order                           |math expression evaluation
 |  -  |2020| 19|Monster Messages                          |input parsing, context-free grammar, CFG with limited loops
 |  -  |2020| 20|Jurassic Jigsaw                           |image transformation, image matching
-|  -  |2020| 21|Allergen Assessment                       |Bipartite graph, matching
+|  -  |2020| 21|Allergen Assessment                       |bipartite graph, matching
 |  -  |2020| 22|Crab Combat                               |game simulation, recursion
 |  -  |2020| 23|Crab Cups                                 |game simulation
 |  -  |2020| 24|Lobby Layout                              |walking simulation on hex grid, Conway's Game of Life
@@ -228,7 +228,7 @@ Hint from `subreddit` was used for Day 23.
 |  -  |2021| 13|Transparent Origami                       |
 |  -  |2021| 14|Extended Polymerization                   |
 |  -  |2021| 15|Chiton                                    |pathfinding, A-Star (A*)
-|  -  |2021| 16|Packet Decoder                            |Parsing
+|  -  |2021| 16|Packet Decoder                            |parsing
 |  -  |2021| 17|Trick Shot                                |simulation
 |  -  |2021| 18|Snailfish                                 |binary tree
 |  -  |2021| 19|Beacon Scanner                            |vector, matrix, rotations

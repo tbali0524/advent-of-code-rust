@@ -19,7 +19,7 @@ const GRID_SIZE: usize = 1000;
 #[allow(clippy::needless_range_loop)]
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
-    let mut instructions = Vec::new();
+    let mut instructions = Vec::with_capacity(input.len());
     for line in input {
         instructions.push(Instruction::try_from(*line)?);
     }

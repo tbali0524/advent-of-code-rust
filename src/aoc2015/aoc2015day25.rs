@@ -17,18 +17,18 @@ type ItemType = u64;
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     if input.len() != 1 {
-        return Err(PuzzleError("Input must have a single line".into()));
+        return Err(PuzzleError("input must have a single line".into()));
     }
     let a = input[0].split_whitespace().collect::<Vec<_>>();
     if a.len() != 18 {
-        return Err(PuzzleError("Invalid input sentence".into()));
+        return Err(PuzzleError("invalid input sentence".into()));
     }
     let row = a[15][0..a[15].len() - 1]
         .parse::<ItemType>()
-        .map_err(|_| PuzzleError("Invalid input".into()))?;
+        .map_err(|_| PuzzleError("invalid input".into()))?;
     let column = a[17][0..a[17].len() - 1]
         .parse::<ItemType>()
-        .map_err(|_| PuzzleError("Invalid input".into()))?;
+        .map_err(|_| PuzzleError("invalid input".into()))?;
     // ---------- Part 1 + 2
     let n = row + column - 2;
     let steps = (n * (n + 1)) / 2 + column - 1;

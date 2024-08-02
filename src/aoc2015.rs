@@ -13,16 +13,16 @@ pub mod aoc2015day10;
 pub mod aoc2015day11;
 // pub mod aoc2015day12;
 pub mod aoc2015day13;
-// pub mod aoc2015day14;
-// pub mod aoc2015day15;
-// pub mod aoc2015day16;
+pub mod aoc2015day14;
+pub mod aoc2015day15;
+pub mod aoc2015day16;
 pub mod aoc2015day17;
 pub mod aoc2015day18;
-// pub mod aoc2015day19;
-// pub mod aoc2015day20;
-// pub mod aoc2015day21;
-// pub mod aoc2015day22;
-// pub mod aoc2015day23;
+pub mod aoc2015day19;
+pub mod aoc2015day20;
+pub mod aoc2015day21;
+pub mod aoc2015day22;
+pub mod aoc2015day23;
 // pub mod aoc2015day24;
 pub mod aoc2015day25;
 
@@ -41,16 +41,16 @@ pub const PUZZLES: crate::aoc::Season = [
     Some((aoc2015day11::metadata, aoc2015day11::solve)),
     None, // Some((aoc2015day12::metadata, aoc2015day12::solve)),
     Some((aoc2015day13::metadata, aoc2015day13::solve)),
-    None, // Some((aoc2015day14::metadata, aoc2015day14::solve)),
-    None, // Some((aoc2015day15::metadata, aoc2015day15::solve)),
-    None, // Some((aoc2015day16::metadata, aoc2015day16::solve)),
+    Some((aoc2015day14::metadata, aoc2015day14::solve)),
+    Some((aoc2015day15::metadata, aoc2015day15::solve)),
+    Some((aoc2015day16::metadata, aoc2015day16::solve)),
     Some((aoc2015day17::metadata, aoc2015day17::solve)),
     Some((aoc2015day18::metadata, aoc2015day18::solve)),
-    None, // Some((aoc2015day19::metadata, aoc2015day19::solve)),
-    None, // Some((aoc2015day20::metadata, aoc2015day20::solve)),
-    None, // Some((aoc2015day21::metadata, aoc2015day21::solve)),
-    None, // Some((aoc2015day22::metadata, aoc2015day22::solve)),
-    None, // Some((aoc2015day23::metadata, aoc2015day23::solve)),
+    Some((aoc2015day19::metadata, aoc2015day19::solve)),
+    Some((aoc2015day20::metadata, aoc2015day20::solve)),
+    Some((aoc2015day21::metadata, aoc2015day21::solve)),
+    Some((aoc2015day22::metadata, aoc2015day22::solve)),
+    Some((aoc2015day23::metadata, aoc2015day23::solve)),
     None, // Some((aoc2015day24::metadata, aoc2015day24::solve)),
     Some((aoc2015day25::metadata, aoc2015day25::solve)),
 ];

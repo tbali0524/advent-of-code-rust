@@ -16,7 +16,7 @@ pub fn metadata() -> PuzzleMetaData<'static> {
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 1 {
-        return Err(PuzzleError("Input must have a single line".into()));
+        return Err(PuzzleError("input must have a single line".into()));
     }
     let data = input[0].split(',').collect::<Vec<_>>();
     // ---------- Part 1 + 2
@@ -42,7 +42,7 @@ pub fn cube_delta(dir: &str) -> Result<(i32, i32, i32), PuzzleError> {
         "se" => Ok((1, 0, -1)),
         "ne" => Ok((1, -1, 0)),
         "sw" => Ok((-1, 1, 0)),
-        _ => Err(PuzzleError("Invalid direction".into())),
+        _ => Err(PuzzleError("invalid direction".into())),
     }
 }
 

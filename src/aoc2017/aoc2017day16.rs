@@ -19,10 +19,10 @@ type ItemType = usize;
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     if input.len() != 1 {
-        return Err(PuzzleError("Input must have a single line".into()));
+        return Err(PuzzleError("input must have a single line".into()));
     }
     let instructions = input[0].split(',').map(String::from).collect::<Vec<_>>();
-    let mut commands = Vec::new();
+    let mut commands = Vec::with_capacity(instructions.len());
     for instruction in &instructions {
         let command = Command::try_from(instruction.as_str())?;
         commands.push(command);
@@ -46,15 +46,15 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
                 let pos1 = progs
                     .iter()
                     .position(|&x| x == c.op1s.unwrap() as u8)
-                    .ok_or(PuzzleError("Impossible".into()))?;
+                    .ok_or(PuzzleError("impossible".into()))?;
                 let pos2 = progs
                     .iter()
                     .position(|&x| x == c.op2s.unwrap() as u8)
-                    .ok_or(PuzzleError("Impossible".into()))?;
+                    .ok_or(PuzzleError("impossible".into()))?;
                 progs.swap(pos1, pos2);
             }
             _ => {
-                return Err(PuzzleError("Command must be s, x, or p".into()));
+                return Err(PuzzleError("command must be s, x, or p".into()));
             }
         }
     }
@@ -77,15 +77,15 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
                     let pos1 = progs
                         .iter()
                         .position(|&x| x == c.op1s.unwrap() as u8)
-                        .ok_or(PuzzleError("Impossible".into()))?;
+                        .ok_or(PuzzleError("impossible".into()))?;
                     let pos2 = progs
                         .iter()
                         .position(|&x| x == c.op2s.unwrap() as u8)
-                        .ok_or(PuzzleError("Impossible".into()))?;
+                        .ok_or(PuzzleError("impossible".into()))?;
                     progs.swap(pos1, pos2);
                 }
                 _ => {
-                    return Err(PuzzleError("Command must be s, x, or p".into()));
+                    return Err(PuzzleError("command must be s, x, or p".into()));
                 }
             }
         }
@@ -123,18 +123,18 @@ impl TryFrom<&str> for Command {
         match command.command {
             's' => {
                 command.op1 = Some(a.parse::<ItemType>().map_err(|_| {
-                    PuzzleError("Invalid input: s argument must be integer".into())
+                    PuzzleError("invalid input: s argument must be integer".into())
                 })?);
             }
             'x' => {
                 command.op1 = Some(a.parse::<ItemType>().map_err(|_| {
-                    PuzzleError("Invalid input: x first argument must be integer".into())
+                    PuzzleError("invalid input: x first argument must be integer".into())
                 })?);
                 let b = s.next().ok_or(PuzzleError(
                     "Invalid input: x command needs 2 arguments".into(),
                 ))?;
                 command.op2 = Some(b.parse::<ItemType>().map_err(|_| {
-                    PuzzleError("Invalid input: x second argument must be integer".into())
+                    PuzzleError("invalid input: x second argument must be integer".into())
                 })?);
             }
             'p' => {
@@ -145,7 +145,7 @@ impl TryFrom<&str> for Command {
                 command.op2s = Some(b.chars().next().unwrap());
             }
             _ => {
-                return Err(PuzzleError("Command must be s, x, or p".into()));
+                return Err(PuzzleError("command must be s, x, or p".into()));
             }
         }
         Ok(command)

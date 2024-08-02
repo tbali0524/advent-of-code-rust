@@ -23,7 +23,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             line.split_whitespace()
                 .map(|x| {
                     x.parse::<ItemType>()
-                        .map_err(|_| PuzzleError("Input must contain only integers".into()))
+                        .map_err(|_| PuzzleError("input must contain only integers".into()))
                 })
                 .collect::<Result<Vec<_>, _>>()
         })

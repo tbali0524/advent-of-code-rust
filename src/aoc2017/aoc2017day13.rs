@@ -23,12 +23,12 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             .split(": ")
             .map(|x| {
                 x.parse::<ItemType>()
-                    .map_err(|_| PuzzleError("Input must contain only integers".into()))
+                    .map_err(|_| PuzzleError("input must contain only integers".into()))
             })
             .collect::<Result<Vec<_>, _>>()?;
         if a.len() != 2 {
             return Err(PuzzleError(
-                "Input lines must have 2 items separated by a : and a whitespace".into(),
+                "input lines must have 2 items separated by a : and a whitespace".into(),
             ));
         }
         scanners.insert(a[0], a[1]);

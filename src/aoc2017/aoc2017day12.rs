@@ -24,14 +24,14 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             .next()
             .unwrap()
             .parse::<ItemType>()
-            .map_err(|_| PuzzleError("Input lines must start with an integer".into()))?;
+            .map_err(|_| PuzzleError("input lines must start with an integer".into()))?;
         let list = a
             .next()
-            .ok_or(PuzzleError("Input lines must contain an <-> arrow".into()))?
+            .ok_or(PuzzleError("input lines must contain an <-> arrow".into()))?
             .split(", ")
             .map(|x| {
                 x.parse::<ItemType>()
-                    .map_err(|_| PuzzleError("Adjacence list must contain only integers".into()))
+                    .map_err(|_| PuzzleError("adjacence list must contain only integers".into()))
             })
             .collect::<Result<Vec<_>, _>>()?;
         adj_list.insert(node, list);

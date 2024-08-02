@@ -25,7 +25,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         }
         calories.last_mut().unwrap().push(
             line.parse::<ItemType>()
-                .map_err(|_| PuzzleError("Input must contain only integers".into()))?,
+                .map_err(|_| PuzzleError("input must contain only integers".into()))?,
         );
     }
     // ---------- Part 1 + 2

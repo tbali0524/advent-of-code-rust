@@ -23,25 +23,25 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         let a = line.split(' ').collect::<Vec<_>>();
         if a.len() != 7 {
             return Err(PuzzleError(
-                "Invalid input: line must contain 7 items".into(),
+                "invalid input: line must contain 7 items".into(),
             ));
         }
         let reg = a[0];
         let sign = match a[1] {
             "inc" => 1,
             "dec" => -1,
-            _ => Err(PuzzleError("Invalid operator".into()))?,
+            _ => Err(PuzzleError("invalid operator".into()))?,
         };
         let by = a[2]
             .parse::<ItemType>()
-            .map_err(|_| PuzzleError("By operand must be an integer".into()))?;
+            .map_err(|_| PuzzleError("'by' operand must be an integer".into()))?;
 
         let operand1_reg = a[4];
         let operand1 = *regs.entry(operand1_reg).or_default();
         let comparison = a[5];
         let operand2 = a[6]
             .parse::<ItemType>()
-            .map_err(|_| PuzzleError("Second comparison operand must be an integer".into()))?;
+            .map_err(|_| PuzzleError("second comparison operand must be an integer".into()))?;
         let result = match comparison {
             "<" => operand1 < operand2,
             ">" => operand1 > operand2,
@@ -49,7 +49,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             ">=" => operand1 >= operand2,
             "==" => operand1 == operand2,
             "!=" => operand1 != operand2,
-            _ => Err(PuzzleError("Invalid comparison operator".into()))?,
+            _ => Err(PuzzleError("invalid comparison operator".into()))?,
         };
         if !result {
             continue;

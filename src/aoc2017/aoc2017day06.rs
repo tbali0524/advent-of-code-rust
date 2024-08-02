@@ -19,13 +19,13 @@ type ItemType = i32;
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     if input.len() != 1 {
-        return Err(PuzzleError("Input must have a single line".into()));
+        return Err(PuzzleError("input must have a single line".into()));
     }
     let data = input[0]
         .split_whitespace()
         .map(|x| {
             x.parse::<ItemType>()
-                .map_err(|_| PuzzleError("Input must contain only integers".into()))
+                .map_err(|_| PuzzleError("input must contain only integers".into()))
         })
         .collect::<Result<Vec<_>, _>>()?;
     // ---------- Part 1 + 2

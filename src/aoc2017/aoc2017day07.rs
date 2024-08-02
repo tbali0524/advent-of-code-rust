@@ -65,7 +65,7 @@ impl TryFrom<PuzzleInput<'_>> for Tree {
                 Vec::new()
             };
             if a.next().is_some() || b.next().is_some() {
-                return Err(PuzzleError("Invalid input".into()));
+                return Err(PuzzleError("invalid input".into()));
             }
             let mut node = Node::default();
             node.name = name.to_string();

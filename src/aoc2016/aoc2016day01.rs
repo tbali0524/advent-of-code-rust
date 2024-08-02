@@ -16,22 +16,22 @@ pub fn metadata() -> PuzzleMetaData<'static> {
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     if input.len() != 1 {
-        return Err(PuzzleError("Input must have a single line".into()));
+        return Err(PuzzleError("input must have a single line".into()));
     }
     let instructions = input[0]
         .split(", ")
         .map(|x| {
             if x.len() < 2 {
-                Err(PuzzleError("Instruction must be at least 2 digits".into()))
+                Err(PuzzleError("instruction must be at least 2 digits".into()))
             } else if !['R', 'L'].contains(&x.chars().next().unwrap()) {
-                Err(PuzzleError("Instruction must start with R or L".into()))
+                Err(PuzzleError("instruction must start with R or L".into()))
             } else {
                 let moves_result = x[1..].parse::<i32>();
                 if let Ok(moves) = moves_result {
                     Ok((if x.starts_with('R') { 1i32 } else { -1 }, moves))
                 } else {
                     Err(PuzzleError(
-                        "Instruction must contain number of moves as integer".into(),
+                        "instruction must contain number of moves as integer".into(),
                     ))
                 }
             }

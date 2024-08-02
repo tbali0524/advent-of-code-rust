@@ -15,12 +15,12 @@ pub fn metadata() -> PuzzleMetaData<'static> {
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 1 {
-        return Err(PuzzleError("Input must have a single line".into()));
+        return Err(PuzzleError("input must have a single line".into()));
     }
     let line = &input[0];
     for c in line.chars() {
         if !c.is_ascii_digit() {
-            return Err(PuzzleError("Input must contain only digits".into()));
+            return Err(PuzzleError("input must contain only digits".into()));
         }
     }
     // ---------- Part 1

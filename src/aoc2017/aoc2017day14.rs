@@ -20,7 +20,7 @@ type GridType = [[char; GRID_SIZE]; GRID_SIZE];
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 1 {
-        return Err(PuzzleError("Input must have a single line".into()));
+        return Err(PuzzleError("input must have a single line".into()));
     }
     // ---------- Part 1
     let mut ans1 = 0;

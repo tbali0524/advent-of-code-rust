@@ -22,14 +22,14 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             line.split('x')
                 .map(|x| {
                     x.parse::<ItemType>()
-                        .map_err(|_| PuzzleError("Input must contain only integers".into()))
+                        .map_err(|_| PuzzleError("input must contain only integers".into()))
                 })
                 .collect::<Result<Vec<_>, _>>()
         })
         .collect::<Result<Vec<Vec<_>>, _>>()?;
     for row in &data {
         if row.len() != 3 {
-            return Err(PuzzleError("Input must contain 3 integers per line".into()));
+            return Err(PuzzleError("input must contain 3 integers per line".into()));
         }
     }
     // ---------- Part 1

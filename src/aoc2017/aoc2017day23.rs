@@ -27,19 +27,19 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     let mut ans2 = 0;
     let start_b = input[0][6..]
         .parse::<ItemType>()
-        .map_err(|_| PuzzleError("Invalid input".into()))?;
+        .map_err(|_| PuzzleError("invalid input".into()))?;
     let mul_b = input[4][6..]
         .parse::<ItemType>()
-        .map_err(|_| PuzzleError("Invalid input".into()))?;
+        .map_err(|_| PuzzleError("invalid input".into()))?;
     let sub_b = input[5][6..]
         .parse::<ItemType>()
-        .map_err(|_| PuzzleError("Invalid input".into()))?;
+        .map_err(|_| PuzzleError("invalid input".into()))?;
     let sub_c = input[7][6..]
         .parse::<ItemType>()
-        .map_err(|_| PuzzleError("Invalid input".into()))?;
+        .map_err(|_| PuzzleError("invalid input".into()))?;
     let step = -input[30][6..]
         .parse::<ItemType>()
-        .map_err(|_| PuzzleError("Invalid input".into()))?;
+        .map_err(|_| PuzzleError("invalid input".into()))?;
     let from = start_b * mul_b - sub_b;
     let to = from - sub_c;
     for n in (from..=to).step_by(step as usize) {
@@ -78,7 +78,7 @@ impl<'a> CoProcessor<'a> {
                 || line.as_bytes()[3] as char != ' '
                 || line.as_bytes()[5] as char != ' '
             {
-                return Err(PuzzleError("Invalid input".into()));
+                return Err(PuzzleError("invalid input".into()));
             }
             let instruction = &line[0..3];
             let x_reg = line.as_bytes()[4] as char;
@@ -87,7 +87,7 @@ impl<'a> CoProcessor<'a> {
             } else if x_reg.is_ascii_digit() {
                 x_reg.to_digit(10).unwrap() as ItemType
             } else {
-                return Err(PuzzleError("Invalid first argument in input".into()));
+                return Err(PuzzleError("invalid first argument in input".into()));
             };
             let y_reg = line.as_bytes()[6] as char;
             let y_value = if y_reg.is_ascii_lowercase() {
@@ -95,7 +95,7 @@ impl<'a> CoProcessor<'a> {
             } else {
                 line[6..]
                     .parse::<ItemType>()
-                    .map_err(|_| PuzzleError("Invalid second argument in input".into()))?
+                    .map_err(|_| PuzzleError("invalid second argument in input".into()))?
             };
             match instruction {
                 "set" => {
@@ -117,7 +117,7 @@ impl<'a> CoProcessor<'a> {
                     }
                 }
                 _ => {
-                    return Err(PuzzleError("Invalid instruction".into()));
+                    return Err(PuzzleError("invalid instruction".into()));
                 }
             }
         }

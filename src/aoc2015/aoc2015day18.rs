@@ -80,6 +80,7 @@ fn simulate(grid: &[u8], size: isize, stuck_corners: bool) -> usize {
     }
     next.iter().filter(|&x| *x == b'#').count()
 }
+
 // ------------------------------------------------------------
 #[cfg(test)]
 mod tests {

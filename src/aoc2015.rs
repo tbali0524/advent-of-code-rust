@@ -11,7 +11,7 @@ pub mod aoc2015day08;
 pub mod aoc2015day09;
 pub mod aoc2015day10;
 pub mod aoc2015day11;
-// pub mod aoc2015day12;
+pub mod aoc2015day12;
 pub mod aoc2015day13;
 pub mod aoc2015day14;
 pub mod aoc2015day15;
@@ -23,7 +23,7 @@ pub mod aoc2015day20;
 pub mod aoc2015day21;
 pub mod aoc2015day22;
 pub mod aoc2015day23;
-// pub mod aoc2015day24;
+pub mod aoc2015day24;
 pub mod aoc2015day25;
 
 /// array of implemented solutions for the season
@@ -39,7 +39,7 @@ pub const PUZZLES: crate::aoc::Season = [
     Some((aoc2015day09::metadata, aoc2015day09::solve)),
     Some((aoc2015day10::metadata, aoc2015day10::solve)),
     Some((aoc2015day11::metadata, aoc2015day11::solve)),
-    None, // Some((aoc2015day12::metadata, aoc2015day12::solve)),
+    Some((aoc2015day12::metadata, aoc2015day12::solve)),
     Some((aoc2015day13::metadata, aoc2015day13::solve)),
     Some((aoc2015day14::metadata, aoc2015day14::solve)),
     Some((aoc2015day15::metadata, aoc2015day15::solve)),
@@ -51,6 +51,6 @@ pub const PUZZLES: crate::aoc::Season = [
     Some((aoc2015day21::metadata, aoc2015day21::solve)),
     Some((aoc2015day22::metadata, aoc2015day22::solve)),
     Some((aoc2015day23::metadata, aoc2015day23::solve)),
-    None, // Some((aoc2015day24::metadata, aoc2015day24::solve)),
+    Some((aoc2015day24::metadata, aoc2015day24::solve)),
     Some((aoc2015day25::metadata, aoc2015day25::solve)),
 ];

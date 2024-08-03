@@ -24,3 +24,4 @@ name = "aoc"
 [dependencies]
 md5 = "0.7"     # used by aoc2015day04.rs
 regex = "1.10"  # used by aoc2017day20.rs
+serde_json = "1" # used by aoc2015day12.rs

@@ -4,7 +4,7 @@
 
 |Year         |Status|
 |-------------|:-----|
-|[2015](#2015)|![-](https://img.shields.io/badge/stars%20⭐-46-yellow)|
+|[2015](#2015)|![-](https://img.shields.io/badge/stars%20⭐-50-green)|
 |[2016](#2016)|![-](https://img.shields.io/badge/stars%20⭐-2-red)|
 |[2017](#2017)|![-](https://img.shields.io/badge/stars%20⭐-50-green)|
 |[2018](#2018)|![-](https://img.shields.io/badge/stars%20⭐-2-red)|
@@ -12,8 +12,8 @@
 |[2020](#2020)|![-](https://img.shields.io/badge/stars%20⭐-2-red)|
 |[2021](#2021)|![-](https://img.shields.io/badge/stars%20⭐-2-red)|
 |[2022](#2022)|![-](https://img.shields.io/badge/stars%20⭐-2-red)|
-|[2023](#2023)|![-](https://img.shields.io/badge/stars%20⭐-2-red)|
-|__Total__|![total](https://img.shields.io/badge/stars%20⭐-110-yellow)|
+|[2023](#2023)|![-](https://img.shields.io/badge/stars%20⭐-4-yellow)|
+|__Total__|![total](https://img.shields.io/badge/stars%20⭐-116-yellow)|
 
 ## Puzzles
 
@@ -32,7 +32,7 @@
 |  +  |2015|  9|All in a Single Night                     |permutations, Heap's algorithm, Hamiltonian paths, graph
 |  +  |2015| 10|Elves Look, Elves Say                     |Conway's look-and-say sequence, simulation
 |  +  |2015| 11|Corporate Policy                          |string validation
-|  -  |2015| 12|JSAbacusFramework .io                     |recursive walk of json object
+|  +  |2015| 12|JSAbacusFramework .io                     |recursive walk of json object
 |  +  |2015| 13|Knights of the Dinner Table               |permutations, Heap's algorithm, Hamiltonian circle, graph
 |  +  |2015| 14|Reindeer Olympics                         |
 |  +  |2015| 15|Science for Hungry People                 |
@@ -44,7 +44,7 @@
 |  +  |2015| 21|RPG Simulator 20XX                        |game simulation
 |  +  |2015| 22|Wizard Simulator 20XX                     |game simulation, DFS, graph, priority queue
 |  +  |2015| 23|Opening the Turing Lock                   |assembly simulation
-|  -  |2015| 24|It Hangs in the Balance                   |
+|  +  |2015| 24|It Hangs in the Balance                   |
 |  +  |2015| 25|Let It Snow                               |LCG, linear congruence
 
 Hint from `subreddit` was used for Day 19.
@@ -277,7 +277,7 @@ No external hint was used in this season.
 
 |Done?|Year|Day| Title                                    | Topics   |
 |:---:|----|--:|:-----------------------------------------|:---------|
-|  -  |2023|  1|Trebuchet?!                               |
+|  +  |2023|  1|Trebuchet?!                               |
 |  -  |2023|  2|Cube Conundrum                            |
 |  -  |2023|  3|Gear Ratios                               |
 |  -  |2023|  4|Scratchcards                              |

@@ -1,6 +1,6 @@
 //! [aoc](https://adventofcode.com/2023/day/1)
 
-use crate::aoc::{PuzzleMetaData, PuzzleInput, PuzzleResult};
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::cmp;
 
 pub fn metadata() -> PuzzleMetaData<'static> {
@@ -28,24 +28,30 @@ const SPELLING: [(&str, &str); 9] = [
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Part 1 + 2
     let ans1 = input.iter().map(|&line| border(line)).sum::<u32>();
-    let ans2 = input.iter().map(|&line|{
-        let mut s = line.to_owned();
-        for i in 0..s.len() {
-            for (value, spelling) in SPELLING {
-                let end = cmp::min(s.len(), i + spelling.len());
-                if s[i..end] == *spelling {
-                    s = s[0..i].to_string() + value + &s[(i + 1)..];
-                    break;
+    let ans2 = input
+        .iter()
+        .map(|&line| {
+            let mut s = line.to_owned();
+            for i in 0..s.len() {
+                for (value, spelling) in SPELLING {
+                    let end = cmp::min(s.len(), i + spelling.len());
+                    if s[i..end] == *spelling {
+                        s = s[0..i].to_string() + value + &s[(i + 1)..];
+                        break;
+                    }
                 }
             }
-        }
-        border(&s)
-    }).sum::<u32>();
+            border(&s)
+        })
+        .sum::<u32>();
     Ok((ans1.to_string(), ans2.to_string()))
 }
 
 fn border(line: &str) -> u32 {
-    let digits = line.chars().filter_map(|c|c.to_digit(10)).collect::<Vec<_>>();
+    let digits = line
+        .chars()
+        .filter_map(|c| c.to_digit(10))
+        .collect::<Vec<_>>();
     if digits.is_empty() {
         return 0;
     }

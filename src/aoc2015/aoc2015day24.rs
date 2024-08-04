@@ -59,7 +59,7 @@ impl SleighBalancer {
         self.grp = Vec::new();
         self.grp_sum = 0;
         self.candidates = Vec::new();
-        self.find_candidates(-1);
+        self.find_candidates(0);
         let min_count = self.candidates.iter().map(|x| x.len()).min().unwrap();
         self.candidates
             .iter()
@@ -69,12 +69,11 @@ impl SleighBalancer {
             .unwrap()
     }
 
-    fn find_candidates(&mut self, idx: ItemType) {
+    fn find_candidates(&mut self, idx: usize) {
         if self.grp_sum == self.target {
             self.candidates.push(self.grp.clone());
             return;
         }
-        let idx = idx as usize + 1;
         if idx >= self.weights.len() {
             return;
         }
@@ -82,12 +81,12 @@ impl SleighBalancer {
         if self.grp_sum + w <= self.target {
             self.grp.push(w);
             self.grp_sum += w;
-            self.find_candidates(idx as ItemType);
+            self.find_candidates(idx + 1);
             self.grp.pop();
             self.grp_sum -= w;
         }
         if self.total_remaining[idx + 1] >= self.target - self.grp_sum {
-            self.find_candidates(idx as ItemType);
+            self.find_candidates(idx + 1);
         }
     }
 }

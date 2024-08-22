@@ -1,6 +1,6 @@
 //! [aoc](https://adventofcode.com/2023/day/2)
 
-use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::cmp;
 
 pub fn metadata() -> PuzzleMetaData<'static> {
@@ -26,17 +26,15 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     };
     for line in input {
         if !line.starts_with("Game ") {
-            return Err(PuzzleError("input lines must start with Game".into()));
+            Err("input lines must start with Game")?;
         }
         let mut split_all = line.split(": ");
         let id = split_all.next().unwrap()[5..]
             .parse::<ItemType>()
-            .map_err(|_| PuzzleError("Game number must be an integer".into()))?;
+            .map_err(|_| "Game number must be an integer")?;
         let split_hands = split_all
             .next()
-            .ok_or(PuzzleError(
-                "Game number and hands must be separated by :".into(),
-            ))?
+            .ok_or("Game number and hands must be separated by :")?
             .split("; ");
         let mut is_ok = true;
         let mut min_bag = Hand::default();
@@ -49,10 +47,10 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
                     .next()
                     .unwrap()
                     .parse::<ItemType>()
-                    .map_err(|_| PuzzleError("color count must be an integer".into()))?;
-                let color = split_color.next().ok_or(PuzzleError(
-                    "color count and name must be space separated ".into(),
-                ))?;
+                    .map_err(|_| "color count must be an integer")?;
+                let color = split_color
+                    .next()
+                    .ok_or("color count and name must be space separated ")?;
                 match color {
                     "red" => {
                         hand.red = count;
@@ -66,7 +64,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
                         hand.blue = count;
                         min_bag.blue = cmp::max(min_bag.blue, hand.blue);
                     }
-                    _ => return Err(PuzzleError("invalid color".into())),
+                    _ => Err(format!("invalid color `{}`", color))?,
                 }
             }
             if !hand.is_possible(&bag) {

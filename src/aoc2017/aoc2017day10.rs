@@ -1,6 +1,6 @@
 //! [aoc](https://adventofcode.com/2017/day/10)
 
-use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 
 pub fn metadata() -> PuzzleMetaData<'static> {
     PuzzleMetaData {
@@ -18,13 +18,13 @@ type ItemType = usize;
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     if input.len() != 1 {
-        return Err(PuzzleError("input must have a single line".into()));
+        Err("input must have a single line")?;
     }
     let data = input[0]
         .split(',')
         .map(|x| {
             x.parse::<ItemType>()
-                .map_err(|_| PuzzleError("input must contain only integers".into()))
+                .map_err(|_| format!("input must contain only integers, found `{}`", x))
         })
         .collect::<Result<Vec<_>, _>>()?;
     // ---------- Part 1
@@ -40,7 +40,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     let mut skip_size = 0;
     for len in data {
         if len > list_size {
-            Err(PuzzleError("invalid input".into()))?
+            Err("invalid input")?
         }
         for i in 0..(len / 2) {
             let p1 = (pos + i) % list_size;

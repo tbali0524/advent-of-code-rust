@@ -1,6 +1,6 @@
 //! [aoc](https://adventofcode.com/2017/day/2)
 
-use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 
 pub fn metadata() -> PuzzleMetaData<'static> {
     PuzzleMetaData {
@@ -19,11 +19,11 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // TODO fix: parse errors propagated to Result only in last line?
     let data = input
         .iter()
-        .map(|line| {
+        .map(|&line| {
             line.split_whitespace()
                 .map(|x| {
                     x.parse::<ItemType>()
-                        .map_err(|_| PuzzleError("input must contain only integers".into()))
+                        .map_err(|_| format!("input must contain only integers, found `{}`", x))
                 })
                 .collect::<Result<Vec<_>, _>>()
         })

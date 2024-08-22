@@ -76,19 +76,19 @@ impl TryFrom<&str> for Reindeer {
             || a[14] != "seconds."
             || !line.contains(" seconds, but then must rest for ")
         {
-            return Err(PuzzleError("invalid line".into()));
+            Err("invalid line")?;
         }
         let mut r = Reindeer::default();
         r.name = a[0].to_owned();
         r.speed = a[3]
             .parse::<ItemType>()
-            .map_err(|_| PuzzleError("speed must be integer".into()))?;
+            .map_err(|_| format!("speed must be integer, found `{}`", a[3]))?;
         r.fly_time = a[6]
             .parse::<ItemType>()
-            .map_err(|_| PuzzleError("fly time must be integer".into()))?;
+            .map_err(|_| format!("fly time must be integer, found `{}`", a[6]))?;
         r.rest_time = a[13]
             .parse::<ItemType>()
-            .map_err(|_| PuzzleError("rest time must be integer".into()))?;
+            .map_err(|_| format!("rest time must be integer, found `{}`", a[13]))?;
         Ok(r)
     }
 }

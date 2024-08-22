@@ -1,6 +1,6 @@
 //! [aoc](https://adventofcode.com/2015/day/25)
 
-use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 
 pub fn metadata() -> PuzzleMetaData<'static> {
     PuzzleMetaData {
@@ -17,18 +17,18 @@ type ItemType = u64;
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     if input.len() != 1 {
-        return Err(PuzzleError("input must have a single line".into()));
+        Err("input must have a single line")?;
     }
     let a = input[0].split_whitespace().collect::<Vec<_>>();
     if a.len() != 18 {
-        return Err(PuzzleError("invalid input sentence".into()));
+        Err("invalid input sentence")?;
     }
     let row = a[15][0..a[15].len() - 1]
         .parse::<ItemType>()
-        .map_err(|_| PuzzleError("invalid input".into()))?;
+        .map_err(|_| "invalid input")?;
     let column = a[17][0..a[17].len() - 1]
         .parse::<ItemType>()
-        .map_err(|_| PuzzleError("invalid input".into()))?;
+        .map_err(|_| "invalid input")?;
     // ---------- Part 1 + 2
     let n = row + column - 2;
     let steps = (n * (n + 1)) / 2 + column - 1;

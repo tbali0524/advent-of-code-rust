@@ -47,7 +47,7 @@ impl TryFrom<&str> for Gate {
         let mut g = Gate::default();
         let a = line.split(" -> ").map(String::from).collect::<Vec<_>>();
         if a.len() != 2 {
-            return Err(PuzzleError("lines must contain ->".into()));
+            Err("lines must contain ->")?;
         }
         g.id = a[1].to_owned();
         let b = a[0].split(' ').map(String::from).collect::<Vec<_>>();
@@ -61,7 +61,7 @@ impl TryFrom<&str> for Gate {
             }
             2 => {
                 if b[0] != "NOT" {
-                    return Err(PuzzleError("invalid operator".into()));
+                    Err(format!("invalid operator `{}`", b[0]))?;
                 }
                 g.operator = b[0].to_owned();
                 match b[1].parse::<ItemType>() {
@@ -81,7 +81,7 @@ impl TryFrom<&str> for Gate {
                 }
             }
             _ => {
-                return Err(PuzzleError("too many operands".into()));
+                Err("too many operands")?;
             }
         }
         Ok(g)
@@ -107,7 +107,7 @@ impl Circuit {
         let gate = self
             .gates
             .get(id)
-            .ok_or(PuzzleError("invalid wire id".into()))?;
+            .ok_or(format!("invalid wire id `{}`", id))?;
         if let Some(x) = gate.value {
             return Ok(x);
         }
@@ -132,7 +132,7 @@ impl Circuit {
                     "OR" => a | b,
                     "LSHIFT" => a << b,
                     "RSHIFT" => a >> b,
-                    _ => return Err(PuzzleError("invalid wire id".into())),
+                    _ => Err(format!("invalid operator `{}`", operator))?,
                 }
             }
         };

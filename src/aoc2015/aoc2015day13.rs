@@ -41,12 +41,11 @@ impl KnightsTable {
                 || a[1] != "would"
                 || !line.contains(" happiness units by sitting next to ")
             {
-                return Err(PuzzleError("invalid input sentence".into()));
+                Err("invalid input sentence")?;
             }
             let happiness = a[3]
                 .parse::<ItemType>()
-                .map_err(|_| PuzzleError("happiness must be an integer".into()))?;
-
+                .map_err(|_| format!("happiness must be an integer, found `{}", a[3]))?;
             let default_id = g.nodes.len();
             let id1 = *g.nodes.entry(a[0].to_owned()).or_insert(default_id);
             let default_id = g.nodes.len();
@@ -55,16 +54,12 @@ impl KnightsTable {
                 .entry(a[10][0..a[10].len() - 1].to_owned())
                 .or_insert(default_id);
             if id1 == id2 {
-                return Err(PuzzleError(
-                    "source and destination knight must be different".into(),
-                ));
+                Err("source and destination knight must be different")?;
             }
             let sign = match a[2] {
                 "gain" => 1,
                 "lose" => -1,
-                _ => {
-                    return Err(PuzzleError("verb must be gain or lose".into()));
-                }
+                _ => Err(format!("verb must be gain or lose, found `{}`", a[2]))?,
             };
             g.dist.entry(id1).or_default().insert(id2, sign * happiness);
         }

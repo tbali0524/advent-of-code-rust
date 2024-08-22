@@ -1,6 +1,6 @@
 //! [aoc](https://adventofcode.com/2015/day/18)
 
-use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 
 pub fn metadata() -> PuzzleMetaData<'static> {
     PuzzleMetaData {
@@ -19,10 +19,10 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and check input
     let grid = input.iter().flat_map(|row| row.bytes()).collect::<Vec<_>>();
     if grid.len() != input.len() * input.len() {
-        return Err(PuzzleError("grid must be square".into()));
+        Err("grid must be square")?;
     }
     if grid.iter().any(|&x| x != b'#' && x != b'.') {
-        return Err(PuzzleError("grid must contain only # and .".into()));
+        Err("grid must contain only # and .")?;
     }
     // ---------- Part 1 + 2
     let ans1 = simulate(&grid, input.len() as isize, false);

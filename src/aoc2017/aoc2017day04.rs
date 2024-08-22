@@ -16,7 +16,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     let data = input
         .iter()
-        .map(|line| line.split_whitespace().collect::<Vec<_>>())
+        .map(|&line| line.split_whitespace().collect::<Vec<_>>())
         .collect::<Vec<_>>();
     // ---------- Part 1
     let mut ans1 = 0;

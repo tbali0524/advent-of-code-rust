@@ -1,6 +1,6 @@
 //! [aoc](https://adventofcode.com/2017/day/3)
 
-use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::collections::HashMap;
 
 pub fn metadata() -> PuzzleMetaData<'static> {
@@ -18,11 +18,11 @@ type ItemType = i32;
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     if input.len() != 1 {
-        return Err(PuzzleError("input must have a single line".into()));
+        Err("input must have a single line")?;
     }
     let n = input[0]
         .parse::<ItemType>()
-        .map_err(|_| PuzzleError("input must be a single integer".into()))?;
+        .map_err(|_| "input must be a single integer")?;
     // ---------- Part 1
     let mut r = 1;
     while (r + 2) * (r + 2) < n {
@@ -75,7 +75,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
                     (dx, dy) = (1, 0);
                 }
             }
-            (_, _) => return Err(PuzzleError("impossible".into())),
+            (_, _) => Err("impossible")?,
         }
     }
     Ok((ans1.to_string(), ans2.to_string()))

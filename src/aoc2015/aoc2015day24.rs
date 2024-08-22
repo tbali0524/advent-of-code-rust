@@ -36,9 +36,9 @@ impl SleighBalancer {
     fn from_input(input: PuzzleInput) -> Result<Self, PuzzleError> {
         let mut weights = input
             .iter()
-            .map(|line| {
+            .map(|&line| {
                 line.parse::<ItemType>()
-                    .map_err(|_| PuzzleError("input must contain only integers".into()))
+                    .map_err(|_| format!("input must contain only integers, found `{}`", line))
             })
             .collect::<Result<Vec<_>, _>>()?;
         weights.sort();

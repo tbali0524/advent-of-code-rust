@@ -1,6 +1,6 @@
 //! [aoc](https://adventofcode.com/2015/day/1)
 
-use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 
 pub fn metadata() -> PuzzleMetaData<'static> {
     PuzzleMetaData {
@@ -17,12 +17,15 @@ type ItemType = i32;
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 1 {
-        return Err(PuzzleError("input must have a single line".into()));
+        Err("input must have a single line")?;
     }
     let line = &input[0];
     for c in line.chars() {
         if c != '(' && c != ')' {
-            return Err(PuzzleError("input must contain only ( or ) chars".into()));
+            Err(format!(
+                "input must contain only ( or ) chars, found `{}`",
+                c
+            ))?;
         }
     }
     // ---------- Part 1

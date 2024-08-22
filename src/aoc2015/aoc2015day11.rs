@@ -16,7 +16,7 @@ pub fn metadata() -> PuzzleMetaData<'static> {
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 1 {
-        return Err(PuzzleError("input must have a single line".into()));
+        Err("input must have a single line")?;
     }
     // ---------- Part 1
     let ans1 = next_password(input[0])?;
@@ -34,7 +34,7 @@ fn next_password(prev: &str) -> Result<String, PuzzleError> {
             i -= 1;
         }
         if i < 0 {
-            return Err(PuzzleError("password overflow".into()));
+            Err("password overflow")?;
         }
         pw[i as usize] += 1;
         let mut is_ok = false;

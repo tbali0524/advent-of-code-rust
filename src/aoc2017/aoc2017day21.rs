@@ -28,7 +28,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         let a = s.next().unwrap().replace('/', "").into_bytes();
         let b = s
             .next()
-            .ok_or(PuzzleError("invalid input".into()))?
+            .ok_or("invalid input")?
             .replace('/', "")
             .into_bytes();
         input_rules.insert(a, b);
@@ -69,9 +69,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
                             image[(y * size_tile + yt) * size + x * size_tile + xt];
                     }
                 }
-                let new_tile = rules
-                    .get(&tile)
-                    .ok_or(PuzzleError("no rule exists for this tile".into()))?;
+                let new_tile = rules.get(&tile).ok_or("no rule exists this tile")?;
                 for yt in 0..=size_tile {
                     for xt in 0..=size_tile {
                         new_image[(y * new_size_tile + yt) * new_size + x * new_size_tile + xt] =
@@ -94,7 +92,7 @@ fn image_size(image: &ImageType) -> Result<usize, PuzzleError> {
     match image.len() {
         4 => Ok(2),
         9 => Ok(3),
-        _ => Err(PuzzleError("invalid image size".into())),
+        _ => Err("invalid image size")?,
     }
 }
 

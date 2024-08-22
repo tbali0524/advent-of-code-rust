@@ -1,6 +1,6 @@
 //! [aoc](https://adventofcode.com/2017/day/17)
 
-use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 
 pub fn metadata() -> PuzzleMetaData<'static> {
     PuzzleMetaData {
@@ -17,11 +17,11 @@ type ItemType = i32;
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     if input.len() != 1 {
-        return Err(PuzzleError("input must have a single line".into()));
+        Err("input must have a single line")?;
     }
     let max_steps = input[0]
         .parse::<ItemType>()
-        .map_err(|_| PuzzleError("input must contain only a single integer".into()))?;
+        .map_err(|_| "input must contain only a single integer")?;
     // ---------- Part 1
     const MAX_TURNS_PART1: usize = 2017;
     const MAX_SIZE: usize = MAX_TURNS_PART1 + 1;
@@ -36,7 +36,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             delta -= 1;
         }
         if size == MAX_SIZE {
-            return Err(PuzzleError("maximum list size exceeded".into()));
+            Err("maximum list size exceeded")?;
         }
         values[size] = turn;
         nexts[size] = nexts[idx_current];

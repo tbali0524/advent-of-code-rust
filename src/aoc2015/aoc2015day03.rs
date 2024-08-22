@@ -16,7 +16,7 @@ pub fn metadata() -> PuzzleMetaData<'static> {
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 1 {
-        return Err(PuzzleError("input must have a single line".into()));
+        Err("input must have a single line")?;
     }
     // ---------- Part 1
     let mut ans1 = 1;
@@ -58,7 +58,7 @@ pub fn delta(dir: char) -> Result<(i32, i32), PuzzleError> {
         'v' => Ok((0, 1)),
         '<' => Ok((-1, 0)),
         '^' => Ok((0, -1)),
-        _ => Err(PuzzleError("invalid direction".into())),
+        _ => Err(format!("direction must be >v<^, found `{}`", dir))?,
     }
 }
 

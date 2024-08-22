@@ -19,17 +19,17 @@ type ItemType = i32;
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     if input.len() != 2 {
-        return Err(PuzzleError("input must have 2 lines".into()));
+        Err("input must have 2 lines")?;
     }
     if !input[0].starts_with("Hit Points: ") || !input[1].starts_with("Damage: ") {
-        return Err(PuzzleError("invalid input format".into()));
+        Err("invalid input format")?;
     }
     let hp = input[0][12..]
         .parse::<ItemType>()
-        .map_err(|_| PuzzleError("hp must be an integer".into()))?;
+        .map_err(|_| "hp must be an integer")?;
     let damage = input[1][8..]
         .parse::<ItemType>()
-        .map_err(|_| PuzzleError("damage must be an integer".into()))?;
+        .map_err(|_| "damage must be an integer")?;
     // ---------- Part 1 + 2
     let ans1 = WizardSimulator::new(hp, damage).simulate()?;
     let ans2 = WizardSimulator::new_hard_mode(hp, damage).simulate()?;
@@ -243,10 +243,7 @@ impl WizardSimulator {
     fn simulate(&mut self) -> Result<ItemType, PuzzleError> {
         self.priority_queue.push(self.start_state);
         loop {
-            let current_state = self
-                .priority_queue
-                .pop()
-                .ok_or(PuzzleError("no solution found".into()))?;
+            let current_state = self.priority_queue.pop().ok_or("no solution found")?;
             if current_state.enemy_hp <= 0 {
                 return Ok(current_state.spent_mana);
             }

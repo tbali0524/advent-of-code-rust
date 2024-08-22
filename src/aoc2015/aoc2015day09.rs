@@ -36,27 +36,21 @@ impl CityGraph {
         for line in input {
             let a = line.split(" = ").collect::<Vec<_>>();
             if a.len() != 2 {
-                return Err(PuzzleError(
-                    "road and distance must be separated by =".into(),
-                ));
+                Err("road and distance must be separated by =")?;
             }
             let dist = a[1]
                 .parse::<ItemType>()
-                .map_err(|_| PuzzleError("distance must be an integer".into()))?;
+                .map_err(|_| format!("distance must be an integer, found `{}`", a[1]))?;
             let b = a[0].split(" to ").collect::<Vec<_>>();
             if b.len() != 2 {
-                return Err(PuzzleError(
-                    "source and destination towns must be separated by 'to'".into(),
-                ));
+                Err("source and destination towns must be separated by 'to'")?;
             }
             let default_id = g.nodes.len();
             let id1 = *g.nodes.entry(b[0].to_owned()).or_insert(default_id);
             let default_id = g.nodes.len();
             let id2 = *g.nodes.entry(b[1].to_owned()).or_insert(default_id);
             if id1 == id2 {
-                return Err(PuzzleError(
-                    "source and destination towns must be different".into(),
-                ));
+                Err("source and destination towns must be different")?;
             }
             g.dist.entry(id1).or_default().insert(id2, dist);
             g.dist.entry(id2).or_default().insert(id1, dist);

@@ -52,14 +52,14 @@ fn execute(
             "jmp" => {
                 let offset = line[4..]
                     .parse::<ItemType>()
-                    .map_err(|_| PuzzleError("offset must be an integer".into()))?;
+                    .map_err(|_| "offset must be an integer")?;
                 pc += offset - 1;
             }
             "jie" => {
                 let r = line.chars().nth(4).unwrap();
                 let offset = line[7..]
                     .parse::<ItemType>()
-                    .map_err(|_| PuzzleError("offset must be an integer".into()))?;
+                    .map_err(|_| "offset must be an integer")?;
                 if registers.get(&r).unwrap_or(&0) % 2 == 0 {
                     pc += offset - 1;
                 }
@@ -68,13 +68,13 @@ fn execute(
                 let r = line.chars().nth(4).unwrap();
                 let offset = line[7..]
                     .parse::<ItemType>()
-                    .map_err(|_| PuzzleError("offset3 must be an integer".into()))?;
+                    .map_err(|_| "offset must be an integer")?;
                 if registers.get(&r) == Some(&1) {
                     pc += offset - 1;
                 }
             }
             _ => {
-                return Err(PuzzleError("invalid instruction".into()));
+                Err(format!("invalid instruction found `{}`", instruction))?;
             }
         }
     }

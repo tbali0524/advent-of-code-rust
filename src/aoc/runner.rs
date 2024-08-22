@@ -198,10 +198,7 @@ fn get_expected<'a>(puzzle: &'a PuzzleMetaData, case: usize) -> PuzzleExpected<'
 /// Reads input from file for a specific test case (case == 0 for the puzzle input, 1, 2, ... for example inputs).
 pub fn read_input(puzzle: &PuzzleMetaData, case: usize) -> Result<String, PuzzleError> {
     if case > puzzle.example_solutions.len() {
-        return Err(PuzzleError(format!(
-            "missing expected solution for example #{}",
-            case
-        )));
+        Err(format!("missing expected solution for example #{}", case))?;
     }
     let input_path = if case == 0 {
         format!(
@@ -215,9 +212,9 @@ pub fn read_input(puzzle: &PuzzleMetaData, case: usize) -> Result<String, Puzzle
         )
     };
     let input = fs::read_to_string(path::Path::new(&input_path))
-        .map_err(|_| PuzzleError(format!("cannot read input file: {}", input_path)))?;
+        .map_err(|_| format!("cannot read input file: {}", input_path))?;
     if input.is_empty() {
-        return Err(PuzzleError("empty input".into()));
+        Err("empty input")?;
     }
     Ok(input)
 }

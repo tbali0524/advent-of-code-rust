@@ -32,7 +32,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
                     "toggle" => 1 - grid[y][x],
                     "turn on" => 1,
                     "turn off" => 0,
-                    _ => return Err(PuzzleError("invalid instruction verb".into())),
+                    _ => Err(format!("invalid instruction verb `{}`", instr.verb))?,
                 };
             }
         }
@@ -56,7 +56,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
                             0
                         }
                     }
-                    _ => return Err(PuzzleError("invalid instruction verb".into())),
+                    _ => Err(format!("invalid instruction verb `{}`", instr.verb))?,
                 };
             }
         }
@@ -83,16 +83,12 @@ impl TryFrom<&str> for Instruction {
         let count_verb_words = if line.starts_with("turn") { 2 } else { 1 };
         let a = line.split(' ').collect::<Vec<_>>();
         if a.len() != 3 + count_verb_words {
-            return Err(PuzzleError(
-                "incorrect number of words in input line".into(),
-            ));
+            Err("incorrect number of words in input line")?;
         }
         let b = a[count_verb_words].split(',').collect::<Vec<_>>();
         let c = a[count_verb_words + 2].split(',').collect::<Vec<_>>();
         if b.len() != 2 || c.len() != 2 || a[1 + count_verb_words] != "through" {
-            return Err(PuzzleError(
-                "x,y positions must be separated by , and through".into(),
-            ));
+            Err("x,y positions must be separated by , and through")?;
         }
         let verb = if count_verb_words == 1 {
             a[0].to_owned()
@@ -103,16 +99,16 @@ impl TryFrom<&str> for Instruction {
             verb,
             x0: b[0]
                 .parse::<ItemType>()
-                .map_err(|_| PuzzleError("position must be an integer".into()))?,
+                .map_err(|_| format!("position must be an integer, found `{}`", b[0]))?,
             y0: b[1]
                 .parse::<ItemType>()
-                .map_err(|_| PuzzleError("position must be an integer".into()))?,
+                .map_err(|_| format!("position must be an integer, found `{}`", b[1]))?,
             x1: c[0]
                 .parse::<ItemType>()
-                .map_err(|_| PuzzleError("position must be an integer".into()))?,
+                .map_err(|_| format!("position must be an integer, found `{}`", c[0]))?,
             y1: c[1]
                 .parse::<ItemType>()
-                .map_err(|_| PuzzleError("position must be an integer".into()))?,
+                .map_err(|_| format!("position must be an integer, found `{}`", c[1]))?,
         })
     }
 }

@@ -67,7 +67,7 @@ fn parse_input(input: PuzzleInput) -> Result<Vec<HashMap<String, ItemType>>, Puz
     for line in input {
         let a = line.split(' ').collect::<Vec<_>>();
         if a.len() != 11 {
-            return Err(PuzzleError("invalid number of words in input line".into()));
+            Err("invalid number of words in input line")?;
         }
         let mut ingredient = HashMap::new();
         for i in 0..5 {
@@ -75,11 +75,11 @@ fn parse_input(input: PuzzleInput) -> Result<Vec<HashMap<String, ItemType>>, Puz
             let prop_value = if i < 4 {
                 a[2 + 2 * i][0..(a[2 + 2 * i].len() - 1)]
                     .parse::<ItemType>()
-                    .map_err(|_| PuzzleError("property value must be an integer".into()))?
+                    .map_err(|_| "property value must be an integer")?
             } else {
                 a[10]
                     .parse::<ItemType>()
-                    .map_err(|_| PuzzleError("property value must be an integer".into()))?
+                    .map_err(|_| format!("property value must be an integer, found `{}`", a[10]))?
             };
             ingredient.insert(prop_name.to_owned(), prop_value);
         }

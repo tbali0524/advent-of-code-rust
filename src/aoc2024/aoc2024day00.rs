@@ -1,6 +1,6 @@
 //! [aoc](https://adventofcode.com/2024/day/0)
 
-use crate::aoc::{PuzzleMetaData, PuzzleError, PuzzleInput, PuzzleResult};
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 
 pub fn metadata() -> PuzzleMetaData<'static> {
     PuzzleMetaData {
@@ -15,7 +15,7 @@ pub fn metadata() -> PuzzleMetaData<'static> {
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 1 {
-        return Err(PuzzleError("input must have a single line".into()));
+        Err("input must have a single line")?;
     }
     // ---------- Part 1
     let mut ans1 = 0;

@@ -86,21 +86,21 @@ fn parse_input(
     for line in input {
         let a = line.split(' ').collect::<Vec<_>>();
         if a.len() != 8 {
-            return Err(PuzzleError("invalid number of words in input line".into()));
+            Err("invalid number of words in input line")?;
         }
         let id = a[1][0..(a[1].len() - 1)]
             .parse::<ItemType>()
-            .map_err(|_| PuzzleError("aunt it must be an integer".into()))?;
+            .map_err(|_| "aunt it must be an integer")?;
         let mut aunt = HashMap::new();
         for i in 0..3 {
             let prop_name = &a[2 + 2 * i][0..(a[2 + 2 * i].len() - 1)];
             let prop_value = if i < 2 {
                 a[3 + 2 * i][0..(a[3 + 2 * i].len() - 1)]
                     .parse::<ItemType>()
-                    .map_err(|_| PuzzleError("property value must be an integer".into()))?
+                    .map_err(|_| "property value must be an integer")?
             } else {
                 a[7].parse::<ItemType>()
-                    .map_err(|_| PuzzleError("property value must be an integer".into()))?
+                    .map_err(|_| format!("property value must be an integer, found `{}", a[7]))?
             };
             aunt.insert(prop_name.to_owned(), prop_value);
         }

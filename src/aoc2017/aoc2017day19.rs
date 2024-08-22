@@ -1,6 +1,6 @@
 //! [aoc](https://adventofcode.com/2017/day/19)
 
-use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 
 pub fn metadata() -> PuzzleMetaData<'static> {
     PuzzleMetaData {
@@ -15,9 +15,9 @@ pub fn metadata() -> PuzzleMetaData<'static> {
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     let max_y = input.len() as i32;
-    let start_x = input[0].find('|').ok_or(PuzzleError(
-        "First line of input must contain a starting point |".into(),
-    ))?;
+    let start_x = input[0]
+        .find('|')
+        .ok_or("First line of input must contain a starting point |")?;
     // ---------- Part 1 + 2
     let mut ans1 = String::new();
     let mut ans2 = -1;

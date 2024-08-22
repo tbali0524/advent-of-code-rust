@@ -1,6 +1,6 @@
 //! [aoc](https://adventofcode.com/2022/day/1)
 
-use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 
 pub fn metadata() -> PuzzleMetaData<'static> {
     PuzzleMetaData {
@@ -18,14 +18,14 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     let mut calories = Vec::new();
     calories.push(Vec::new());
-    for line in input {
+    for &line in input {
         if line.is_empty() {
             calories.push(Vec::new());
             continue;
         }
         calories.last_mut().unwrap().push(
             line.parse::<ItemType>()
-                .map_err(|_| PuzzleError("input must contain only integers".into()))?,
+                .map_err(|_| format!("input must contain only integers, found `{}`", line))?,
         );
     }
     // ---------- Part 1 + 2

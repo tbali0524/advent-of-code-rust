@@ -1,6 +1,6 @@
 //! [aoc](https://adventofcode.com/2015/day/17)
 
-use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 
 pub fn metadata() -> PuzzleMetaData<'static> {
     PuzzleMetaData {
@@ -21,9 +21,9 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     let mut data = input
         .iter()
-        .map(|line| {
+        .map(|&line| {
             line.parse::<ItemType>()
-                .map_err(|_| PuzzleError("input must contain only integers".into()))
+                .map_err(|_| "input must contain only integers")
         })
         .collect::<Result<Vec<_>, _>>()?;
     // detect puzzle example as input

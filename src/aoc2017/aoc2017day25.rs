@@ -1,6 +1,6 @@
 //! [aoc](https://adventofcode.com/2017/day/25)
 
-use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::collections::HashMap;
 
 pub fn metadata() -> PuzzleMetaData<'static> {
@@ -18,7 +18,7 @@ type ItemType = i32;
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     if input.len() < 2 {
-        return Err(PuzzleError("invalid input".into()));
+        Err("invalid input")?;
     }
     let count_states = (input.len() - 2) / 10;
     if count_states < 2
@@ -28,7 +28,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         || input[0].len() != 17
         || input[1].len() < 42
     {
-        return Err(PuzzleError("invalid input".into()));
+        Err("invalid input")?;
     }
     let start_state = input[0].as_bytes()[15] as char;
     let max_steps = input[1][36..]
@@ -36,7 +36,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         .next()
         .unwrap()
         .parse::<ItemType>()
-        .map_err(|_| PuzzleError("input must contain only integers".into()))?;
+        .map_err(|_| "input must contain only integers")?;
     let mut states = HashMap::new();
     for i in 0..count_states {
         if !input[10 * i + 2].is_empty()
@@ -57,7 +57,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             || !input[10 * i + 11].starts_with("    - Continue with state ")
             || input[10 * i + 11].len() != 28
         {
-            return Err(PuzzleError("invalid input".into()));
+            Err("invalid input")?;
         }
         let state = input[10 * i + 3].as_bytes()[9] as char;
         states.insert(
@@ -81,9 +81,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     for _ in 0..max_steps {
         let slot = *tape.get(&cursor).unwrap_or(&0);
         let todo = states.get(&state).unwrap();
-        let new_slot = *slot_lookup
-            .get(&todo[3 * slot])
-            .ok_or(PuzzleError("invalid input".into()))?;
+        let new_slot = *slot_lookup.get(&todo[3 * slot]).ok_or("invalid input")?;
         if new_slot {
             tape.insert(cursor, 1);
         } else {
@@ -91,7 +89,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         }
         cursor += cursor_lookup
             .get(&todo[3 * slot + 1])
-            .ok_or(PuzzleError("invalid input".into()))?;
+            .ok_or("invalid input")?;
         state = todo[3 * slot + 2];
     }
     let ans1 = tape.len();

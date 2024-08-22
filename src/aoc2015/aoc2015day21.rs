@@ -77,23 +77,23 @@ struct Character {
 impl Character {
     fn new(input: PuzzleInput) -> Result<Self, PuzzleError> {
         if input.len() != 3 {
-            return Err(PuzzleError("input must have 3 lines".into()));
+            Err("input must have 3 lines")?;
         }
         if !input[0].starts_with("Hit Points: ")
             || !input[1].starts_with("Damage: ")
             || !input[2].starts_with("Armor: ")
         {
-            return Err(PuzzleError("invalid input format".into()));
+            Err("invalid input format")?;
         }
         let hp = input[0][12..]
             .parse::<ItemType>()
-            .map_err(|_| PuzzleError("hp must be an integer".into()))?;
+            .map_err(|_| "hp must be an integer")?;
         let damage = input[1][8..]
             .parse::<ItemType>()
-            .map_err(|_| PuzzleError("damage must be an integer".into()))?;
+            .map_err(|_| "damage must be an integer")?;
         let armor = input[2][7..]
             .parse::<ItemType>()
-            .map_err(|_| PuzzleError("armor must be an integer".into()))?;
+            .map_err(|_| "armor must be an integer")?;
         Ok(Character { hp, damage, armor })
     }
 

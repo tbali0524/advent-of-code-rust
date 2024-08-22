@@ -52,12 +52,10 @@ impl TryFrom<PuzzleInput<'_>> for Tree {
             let mut a = line.split(" -> ");
             let mut b = a.next().unwrap().split(" (");
             let name = b.next().unwrap();
-            let c = b
-                .next()
-                .ok_or(PuzzleError("missing (weight) in input line".into()))?;
+            let c = b.next().ok_or("missing (weight) in input line")?;
             let weight = c[..(c.len() - 1)]
                 .parse::<ItemType>()
-                .map_err(|_| PuzzleError("weight must be an integer".into()))?;
+                .map_err(|_| "weight must be an integer")?;
             let d = a.next();
             let children = if let Some(e) = d {
                 e.split(", ").map(|x| x.to_owned()).collect::<Vec<_>>()
@@ -65,7 +63,7 @@ impl TryFrom<PuzzleInput<'_>> for Tree {
                 Vec::new()
             };
             if a.next().is_some() || b.next().is_some() {
-                return Err(PuzzleError("invalid input".into()));
+                Err("invalid input")?;
             }
             let mut node = Node::default();
             node.name = name.to_string();
@@ -79,8 +77,9 @@ impl TryFrom<PuzzleInput<'_>> for Tree {
         for (parent, child) in &parent_child_pairs {
             tree.nodes
                 .get_mut(child)
-                .ok_or(PuzzleError(
-                    "invalid node referenced in children list".into(),
+                .ok_or(format!(
+                    "invalid node referenced in children list: `{}`",
+                    child
                 ))?
                 .parent = Some(parent.to_owned());
         }
@@ -99,7 +98,7 @@ impl Tree {
                 return Ok(name.to_owned());
             }
         }
-        Err(PuzzleError("No root node found".into()))
+        Err("No root node found")?
     }
 
     fn calc_total_weight(&mut self, name: &str) -> Result<ItemType, PuzzleError> {
@@ -107,7 +106,7 @@ impl Tree {
         let children = self
             .nodes
             .get(name)
-            .ok_or(PuzzleError("invalid node name".into()))?
+            .ok_or("invalid node name")?
             .children
             .to_owned();
         for child in &children {
@@ -122,7 +121,7 @@ impl Tree {
         let children = self
             .nodes
             .get(name)
-            .ok_or(PuzzleError("invalid node name".into()))?
+            .ok_or("invalid node name")?
             .children
             .to_owned();
         let mut count_same_totals = HashMap::<ItemType, usize>::new();
@@ -162,9 +161,7 @@ impl Tree {
                             .weight)
                 }
             }
-            _ => Err(PuzzleError(
-                "Invalid input, multiple unbalance nodes".into(),
-            )),
+            _ => Err("Invalid input, multiple unbalance nodes")?,
         }
     }
 }

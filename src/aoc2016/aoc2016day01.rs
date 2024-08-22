@@ -16,27 +16,25 @@ pub fn metadata() -> PuzzleMetaData<'static> {
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     if input.len() != 1 {
-        return Err(PuzzleError("input must have a single line".into()));
+        Err("input must have a single line")?;
     }
     let instructions = input[0]
         .split(", ")
         .map(|x| {
             if x.len() < 2 {
-                Err(PuzzleError("instruction must be at least 2 digits".into()))
+                Err("instruction must be at least 2 digits")?
             } else if !['R', 'L'].contains(&x.chars().next().unwrap()) {
-                Err(PuzzleError("instruction must start with R or L".into()))
+                Err("instruction must start with R or L")?
             } else {
                 let moves_result = x[1..].parse::<i32>();
                 if let Ok(moves) = moves_result {
                     Ok((if x.starts_with('R') { 1i32 } else { -1 }, moves))
                 } else {
-                    Err(PuzzleError(
-                        "instruction must contain number of moves as integer".into(),
-                    ))
+                    Err("instruction must contain number of moves as integer")?
                 }
             }
         })
-        .collect::<Result<Vec<_>, _>>()?;
+        .collect::<Result<Vec<_>, PuzzleError>>()?;
     // ---------- Part 1
     const DELTAS: [(i32, i32); 4] = [(0, 1), (1, 0), (0, -1), (-1, 0)];
     let mut x = 0;

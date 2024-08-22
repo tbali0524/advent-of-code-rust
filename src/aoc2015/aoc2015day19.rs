@@ -1,6 +1,6 @@
 //! [aoc](https://adventofcode.com/2015/day/19)
 
-use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::collections::{HashMap, HashSet};
 
 pub fn metadata() -> PuzzleMetaData<'static> {
@@ -17,12 +17,10 @@ pub fn metadata() -> PuzzleMetaData<'static> {
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and check input
     if input.len() < 3 {
-        return Err(PuzzleError("input must have at least 3 lines".into()));
+        Err("input must have at least 3 lines")?;
     }
     if !input[input.len() - 2].is_empty() {
-        return Err(PuzzleError(
-            "rules and molecule must be separated by empty line".into(),
-        ));
+        Err("rules and molecule must be separated by empty line")?;
     }
     let mut replacements = HashMap::new();
     let mut reverse = HashMap::new();
@@ -30,7 +28,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     for i in 0..input.len() - 2 {
         let a = input[i].split(" => ").collect::<Vec<_>>();
         if a.len() != 2 {
-            return Err(PuzzleError("rules must have a => arrow".into()));
+            Err("rules must have a => arrow")?;
         }
         if !replacements.contains_key(a[0]) {
             replacements.insert(a[0].to_owned(), Vec::new());

@@ -1,30 +1,15 @@
 //! Advent of Code common type definitions, and submodules with runner and CLI functions.
 
-use std::error;
-use std::fmt;
-
 pub mod ansi;
 pub mod cli;
+pub mod error;
 pub mod runner;
 
 pub const START_SEASON: usize = 2015;
 pub const MAX_SEASONS: usize = 10; // empty 2024 season also included as a template
 pub const MAX_DAYS: usize = 25;
 
-/// The custom error type for puzzle input parsing and runner errors.
-#[derive(PartialEq)]
-pub struct PuzzleError(pub String);
-impl error::Error for PuzzleError {}
-impl fmt::Debug for PuzzleError {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "Input error: {}", self.0)
-    }
-}
-impl fmt::Display for PuzzleError {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        fmt::Debug::fmt(self, f)
-    }
-}
+pub use error::PuzzleError;
 
 /// The expected solution for a test case, containing both parts of the puzzle.
 pub type PuzzleExpected<'a> = (&'a str, &'a str);

@@ -1,6 +1,6 @@
 //! [aoc](https://adventofcode.com/2017/day/1)
 
-use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 
 pub fn metadata() -> PuzzleMetaData<'static> {
     PuzzleMetaData {
@@ -15,12 +15,12 @@ pub fn metadata() -> PuzzleMetaData<'static> {
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 1 {
-        return Err(PuzzleError("input must have a single line".into()));
+        Err("input must have a single line")?;
     }
     let line = &input[0];
     for c in line.chars() {
         if !c.is_ascii_digit() {
-            return Err(PuzzleError("input must contain only digits".into()));
+            Err(format!("input must contain only digits, found `{}", c))?;
         }
     }
     // ---------- Part 1

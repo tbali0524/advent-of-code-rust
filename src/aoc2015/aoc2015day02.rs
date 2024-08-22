@@ -1,6 +1,6 @@
 //! [aoc](https://adventofcode.com/2015/day/2)
 
-use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 
 pub fn metadata() -> PuzzleMetaData<'static> {
     PuzzleMetaData {
@@ -18,18 +18,18 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     let data = input
         .iter()
-        .map(|line| {
+        .map(|&line| {
             line.split('x')
                 .map(|x| {
                     x.parse::<ItemType>()
-                        .map_err(|_| PuzzleError("input must contain only integers".into()))
+                        .map_err(|_| format!("input must contain only integers, found `{}`", x))
                 })
                 .collect::<Result<Vec<_>, _>>()
         })
         .collect::<Result<Vec<Vec<_>>, _>>()?;
     for row in &data {
         if row.len() != 3 {
-            return Err(PuzzleError("input must contain 3 integers per line".into()));
+            Err("input must contain 3 integers per line")?;
         }
     }
     // ---------- Part 1

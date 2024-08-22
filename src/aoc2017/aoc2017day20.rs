@@ -104,18 +104,16 @@ impl Particle {
     #[allow(clippy::needless_range_loop)]
     fn from_string(id: usize, line: &str) -> Result<Self, PuzzleError> {
         let r = Regex::new(r"p=<( ?-?\d+),( ?-?\d+),( ?-?\d+)>, v=<( ?-?\d+),( ?-?\d+),( ?-?\d+)>, a=<( ?-?\d+),( ?-?\d+),( ?-?\d+)>").unwrap();
-        let caps = r
-            .captures(line)
-            .ok_or(PuzzleError("invalid input".into()))?;
+        let caps = r.captures(line).ok_or("invalid input")?;
         let mut values = [0; 9];
         for i in 0..9 {
             values[i] = caps
                 .get(i + 1)
-                .ok_or(PuzzleError("invalid input: missing coordinate".into()))?
+                .ok_or("invalid input: missing coordinate")?
                 .as_str()
                 .trim()
                 .parse::<ItemType>()
-                .map_err(|_| PuzzleError("invalid input: coordinate must be integer".into()))?;
+                .map_err(|_| "invalid input: coordinate must be integer")?;
         }
         Ok(Particle::new(
             id,

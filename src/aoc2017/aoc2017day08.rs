@@ -1,6 +1,6 @@
 //! [aoc](https://adventofcode.com/2017/day/8)
 
-use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::collections::HashMap;
 
 pub fn metadata() -> PuzzleMetaData<'static> {
@@ -22,26 +22,27 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     for line in input {
         let a = line.split(' ').collect::<Vec<_>>();
         if a.len() != 7 {
-            return Err(PuzzleError(
-                "invalid input: line must contain 7 items".into(),
-            ));
+            Err("invalid input: line must contain 7 items")?;
         }
         let reg = a[0];
         let sign = match a[1] {
             "inc" => 1,
             "dec" => -1,
-            _ => Err(PuzzleError("invalid operator".into()))?,
+            _ => Err(format!("invalid operator `{}`", a[1]))?,
         };
         let by = a[2]
             .parse::<ItemType>()
-            .map_err(|_| PuzzleError("'by' operand must be an integer".into()))?;
+            .map_err(|_| format!("'by' operand must be an integer, found `{}`", a[2]))?;
 
         let operand1_reg = a[4];
         let operand1 = *regs.entry(operand1_reg).or_default();
         let comparison = a[5];
-        let operand2 = a[6]
-            .parse::<ItemType>()
-            .map_err(|_| PuzzleError("second comparison operand must be an integer".into()))?;
+        let operand2 = a[6].parse::<ItemType>().map_err(|_| {
+            format!(
+                "second comparison operand must be an integer, found `{}`",
+                a[6]
+            )
+        })?;
         let result = match comparison {
             "<" => operand1 < operand2,
             ">" => operand1 > operand2,
@@ -49,7 +50,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             ">=" => operand1 >= operand2,
             "==" => operand1 == operand2,
             "!=" => operand1 != operand2,
-            _ => Err(PuzzleError("invalid comparison operator".into()))?,
+            _ => Err(format!("invalid comparison operator `{}`", comparison))?,
         };
         if !result {
             continue;

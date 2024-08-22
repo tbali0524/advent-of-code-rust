@@ -1,6 +1,6 @@
 //! [aoc](https://adventofcode.com/2018/day/1)
 
-use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::collections::HashSet;
 
 pub fn metadata() -> PuzzleMetaData<'static> {
@@ -19,9 +19,9 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     let data = input
         .iter()
-        .map(|line| {
+        .map(|&line| {
             line.parse::<ItemType>()
-                .map_err(|_| PuzzleError("input must contain only integers".into()))
+                .map_err(|_| format!("input must contain only integers, found `{}`", line))
         })
         .collect::<Result<Vec<_>, _>>()?;
     // ---------- Part 1

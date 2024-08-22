@@ -1,6 +1,6 @@
 //! [aoc](https://adventofcode.com/2017/day/12)
 
-use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::collections::{HashMap, HashSet};
 
 pub fn metadata() -> PuzzleMetaData<'static> {
@@ -24,14 +24,15 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             .next()
             .unwrap()
             .parse::<ItemType>()
-            .map_err(|_| PuzzleError("input lines must start with an integer".into()))?;
+            .map_err(|_| "input lines must start with an integer")?;
         let list = a
             .next()
-            .ok_or(PuzzleError("input lines must contain an <-> arrow".into()))?
+            .ok_or("input lines must contain an <-> arrow")?
             .split(", ")
             .map(|x| {
-                x.parse::<ItemType>()
-                    .map_err(|_| PuzzleError("adjacence list must contain only integers".into()))
+                x.parse::<ItemType>().map_err(|_| {
+                    format!("adjacence list must contain only integers, found `{}`", x)
+                })
             })
             .collect::<Result<Vec<_>, _>>()?;
         adj_list.insert(node, list);

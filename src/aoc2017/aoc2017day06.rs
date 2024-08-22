@@ -1,6 +1,6 @@
 //! [aoc](https://adventofcode.com/2017/day/6)
 
-use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::collections::HashMap;
 
 pub fn metadata() -> PuzzleMetaData<'static> {
@@ -19,13 +19,13 @@ type ItemType = i32;
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     if input.len() != 1 {
-        return Err(PuzzleError("input must have a single line".into()));
+        Err("input must have a single line")?;
     }
     let data = input[0]
         .split_whitespace()
         .map(|x| {
             x.parse::<ItemType>()
-                .map_err(|_| PuzzleError("input must contain only integers".into()))
+                .map_err(|_| format!("input must contain only integers, found `{}`", x))
         })
         .collect::<Result<Vec<_>, _>>()?;
     // ---------- Part 1 + 2

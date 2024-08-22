@@ -1,6 +1,6 @@
 //! [aoc](https://adventofcode.com/2015/day/12)
 
-use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 use serde_json::Value;
 
 pub fn metadata() -> PuzzleMetaData<'static> {
@@ -18,10 +18,10 @@ type ItemType = i64;
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     if input.len() != 1 {
-        return Err(PuzzleError("input must have a single line".into()));
+        Err("input must have a single line")?;
     }
-    let data: Value = serde_json::from_str(input[0])
-        .map_err(|_| PuzzleError("input must be in valid json format".into()))?;
+    let data: Value =
+        serde_json::from_str(input[0]).map_err(|_| "input must be in valid json format")?;
     // ---------- Part 1 + 2
     let ans1 = json_sum_ints(&data, 0);
     let ans2 = json_sum_reds(&data, 0);

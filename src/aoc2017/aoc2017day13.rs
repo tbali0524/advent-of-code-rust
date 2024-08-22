@@ -1,6 +1,6 @@
 //! [aoc](https://adventofcode.com/2017/day/13)
 
-use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 use std::collections::HashMap;
 
 pub fn metadata() -> PuzzleMetaData<'static> {
@@ -23,13 +23,11 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             .split(": ")
             .map(|x| {
                 x.parse::<ItemType>()
-                    .map_err(|_| PuzzleError("input must contain only integers".into()))
+                    .map_err(|_| format!("input must contain only integers, found `{}`", x))
             })
             .collect::<Result<Vec<_>, _>>()?;
         if a.len() != 2 {
-            return Err(PuzzleError(
-                "input lines must have 2 items separated by a : and a whitespace".into(),
-            ));
+            Err("input lines must have 2 items separated by a : and a whitespace")?;
         }
         scanners.insert(a[0], a[1]);
     }

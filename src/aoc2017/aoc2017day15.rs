@@ -1,6 +1,6 @@
 //! [aoc](https://adventofcode.com/2017/day/15)
 
-use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
+use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 
 pub fn metadata() -> PuzzleMetaData<'static> {
     PuzzleMetaData {
@@ -17,16 +17,16 @@ type ItemType = u64;
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 2 {
-        return Err(PuzzleError("input must have contain two lines".into()));
+        Err("input must have contain two lines")?;
     }
     let mut starts = [0; 2];
     for idx in 0..2 {
         if !input[idx].starts_with("Generator ") {
-            return Err(PuzzleError("invalid input".into()));
+            Err("invalid input")?;
         }
         starts[idx] = input[idx][24..]
             .parse::<ItemType>()
-            .map_err(|_| PuzzleError("input must contain only integers".into()))?
+            .map_err(|_| "input must contain only integers")?
     }
     const MULTIPLIERS: [ItemType; 2] = [16807, 48271];
     const MODULUS: ItemType = 2147483647;

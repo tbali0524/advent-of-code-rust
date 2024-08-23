@@ -14,13 +14,13 @@ pub use error::PuzzleError;
 /// The expected solution for a test case, containing both parts of the puzzle.
 pub type PuzzleExpected<'a> = (&'a str, &'a str);
 
-/// The parameter type of `solver()`: the puzzle input, already split to lines
+/// The parameter type of `the solve()` functions: the puzzle input, already split to lines
 pub type PuzzleInput<'a> = &'a [&'a str];
 
 /// A candidate solution for a test case, containing both parts of the puzzle.
 pub type PuzzleSolution = (String, String);
 
-/// The return type of `solver()`.
+/// The return type of the `solve()` functions.
 pub type PuzzleResult = Result<PuzzleSolution, PuzzleError>;
 
 /// Each solution must have a `metadata()` function with this signature.
@@ -29,13 +29,13 @@ pub type MetaData<'a> = fn() -> PuzzleMetaData<'a>;
 /// Each solution must have a `solve()` function with this signature.
 pub type Solver = fn(PuzzleInput) -> PuzzleResult;
 
-/// An implemented puzzle: its metadata() and solve() functions, used by the `PUZZLES` constants in all season modules.
+/// An implemented puzzle: its `metadata()` and `solve()` functions, used by the `PUZZLES` constants in all season modules.
 pub type Puzzle<'a> = (MetaData<'a>, Solver);
 
-/// The array of the implemented puzzles, used by the `PUZZLES` constant in this (`aoc`) module.
+/// The array of the implemented puzzles, used by the [`PUZZLES`] constant in this (`aoc`) module.
 pub type Season<'a> = [Option<Puzzle<'a>>; MAX_DAYS];
 
-/// Each solution must have a metadata() function returning an instance of this struct.
+/// Each solution must have a `metadata()` function, returning an instance of this struct.
 pub struct PuzzleMetaData<'a> {
     pub year: usize,
     pub day: usize,

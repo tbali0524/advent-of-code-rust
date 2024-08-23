@@ -1,7 +1,8 @@
 //! Helper module to run any puzzle solution.
 
-use super::ansi::*;
-use super::*;
+use super::ansi::{ANSI_GREEN, ANSI_RESET, ANSI_YELLOW};
+use super::{PuzzleError, PuzzleExpected, PuzzleMetaData, Solver};
+use super::{MAX_DAYS, PUZZLES, START_SEASON};
 use std::fs;
 use std::path;
 use std::time;
@@ -14,11 +15,15 @@ const MSG_FAIL_TOTAL: &str = "\x1b[1;37;41m[FAIL] Some tests failed. \x1b[0m";
 const DURATION_THRESHOLD_MILLIS: u64 = 500;
 
 // ------------------------------------------------------------
-/// Runs multiple puzzles, prints results to stdout.
+/// Runs multiple puzzles.
 ///
-/// * `year == None && day == None` : run all seasons, all days
-/// * `year == Some && day == None` : run a single season, all days
-/// * `year == Some && day == Some` : run a single puzzle
+/// * `year == None && day == None` : runs all seasons, all days
+/// * `year == Some && day == None` : runs a single season, all days
+/// * `year == Some && day == Some` : runs a single puzzle
+///
+/// Prints to `stdout`.
+///
+/// Returns true if all puzzles that were run passed.
 pub fn run_puzzles(year: Option<usize>, day: Option<usize>) -> bool {
     let now = time::Instant::now();
     let mut all_passed = true;
@@ -53,7 +58,7 @@ pub fn run_puzzles(year: Option<usize>, day: Option<usize>) -> bool {
     }
     let elapsed = now.elapsed();
     println!(
-        "=================== [Total time: {:5} ms]  [{} season{}, {}{}{} puzzle{}, {} example{}]\n",
+        "=================== [Total time: {:5} ms] : [{} season{}, {}{}{} puzzle{}, {} example{}]\n",
         elapsed.as_millis(),
         count_seasons,
         get_plural(count_seasons),
@@ -76,7 +81,11 @@ pub fn run_puzzles(year: Option<usize>, day: Option<usize>) -> bool {
 }
 
 // ------------------------------------------------------------
-/// Runs a single puzzle, including all examples, prints results to stdout, returns true if all cases are passing.
+/// Runs a single puzzle, including all examples.
+///
+/// Prints results to `stdout`.
+///
+/// Returns true if all cases are passing.
 pub fn run_puzzle(puzzle: &PuzzleMetaData, solve: Solver) -> bool {
     let now = time::Instant::now();
     let mut all_passed = true;
@@ -110,7 +119,9 @@ pub fn run_puzzle(puzzle: &PuzzleMetaData, solve: Solver) -> bool {
 }
 
 // ------------------------------------------------------------
-/// Runs a single puzzle with a single input test case, returns bool with passing and a single line message.
+/// Runs a single puzzle with a single input test case.
+///
+/// Returns tuple of a bool with true if test case passed, and a single line message.
 pub fn run_case(puzzle: &PuzzleMetaData, solve: Solver, case: usize) -> (bool, String) {
     let mut all_message = String::new();
     let input_result = read_input(puzzle, case);
@@ -195,7 +206,10 @@ fn get_expected<'a>(puzzle: &'a PuzzleMetaData, case: usize) -> PuzzleExpected<'
 }
 
 // ------------------------------------------------------------
-/// Reads input from file for a specific test case (case == 0 for the puzzle input, 1, 2, ... for example inputs).
+/// Reads input from file for a specific test case.
+///
+/// * `case == 0` for the puzzle input
+/// * `case == 1, 2, ...` for example inputs
 pub fn read_input(puzzle: &PuzzleMetaData, case: usize) -> Result<String, PuzzleError> {
     if case > puzzle.example_solutions.len() {
         Err(format!("missing expected solution for example #{}", case))?;
@@ -223,6 +237,7 @@ pub fn read_input(puzzle: &PuzzleMetaData, case: usize) -> Result<String, Puzzle
 #[cfg(test)]
 pub mod tests {
     use super::*;
+    use crate::aoc::{MetaData, PuzzleInput};
 
     fn invalid_puzzle_metadata() -> PuzzleMetaData<'static> {
         PuzzleMetaData {
@@ -253,7 +268,7 @@ pub mod tests {
     // ------------------------------------------------------------
     /// Helper function to be used in puzzle solution tests, running a single test case from file input.
     ///
-    /// Similar to `run_case()` but using assertions and no output.
+    /// Similar to [`run_case()`] but using assertions and no output.
     pub fn test_case(metadata: MetaData, solve: Solver, case: usize) {
         let puzzle = metadata();
         let input_s = read_input(&puzzle, case).unwrap();

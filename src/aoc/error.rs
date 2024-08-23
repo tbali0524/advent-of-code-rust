@@ -3,7 +3,7 @@
 use std::error;
 use std::fmt;
 
-/// The custom error type for puzzle input parsing and runner errors.
+/// The custom error type for puzzle input parsing, to be used in `solve()` functions.
 #[derive(PartialEq)]
 pub struct PuzzleError(pub String);
 

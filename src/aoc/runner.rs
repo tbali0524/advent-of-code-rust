@@ -3,6 +3,8 @@
 use super::ansi::{ANSI_GREEN, ANSI_RESET, ANSI_YELLOW};
 use super::{PuzzleError, PuzzleExpected, PuzzleMetaData, Solver};
 use super::{MAX_DAYS, PUZZLES, START_SEASON};
+use indicatif::ParallelProgressIterator;
+use rayon::prelude::*;
 use std::fs;
 use std::path;
 use std::time;
@@ -20,16 +22,17 @@ const DURATION_THRESHOLD_MILLIS: u64 = 500;
 /// * `year == None && day == None` : runs all seasons, all days
 /// * `year == Some && day == None` : runs a single season, all days
 /// * `year == Some && day == Some` : runs a single puzzle
+/// * parallel == true : run solution in multiple threads, using rayon
 ///
-/// Prints to `stdout`.
+/// Prints results to `stdout`.
 ///
 /// Returns true if all puzzles that were run passed.
-pub fn run_puzzles(year: Option<usize>, day: Option<usize>) -> bool {
+pub fn run_puzzles(year: Option<usize>, day: Option<usize>, parallel: bool) -> bool {
     let now = time::Instant::now();
-    let mut all_passed = true;
     let mut count_seasons = 0;
     let mut count_puzzles = 0;
     let mut count_examples = 0;
+    let mut puzzle_list = Vec::new();
     for (idx_season, season_puzzles) in PUZZLES.iter().enumerate() {
         if season_puzzles.is_none() {
             continue;
@@ -38,10 +41,6 @@ pub fn run_puzzles(year: Option<usize>, day: Option<usize>) -> bool {
         if year.is_some() && year.unwrap() != season {
             continue;
         }
-        println!(
-            "======= {} ===================================================",
-            season
-        );
         count_seasons += 1;
         let season_puzzles = season_puzzles.unwrap();
         for (idx_day, puzzle_functions) in season_puzzles.iter().enumerate() {
@@ -50,13 +49,38 @@ pub fn run_puzzles(year: Option<usize>, day: Option<usize>) -> bool {
             }
             let (metadata, solver) = puzzle_functions.unwrap();
             let puzzle = metadata();
-            let passed = run_puzzle(&puzzle, solver);
-            all_passed = all_passed && passed;
             count_puzzles += 1;
             count_examples += puzzle.example_solutions.len();
+            puzzle_list.push((puzzle, solver));
         }
     }
+    let results = if parallel {
+        puzzle_list
+            .par_iter()
+            .progress_count(puzzle_list.len() as u64)
+            .map(|(puzzle, solver)| run_puzzle(puzzle, *solver))
+            .collect::<Vec<_>>()
+    } else {
+        puzzle_list
+            .iter()
+            .map(|(puzzle, solver)| run_puzzle(puzzle, *solver))
+            .collect::<Vec<_>>()
+    };
     let elapsed = now.elapsed();
+    let mut all_passed = true;
+    let mut prev_season = 0;
+    for (idx, (passed, message)) in results.iter().enumerate() {
+        all_passed = all_passed && *passed;
+        let season = puzzle_list[idx].0.year;
+        if season != prev_season {
+            println!(
+                "======= {} ===================================================",
+                season
+            );
+        }
+        prev_season = season;
+        print!("{}", message);
+    }
     println!(
         "=================== [Total time: {:5} ms] : [{} season{}, {}{}{} puzzle{}, {} example{}]\n",
         elapsed.as_millis(),
@@ -82,11 +106,8 @@ pub fn run_puzzles(year: Option<usize>, day: Option<usize>) -> bool {
 
 // ------------------------------------------------------------
 /// Runs a single puzzle, including all examples.
-///
-/// Prints results to `stdout`.
-///
-/// Returns true if all cases are passing.
-pub fn run_puzzle(puzzle: &PuzzleMetaData, solve: Solver) -> bool {
+/// Returns tuple of a bool with true if all test cases passed, and a multiple-line message.
+pub fn run_puzzle(puzzle: &PuzzleMetaData, solve: Solver) -> (bool, String) {
     let now = time::Instant::now();
     let mut all_passed = true;
     let mut all_message = String::new();
@@ -105,17 +126,17 @@ pub fn run_puzzle(puzzle: &PuzzleMetaData, solve: Solver) -> bool {
     } else {
         ("", "")
     };
-    println!(
-        "=== AoC {} Day {:2} ===== [time: {}{:5} ms{}] : {}",
+    let message = format!(
+        "=== AoC {} Day {:2} ===== [time: {}{:5} ms{}] : {}\n{}\n",
         puzzle.year,
         puzzle.day,
         msg_pre,
         elapsed.as_millis(),
         msg_post,
-        puzzle.title
+        puzzle.title,
+        all_message,
     );
-    print!("{}", all_message);
-    all_passed
+    (all_passed, message)
 }
 
 // ------------------------------------------------------------
@@ -151,14 +172,21 @@ pub fn run_case(puzzle: &PuzzleMetaData, solve: Solver, case: usize) -> (bool, S
             ans_case = &ans.1;
         }
         let mut pre_msg = MSG_NONE;
+        let mut ans_msg = String::new();
         let mut post_msg = String::new();
         if !expected_case.is_empty() && expected_case != &"0" {
             if ans_case == expected_case {
                 pre_msg = MSG_PASS;
+                ans_msg = ans_case.to_string();
             } else {
                 all_passed = false;
                 pre_msg = MSG_FAIL;
-                post_msg = format!(" [expected: {ANSI_YELLOW}{}{ANSI_RESET}]", expected_case);
+                ans_msg = format!("{ANSI_YELLOW}{}{ANSI_RESET}", ans_case);
+                post_msg = format!(
+                    "{}[expected: {}]",
+                    " ".repeat(20 - ans_case.to_string().len()),
+                    expected_case
+                );
             };
         } else if case == 0 {
             post_msg = format!(" {ANSI_YELLOW}[missing expected solution]{ANSI_RESET}");
@@ -166,12 +194,12 @@ pub fn run_case(puzzle: &PuzzleMetaData, solve: Solver, case: usize) -> (bool, S
         if case == 0 {
             all_message += &format!(
                 "{} Puzzle     part #{} : {}{}\n",
-                pre_msg, part, ans_case, post_msg
+                pre_msg, part, ans_msg, post_msg
             );
         } else {
             all_message += &format!(
                 "{} Example #{} part #{} : {}{}\n",
-                pre_msg, case, part, ans_case, post_msg
+                pre_msg, case, part, ans_msg, post_msg
             );
         }
     }

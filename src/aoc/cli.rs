@@ -10,6 +10,7 @@ pub const MSG_TITLE: &str = "Advent of Code - solutions in Rust, (c) 2024 by TBa
 
 const ARG_HELP: &str = "--help";
 const ARG_VERSION: &str = "--version";
+const RUN_PARALLEL: bool = true;
 
 /// The main CLI runner.
 pub fn run() -> ExitCode {
@@ -28,7 +29,7 @@ pub fn run() -> ExitCode {
             ExitCode::from(2)
         }
         Ok((year, day)) => {
-            let result = run_puzzles(year, day);
+            let result = run_puzzles(year, day, RUN_PARALLEL);
             if result {
                 ExitCode::SUCCESS
             } else {

@@ -429,13 +429,29 @@ Advent of Code - solutions in Rust, (c) 2024 by TBali
 [ OK ] Puzzle     part #1 : 1861775706
 [ OK ] Puzzle     part #2 : 1082
 
-=== AoC 2023 Day 11 ===== [time:    13 ms] : Cosmic Expansion
+=== AoC 2023 Day 10 ===== [time:     8 ms] : Pipe Maze
+[ OK ] Example #1 part #1 : 4
+[ OK ] Example #1 part #2 : 1
+[ OK ] Example #2 part #1 : 8
+[ OK ] Example #2 part #2 : 1
+       Example #3 part #1 :
+[ OK ] Example #3 part #2 : 4
+       Example #4 part #1 :
+[ OK ] Example #4 part #2 : 4
+       Example #5 part #1 :
+[ OK ] Example #5 part #2 : 8
+       Example #6 part #1 :
+[ OK ] Example #6 part #2 : 10
+[ OK ] Puzzle     part #1 : 6820
+[ OK ] Puzzle     part #2 : 337
+
+=== AoC 2023 Day 11 ===== [time:    12 ms] : Cosmic Expansion
 [ OK ] Example #1 part #1 : 374
 [ OK ] Example #1 part #2 : 8410
 [ OK ] Puzzle     part #1 : 9329143
 [ OK ] Puzzle     part #2 : 710674907809
 
-=================== [Total time:  1322 ms] : [9 seasons, 66 puzzles, 81 examples]
+=================== [Total time:  1270 ms] : [9 seasons, 67 puzzles, 87 examples]
 
 [ OK ] All tests passed.
 ```

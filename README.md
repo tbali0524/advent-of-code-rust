@@ -2,7 +2,7 @@
 
 ![rust v1.81](https://shields.io/badge/rust-1.80-blue?logo=rust)
 ![build](https://img.shields.io/github/actions/workflow/status/tbali0524/advent-of-code-rust/qa.yml)
-![AoC stars](https://img.shields.io/badge/total%20AoC%20⭐-132-yellow)
+![AoC stars](https://img.shields.io/badge/total%20AoC%20⭐-134-yellow)
 ![license](https://img.shields.io/github/license/tbali0524/advent-of-code-rust)
 
 * [AoC website](https://adventofcode.com/)

@@ -1,8 +1,8 @@
 # Advent of Code solutions in Rust by TBali
 
-![rust v1.81](https://shields.io/badge/rust-1.80-blue?logo=rust)
+![rust v1.81](https://shields.io/badge/rust-1.81-blue?logo=rust)
 ![build](https://img.shields.io/github/actions/workflow/status/tbali0524/advent-of-code-rust/qa.yml)
-![AoC stars](https://img.shields.io/badge/total%20AoC%20⭐-134-yellow)
+![AoC stars](https://img.shields.io/badge/total%20AoC%20⭐-138-yellow)
 ![license](https://img.shields.io/github/license/tbali0524/advent-of-code-rust)
 
 * [AoC website](https://adventofcode.com/)
@@ -19,7 +19,6 @@ This repo contains the _partial_ rewrite of my complete (__450__ ⭐) [AoC solut
 # install Rust: https://www.rust-lang.org/tools/install
 rustup update stable
 cargo version
-cargo install
 # -- lint
 cargo fmt
 cargo clippy
@@ -27,21 +26,23 @@ cargo clippy
 cargo doc --no-deps --open
 # -- test
 cargo test
-cargo test 2017
-cargo test 2017day02
-cargo test runner
+cargo test 2023
+cargo test 2023day02
+cargo test cli
+# in Powershell:
+$env:RUST_BACKTRACE=1 ; cargo test
 cargo run
-cargo run -- 2017
-cargo run -- 2017 2
+cargo run -- 2023
+cargo run -- 2023 2
 # -- run
 cargo build --release
 target/release/aoc.exe
-target/release/aoc.exe 2017
-target/release/aoc.exe 2017 2
+target/release/aoc.exe 2023
+target/release/aoc.exe 2023 2
 # -- shortcut run
 ./aoc.bat
-./aoc.bat 2017
-./aoc.bat 2017 2
+./aoc.bat 2023
+./aoc.bat 2023 2
 ./aoc.bat --help
 # -- shortcut qa
 ./qa.bat

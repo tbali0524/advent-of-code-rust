@@ -138,20 +138,25 @@ mod tests {
 
     #[test]
     fn invalid_at_least_4_lines() {
-        test_invalid(&[&"seeds: 79 14 55 13", &"", &"seed-to-soil map"], solve);
+        test_invalid_msg(
+            &[&"seeds: 79 14 55 13", &"", &"seed-to-soil map"],
+            solve,
+            "input must start with `seeds: `, followed by an empty line and at least 2 more lines",
+        );
     }
 
     #[test]
     fn invalid_must_start_with_seeds() {
-        test_invalid(
+        test_invalid_msg(
             &[&"a: 79 14 55 13", &"", &"seed-to-soil map:", &"50 98 2"],
             solve,
+            "input must start with `seeds: `",
         );
     }
 
     #[test]
     fn invalid_seed_must_be_followed_by_empty_line() {
-        test_invalid(
+        test_invalid_msg(
             &[
                 &"seeds: 79 14 55 13",
                 &"a",
@@ -159,30 +164,34 @@ mod tests {
                 &"50 98 2",
             ],
             solve,
+            "followed by an empty line",
         );
     }
 
     #[test]
     fn invalid_seed_must_be_integer() {
-        test_invalid(
+        test_invalid_msg(
             &[&"seeds: 79 a 55 13", &"", &"seed-to-soil map:", &"50 98 2"],
             solve,
+            "seeds must be integers",
         );
     }
 
     #[test]
     fn invalid_map_sections_must_end_with_map() {
-        test_invalid(
+        test_invalid_msg(
             &[&"seeds: 79 14 55 13", &"", &"seed-to-soil a", &"50 98 2"],
             solve,
+            "map definition must must start with a line ending with `map:`",
         );
     }
 
     #[test]
     fn invalid_map_items_must_be_integer() {
-        test_invalid(
+        test_invalid_msg(
             &[&"seeds: 79 14 55 13", &"", &"seed-to-soil map:", &"50 a 2"],
             solve,
+            "map items must be integers",
         );
     }
 }

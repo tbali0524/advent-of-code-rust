@@ -50,7 +50,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
                     .map_err(|_| "color count must be an integer")?;
                 let color = split_color
                     .next()
-                    .ok_or("color count and name must be space separated ")?;
+                    .ok_or("color count and name must be space separated")?;
                 match color {
                     "red" => {
                         hand.red = count;
@@ -115,32 +115,51 @@ mod tests {
 
     #[test]
     fn invalid_must_start_with_game() {
-        test_invalid(&[&"a"], solve);
+        test_invalid_msg(&[&"a"], solve, "input lines must start with Game");
     }
 
     #[test]
     fn invalid_game_must_be_int() {
-        test_invalid(
+        test_invalid_msg(
             &[&"Game X: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green"],
             solve,
+            "Game number must be an integer",
         );
     }
 
     #[test]
     fn invalid_must_have_colon() {
-        test_invalid(
-            &[&"Game 1 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green"],
+        test_invalid_msg(
+            &[&"Game 1"],
             solve,
+            "Game number and hands must be separated by :",
         );
     }
 
     #[test]
     fn invalid_color_must_be_int() {
-        test_invalid(&[&"Game 1: 3 blue, X red; 1 red, 2 green, 6 blue"], solve);
+        test_invalid_msg(
+            &[&"Game 1: 3 blue, X red; 1 red, 2 green, 6 blue"],
+            solve,
+            "color count must be an integer",
+        );
+    }
+
+    #[test]
+    fn invalid_color_and_name_must_be_space_separated() {
+        test_invalid_msg(
+            &[&"Game 1: 3 blue, 1 red; 1 red, 2, 6 blue"],
+            solve,
+            "color count and name must be space separated",
+        );
     }
 
     #[test]
     fn invalid_color_name() {
-        test_invalid(&[&"Game 1: 3 blue, 1 red; 1 red, 2 YELLOW, 6 blue"], solve);
+        test_invalid_msg(
+            &[&"Game 1: 3 blue, 1 red; 1 red, 2 YELLOW, 6 blue"],
+            solve,
+            "invalid color",
+        );
     }
 }

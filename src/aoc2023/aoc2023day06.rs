@@ -116,29 +116,46 @@ mod tests {
 
     #[test]
     fn invalid_must_be_2_lines() {
-        test_invalid(
+        test_invalid_msg(
             &[&"Time:      7  15   30", &"Distance:  9  40  200", &"a"],
             solve,
+            "input must be 2 lines",
         );
     }
 
     #[test]
     fn invalid_first_line_must_start_with_time() {
-        test_invalid(&[&"a:      7  15   30", &"Distance:  9  40  200"], solve);
+        test_invalid_msg(
+            &[&"a:      7  15   30", &"Distance:  9  40  200"],
+            solve,
+            "first starting with `Time:`",
+        );
     }
 
     #[test]
     fn invalid_second_line_must_start_with_distance() {
-        test_invalid(&[&"Time:      7  15   30", &"a:  9  40  200"], solve);
+        test_invalid_msg(
+            &[&"Time:      7  15   30", &"a:  9  40  200"],
+            solve,
+            "second with `Distance:`",
+        );
     }
 
     #[test]
     fn invalid_times_must_be_integer() {
-        test_invalid(&[&"Time:      7  a   30", &"Distance:  9  40  200"], solve);
+        test_invalid_msg(
+            &[&"Time:      7  a   30", &"Distance:  9  40  200"],
+            solve,
+            "times must be integers",
+        );
     }
 
     #[test]
     fn invalid_distances_must_be_integer() {
-        test_invalid(&[&"Time:      7  15   30", &"Distance:  9  a  200"], solve);
+        test_invalid_msg(
+            &[&"Time:      7  15   30", &"Distance:  9  a  200"],
+            solve,
+            "distances must be integers",
+        );
     }
 }

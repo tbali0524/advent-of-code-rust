@@ -28,15 +28,15 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         let from = a_iter.next().unwrap();
         let b = a_iter.next().ok_or("lines must contain ` = (`")?;
         if &b[b.len() - 1..] != ")" {
-            Err("lines must end with )")?;
+            Err("lines must end with `)`")?;
         }
         let mut b_iter = b[..b.len() - 1].split(", ");
         let to1 = b_iter.next().unwrap();
         let to2 = b_iter
             .next()
-            .ok_or("each node must be connected to 2 nodes")?;
+            .ok_or("each node must be connected to 2 nodes, 1 found")?;
         if b_iter.next().is_some() {
-            Err("each node must be connected to 2 nodes")?;
+            Err("each node must be connected to 2 nodes, more found")?;
         }
         links.insert(from, (to1, to2));
     }
@@ -149,36 +149,65 @@ mod tests {
 
     #[test]
     fn invalid_at_least_3_lines() {
-        test_invalid(&[&"RL", &""], solve);
+        test_invalid_msg(&[&"RL", &""], solve, "input must have at least 3 lines");
     }
 
     #[test]
     fn invalid_second_line_empty() {
-        test_invalid(&[&"RL", &"a", &"AAA = (BBB, CCC)"], solve);
+        test_invalid_msg(
+            &[&"RL", &"a", &"AAA = (BBB, CCC)"],
+            solve,
+            "second line must be empty",
+        );
     }
 
     #[test]
     fn invalid_line_separator() {
-        test_invalid(&[&"RL", &"", &"AAA =a (BBB, CCC)"], solve);
+        test_invalid_msg(
+            &[&"RL", &"", &"AAA =a (BBB, CCC)"],
+            solve,
+            "lines must contain ` = (`",
+        );
     }
 
     #[test]
     fn invalid_must_end_closing_par() {
-        test_invalid(&[&"RL", &"", &"AAA = (BBB, CCC"], solve);
+        test_invalid_msg(
+            &[&"RL", &"", &"AAA = (BBB, CCC"],
+            solve,
+            "lines must end with `)`",
+        );
     }
 
     #[test]
-    fn invalid_must_have_two_targets() {
-        test_invalid(&[&"RL", &"", &"AAA = (BBB, CCC, DDD)"], solve);
+    fn invalid_must_have_two_targets_not_one() {
+        test_invalid_msg(
+            &[&"RL", &"", &"AAA = (BBB)"],
+            solve,
+            "each node must be connected to 2 nodes, 1 found",
+        );
+    }
+
+    #[test]
+    fn invalid_must_have_two_targets_not_more() {
+        test_invalid_msg(
+            &[&"RL", &"", &"AAA = (BBB, CCC, DDD)"],
+            solve,
+            "each node must be connected to 2 nodes, more found",
+        );
     }
 
     #[test]
     fn invalid_direction_must_be_lr() {
-        test_invalid(&[&"RaL", &"", &"AAA = (BBB, CCC)"], solve);
+        test_invalid_msg(
+            &[&"RaL", &"", &"AAA = (BBB, CCC)"],
+            solve,
+            "directions must contain only L and R",
+        );
     }
 
     #[test]
     fn invalid_target_node() {
-        test_invalid(&[&"RL", &"", &"AAA = (BBB, CCC)"], solve);
+        test_invalid_msg(&[&"RL", &"", &"AAA = (BBB, CCC)"], solve, "invalid node");
     }
 }

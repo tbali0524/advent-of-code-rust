@@ -36,6 +36,9 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         .iter()
         .map(|&x| x.chars().collect::<Vec<_>>())
         .collect::<Vec<_>>();
+    if grid.iter().filter(|&x| x.len() == max_x as usize).count() != max_y as usize {
+        Err("all lines must have same lengths")?;
+    }
     let mut start_x = 0;
     let mut start_y = 0;
     let mut has_start = false;
@@ -87,7 +90,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         }
     }
     if grid[start_y as usize][start_x as usize] == 'S' {
-        Err("wrong input")?;
+        Err("pipe is not a closed loop")?;
     }
     // ---------- Part 1, with some preparation (fill side_tiles) to Part 2
     let mut max_step = 0;
@@ -106,7 +109,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         let nb_x = x + dx;
         let nb_y = y + dy;
         if nb_x < 0 || nb_x >= max_x || nb_y < 0 || nb_y >= max_y {
-            Err("pipe left the grid")?;
+            Err("pipe leaves the grid")?;
         }
         if is_pipe.contains(&(nb_x, nb_y)) {
             Err("pipe passes itself")?;
@@ -295,17 +298,22 @@ mod tests {
     }
 
     #[test]
+    fn invalid_grid_not_rectangular() {
+        test_invalid_msg(&[&"S-", &"---"], solve, "all lines must have same lengths");
+    }
+
+    #[test]
     fn invalid_char() {
-        test_invalid(&[&"a"], solve);
+        test_invalid_msg(&[&"a"], solve, "invalid character in grid");
     }
 
     #[test]
     fn invalid_missing_start() {
-        test_invalid(&[&"...."], solve);
+        test_invalid_msg(&[&"...."], solve, "missing start position in grid");
     }
 
     #[test]
     fn invalid_pipe_leaves_grid() {
-        test_invalid(&[&"S--"], solve);
+        test_invalid_msg(&[&"S--"], solve, "pipe is not a closed loop");
     }
 }

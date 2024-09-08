@@ -14,7 +14,7 @@ const MSG_PASS: &str = "\x1b[1;37;42m[ OK ]\x1b[0m"; // cannot build &str const 
 const MSG_FAIL: &str = "\x1b[1;37;41m[FAIL]\x1b[0m";
 const MSG_PASS_TOTAL: &str = "\x1b[1;37;42m[ OK ] All tests passed. \x1b[0m";
 const MSG_FAIL_TOTAL: &str = "\x1b[1;37;41m[FAIL] Some tests failed. \x1b[0m";
-const DURATION_THRESHOLD_MILLIS: u64 = 500;
+const DURATION_THRESHOLD_MILLIS: u64 = 500; // puzzle duration printed in yellow if taking longer than this
 
 // ------------------------------------------------------------
 /// Runs multiple puzzles.
@@ -22,7 +22,8 @@ const DURATION_THRESHOLD_MILLIS: u64 = 500;
 /// * `year == None && day == None` : runs all seasons, all days
 /// * `year == Some && day == None` : runs a single season, all days
 /// * `year == Some && day == Some` : runs a single puzzle
-/// * parallel == true : run solution in multiple threads, using rayon
+/// * parallel == true  : run solutions in multiple threads, using rayon
+/// * parallel == false : run solutions in sequence
 ///
 /// Prints results to `stdout`.
 ///
@@ -190,6 +191,8 @@ pub fn run_case(puzzle: &PuzzleMetaData, solve: Solver, case: usize) -> (bool, S
             };
         } else if case == 0 {
             post_msg = format!(" {ANSI_YELLOW}[missing expected solution]{ANSI_RESET}");
+        } else {
+            ans_msg = format!("{ANSI_YELLOW}n/a{ANSI_RESET}");
         }
         if case == 0 {
             all_message += &format!(
@@ -311,8 +314,17 @@ pub mod tests {
         }
     }
 
-    /// Helper function to be used in puzzle solution tests, for checking handling of invalid puzzle inputs.
+    /// Helper function to be used in puzzle solution tests, for checking the handling of invalid puzzle inputs.
     pub fn test_invalid(input: PuzzleInput, solve: Solver) {
         assert!(solve(input).is_err());
+    }
+
+    /// Similar to `test_invalid()`, but also checks if the error message contains the givent string slice.
+    pub fn test_invalid_msg(input: PuzzleInput, solve: Solver, msg: &str) {
+        let result = solve(&input);
+        assert!(result.is_err());
+        if !msg.is_empty() {
+            assert!(result.unwrap_err().0.contains(msg));
+        }
     }
 }

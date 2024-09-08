@@ -26,7 +26,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             .next()
             .ok_or("Card numbers must be followed by a `:`")?;
         if !a1.starts_with("Card ") {
-            Err("Line muist start with `Card `")?
+            Err("line must start with `Card `")?
         }
         let mut a2_iter = a2.split(" | ");
         let a2_1 = a2_iter.next().unwrap();
@@ -91,38 +91,46 @@ mod tests {
 
     #[test]
     fn invalid_must_separate_with_colon() {
-        test_invalid(
+        test_invalid_msg(
             &[&"Card 1 a 41 48 83 86 17 | 83 86  6 31 17  9 48 53"],
             solve,
+            "Card numbers must be followed by a `:`",
         );
     }
 
     #[test]
     fn invalid_must_separate_with_vertical_line() {
-        test_invalid(
+        test_invalid_msg(
             &[&"Card 1: 41 48 83 86 17 a 83 86  6 31 17  9 48 53"],
             solve,
+            "win and have numbers must be separated by |`:`",
         );
     }
 
     #[test]
     fn invalid_must_start_with_card() {
-        test_invalid(
+        test_invalid_msg(
             &[&"Karte 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53"],
             solve,
+            "line must start with `Card `",
         );
     }
 
     #[test]
     fn invalid_win_number_must_be_integer() {
-        test_invalid(&[&"Card 1: 41 a 83 86 17 | 83 86  6 31 17  9 48 53"], solve);
+        test_invalid_msg(
+            &[&"Card 1: 41 a 83 86 17 | 83 86  6 31 17  9 48 53"],
+            solve,
+            "win numbers must be integers",
+        );
     }
 
     #[test]
     fn invalid_have_number_must_be_integer() {
-        test_invalid(
+        test_invalid_msg(
             &[&"Card 1: 41 48 83 86 17 | 83 86  b 31 17  9 48 53"],
             solve,
+            "have numbers must be integers",
         );
     }
 }

@@ -64,12 +64,12 @@ mod tests {
     }
 
     #[test]
-    fn invalid_only_digits() {
-        test_invalid(&[&"1a3"], solve);
+    fn invalid_single_line() {
+        test_invalid_msg(&[&"123", &"1"], solve, "input must have a single line");
     }
 
     #[test]
-    fn invalid_single_line() {
-        test_invalid(&[&"123", &"1"], solve);
+    fn invalid_only_digits() {
+        test_invalid_msg(&[&"1a3"], solve, "input must contain only digits");
     }
 }

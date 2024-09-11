@@ -13,7 +13,7 @@ pub fn metadata() -> PuzzleMetaData<'static> {
 }
 
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
-    // ---------- Check input
+    // ---------- Parse and Check input
     if input.len() != 1 {
         Err("input must have a single line")?;
     }
@@ -48,12 +48,12 @@ mod tests {
     #[test]
     #[ignore]
     fn invalid_single_line() {
-        test_invalid(&[&"a", &"b"], solve);
+        test_invalid_msg(&[&"a", &"b"], solve, "input must have a single line");
     }
 
     #[test]
     #[ignore]
     fn invalid() {
-        test_invalid(&[&"a"], solve);
+        test_invalid_msg(&[&"a"], solve, "...");
     }
 }

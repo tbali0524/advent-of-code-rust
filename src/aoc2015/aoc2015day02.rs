@@ -70,11 +70,19 @@ mod tests {
 
     #[test]
     fn invalid_only_2d_array_of_ints() {
-        test_invalid(&[&"1x2x3", &"4xax6"], solve);
+        test_invalid_msg(
+            &[&"1x2x3", &"4xax6"],
+            solve,
+            "input must contain only integers",
+        );
     }
 
     #[test]
     fn invalid_only_triplets_of_ints() {
-        test_invalid(&[&"1x2x3x4"], solve);
+        test_invalid_msg(
+            &[&"1x2x3x4"],
+            solve,
+            "input must contain 3 integers per line",
+        );
     }
 }

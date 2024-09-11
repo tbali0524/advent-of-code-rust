@@ -36,8 +36,8 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         .iter()
         .map(|&x| x.chars().collect::<Vec<_>>())
         .collect::<Vec<_>>();
-    if grid.iter().filter(|&x| x.len() == max_x as usize).count() != max_y as usize {
-        Err("all lines must have same lengths")?;
+    if grid.iter().any(|line| line.len() != max_x as usize) {
+        Err("grid must be rectangular")?;
     }
     let mut start_x = 0;
     let mut start_y = 0;
@@ -299,7 +299,7 @@ mod tests {
 
     #[test]
     fn invalid_grid_not_rectangular() {
-        test_invalid_msg(&[&"S-", &"---"], solve, "all lines must have same lengths");
+        test_invalid_msg(&[&"S-", &"---"], solve, "grid must be rectangular");
     }
 
     #[test]

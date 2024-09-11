@@ -58,6 +58,6 @@ mod tests {
 
     #[test]
     fn invalid_only_contains_int() {
-        test_invalid(&[&"a"], solve);
+        test_invalid_msg(&[&"a"], solve, "input must contain only integers");
     }
 }

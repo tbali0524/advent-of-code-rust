@@ -24,7 +24,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             if x.len() < 2 {
                 Err("instruction must be at least 2 digits")?
             } else if !['R', 'L'].contains(&x.chars().next().unwrap()) {
-                Err("instruction must start with R or L")?
+                Err("instruction must start with `R` or `L`")?
             } else {
                 let moves_result = x[1..].parse::<i32>();
                 if let Ok(moves) = moves_result {
@@ -88,6 +88,29 @@ mod tests {
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(&[&"R8", &"R4"], solve);
+        test_invalid_msg(&[&"R8, R4", &"R4"], solve, "input must have a single line");
+    }
+
+    #[test]
+    fn invalid_instructions_must_be_at_least_two_letters() {
+        test_invalid_msg(&[&"R, R4"], solve, "instruction must be at least 2 digits");
+    }
+
+    #[test]
+    fn invalid_instructions_must_start_with_r_or_l() {
+        test_invalid_msg(
+            &[&"R8, a4"],
+            solve,
+            "instruction must start with `R` or `L`",
+        );
+    }
+
+    #[test]
+    fn invalid_instructions_must_end_with_integer() {
+        test_invalid_msg(
+            &[&"R8, La"],
+            solve,
+            "instruction must contain number of moves as integer",
+        );
     }
 }

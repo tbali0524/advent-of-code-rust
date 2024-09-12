@@ -12,8 +12,8 @@
 |[2020](#2020)|![-](https://img.shields.io/badge/stars%20⭐-2-red)|
 |[2021](#2021)|![-](https://img.shields.io/badge/stars%20⭐-2-red)|
 |[2022](#2022)|![-](https://img.shields.io/badge/stars%20⭐-2-red)|
-|[2023](#2023)|![-](https://img.shields.io/badge/stars%20⭐-32-yellow)|
-|__Total__|![total](https://img.shields.io/badge/stars%20⭐-144-yellow)|
+|[2023](#2023)|![-](https://img.shields.io/badge/stars%20⭐-36-yellow)|
+|__Total__|![total](https://img.shields.io/badge/stars%20⭐-148-yellow)|
 
 ## Puzzles
 
@@ -293,7 +293,7 @@ No external hint was used in this season.
 |  +  |2023| 14|Parabolic Reflector Dish                  |cycle detection
 |  +  |2023| 15|Lens Library                              |
 |  +  |2023| 16|The Floor Will Be Lava                    |BFS
-|  -  |2023| 17|Clumsy Crucible                           |Dijkstra, priority queue
+|  +  |2023| 17|Clumsy Crucible                           |Dijkstra, priority queue
 |  -  |2023| 18|Lavaduct Lagoon                           |BFS
 |  -  |2023| 19|Aplenty                                   |
 |  -  |2023| 20|Pulse Propagation                         |simulation, cycle detection, priority queue
@@ -301,6 +301,6 @@ No external hint was used in this season.
 |  -  |2023| 22|Sand Slabs                                |simulation
 |  -  |2023| 23|A Long Walk                               |DFS, BFS, maze compression
 |  -  |2023| 24|Never Tell Me The Odds                    |line intersection
-|  -  |2023| 25|Snowverload                               |graph components
+|  +  |2023| 25|Snowverload                               |graph components
 
 Hint from `subreddit` was used for Day 12 part 2, Day 24 part 2 and Day 25.

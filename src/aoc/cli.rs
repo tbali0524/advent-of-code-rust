@@ -1,6 +1,6 @@
 //! The CLI runner.
 
-use super::ansi::{ANSI_RED_INV, ANSI_RESET};
+use super::ansi::{ANSI_RED_INV, ANSI_RESET, ANSI_YELLOW};
 use super::runner::run_puzzles;
 use super::{MAX_DAYS, MAX_SEASONS, START_SEASON};
 use std::env;
@@ -41,9 +41,11 @@ pub fn run() -> ExitCode {
 
 fn print_help() {
     println!(
-        "You can run the solutions for a specific puzzle, for a full seasonm or for all seasons."
+        "\
+        You can run the solution(s) for a specific puzzle, for a full season, or for all seasons.\n\
+        Usage:  ./aoc {ANSI_YELLOW}[year] [day]{ANSI_RESET}
+        "
     );
-    println!("Usage:  aoc.bat [year] [day]\n");
 }
 
 /// Tries to parse CLI arguments to year and day, no output.

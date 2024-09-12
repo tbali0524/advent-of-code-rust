@@ -190,7 +190,10 @@ pub fn run_case(puzzle: &PuzzleMetaData, solve: Solver, case: usize) -> (bool, S
                 );
             };
         } else if case == 0 {
-            post_msg = format!(" {ANSI_YELLOW}[missing expected solution]{ANSI_RESET}");
+            if !ans_case.is_empty() {
+                ans_msg = ans_case.to_string() + " ";
+            }
+            post_msg = format!("{ANSI_YELLOW}[missing expected solution]{ANSI_RESET}");
         } else {
             ans_msg = format!("{ANSI_YELLOW}n/a{ANSI_RESET}");
         }

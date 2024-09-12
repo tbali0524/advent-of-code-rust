@@ -68,6 +68,9 @@ fn sim_beam(grid: &[Vec<char>], start_x: i32, start_y: i32, start_dir: i32) -> u
         energized.insert((x, y));
         for idx in 0..=1 {
             let next_dir = next_direction(dir, c, idx);
+            if next_dir < 0 {
+                continue;
+            }
             let (dx, dy) = match next_dir {
                 0 => (1, 0),  // east
                 1 => (0, 1),  // south

@@ -489,11 +489,17 @@ Advent of Code - solutions in Rust, (c) 2024 by TBali
 [ OK ] Puzzle     part #1 : 684
 [ OK ] Puzzle     part #2 : 822
 
+=== AoC 2023 Day 18 ===== [time:   101 ms] : Lavaduct Lagoon
+[ OK ] Example #1 part #1 : 62
+[ OK ] Example #1 part #2 : 952408144115
+[ OK ] Puzzle     part #1 : 40131
+[ OK ] Puzzle     part #2 : 104454050898331
+
 === AoC 2023 Day 25 ===== [time:     3 ms] : Snowverload
 [ OK ] Example #1 part #1 : 54
 [ OK ] Puzzle     part #1 : 619225
 
-=================== [Total time:  1502 ms] : [9 seasons, 74 puzzles, 95 examples]
+=================== [Total time:  1515 ms] : [9 seasons, 75 puzzles, 96 examples]
 
 [ OK ] All tests passed.
 ```

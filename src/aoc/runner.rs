@@ -327,7 +327,14 @@ pub mod tests {
         let result = solve(&input);
         assert!(result.is_err());
         if !msg.is_empty() {
-            assert!(result.unwrap_err().0.contains(msg));
+            let e = result.unwrap_err().0;
+            if !e.contains(msg) {
+                eprintln!(
+                    "*** Error message does not match the expected: {} != {}",
+                    e, msg
+                );
+            }
+            assert!(e.contains(msg));
         }
     }
 }

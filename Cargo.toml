@@ -26,5 +26,5 @@ indicatif = {version = "*", features = ["rayon"]} # used by run_puzzles()
 md5 = "0.7"             # used by aoc2015day04.rs
 priority-queue = "2.1"  # used by aoc2023day17.rs
 rayon = "1.10"          # used by run_puzzles()
-regex = "1.10"          # used by aoc2017day20.rs
+regex = "1.10"          # used by aoc2017day20.rs,aoc2023day19.rs
 serde_json = "1"        # used by aoc2015day12.rs

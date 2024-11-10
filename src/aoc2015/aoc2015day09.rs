@@ -59,7 +59,7 @@ impl CityGraph {
         Ok(g)
     }
 
-    /// based on https://en.wikipedia.org/wiki/Heap%27s_algorithm
+    /// based on <https://en.wikipedia.org/wiki/Heap%27s_algorithm>
     fn get_min_max_dist(&self) -> (ItemType, ItemType) {
         let mut a = (0..self.v).collect::<Vec<_>>();
         let mut c = vec![0; self.v];

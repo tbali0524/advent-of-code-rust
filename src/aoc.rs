@@ -6,7 +6,7 @@ pub mod error;
 pub mod runner;
 
 pub const START_SEASON: usize = 2015;
-pub const MAX_SEASONS: usize = 10; // empty 2024 season also included as a template
+pub const MAX_SEASONS: usize = 11; // empty YYYY season also included as a template
 pub const MAX_DAYS: usize = 25;
 
 pub use error::PuzzleError;
@@ -55,5 +55,6 @@ pub const PUZZLES: [Option<Season>; MAX_SEASONS] = [
     Some(crate::aoc2021::PUZZLES),
     Some(crate::aoc2022::PUZZLES),
     Some(crate::aoc2023::PUZZLES),
-    None, // Some(crate::aoc2024::PUZZLES),
+    Some(crate::aoc2024::PUZZLES),
+    None, // Some(crate::aocYYYY::PUZZLES),
 ];

@@ -1,6 +1,6 @@
-//! Solutions for a season XXXX (template)
+//! Solutions for season 2024
 
-// pub mod aoc2024day01;
+pub mod aoc2024day01;
 // pub mod aoc2024day02;
 // pub mod aoc2024day03;
 // pub mod aoc2024day04;

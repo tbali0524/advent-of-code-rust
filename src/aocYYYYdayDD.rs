@@ -1,4 +1,6 @@
-//! [aoc](https://adventofcode.com/2024/day/0)
+//! Empty solution template
+//!
+//! [aoc](https://adventofcode.com/YYYY/day/DD)
 
 use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
 

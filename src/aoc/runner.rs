@@ -143,7 +143,7 @@ pub fn run_puzzle(puzzle: &PuzzleMetaData, solve: Solver) -> (bool, String) {
 // ------------------------------------------------------------
 /// Runs a single puzzle with a single input test case.
 ///
-/// Returns tuple of a bool with true if test case passed, and a single line message.
+/// Returns tuple of a bool with true if test case passed, and a multiple-line message.
 pub fn run_case(puzzle: &PuzzleMetaData, solve: Solver, case: usize) -> (bool, String) {
     let mut all_message = String::new();
     let input_result = read_input(puzzle, case);

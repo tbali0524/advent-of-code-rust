@@ -1,4 +1,4 @@
-//! Solutions for a season YYYY (template)
+//! Solutions for season YYYY (template)
 
 // pub mod aocYYYYday01;
 // pub mod aocYYYYday02;

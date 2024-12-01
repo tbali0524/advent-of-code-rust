@@ -1,16 +1,17 @@
 # Advent of Code solutions in Rust by TBali
 
-![rust v1.82](https://shields.io/badge/rust-1.82-blue?logo=rust)
+![rust v1.83](https://shields.io/badge/rust-1.82-blue?logo=rust)
 ![build](https://img.shields.io/github/actions/workflow/status/tbali0524/advent-of-code-rust/qa.yml)
-![AoC stars](https://img.shields.io/badge/total%20AoC%20⭐-162-yellow)
+![AoC stars](https://img.shields.io/badge/total%20AoC%20⭐-170-yellow)
 ![license](https://img.shields.io/github/license/tbali0524/advent-of-code-rust)
 
 * [AoC website](https://adventofcode.com/)
 * My AoC username: `tbali0524`
 * [Puzzle list](puzzles.md) with topics and my completion status (in Rust)
-* Link to this repo on [GitHub](https://github.com/tbali0524/advent-of-code-rust)
+* [This repo on GitHub](https://github.com/tbali0524/advent-of-code-rust)
+* [My AoC solutions in PHP](https://github.com/tbali0524/advent-of-code-solutions) (complete first 9 seasons, 450⭐)
 
-This repo contains the _partial_ (~3 seasons) rewrite of my complete (__450__ ⭐) [AoC solutions in PHP](https://github.com/tbali0524/advent-of-code-solutions) to `Rust`, plus a simple CLI runner.
+The first 9 seasons I originally solved in PHP. This repo contains a partial (~3 seasons) rewrite of these solutions in Rust, plus a simple CLI runner. However, from season 2024 I plan to solve the puzzles first in Ru7st.
 
 ## Usage
 
@@ -22,41 +23,44 @@ rustup update stable
 cargo version
 cargo tree
 # -- lint
-cargo verify-project
+cargo audit
+cargo check
 cargo fmt
 cargo clippy
 # -- doc
 cargo doc --no-deps --document-private-items --open
 # -- test
 cargo test
-cargo test 2023
-cargo test 2023day02
+cargo test 2024
+cargo test 2024day01
 cargo test cli
 # in Powershell:
-$env:RUST_BACKTRACE=1 ; cargo test
+$Env:RUST_BACKTRACE=1; cargo test
 cargo run
-cargo run -- 2023
-cargo run -- 2023 2
+cargo run -- 2024
+cargo run -- 2024 1
 # -- run
 cargo build --release
 target/release/aoc.exe
-target/release/aoc.exe 2023
-target/release/aoc.exe 2023 2
-# -- shortcut run
+target/release/aoc.exe 2024
+target/release/aoc.exe 2024 1
+cargo run --release
+# -- shortcut run (Windows)
 ./aoc.bat
-./aoc.bat 2023
-./aoc.bat 2023 2
+./aoc.bat 2024
+./aoc.bat 2024 1
 ./aoc.bat --help
-# -- shortcut qa
-./qa.bat
+# -- shortcut qa+run (Windows)
+./qa.ps1
 # -- cleanup
 cargo clean
 ```
 
 ## Adding a new solution
 
-* add puzzle input in `input/year/AocYYYYDayDD.txt` and example inputs in `...exX.txt`
-* add and edit source in `src/year/aocYYYYdayDD.rs`, using the template in `src/aocYYYYdayDD.rs`
+* for puzzle year `YYYY`, day `DD`:
+* add puzzle input in `input/YYYY/AocYYYYDayDD.txt` and example inputs in `...exX.txt`
+* add and edit source in `src/aocYYYY/aocYYYYdayDD.rs`, using the template in `src/aocYYYYdayDD.rs`
     * update `pub fn metadata()`, write `solve()`, add unit tests as needed
 * edit `src/aocYYYY.rs`:
     * uncomment the `pub mod aocYYYYdayDD;` line

@@ -8,10 +8,11 @@
 * [AoC website](https://adventofcode.com/)
 * My AoC username: `tbali0524`
 * [Puzzle list](puzzles.md) with topics and my completion status (in Rust)
+* [Results and running times](results.md)
 * [This repo on GitHub](https://github.com/tbali0524/advent-of-code-rust)
 * [My AoC solutions in PHP](https://github.com/tbali0524/advent-of-code-solutions) (complete first 9 seasons, 450⭐)
 
-The first 9 seasons I originally solved in PHP. This repo contains a partial (~3 seasons) rewrite of these solutions in Rust, plus a simple CLI runner. However, from season 2024 I plan to solve the puzzles first in Ru7st.
+The first 9 seasons I originally solved in PHP. This repo contains a partial (~3 seasons) rewrite of these solutions in Rust, plus a simple CLI runner. However, from season 2024 I plan to solve the puzzles first in Rust.
 
 ## Usage
 

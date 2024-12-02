@@ -1,7 +1,7 @@
 //! Solutions for season 2024
 
 pub mod aoc2024day01;
-// pub mod aoc2024day02;
+pub mod aoc2024day02;
 // pub mod aoc2024day03;
 // pub mod aoc2024day04;
 // pub mod aoc2024day05;
@@ -29,7 +29,7 @@ pub mod aoc2024day01;
 /// array of implemented solutions for the season
 pub const PUZZLES: crate::aoc::Season = [
     Some((aoc2024day01::metadata, aoc2024day01::solve)),
-    None, // Some((aoc2024day02::metadata, aoc2024day02::solve)),
+    Some((aoc2024day02::metadata, aoc2024day02::solve)),
     None, // Some((aoc2024day03::metadata, aoc2024day03::solve)),
     None, // Some((aoc2024day04::metadata, aoc2024day04::solve)),
     None, // Some((aoc2024day05::metadata, aoc2024day05::solve)),

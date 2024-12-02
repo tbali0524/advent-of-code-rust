@@ -1,6 +1,7 @@
 //! [aoc](https://adventofcode.com/2024/day/1)
 
 use crate::aoc::{PuzzleInput, PuzzleMetaData, PuzzleResult};
+use std::iter::zip;
 
 pub fn metadata() -> PuzzleMetaData<'static> {
     PuzzleMetaData {
@@ -37,12 +38,11 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         right.push(right_item);
     }
     // ---------- Part 1
-    let mut ans1 = 0;
     left.sort();
     right.sort();
-    for i in 0..left.len() {
-        ans1 += (left[i] - right[i]).abs();
-    }
+    let ans1 = zip(left.iter(), right.iter())
+        .map(|(a, b)| (a - b).abs())
+        .sum::<ItemType>();
     // ---------- Part 2
     let mut ans2 = 0;
     let mut start = 0;

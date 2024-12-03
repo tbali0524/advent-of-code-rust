@@ -13,8 +13,8 @@
 |[2021](#2021)|![-](https://img.shields.io/badge/stars%20⭐-2-red)          |
 |[2022](#2022)|![-](https://img.shields.io/badge/stars%20⭐-2-red)          |
 |[2023](#2023)|![-](https://img.shields.io/badge/stars%20⭐-50-green)       |
-|[2024](#2024)|![-](https://img.shields.io/badge/stars%20⭐-4-yellow)       |
-|__Total__    |![total](https://img.shields.io/badge/stars%20⭐-172-yellow) |
+|[2024](#2024)|![-](https://img.shields.io/badge/stars%20⭐-6-yellow)       |
+|__Total__    |![total](https://img.shields.io/badge/stars%20⭐-174-yellow) |
 
 ## Puzzles
 
@@ -312,7 +312,7 @@ Hint from `subreddit` was used for Day 12 part 2, Day 24 part 2 and Day 25.
 |:---:|----|--:|:-----------------------------------------|:--------------------------------------------------------|
 |  +  |2024|  1|Historian Hysteria                        |                                                         |
 |  +  |2024|  2|Red-Nosed Reports                         |                                                         |
-|  -  |2024|  3|                                          |                                                         |
+|  +  |2024|  3|Mull It Over                              |parsing                                                  |
 |  -  |2024|  4|                                          |                                                         |
 |  -  |2024|  5|                                          |                                                         |
 |  -  |2024|  6|                                          |                                                         |

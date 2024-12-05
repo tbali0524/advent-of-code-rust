@@ -582,7 +582,13 @@ Advent of Code - solutions in Rust, (c) 2024 by TBali
 [ OK ] Puzzle     part #1 : 2458
 [ OK ] Puzzle     part #2 : 1945
 
-=================== [Total time: 11939 ms] : [10 seasons, 88 puzzles, 111 examples]
+=== AoC 2024 Day  5 ===== [time:     4 ms] : Print Queue
+[ OK ] Example #1 part #1 : 143
+[ OK ] Example #1 part #2 : 123
+[ OK ] Puzzle     part #1 : 5639
+[ OK ] Puzzle     part #2 : 5273
+
+=================== [Total time: 11145 ms] : [10 seasons, 89 puzzles, 112 examples]
 
 [ OK ] All tests passed.
 ```

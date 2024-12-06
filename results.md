@@ -588,7 +588,13 @@ Advent of Code - solutions in Rust, (c) 2024 by TBali
 [ OK ] Puzzle     part #1 : 5639
 [ OK ] Puzzle     part #2 : 5273
 
-=================== [Total time: 11145 ms] : [10 seasons, 89 puzzles, 112 examples]
+=== AoC 2024 Day  6 ===== [time:  2552 ms] : Guard Gallivant
+[ OK ] Example #1 part #1 : 41
+[ OK ] Example #1 part #2 : 6
+[ OK ] Puzzle     part #1 : 4515
+[ OK ] Puzzle     part #2 : 1309
+
+=================== [Total time: 10272 ms] : [10 seasons, 90 puzzles, 113 examples]
 
 [ OK ] All tests passed.
 ```

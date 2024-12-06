@@ -5,7 +5,7 @@
 |Year         |Status                                                       |
 |-------------|:------------------------------------------------------------|
 |[2015](#2015)|![-](https://img.shields.io/badge/stars%20⭐-50-green)       |
-|[2016](#2016)|![-](https://img.shields.io/badge/stars%20⭐-10-yellow)       |
+|[2016](#2016)|![-](https://img.shields.io/badge/stars%20⭐-8-yellow)       |
 |[2017](#2017)|![-](https://img.shields.io/badge/stars%20⭐-50-green)       |
 |[2018](#2018)|![-](https://img.shields.io/badge/stars%20⭐-2-red)          |
 |[2019](#2019)|![-](https://img.shields.io/badge/stars%20⭐-2-red)          |
@@ -13,8 +13,8 @@
 |[2021](#2021)|![-](https://img.shields.io/badge/stars%20⭐-2-red)          |
 |[2022](#2022)|![-](https://img.shields.io/badge/stars%20⭐-2-red)          |
 |[2023](#2023)|![-](https://img.shields.io/badge/stars%20⭐-50-green)       |
-|[2024](#2024)|![-](https://img.shields.io/badge/stars%20⭐-8-yellow)       |
-|__Total__    |![total](https://img.shields.io/badge/stars%20⭐-178-yellow) |
+|[2024](#2024)|![-](https://img.shields.io/badge/stars%20⭐-12-yellow)       |
+|__Total__    |![total](https://img.shields.io/badge/stars%20⭐-180-yellow) |
 
 ## Puzzles
 
@@ -315,7 +315,7 @@ Hint from `subreddit` was used for Day 12 part 2, Day 24 part 2 and Day 25.
 |  +  |2024|  3|Mull It Over                              |parsing                                                  |
 |  +  |2024|  4|Ceres Search                              |                                                         |
 |  +  |2024|  5|Print Queue                               |                                                         |
-|  -  |2024|  6|                                          |                                                         |
+|  +  |2024|  6|Guard Gallivant                           |                                                         |
 |  -  |2024|  7|                                          |                                                         |
 |  -  |2024|  8|                                          |                                                         |
 |  -  |2024|  9|                                          |                                                         |

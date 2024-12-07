@@ -22,7 +22,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     let max_y = input.len() as i32;
     let max_x = input[0].len() as i32;
-    let grid = input
+    let mut grid = input
         .iter()
         .map(|&x| x.chars().collect::<Vec<_>>())
         .collect::<Vec<_>>();
@@ -59,11 +59,11 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         if block_x == start_x && block_y == start_y {
             continue;
         }
-        let mut block_grid = grid.clone();
-        block_grid[block_y as usize][block_x as usize] = WALL;
-        if sim_guard(start_x, start_y, &block_grid).is_none() {
+        grid[block_y as usize][block_x as usize] = WALL;
+        if sim_guard(start_x, start_y, &grid).is_none() {
             ans2 += 1;
         }
+        grid[block_y as usize][block_x as usize] = EMPTY;
     }
     Ok((ans1.to_string(), ans2.to_string()))
 }

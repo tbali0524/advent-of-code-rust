@@ -594,7 +594,13 @@ Advent of Code - solutions in Rust, (c) 2024 by TBali
 [ OK ] Puzzle     part #1 : 4515
 [ OK ] Puzzle     part #2 : 1309
 
-=================== [Total time: 10272 ms] : [10 seasons, 90 puzzles, 113 examples]
+=== AoC 2024 Day  7 ===== [time:  5357 ms] : Bridge Repair
+[ OK ] Example #1 part #1 : 3749
+[ OK ] Example #1 part #2 : 11387
+[ OK ] Puzzle     part #1 : 3351424677624
+[ OK ] Puzzle     part #2 : 204976636995111
+
+=================== [Total time:  9313 ms] : [10 seasons, 91 puzzles, 114 examples]
 
 [ OK ] All tests passed.
 ```

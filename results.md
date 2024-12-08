@@ -1,6 +1,6 @@
 # Results for all seasons
 
-Output of local run using Rust `1.83` with `cargo run --release` on `2024.12.04`.
+Output of local run using Rust `1.83` with `cargo run --release` on `2024.12.08`.
 
 ```txt
 Advent of Code - solutions in Rust, (c) 2024 by TBali
@@ -600,7 +600,15 @@ Advent of Code - solutions in Rust, (c) 2024 by TBali
 [ OK ] Puzzle     part #1 : 3351424677624
 [ OK ] Puzzle     part #2 : 204976636995111
 
-=================== [Total time:  9313 ms] : [10 seasons, 91 puzzles, 114 examples]
+=== AoC 2024 Day  8 ===== [time:     1 ms] : Resonant Collinearity
+[ OK ] Example #1 part #1 : 14
+[ OK ] Example #1 part #2 : 34
+[ OK ] Example #2 part #1 : 3
+[ OK ] Example #2 part #2 : 9
+[ OK ] Puzzle     part #1 : 320
+[ OK ] Puzzle     part #2 : 1157
+
+=================== [Total time:  9347 ms] : [10 seasons, 92 puzzles, 116 examples]
 
 [ OK ] All tests passed.
 ```

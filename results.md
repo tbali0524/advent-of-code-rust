@@ -608,7 +608,13 @@ Advent of Code - solutions in Rust, (c) 2024 by TBali
 [ OK ] Puzzle     part #1 : 320
 [ OK ] Puzzle     part #2 : 1157
 
-=================== [Total time:  9347 ms] : [10 seasons, 92 puzzles, 116 examples]
+=== AoC 2024 Day  9 ===== [time:    58 ms] : Disk Fragmenter
+[ OK ] Example #1 part #1 : 1928
+[ OK ] Example #1 part #2 : 2858
+[ OK ] Puzzle     part #1 : 6332189866718
+[ OK ] Puzzle     part #2 : 6353648390778
+
+=================== [Total time: 12774 ms] : [10 seasons, 93 puzzles, 117 examples]
 
 [ OK ] All tests passed.
 ```

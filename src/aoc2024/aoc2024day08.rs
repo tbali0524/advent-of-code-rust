@@ -72,8 +72,6 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
                 if pos1 == pos2 {
                     continue;
                 }
-                antinodes_part2.insert(pos1);
-                antinodes_part2.insert(pos2);
                 let (x1, y1) = pos1;
                 let (x2, y2) = pos2;
                 let mut x = x2;

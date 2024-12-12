@@ -81,6 +81,11 @@ mod tests {
     }
 
     #[test]
+    fn example2() {
+        test_case(metadata, solve, 2);
+    }
+
+    #[test]
     fn puzzle() {
         test_case(metadata, solve, 0);
     }

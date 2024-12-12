@@ -1,6 +1,6 @@
 # Results for all seasons
 
-Output of local run using Rust `1.83` with `cargo run --release` on `2024.12.08`.
+Output of local run using Rust `1.83` with `cargo run --release` on `2024.12.12`.
 
 ```txt
 Advent of Code - solutions in Rust, (c) 2024 by TBali
@@ -636,15 +636,21 @@ Advent of Code - solutions in Rust, (c) 2024 by TBali
 [ OK ] Puzzle     part #1 : 674
 [ OK ] Puzzle     part #2 : 1372
 
-=== AoC 2024 Day 11 ===== [time:    51 ms] : Plutonian Pebbles
-[ OK ] Example #1 part #1 : 7
-       Example #1 part #2 : n/a
-[ OK ] Example #2 part #1 : 55312
-       Example #2 part #2 : n/a
-[ OK ] Puzzle     part #1 : 197157
-[ OK ] Puzzle     part #2 : 234430066982597
+=== AoC 2024 Day 12 ===== [time:     4 ms] : Garden Groups
+[ OK ] Example #1 part #1 : 140
+[ OK ] Example #1 part #2 : 80
+[ OK ] Example #2 part #1 : 772
+[ OK ] Example #2 part #2 : 436
+[ OK ] Example #3 part #1 : 1930
+[ OK ] Example #3 part #2 : 1206
+       Example #4 part #1 : n/a
+[ OK ] Example #4 part #2 : 236
+       Example #5 part #1 : n/a
+[ OK ] Example #5 part #2 : 368
+[ OK ] Puzzle     part #1 : 1344578
+[ OK ] Puzzle     part #2 : 814302
 
-=================== [Total time: 11354 ms] : [10 seasons, 95 puzzles, 128 examples]
+=================== [Total time:  9295 ms] : [10 seasons, 96 puzzles, 133 examples]
 
 [ OK ] All tests passed.
 ```

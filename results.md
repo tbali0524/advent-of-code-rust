@@ -1,6 +1,6 @@
 # Results for all seasons
 
-Output of local run using Rust `1.83` with `cargo run --release` on `2024.12.12`.
+Output of local run using Rust `1.83` with `cargo run --release` on `2024.12.13`.
 
 ```txt
 Advent of Code - solutions in Rust, (c) 2024 by TBali
@@ -650,7 +650,13 @@ Advent of Code - solutions in Rust, (c) 2024 by TBali
 [ OK ] Puzzle     part #1 : 1344578
 [ OK ] Puzzle     part #2 : 814302
 
-=================== [Total time:  9295 ms] : [10 seasons, 96 puzzles, 133 examples]
+=== AoC 2024 Day 13 ===== [time:     0 ms] : Claw Contraption
+[ OK ] Example #1 part #1 : 480
+       Example #1 part #2 : n/a
+[ OK ] Puzzle     part #1 : 26599
+[ OK ] Puzzle     part #2 : 106228669504887
+
+=================== [Total time:  9853 ms] : [10 seasons, 97 puzzles, 134 examples]
 
 [ OK ] All tests passed.
 ```

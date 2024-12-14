@@ -1,6 +1,6 @@
 # Results for all seasons
 
-Output of local run using Rust `1.83` with `cargo run --release` on `2024.12.13`.
+Output of local run using Rust `1.83` with `cargo run --release` on `2024.12.14`.
 
 ```txt
 Advent of Code - solutions in Rust, (c) 2024 by TBali
@@ -656,7 +656,13 @@ Advent of Code - solutions in Rust, (c) 2024 by TBali
 [ OK ] Puzzle     part #1 : 26599
 [ OK ] Puzzle     part #2 : 106228669504887
 
-=================== [Total time:  9853 ms] : [10 seasons, 97 puzzles, 134 examples]
+=== AoC 2024 Day 14 ===== [time:   408 ms] : Restroom Redoubt
+[ OK ] Example #1 part #1 : 12
+       Example #1 part #2 : n/a
+[ OK ] Puzzle     part #1 : 229069152
+[ OK ] Puzzle     part #2 : 7383
+
+=================== [Total time: 10065 ms] : [10 seasons, 98 puzzles, 135 examples]
 
 [ OK ] All tests passed.
 ```

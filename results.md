@@ -1,6 +1,6 @@
 # Results for all seasons
 
-Output of local run using Rust `1.83` with `cargo run --release` on `2024.12.14`.
+Output of local run using Rust `1.83` with `cargo run --release` on `2024.12.15`.
 
 ```txt
 Advent of Code - solutions in Rust, (c) 2024 by TBali
@@ -662,7 +662,17 @@ Advent of Code - solutions in Rust, (c) 2024 by TBali
 [ OK ] Puzzle     part #1 : 229069152
 [ OK ] Puzzle     part #2 : 7383
 
-=================== [Total time: 10065 ms] : [10 seasons, 98 puzzles, 135 examples]
+=== AoC 2024 Day 15 ===== [time:     2 ms] : Warehouse Woes
+[ OK ] Example #1 part #1 : 2028
+       Example #1 part #2 : n/a
+[ OK ] Example #2 part #1 : 10092
+[ OK ] Example #2 part #2 : 9021
+       Example #3 part #1 : n/a
+[ OK ] Example #3 part #2 : 618
+[ OK ] Puzzle     part #1 : 1383666
+[ OK ] Puzzle     part #2 : 1412866
+
+=================== [Total time:  9359 ms] : [10 seasons, 99 puzzles, 138 examples]
 
 [ OK ] All tests passed.
 ```

@@ -85,15 +85,14 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     let ans2 = if input.len() == 12 {
         0
     } else {
-        draw_sim(&positions, &velocities)
+        find_xmas_tree(&positions, &velocities)
     };
     Ok((ans1.to_string(), ans2.to_string()))
 }
 
-fn draw_sim(positions: &[Vec<i32>], velocities: &[Vec<i32>]) -> ItemType {
-    let mut ans = 0;
+fn find_xmas_tree(positions: &[Vec<i32>], velocities: &[Vec<i32>]) -> ItemType {
     let pattern = ['*'; 20];
-    'outer: for turn in 1..=MAX_TURNS_PART2 {
+    for turn in 1..=MAX_TURNS_PART2 {
         let mut grid = [['.'; MAX_XY[0] as usize]; MAX_XY[1] as usize];
         for idx_robot in 0..positions.len() {
             let mut pos = [0, 0];
@@ -106,22 +105,18 @@ fn draw_sim(positions: &[Vec<i32>], velocities: &[Vec<i32>]) -> ItemType {
             grid[pos[1] as usize][pos[0] as usize] = '*';
         }
         for row in &grid {
-            if row
-                .windows(pattern.len())
-                .any(|window| window == pattern)
-            {
-                ans = turn;
+            if row.windows(pattern.len()).any(|window| window == pattern) {
                 if DRAW_RESULT {
                     println!("Turn # {}", turn);
                     for print_row in &grid {
                         println!("{}", print_row.iter().collect::<String>());
                     }
                 }
-                break 'outer;
+                return turn;
             }
         }
     }
-    ans
+    0
 }
 
 // ------------------------------------------------------------

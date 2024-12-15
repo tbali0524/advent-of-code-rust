@@ -13,8 +13,8 @@
 |[2021](#2021)|![-](https://img.shields.io/badge/stars%20⭐-2-red)          |
 |[2022](#2022)|![-](https://img.shields.io/badge/stars%20⭐-2-red)          |
 |[2023](#2023)|![-](https://img.shields.io/badge/stars%20⭐-50-green)       |
-|[2024](#2024)|![-](https://img.shields.io/badge/stars%20⭐-28-yellow)       |
-|__Total__    |![total](https://img.shields.io/badge/stars%20⭐-196-yellow) |
+|[2024](#2024)|![-](https://img.shields.io/badge/stars%20⭐-30-yellow)       |
+|__Total__    |![total](https://img.shields.io/badge/stars%20⭐-198-yellow) |
 
 ## Puzzles
 
@@ -324,7 +324,7 @@ Hint from `subreddit` was used for Day 12 part 2, Day 24 part 2 and Day 25.
 |  +  |2024| 12|Garden Groups                             |                                                         |
 |  +  |2024| 13|Claw Contraption                          |                                                         |
 |  +  |2024| 14|Restroom Redoubt                          |                                                         |
-|  -  |2024| 15|                                          |                                                         |
+|  +  |2024| 15|Warehouse Woes                            |walking simulation, box moving                           |
 |  -  |2024| 16|                                          |                                                         |
 |  -  |2024| 17|                                          |                                                         |
 |  -  |2024| 18|                                          |                                                         |

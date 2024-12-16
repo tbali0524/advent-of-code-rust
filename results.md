@@ -1,6 +1,6 @@
 # Results for all seasons
 
-Output of local run using Rust `1.83` with `cargo run --release` on `2024.12.15`.
+Output of local run using Rust `1.83` with `cargo run --release` on `2024.12.16`.
 
 ```txt
 Advent of Code - solutions in Rust, (c) 2024 by TBali
@@ -672,7 +672,15 @@ Advent of Code - solutions in Rust, (c) 2024 by TBali
 [ OK ] Puzzle     part #1 : 1383666
 [ OK ] Puzzle     part #2 : 1412866
 
-=================== [Total time:  9359 ms] : [10 seasons, 99 puzzles, 138 examples]
+=== AoC 2024 Day 16 ===== [time:  1329 ms] : Reindeer Maze
+[ OK ] Example #1 part #1 : 7036
+[ OK ] Example #1 part #2 : 45
+[ OK ] Example #2 part #1 : 11048
+[ OK ] Example #2 part #2 : 64
+[ OK ] Puzzle     part #1 : 107468
+[ OK ] Puzzle     part #2 : 533
+
+=================== [Total time:  8915 ms] : [10 seasons, 100 puzzles, 140 examples]
 
 [ OK ] All tests passed.
 ```

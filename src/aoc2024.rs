@@ -16,8 +16,8 @@ pub mod aoc2024day13;
 pub mod aoc2024day14;
 pub mod aoc2024day15;
 pub mod aoc2024day16;
-// pub mod aoc2024day17;
-// pub mod aoc2024day18;
+pub mod aoc2024day17;
+pub mod aoc2024day18;
 // pub mod aoc2024day19;
 // pub mod aoc2024day20;
 // pub mod aoc2024day21;
@@ -44,8 +44,8 @@ pub const PUZZLES: crate::aoc::Season = [
     Some((aoc2024day14::metadata, aoc2024day14::solve)),
     Some((aoc2024day15::metadata, aoc2024day15::solve)),
     Some((aoc2024day16::metadata, aoc2024day16::solve)),
-    None, // Some((aoc2024day17::metadata, aoc2024day17::solve)),
-    None, // Some((aoc2024day18::metadata, aoc2024day18::solve)),
+    Some((aoc2024day17::metadata, aoc2024day17::solve)),
+    Some((aoc2024day18::metadata, aoc2024day18::solve)),
     None, // Some((aoc2024day19::metadata, aoc2024day19::solve)),
     None, // Some((aoc2024day20::metadata, aoc2024day20::solve)),
     None, // Some((aoc2024day21::metadata, aoc2024day21::solve)),

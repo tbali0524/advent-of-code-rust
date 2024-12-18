@@ -1,6 +1,6 @@
 # Results for all seasons
 
-Output of local run using Rust `1.83` with `cargo run --release` on `2024.12.16`.
+Output of local run using Rust `1.83` with `cargo run --release` on `2024.12.17`.
 
 ```txt
 Advent of Code - solutions in Rust, (c) 2024 by TBali
@@ -680,7 +680,24 @@ Advent of Code - solutions in Rust, (c) 2024 by TBali
 [ OK ] Puzzle     part #1 : 107468
 [ OK ] Puzzle     part #2 : 533
 
-=================== [Total time:  8915 ms] : [10 seasons, 100 puzzles, 140 examples]
+=== AoC 2024 Day 17 ===== [time:     0 ms] : Chronospatial Computer
+[ OK ] Example #1 part #1 : 4,6,3,5,6,3,5,2,1,0
+       Example #1 part #2 : n/a
+[ OK ] Example #2 part #1 : 4,2,5,6,7,7,7,7,3,1,0
+       Example #2 part #2 : n/a
+       Example #3 part #1 : n/a
+[ OK ] Example #3 part #2 : 117440
+[ OK ] Puzzle     part #1 : 2,7,2,5,1,2,7,3,7
+[ OK ] Puzzle     part #2 : 247839002892474
+
+======= 2024 ===================================================
+=== AoC 2024 Day 18 ===== [time:   731 ms] : RAM Run
+[ OK ] Example #1 part #1 : 22
+[ OK ] Example #1 part #2 : 6,1
+[ OK ] Puzzle     part #1 : 322
+[ OK ] Puzzle     part #2 : 60,21
+
+=================== [Total time: 10287 ms] : [11 seasons, 102 puzzles, 144 examples]
 
 [ OK ] All tests passed.
 ```

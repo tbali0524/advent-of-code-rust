@@ -123,7 +123,6 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             pq.push(next_item, Reverse(next_cost));
         }
     }
-    // ---------- Part 2
     let ans2 = on_best_path.len();
     Ok((ans1.to_string(), ans2.to_string()))
 }

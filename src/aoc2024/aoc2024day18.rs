@@ -52,17 +52,13 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     for &byte in bytes.iter().take(max_bytes) {
         has_byte.insert(byte);
     }
-    let ans1 = if let Some(step) = bfs(&has_byte, max_x, max_y) {
-        step
-    } else {
-        0
-    };
+    let ans1 = bfs(&has_byte, max_x, max_y).unwrap_or_default();
     // ---------- Part 2
     let mut ans2 = "0".to_string();
-    for i in max_bytes..bytes.len() {
-        has_byte.insert(bytes[i]);
+    for &byte in bytes.iter().skip(max_bytes) {
+        has_byte.insert(byte);
         if bfs(&has_byte, max_x, max_y).is_none() {
-            ans2 = format!("{},{}", bytes[i].0, bytes[i].1).to_string();
+            ans2 = format!("{},{}", byte.0, byte.1).to_string();
             break;
         }
     }

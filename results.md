@@ -697,7 +697,13 @@ Advent of Code - solutions in Rust, (c) 2024 by TBali
 [ OK ] Puzzle     part #1 : 322
 [ OK ] Puzzle     part #2 : 60,21
 
-=================== [Total time: 10287 ms] : [11 seasons, 102 puzzles, 144 examples]
+=== AoC 2024 Day 19 ===== [time:     8 ms] : Linen Layout
+[ OK ] Example #1 part #1 : 6
+[ OK ] Example #1 part #2 : 16
+[ OK ] Puzzle     part #1 : 247
+[ OK ] Puzzle     part #2 : 692596560138745
+
+=================== [Total time:  9709 ms] : [10 seasons, 103 puzzles, 145 examples]
 
 [ OK ] All tests passed.
 ```

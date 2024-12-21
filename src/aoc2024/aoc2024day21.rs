@@ -9,15 +9,15 @@ pub fn metadata() -> PuzzleMetaData<'static> {
         year: 2024,
         day: 21,
         title: "Keypad Conundrum",
-        solution: ("163086", "0"),
+        solution: ("163086", "198466286401228"),
         example_solutions: vec![("126384", "0")],
     }
 }
 
 const ILLEGAL: char = '_';
 const ACTION: char = 'A';
-const CHAIN_LEN_PART1: usize = 2;
-const CHAIN_LEN_PART2: usize = 2;
+const CHAIN_LEN_PART1: usize = 3;
+const CHAIN_LEN_PART2: usize = 26;
 
 type ItemType = usize;
 type KeyPad = HashMap<char, (i32, i32)>;
@@ -26,17 +26,17 @@ type PathMap = HashMap<(char, char), PathList>;
 
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
-    let keypads = input
+    let keycodes = input
         .iter()
         .map(|&x| x.chars().collect::<Vec<_>>())
         .collect::<Vec<_>>();
-    if keypads
+    if keycodes
         .iter()
-        .any(|keypad| keypad.len() != 4 || keypad[3] != 'A')
+        .any(|keycode| keycode.len() != 4 || keycode[3] != 'A')
     {
         Err("keycodes must be 3 digits followed by an `A`")?;
     }
-    let numerics = input
+    let integer_codes = input
         .iter()
         .map(|&x| {
             x[..(x.len() - 1)]
@@ -70,61 +70,100 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     let numeric_path_map = get_path_map(&numeric_pad);
     let direction_path_map = get_path_map(&direction_pad);
     let mut ans1 = 0;
-    let mut ans2 = 0;
-    // let mut memo = HashMap::new();
-    for (idx_code, keypad) in keypads.iter().enumerate() {
-        let mut paths = vec![keypad.clone()];
-        paths = expand_paths(&paths, &numeric_path_map);
-        for i in 1..=CHAIN_LEN_PART2 {
-            let shortest_len = paths.iter().map(|x| x.len()).min().unwrap_or_default();
-            paths.retain(|x| x.len() == shortest_len);
-            println!("#{} : {} ({})", idx_code, i, shortest_len);
-            paths = expand_paths(&paths, &direction_path_map);
-            if i == CHAIN_LEN_PART1 {
-                let shortest_len = paths.iter().map(|x| x.len()).min().unwrap_or_default();
-                ans1 += shortest_len * numerics[idx_code];
-                if numerics[0] == 29 {
-                    break; // example
-                }
-            }
-        }
-        let shortest_len = paths.iter().map(|x| x.len()).min().unwrap_or_default();
-        ans2 += shortest_len * numerics[idx_code];
+    let mut memo = HashMap::new();
+    for (idx_code, keycode) in keycodes.iter().enumerate() {
+        let shortest_len = get_shortest_len(
+            CHAIN_LEN_PART1,
+            keycode,
+            &numeric_path_map,
+            &direction_path_map,
+            true,
+            &mut memo,
+        );
+        ans1 += shortest_len * integer_codes[idx_code];
     }
-    if numerics[0] == 29 {
-        ans2 = 0; // example
+    // ---------- Part 2
+    if integer_codes[0] == 29 {
+        return Ok((ans1.to_string(), "0".to_string()));
+    }
+    let mut ans2 = 0;
+    let mut memo = HashMap::new();
+    for (idx_code, keycode) in keycodes.iter().enumerate() {
+        let shortest_len = get_shortest_len(
+            CHAIN_LEN_PART2,
+            keycode,
+            &numeric_path_map,
+            &direction_path_map,
+            true,
+            &mut memo,
+        );
+        ans2 += shortest_len * integer_codes[idx_code];
     }
     Ok((ans1.to_string(), ans2.to_string()))
 }
 
-fn get_len(depth: usize, path: Vec<char>, memo: &mut HashMap<(usize, Vec<char>), ItemType>) -> ItemType {
+fn get_shortest_len(
+    depth: usize,
+    path: &[char],
+    numeric_path_map: &PathMap,
+    direction_path_map: &PathMap,
+    first_level: bool,
+    memo: &mut HashMap<(usize, Vec<char>), ItemType>,
+) -> ItemType {
     if depth == 0 {
         return path.len();
     }
-    let key = (depth, path);
+    let key = (depth, path.to_owned());
     if memo.contains_key(&key) {
         return *memo.get(&key).unwrap();
     }
-    0
+    let path_map = if first_level {
+        numeric_path_map
+    } else {
+        direction_path_map
+    };
+    let mut result = 0;
+    let mut from_char = ACTION;
+    for &to_char in path.iter() {
+        let mut best_len = usize::MAX;
+        for next_moves in path_map.get(&(from_char, to_char)).unwrap().iter() {
+            let current_len = get_shortest_len(
+                depth - 1,
+                next_moves,
+                numeric_path_map,
+                direction_path_map,
+                false,
+                memo,
+            );
+            if current_len < best_len {
+                best_len = current_len;
+            }
+        }
+        result += best_len;
+        from_char = to_char;
+    }
+    memo.insert(key, result);
+    result
 }
 
-fn get_path_map(pad: &KeyPad) -> PathMap {
+fn get_path_map(keypad: &KeyPad) -> PathMap {
     let mut path_map = HashMap::new();
-    let (illegal_x, illegal_y) = pad.get(&ILLEGAL).unwrap();
-    for (&from_char, &(from_x, from_y)) in pad.iter() {
+    let (illegal_x, illegal_y) = keypad.get(&ILLEGAL).unwrap();
+    for (&from_char, &(from_x, from_y)) in keypad.iter() {
         if from_char == ILLEGAL {
             continue;
         }
-        for (&to_char, &(to_x, to_y)) in pad.iter() {
-            if to_char == ILLEGAL || to_char == from_char {
+        for (&to_char, &(to_x, to_y)) in keypad.iter() {
+            if to_char == ILLEGAL {
                 continue;
             }
             let mut paths = Vec::new();
             let mut q = VecDeque::new();
             q.push_back((from_x, from_y, Vec::new()));
             while let Some(item) = q.pop_front() {
-                let (x, y, partial_path) = item;
+                let (x, y, mut partial_path) = item;
                 if x == to_x && y == to_y {
+                    partial_path.push(ACTION);
                     paths.push(partial_path);
                     continue;
                 }
@@ -154,37 +193,6 @@ fn get_path_map(pad: &KeyPad) -> PathMap {
     path_map
 }
 
-fn expand_paths(paths: &PathList, path_map: &PathMap) -> PathList {
-    let mut expanded_paths = Vec::new();
-    for path in paths {
-        let mut q = VecDeque::new();
-        q.push_back((0, ACTION, Vec::new()));
-        while let Some(item) = q.pop_front() {
-            let (idx_digit, from_char, partial_path) = item;
-            if idx_digit == path.len() {
-                expanded_paths.push(partial_path);
-                continue;
-            }
-            let to_char = path[idx_digit];
-            if from_char == to_char {
-                let mut next_partial_path = partial_path.clone();
-                next_partial_path.push(ACTION);
-                q.push_back((idx_digit + 1, to_char, next_partial_path));
-                continue;
-            }
-            for next_moves in path_map.get(&(from_char, to_char)).unwrap().iter() {
-                let mut next_partial_path = partial_path.clone();
-                for &next_move in next_moves.iter() {
-                    next_partial_path.push(next_move);
-                }
-                next_partial_path.push(ACTION);
-                q.push_back((idx_digit + 1, to_char, next_partial_path));
-            }
-        }
-    }
-    expanded_paths
-}
-
 // ------------------------------------------------------------
 #[cfg(test)]
 mod tests {
@@ -196,9 +204,7 @@ mod tests {
         test_case(metadata, solve, 1);
     }
 
-    // too slow, skipped
     #[test]
-    #[ignore]
     fn puzzle() {
         test_case(metadata, solve, 0);
     }

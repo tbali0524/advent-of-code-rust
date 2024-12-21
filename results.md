@@ -1,6 +1,6 @@
 # Results for all seasons
 
-Output of local run using Rust `1.83` with `cargo run --release` on `2024.12.17`.
+Output of local run using Rust `1.83` with `cargo run --release` on `2024.12.21`.
 
 ```txt
 Advent of Code - solutions in Rust, (c) 2024 by TBali
@@ -709,7 +709,13 @@ Advent of Code - solutions in Rust, (c) 2024 by TBali
 [ OK ] Puzzle     part #1 : 1450
 [ OK ] Puzzle     part #2 : 1015247
 
-=================== [Total time:  9516 ms] : [10 seasons, 104 puzzles, 146 examples]
+=== AoC 2024 Day 21 ===== [time:     1 ms] : Keypad Conundrum
+[ OK ] Example #1 part #1 : 126384
+       Example #1 part #2 : n/a
+[ OK ] Puzzle     part #1 : 163086
+[ OK ] Puzzle     part #2 : 198466286401228
+
+=================== [Total time: 10746 ms] : [10 seasons, 105 puzzles, 147 examples]
 
 [ OK ] All tests passed.
 ```

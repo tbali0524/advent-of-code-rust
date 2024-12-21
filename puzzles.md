@@ -13,8 +13,8 @@
 |[2021](#2021)|![-](https://img.shields.io/badge/stars%20⭐-2-red)          |
 |[2022](#2022)|![-](https://img.shields.io/badge/stars%20⭐-2-red)          |
 |[2023](#2023)|![-](https://img.shields.io/badge/stars%20⭐-50-green)       |
-|[2024](#2024)|![-](https://img.shields.io/badge/stars%20⭐-40-yellow)      |
-|__Total__    |![total](https://img.shields.io/badge/stars%20⭐-208-green) |
+|[2024](#2024)|![-](https://img.shields.io/badge/stars%20⭐-42-yellow)      |
+|__Total__    |![total](https://img.shields.io/badge/stars%20⭐-210-green) |
 
 ## Puzzles
 
@@ -330,7 +330,7 @@ Hint from `subreddit` was used for Day 12 part 2, Day 24 part 2 and Day 25.
 |  +  |2024| 18|RAM Run                                   |BFS                                                      |
 |  +  |2024| 19|Linen Layout                              |BinaryHeap                                               |
 |  +  |2024| 20|Race Condition                            |                                                         |
-|  1  |2024| 21|Keypad Conundrum                          |                                                         |
+|  +  |2024| 21|Keypad Conundrum                          |recursion, memoization                                   |
 |  -  |2024| 22|                                          |                                                         |
 |  -  |2024| 23|                                          |                                                         |
 |  -  |2024| 24|                                          |                                                         |

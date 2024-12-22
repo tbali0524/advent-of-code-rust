@@ -1,6 +1,6 @@
 # Results for all seasons
 
-Output of local run using Rust `1.83` with `cargo run --release` on `2024.12.21`.
+Output of local run using Rust `1.83` with `cargo run --release` on `2024.12.22`.
 
 ```txt
 Advent of Code - solutions in Rust, (c) 2024 by TBali
@@ -715,7 +715,15 @@ Advent of Code - solutions in Rust, (c) 2024 by TBali
 [ OK ] Puzzle     part #1 : 163086
 [ OK ] Puzzle     part #2 : 198466286401228
 
-=================== [Total time: 10746 ms] : [10 seasons, 105 puzzles, 147 examples]
+=== AoC 2024 Day 22 ===== [time:   583 ms] : Monkey Market
+[ OK ] Example #1 part #1 : 37327623
+       Example #1 part #2 : n/a
+       Example #2 part #1 : n/a
+[ OK ] Example #2 part #2 : 23
+[ OK ] Puzzle     part #1 : 18261820068
+[ OK ] Puzzle     part #2 : 2044
+
+=================== [Total time: 10291 ms] : [10 seasons, 106 puzzles, 149 examples]
 
 [ OK ] All tests passed.
 ```

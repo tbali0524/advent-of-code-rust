@@ -1,6 +1,6 @@
 # Results for all seasons
 
-Output of local run using Rust `1.83` with `cargo run --release` on `2024.12.22`.
+Output of local run using Rust `1.83` with `cargo run --release` on `2024.12.23`.
 
 ```txt
 Advent of Code - solutions in Rust, (c) 2024 by TBali
@@ -723,7 +723,13 @@ Advent of Code - solutions in Rust, (c) 2024 by TBali
 [ OK ] Puzzle     part #1 : 18261820068
 [ OK ] Puzzle     part #2 : 2044
 
-=================== [Total time: 10291 ms] : [10 seasons, 106 puzzles, 149 examples]
+=== AoC 2024 Day 23 ===== [time:   413 ms] : LAN Party
+[ OK ] Example #1 part #1 : 7
+[ OK ] Example #1 part #2 : co,de,ka,ta
+[ OK ] Puzzle     part #1 : 1200
+[ OK ] Puzzle     part #2 : ag,gh,hh,iv,jx,nq,oc,qm,rb,sm,vm,wu,zr
+
+=================== [Total time:  9849 ms] : [10 seasons, 107 puzzles, 150 examples]
 
 [ OK ] All tests passed.
 ```

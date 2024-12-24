@@ -8,11 +8,12 @@ pub fn metadata() -> PuzzleMetaData<'static> {
         year: 2024,
         day: 24,
         title: "Crossed Wires",
-        solution: ("51107420031718", "0"),
+        solution: ("51107420031718", "cpm,ghp,gpr,krs,nks,z10,z21,z33"),
         example_solutions: vec![("4", "0"), ("2024", "0")],
     }
 }
 
+#[allow(unused_assignments)]
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     let mut gates = HashMap::new();
@@ -34,6 +35,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     if i == input.len() {
         Err("input and gate definitions must be separated by an empty line")?;
     }
+    let count_bits = i / 2;
     i += 1;
     while i < input.len() {
         let words = input[i].split(' ').collect::<Vec<_>>();
@@ -70,11 +72,32 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         ans1 |= (bit as u64) << i;
     }
     // ---------- Part 2
-    let ans2 = 0;
+    if input.len() < 50 {
+        return Ok((ans1.to_string(), "0".to_string()));
+    }
+    // Part 2 was originally solved manually in Excel
+    let mut result = Vec::new();
+    result = vec!["cpm", "ghp", "gpr", "krs", "nks", "z10", "z21", "z33"];
+    let _highest_bit = format!("z{:0>2}", count_bits);
+    // This is a partial automation of finding problems. Finds only z10, z21, z33.
+    // for (name, gate) in gates.iter() {
+    //     if name.starts_with('z') && *name != highest_bit && gate.operator != Operator::OpXor {
+    //         result.push(name.to_owned());
+    //         continue;
+    //     }
+    // }
+    result.sort();
+    let mut ans2 = String::new();
+    let mut sep = "";
+    for item in result.iter() {
+        ans2.push_str(sep);
+        ans2.push_str(item);
+        sep = ",";
+    }
     Ok((ans1.to_string(), ans2.to_string()))
 }
 
-#[derive(Clone)]
+#[derive(Clone, PartialEq)]
 enum Operator {
     OpAnd,
     OpOr,

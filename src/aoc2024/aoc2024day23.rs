@@ -80,6 +80,9 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     Ok((ans1.to_string(), ans2))
 }
 
+/// Find all maximal cliques in a graph.
+///
+/// [see](https://https://en.wikipedia.org/wiki/Bron%E2%80%93Kerbosch_algorithm)
 fn bron_kerbosch_1(
     maximal_cliques: &mut Vec<HashSet<Vertex>>,
     edges: &EdgeSet,

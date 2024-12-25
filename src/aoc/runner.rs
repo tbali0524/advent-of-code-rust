@@ -5,6 +5,7 @@ use super::{PuzzleError, PuzzleExpected, PuzzleMetaData, Solver};
 use super::{MAX_DAYS, PUZZLES, START_SEASON};
 use indicatif::ParallelProgressIterator;
 use rayon::prelude::*;
+use std::cmp::min;
 use std::fs;
 use std::path;
 use std::time;
@@ -185,7 +186,7 @@ pub fn run_case(puzzle: &PuzzleMetaData, solve: Solver, case: usize) -> (bool, S
                 ans_msg = format!("{ANSI_YELLOW}{}{ANSI_RESET}", ans_case);
                 post_msg = format!(
                     "{}[expected: {}]",
-                    " ".repeat(20 - ans_case.to_string().len()),
+                    " ".repeat(20 - min(20, ans_case.to_string().len())),
                     expected_case
                 );
             };
@@ -275,7 +276,7 @@ pub mod tests {
 
     fn invalid_puzzle_metadata() -> PuzzleMetaData<'static> {
         PuzzleMetaData {
-            year: 2024,
+            year: 2015,
             day: 0,
             title: "Test",
             solution: ("0", "0"),

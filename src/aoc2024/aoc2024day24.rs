@@ -75,17 +75,68 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     if input.len() < 50 {
         return Ok((ans1.to_string(), "0".to_string()));
     }
-    // Part 2 was originally solved manually in Excel
-    let mut result = Vec::new();
-    result = vec!["cpm", "ghp", "gpr", "krs", "nks", "z10", "z21", "z33"];
-    let _highest_bit = format!("z{:0>2}", count_bits);
-    // This is a partial automation of finding problems. Finds only z10, z21, z33.
-    // for (name, gate) in gates.iter() {
-    //     if name.starts_with('z') && *name != highest_bit && gate.operator != Operator::OpXor {
-    //         result.push(name.to_owned());
-    //         continue;
-    //     }
-    // }
+    let mut result = Vec::<String>::new();
+    // Part 2 was originally solved manually in Excel:
+    //    result = vec!["cpm", "ghp", "gpr", "krs", "nks", "z10", "z21", "z33"].iter().map(|v| v.to_string()).collect();
+    // What follows is finding the problematic gates, it works for my input, but most likely not for every inputs.
+    let highest_bit = format!("z{:0>2}", count_bits);
+    for (name, gate) in gates.iter() {
+        match gate.operator {
+            Operator::Input => {
+                continue;
+            }
+            Operator::OpAnd => {
+                if name.starts_with('z') {
+                    result.push(name.to_owned());
+                    continue;
+                }
+                if gate.inputs[0] == "x00" || gate.inputs[0] == "y00" {
+                    continue;
+                }
+                if gate.inputs[0].starts_with('x') || gate.inputs[0].starts_with('y') {
+                    for gate2 in gates.values() {
+                        if *name != gate2.inputs[0] && *name != gate2.inputs[1] {
+                            continue;
+                        }
+                        if gate2.operator != Operator::OpOr {
+                            result.push(name.to_owned());
+                            break;
+                        }
+                    }
+                }
+            }
+            Operator::OpOr => {
+                if name.starts_with('z') && *name != highest_bit {
+                    result.push(name.to_owned());
+                    continue;
+                }
+                continue;
+            }
+            Operator::OpXor => {
+                if name.starts_with('z') {
+                    if *name != highest_bit {
+                        continue;
+                    }
+                    result.push(name.to_owned());
+                    continue;
+                }
+                if gate.inputs[0].starts_with('x') || gate.inputs[0].starts_with('y') {
+                    for gate2 in gates.values() {
+                        if *name != gate2.inputs[0] && *name != gate2.inputs[1] {
+                            continue;
+                        }
+                        if gate2.operator == Operator::OpOr {
+                            result.push(name.to_owned());
+                            break;
+                        }
+                    }
+                    continue;
+                } else {
+                    result.push(name.to_owned());
+                }
+            }
+        }
+    }
     result.sort();
     let mut ans2 = String::new();
     let mut sep = "";

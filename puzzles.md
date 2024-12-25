@@ -13,8 +13,8 @@
 |[2021](#2021)|![-](https://img.shields.io/badge/stars%20⭐-2-red)          |
 |[2022](#2022)|![-](https://img.shields.io/badge/stars%20⭐-2-red)          |
 |[2023](#2023)|![-](https://img.shields.io/badge/stars%20⭐-50-green)       |
-|[2024](#2024)|![-](https://img.shields.io/badge/stars%20⭐-48-yellow)      |
-|__Total__    |![total](https://img.shields.io/badge/stars%20⭐-216-green) |
+|[2024](#2024)|![-](https://img.shields.io/badge/stars%20⭐-50-green)       |
+|__Total__    |![total](https://img.shields.io/badge/stars%20⭐-218-green)  |
 
 ## Puzzles
 
@@ -334,6 +334,6 @@ Hint from `subreddit` was used for Day 12 part 2, Day 24 part 2 and Day 25.
 |  +  |2024| 22|Monkey Market                             |                                                         |
 |  +  |2024| 23|LAN Party                                 |graph, maximum clique, Bron–Kerbosch algorithm           |
 |  +  |2024| 24|Crossed Wires                             |graph, logic circuit simulation, reverse engineering     |
-|  -  |2024| 25|                                          |                                                         |
+|  +  |2024| 25|Code Chronicle                            |                                                         |
 
 Hint from `subreddit` was used for Day 14 part 2 (what shape to look for).

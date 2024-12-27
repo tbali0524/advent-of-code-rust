@@ -120,7 +120,7 @@ impl CamelHand {
 
 const JOKER_LABELS: &str = "J23456789TQKA";
 
-#[allow(dead_code)]
+#[expect(dead_code)]
 struct JokerHand {
     cards: String,
     bid: ItemType,

@@ -15,7 +15,7 @@ pub fn metadata() -> PuzzleMetaData<'static> {
 const FILL: char = '#';
 const EMPTY: char = '.';
 
-#[allow(clippy::needless_range_loop)]
+#[expect(clippy::needless_range_loop)]
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     let mut locks = Vec::new();

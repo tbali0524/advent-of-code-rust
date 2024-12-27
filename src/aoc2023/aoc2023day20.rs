@@ -313,7 +313,7 @@ impl Circuit {
         s
     }
 
-    #[allow(clippy::map_entry)]
+    #[expect(clippy::map_entry)]
     fn sim_steps(&mut self, max_steps: usize) {
         let mut item_id = 0;
         let mut visited = HashMap::new();
@@ -373,7 +373,6 @@ impl Circuit {
         }
     }
 
-    #[allow(clippy::map_entry)]
     fn min_buttons_to_rx(&mut self) -> usize {
         if self.final_module_part2.is_empty() {
             return 0;

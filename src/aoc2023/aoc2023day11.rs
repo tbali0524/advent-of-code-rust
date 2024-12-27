@@ -12,7 +12,7 @@ pub fn metadata() -> PuzzleMetaData<'static> {
     }
 }
 
-#[allow(clippy::needless_range_loop)]
+#[expect(clippy::needless_range_loop)]
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     const EXPANSE_PART1: usize = 2;
     const EXPANSE_EXAMPLE_PART2: usize = 100;

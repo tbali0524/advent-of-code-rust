@@ -37,7 +37,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
 
 // seems like false positive clippy warning: without the `(next_dir - dir) as i32).abs()` cast
 // we would get "can't call method `abs` on ambiguous numeric type `{integer}`"
-#[allow(clippy::unnecessary_cast)]
+#[expect(clippy::unnecessary_cast)]
 fn solve_part(grid: &[Vec<u32>], part: usize) -> u32 {
     let max_y = grid.len();
     let max_x = grid[0].len();

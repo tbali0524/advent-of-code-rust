@@ -101,7 +101,7 @@ impl Particle {
         Self { id, p, v, a }
     }
 
-    #[allow(clippy::needless_range_loop)]
+    #[expect(clippy::needless_range_loop)]
     fn from_string(id: usize, line: &str) -> Result<Self, PuzzleError> {
         let r = Regex::new(r"p=<( ?-?\d+),( ?-?\d+),( ?-?\d+)>, v=<( ?-?\d+),( ?-?\d+),( ?-?\d+)>, a=<( ?-?\d+),( ?-?\d+),( ?-?\d+)>").unwrap();
         let caps = r.captures(line).ok_or("invalid input")?;

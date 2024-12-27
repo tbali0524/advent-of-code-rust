@@ -78,7 +78,7 @@ struct Area {
 }
 
 impl Area {
-    #[allow(clippy::needless_range_loop)]
+    #[expect(clippy::needless_range_loop)]
     fn new(from_bricks: &[Brick]) -> Result<Self, PuzzleError> {
         let bricks = from_bricks.to_vec();
         let max_x = bricks.iter().map(|b| b.to[0]).max().unwrap_or_default();

@@ -19,7 +19,7 @@ const INFECTED: i32 = 2;
 const _FLAGGED: i32 = 3;
 const DIRS: [(i32, i32); 4] = [(0, -1), (1, 0), (0, 1), (-1, 0)]; // dir == 0 must be up, list in clockwise order
 
-#[allow(clippy::map_entry)]
+#[expect(clippy::map_entry)]
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse input
     let mut start_nodes = HashMap::new();

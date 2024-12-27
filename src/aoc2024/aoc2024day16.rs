@@ -23,7 +23,7 @@ const STRAIGHT_COST: i32 = 1;
 const TURN_COST: i32 = 1000;
 const DELTA_XY: [(i32, i32); 4] = [(1, 0), (0, -1), (-1, 0), (0, 1)]; // must start with East, and in circular order
 
-#[allow(clippy::unnecessary_cast)]
+#[expect(clippy::unnecessary_cast)]
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input7
     let max_y = input.len() as i32;

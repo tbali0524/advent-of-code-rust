@@ -114,7 +114,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
 
 /// Simulate the program, returning the output.
 ///
-/// If is_part1 == false, then early returns Err output is not same as program.
+/// If is_part1 == false, then early returns Err if output is not same as program.
 /// However this is not used in the solution, because it would be too slow.
 fn simulate(
     program: &[ItemType],

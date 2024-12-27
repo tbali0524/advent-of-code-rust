@@ -87,7 +87,7 @@ struct Workflow {
 }
 
 impl Workflow {
-    #[allow(clippy::field_reassign_with_default)]
+    #[expect(clippy::field_reassign_with_default)]
     fn from_string(line: &str) -> Result<Self, PuzzleError> {
         let mut a_iter = line.split('{');
         let mut w = Self::default();
@@ -193,7 +193,7 @@ struct Part {
 }
 
 impl Part {
-    #[allow(clippy::needless_range_loop)]
+    #[expect(clippy::needless_range_loop)]
     fn from_string(line: &str) -> Result<Self, PuzzleError> {
         let r = Regex::new(r"\{x=(-?\d+),m=(-?\d+),a=(-?\d+),s=(-?\d+)\}").unwrap();
         let caps = r.captures(line).ok_or("invalid part")?;

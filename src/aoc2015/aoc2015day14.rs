@@ -65,7 +65,7 @@ struct Reindeer {
 impl TryFrom<&str> for Reindeer {
     type Error = PuzzleError;
 
-    #[allow(clippy::field_reassign_with_default)]
+    #[expect(clippy::field_reassign_with_default)]
     fn try_from(line: &str) -> Result<Self, Self::Error> {
         let a = line.split(' ').collect::<Vec<_>>();
         if a.len() != 15

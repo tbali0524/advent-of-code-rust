@@ -21,7 +21,7 @@ const MAX_TURNS_PART1: ItemType = 100;
 const MAX_TURNS_PART2: ItemType = 10000;
 const DRAW_RESULT: bool = false;
 
-#[allow(clippy::needless_range_loop)]
+#[expect(clippy::needless_range_loop)]
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     let mut positions = Vec::new();

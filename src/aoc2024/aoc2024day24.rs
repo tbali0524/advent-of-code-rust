@@ -13,7 +13,6 @@ pub fn metadata() -> PuzzleMetaData<'static> {
     }
 }
 
-#[allow(unused_assignments)]
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     let mut gates = HashMap::new();
@@ -55,7 +54,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             "XOR" => Operator::OpXor,
             _ => Err("gate operator must be AND, OR, XOR")?,
         };
-        if gates.contains_key(words[4]) {
+        if gates.contains_key(&name) {
             Err("duplicate gate definition")?;
         }
         gates.insert(name, gate);
@@ -156,7 +155,7 @@ enum Operator {
     Input,
 }
 
-#[allow(dead_code)]
+#[expect(dead_code)]
 struct Gate {
     name: String,
     operator: Operator,

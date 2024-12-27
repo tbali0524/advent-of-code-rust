@@ -14,7 +14,7 @@ pub fn metadata() -> PuzzleMetaData<'static> {
 
 const TARGET: [char; 4] = ['X', 'M', 'A', 'S'];
 
-#[allow(clippy::needless_range_loop)]
+#[expect(clippy::needless_range_loop)]
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     let max_y = input.len() as i32;

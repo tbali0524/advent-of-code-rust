@@ -22,7 +22,7 @@ const TEST_AREA_MAX_EXAMPLE: ItemType = 27;
 const TEST_AREA_MIN: ItemType = 200000000000000;
 const TEST_AREA_MAX: ItemType = 400000000000000;
 
-#[allow(clippy::needless_range_loop)]
+#[expect(clippy::needless_range_loop)]
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     let mut hailstones = Vec::new();

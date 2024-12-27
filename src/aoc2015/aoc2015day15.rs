@@ -16,7 +16,7 @@ pub fn metadata() -> PuzzleMetaData<'static> {
 
 type ItemType = i32;
 
-#[allow(clippy::needless_range_loop)]
+#[expect(clippy::needless_range_loop)]
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Part 1 + 2
     const TOTAL_QUANTITY: ItemType = 101;

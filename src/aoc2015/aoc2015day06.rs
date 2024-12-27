@@ -16,7 +16,7 @@ type ItemType = usize;
 
 const GRID_SIZE: usize = 1000;
 
-#[allow(clippy::needless_range_loop)]
+#[expect(clippy::needless_range_loop)]
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     let mut instructions = Vec::with_capacity(input.len());

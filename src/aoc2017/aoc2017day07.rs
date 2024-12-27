@@ -44,7 +44,7 @@ struct Tree {
 impl TryFrom<PuzzleInput<'_>> for Tree {
     type Error = PuzzleError;
 
-    #[allow(clippy::field_reassign_with_default)]
+    #[expect(clippy::field_reassign_with_default)]
     fn try_from(input: PuzzleInput) -> Result<Tree, PuzzleError> {
         let mut tree = Tree::default();
         let mut parent_child_pairs = Vec::new();

@@ -40,7 +40,7 @@ struct Pattern {
 }
 
 impl Pattern {
-    #[allow(clippy::needless_range_loop)]
+    #[expect(clippy::needless_range_loop)]
     fn new(grid: &[&str]) -> Result<Self, PuzzleError> {
         let max_y = grid.len();
         if max_y == 0 {

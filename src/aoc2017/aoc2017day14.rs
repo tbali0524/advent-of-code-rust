@@ -16,7 +16,7 @@ type ItemType = i64;
 const GRID_SIZE: usize = 128;
 type GridType = [[char; GRID_SIZE]; GRID_SIZE];
 
-#[allow(clippy::needless_range_loop)]
+#[expect(clippy::needless_range_loop)]
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Check input
     if input.len() != 1 {

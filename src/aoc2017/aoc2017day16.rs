@@ -15,7 +15,6 @@ pub fn metadata() -> PuzzleMetaData<'static> {
 
 type ItemType = usize;
 
-#[allow(clippy::field_reassign_with_default)]
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     if input.len() != 1 {
@@ -114,7 +113,7 @@ struct Command {
 impl TryFrom<&str> for Command {
     type Error = PuzzleError;
 
-    #[allow(clippy::field_reassign_with_default)]
+    #[expect(clippy::field_reassign_with_default)]
     fn try_from(instruction: &str) -> Result<Command, PuzzleError> {
         let mut command = Command::default();
         command.command = instruction.chars().next().unwrap();

@@ -14,7 +14,7 @@ pub fn metadata() -> PuzzleMetaData<'static> {
 
 type ItemType = usize;
 
-#[allow(clippy::explicit_counter_loop)]
+#[expect(clippy::explicit_counter_loop)]
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     if input.len() != 1 {

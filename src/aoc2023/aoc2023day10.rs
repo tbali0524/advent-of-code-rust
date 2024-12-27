@@ -27,7 +27,7 @@ const VALID_CHARS: &str = ".F-7|JL";
 const FILLS: [char; 2] = ['O', 'x'];
 const DIRS: &str = "WSEN";
 
-#[allow(clippy::needless_range_loop)]
+#[expect(clippy::needless_range_loop)]
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     let max_y = input.len() as ItemType;

@@ -15,7 +15,7 @@ const MSG_PASS: &str = "\x1b[1;37;42m[ OK ]\x1b[0m"; // cannot build &str const 
 const MSG_FAIL: &str = "\x1b[1;37;41m[FAIL]\x1b[0m";
 const MSG_PASS_TOTAL: &str = "\x1b[1;37;42m[ OK ] All tests passed. \x1b[0m";
 const MSG_FAIL_TOTAL: &str = "\x1b[1;37;41m[FAIL] Some tests failed. \x1b[0m";
-const DURATION_THRESHOLD_MILLIS: u64 = 500; // puzzle duration printed in yellow if taking longer than this
+const DURATION_THRESHOLD_MILLIS: u64 = 1000; // puzzle duration printed in yellow if taking longer than this
 
 // ------------------------------------------------------------
 /// Runs multiple puzzles.

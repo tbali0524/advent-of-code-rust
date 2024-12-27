@@ -14,7 +14,7 @@ pub fn metadata() -> PuzzleMetaData<'static> {
 
 const KEYS_PART2: [&str; 5] = ["00100", "02340", "56789", "0ABC0", "00D00"];
 
-#[allow(clippy::manual_range_contains)]
+#[expect(clippy::manual_range_contains)]
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Part 1
     let mut ans1 = 0;

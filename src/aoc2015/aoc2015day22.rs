@@ -59,7 +59,7 @@ const SPELL_RECHARGE: usize = 4;
 
 const MAX_SPELLS: usize = 5;
 
-#[allow(dead_code)]
+#[expect(dead_code)]
 struct Spell {
     spell_type: usize,
     cost: ItemType,
@@ -129,7 +129,7 @@ impl WizardGameState {
         }
     }
 
-    #[allow(clippy::needless_range_loop)]
+    #[expect(clippy::needless_range_loop)]
     fn all_valid_spells(&self) -> Vec<usize> {
         let mut spells = Vec::new();
         if self.enemy_hp <= 0 || self.hp <= 0 {

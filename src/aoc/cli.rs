@@ -6,7 +6,7 @@ use super::{MAX_DAYS, MAX_SEASONS, START_SEASON};
 use std::env;
 use std::process::ExitCode;
 
-pub const MSG_TITLE: &str = "Advent of Code - solutions in Rust, (c) 2024 by TBali";
+pub const MSG_TITLE: &str = "Advent of Code - solutions in Rust, (c) 2025 by TBali";
 pub const RUN_PARALLEL: bool = true;
 
 const ARG_HELP: &str = "--help";

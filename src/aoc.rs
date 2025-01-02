@@ -44,6 +44,9 @@ pub struct PuzzleMetaData<'a> {
     pub example_solutions: Vec<PuzzleExpected<'a>>,
 }
 
+// puzzles taking >5s are excluded by default. They can be run individually.
+pub const PUZZLES_TO_SKIP: [(usize, usize); 3] = [(2016, 5), (2023, 23), (2024, 7)];
+
 /// Array of seasons containing the arrays of the implemented puzzles.
 pub const PUZZLES: [Option<Season>; MAX_SEASONS] = [
     Some(crate::aoc2015::PUZZLES),

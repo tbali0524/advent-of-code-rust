@@ -106,7 +106,9 @@ mod tests {
         test_case(metadata, solve, 1);
     }
 
+    // too slow, skipped
     #[test]
+    #[ignore]
     fn puzzle() {
         test_case(metadata, solve, 0);
     }

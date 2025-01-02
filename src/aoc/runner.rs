@@ -2,7 +2,7 @@
 
 use super::ansi::{ANSI_GREEN, ANSI_RESET, ANSI_YELLOW};
 use super::{PuzzleError, PuzzleExpected, PuzzleMetaData, Solver};
-use super::{MAX_DAYS, PUZZLES, START_SEASON};
+use super::{MAX_DAYS, PUZZLES, PUZZLES_TO_SKIP, START_SEASON};
 use indicatif::ParallelProgressIterator;
 use rayon::prelude::*;
 use std::cmp::min;
@@ -33,6 +33,7 @@ pub fn run_puzzles(year: Option<usize>, day: Option<usize>, parallel: bool) -> b
     let now = time::Instant::now();
     let mut count_seasons = 0;
     let mut count_puzzles = 0;
+    let mut count_skipped_puzzles = 0;
     let mut count_examples = 0;
     let mut puzzle_list = Vec::new();
     for (idx_season, season_puzzles) in PUZZLES.iter().enumerate() {
@@ -49,23 +50,33 @@ pub fn run_puzzles(year: Option<usize>, day: Option<usize>, parallel: bool) -> b
             if puzzle_functions.is_none() || (day.is_some() && day.unwrap() != idx_day + 1) {
                 continue;
             }
+            let mut to_skip = false;
+            for (skip_year, skip_day) in PUZZLES_TO_SKIP.iter() {
+                if (year.is_none() || day.is_none())
+                    && (season == *skip_year && idx_day + 1 == *skip_day)
+                {
+                    to_skip = true;
+                    count_skipped_puzzles += 1;
+                    break;
+                }
+            }
             let (metadata, solver) = puzzle_functions.unwrap();
             let puzzle = metadata();
             count_puzzles += 1;
             count_examples += puzzle.example_solutions.len();
-            puzzle_list.push((puzzle, solver));
+            puzzle_list.push((puzzle, solver, to_skip));
         }
     }
     let results = if parallel {
         puzzle_list
             .par_iter()
             .progress_count(puzzle_list.len() as u64)
-            .map(|(puzzle, solver)| run_puzzle(puzzle, *solver))
+            .map(|(puzzle, solver, to_skip)| run_puzzle(puzzle, *solver, *to_skip))
             .collect::<Vec<_>>()
     } else {
         puzzle_list
             .iter()
-            .map(|(puzzle, solver)| run_puzzle(puzzle, *solver))
+            .map(|(puzzle, solver, to_skip)| run_puzzle(puzzle, *solver, *to_skip))
             .collect::<Vec<_>>()
     };
     let elapsed = now.elapsed();
@@ -83,8 +94,16 @@ pub fn run_puzzles(year: Option<usize>, day: Option<usize>, parallel: bool) -> b
         prev_season = season;
         print!("{}", message);
     }
+    let msg_skip = if count_skipped_puzzles > 0 {
+        format!(
+            " ({}{}{} skipped)",
+            ANSI_YELLOW, count_skipped_puzzles, ANSI_RESET
+        )
+    } else {
+        String::new()
+    };
     println!(
-        "=================== [Total time: {:5} ms] : [{} season{}, {}{}{} puzzle{}, {} example{}]\n",
+        "=================== [Total time: {:5} ms] : [{} season{}, {}{}{} puzzle{}{}, {} example{}]\n",
         elapsed.as_millis(),
         count_seasons,
         get_plural(count_seasons),
@@ -92,6 +111,7 @@ pub fn run_puzzles(year: Option<usize>, day: Option<usize>, parallel: bool) -> b
         count_puzzles,
         ANSI_RESET,
         get_plural(count_puzzles),
+        msg_skip,
         count_examples,
         get_plural(count_examples),
     );
@@ -109,17 +129,21 @@ pub fn run_puzzles(year: Option<usize>, day: Option<usize>, parallel: bool) -> b
 // ------------------------------------------------------------
 /// Runs a single puzzle, including all examples.
 /// Returns tuple of a bool with true if all test cases passed, and a multiple-line message.
-pub fn run_puzzle(puzzle: &PuzzleMetaData, solve: Solver) -> (bool, String) {
+pub fn run_puzzle(puzzle: &PuzzleMetaData, solve: Solver, to_skip: bool) -> (bool, String) {
     let now = time::Instant::now();
     let mut all_passed = true;
     let mut all_message = String::new();
-    let count_examples = puzzle.example_solutions.len();
-    let mut cases = (1..=count_examples).collect::<Vec<_>>();
-    cases.push(0);
-    for case in cases {
-        let (passed, message) = run_case(puzzle, solve, case);
-        all_passed = all_passed && passed;
-        all_message += &message;
+    if to_skip {
+        all_message = format!("{}skipped{}\n", ANSI_YELLOW, ANSI_RESET);
+    } else {
+        let count_examples = puzzle.example_solutions.len();
+        let mut cases = (1..=count_examples).collect::<Vec<_>>();
+        cases.push(0);
+        for case in cases {
+            let (passed, message) = run_case(puzzle, solve, case);
+            all_passed = all_passed && passed;
+            all_message += &message;
+        }
     }
     let elapsed = now.elapsed();
     let threshold = time::Duration::from_millis(DURATION_THRESHOLD_MILLIS);

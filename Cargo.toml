@@ -23,7 +23,7 @@ name = "aoc"
 
 [dependencies]
 indicatif = {version = "*", features = ["rayon"]} # used by run_puzzles()
-md5 = "0.7"             # used by aoc2015day04
+md5 = "0.7"             # used by aoc2015day04, aoc2016day05
 num-bigint = "0.4"      # used by aoc2023day24
 priority-queue = "2.1"  # used by aoc2023day17, aoc2023day20, aoc2024day16
 rayon = "1.10"          # used by run_puzzles()

@@ -5,7 +5,7 @@
 |Year         |Status                                                       |
 |-------------|:------------------------------------------------------------|
 |[2015](#2015)|![-](https://img.shields.io/badge/stars%20⭐-50-green)       |
-|[2016](#2016)|![-](https://img.shields.io/badge/stars%20⭐-8-yellow)       |
+|[2016](#2016)|![-](https://img.shields.io/badge/stars%20⭐-20-yellow)      |
 |[2017](#2017)|![-](https://img.shields.io/badge/stars%20⭐-50-green)       |
 |[2018](#2018)|![-](https://img.shields.io/badge/stars%20⭐-2-red)          |
 |[2019](#2019)|![-](https://img.shields.io/badge/stars%20⭐-2-red)          |
@@ -14,7 +14,7 @@
 |[2022](#2022)|![-](https://img.shields.io/badge/stars%20⭐-2-red)          |
 |[2023](#2023)|![-](https://img.shields.io/badge/stars%20⭐-50-green)       |
 |[2024](#2024)|![-](https://img.shields.io/badge/stars%20⭐-50-green)       |
-|__Total__    |![total](https://img.shields.io/badge/stars%20⭐-218-green)  |
+|__Total__    |![total](https://img.shields.io/badge/stars%20⭐-230-green)  |
 
 ## Puzzles
 
@@ -57,12 +57,12 @@ Hint from `subreddit` was used for Day 19.
 |  +  |2016|  1|No Time for a Taxicab                     |                                                         |
 |  +  |2016|  2|Bathroom Security                         |walk simulation                                          |
 |  +  |2016|  3|Squares With Three Sides                  |                                                         |
-|  -  |2016|  4|Security Through Obscurity                |                                                         |
-|  -  |2016|  5|How About a Nice Game of Chess?           |                                                         |
-|  -  |2016|  6|Signals and Noise                         |                                                         |
-|  -  |2016|  7|Internet Protocol Version 7               |                                                         |
-|  -  |2016|  8|Two-Factor Authentication                 |simulation                                               |
-|  -  |2016|  9|Explosives in Cyberspace                  |                                                         |
+|  +  |2016|  4|Security Through Obscurity                |                                                         |
+|  +  |2016|  5|How About a Nice Game of Chess?           |                                                         |
+|  +  |2016|  6|Signals and Noise                         |                                                         |
+|  +  |2016|  7|Internet Protocol Version 7               |                                                         |
+|  +  |2016|  8|Two-Factor Authentication                 |simulation                                               |
+|  +  |2016|  9|Explosives in Cyberspace                  |                                                         |
 |  -  |2016| 10|Balance Bots                              |bot simulation                                           |
 |  -  |2016| 11|Radioisotope Thermoelectric Generators    |BFS, beam search                                         |
 |  -  |2016| 12|Leonardo's Monorail                       |assembly simulation                                      |

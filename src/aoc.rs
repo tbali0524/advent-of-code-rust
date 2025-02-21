@@ -9,6 +9,11 @@ pub const START_SEASON: usize = 2015;
 pub const MAX_SEASONS: usize = 11; // empty YYYY season also included as a template
 pub const MAX_DAYS: usize = 25;
 
+// very slow puzzles (taking >5s) are excluded by default. They can be run individually.
+pub const SKIP_SLOW: bool = true;
+pub const PUZZLES_TO_SKIP: [(usize, usize); 3] = [(2016, 5), (2023, 23), (2024, 7)];
+pub const DURATION_THRESHOLD_MILLIS: u64 = 1000; // puzzle duration printed in yellow if taking longer than this
+
 pub use error::PuzzleError;
 
 /// The expected solution for a test case, containing both parts of the puzzle.
@@ -43,9 +48,6 @@ pub struct PuzzleMetaData<'a> {
     pub solution: PuzzleExpected<'a>,
     pub example_solutions: Vec<PuzzleExpected<'a>>,
 }
-
-// puzzles taking >5s are excluded by default. They can be run individually.
-pub const PUZZLES_TO_SKIP: [(usize, usize); 3] = [(2016, 5), (2023, 23), (2024, 7)];
 
 /// Array of seasons containing the arrays of the implemented puzzles.
 pub const PUZZLES: [Option<Season>; MAX_SEASONS] = [

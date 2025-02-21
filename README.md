@@ -1,6 +1,6 @@
 # Advent of Code solutions in Rust by TBali
 
-![rust v1.83](https://shields.io/badge/rust-1.83-blue?logo=rust)
+![rust v1.85](https://shields.io/badge/rust-1.85-blue?logo=rust)
 ![build](https://img.shields.io/github/actions/workflow/status/tbali0524/advent-of-code-rust/qa.yml)
 ![AoC stars](https://img.shields.io/badge/total%20AoC%20⭐-230-green)
 ![license](https://img.shields.io/github/license/tbali0524/advent-of-code-rust)
@@ -31,6 +31,7 @@ cargo clippy
 # -- doc
 cargo doc --no-deps --document-private-items --open
 # -- test
+cargo nextest run # needs cargo plugin: <https://nexte.st/>
 cargo test
 cargo test 2024
 cargo test 2024day01

@@ -124,11 +124,7 @@ impl Module for FlipFlop {
             return Pulse::Off;
         }
         self.state = !self.state;
-        if self.state {
-            Pulse::High
-        } else {
-            Pulse::Low
-        }
+        if self.state { Pulse::High } else { Pulse::Low }
     }
 }
 

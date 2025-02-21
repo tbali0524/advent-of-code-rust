@@ -64,11 +64,7 @@ fn simulate(grid: &[u8], size: isize, stuck_corners: bool) -> usize {
                     }
                 }
                 next[(y * size + x) as usize] = if prev[(y * size + x) as usize] == b'#' {
-                    if count == 2 || count == 3 {
-                        b'#'
-                    } else {
-                        b'.'
-                    }
+                    if count == 2 || count == 3 { b'#' } else { b'.' }
                 } else if count == 3 {
                     b'#'
                 } else {

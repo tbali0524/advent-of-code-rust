@@ -1,8 +1,9 @@
 //! Helper module to run any puzzle solution.
 
-use super::ansi::{ANSI_GREEN, ANSI_RESET, ANSI_YELLOW};
+use super::ansi::{ANSI_GREEN, ANSI_RED, ANSI_RESET, ANSI_YELLOW};
+use super::{DURATION_THRESHOLD_MILLIS, PUZZLES_TO_SKIP, SKIP_SLOW};
+use super::{MAX_DAYS, PUZZLES, START_SEASON};
 use super::{PuzzleError, PuzzleExpected, PuzzleMetaData, Solver};
-use super::{MAX_DAYS, PUZZLES, PUZZLES_TO_SKIP, START_SEASON};
 use indicatif::ParallelProgressIterator;
 use rayon::prelude::*;
 use std::cmp::min;
@@ -13,9 +14,9 @@ use std::time;
 const MSG_NONE: &str = "      ";
 const MSG_PASS: &str = "\x1b[1;37;42m[ OK ]\x1b[0m"; // cannot build &str const from mod ansi &str constants...
 const MSG_FAIL: &str = "\x1b[1;37;41m[FAIL]\x1b[0m";
+const MSG_SKIP: &str = "\x1b[1;37;43m[SKIP]\x1b[0m";
 const MSG_PASS_TOTAL: &str = "\x1b[1;37;42m[ OK ] All tests passed. \x1b[0m";
 const MSG_FAIL_TOTAL: &str = "\x1b[1;37;41m[FAIL] Some tests failed. \x1b[0m";
-const DURATION_THRESHOLD_MILLIS: u64 = 1000; // puzzle duration printed in yellow if taking longer than this
 
 // ------------------------------------------------------------
 /// Runs multiple puzzles.
@@ -34,6 +35,7 @@ pub fn run_puzzles(year: Option<usize>, day: Option<usize>, parallel: bool) -> b
     let mut count_seasons = 0;
     let mut count_puzzles = 0;
     let mut count_skipped_puzzles = 0;
+    let mut count_failed_puzzles = 0;
     let mut count_examples = 0;
     let mut puzzle_list = Vec::new();
     for (idx_season, season_puzzles) in PUZZLES.iter().enumerate() {
@@ -52,7 +54,8 @@ pub fn run_puzzles(year: Option<usize>, day: Option<usize>, parallel: bool) -> b
             }
             let mut to_skip = false;
             for (skip_year, skip_day) in PUZZLES_TO_SKIP.iter() {
-                if (year.is_none() || day.is_none())
+                if SKIP_SLOW
+                    && (year.is_none() || day.is_none())
                     && (season == *skip_year && idx_day + 1 == *skip_day)
                 {
                     to_skip = true;
@@ -84,6 +87,9 @@ pub fn run_puzzles(year: Option<usize>, day: Option<usize>, parallel: bool) -> b
     let mut prev_season = 0;
     for (idx, (passed, message)) in results.iter().enumerate() {
         all_passed = all_passed && *passed;
+        if !passed {
+            count_failed_puzzles += 1;
+        }
         let season = puzzle_list[idx].0.year;
         if season != prev_season {
             println!(
@@ -94,16 +100,31 @@ pub fn run_puzzles(year: Option<usize>, day: Option<usize>, parallel: bool) -> b
         prev_season = season;
         print!("{}", message);
     }
-    let msg_skip = if count_skipped_puzzles > 0 {
+    let msg_skip_fail = if count_skipped_puzzles > 0 && count_failed_puzzles > 0 {
+        format!(
+            " ({}{}{} skipped, {}{}{} failed)",
+            ANSI_YELLOW,
+            count_skipped_puzzles,
+            ANSI_RESET,
+            ANSI_RED,
+            count_failed_puzzles,
+            ANSI_RESET
+        )
+    } else if count_skipped_puzzles > 0 {
         format!(
             " ({}{}{} skipped)",
             ANSI_YELLOW, count_skipped_puzzles, ANSI_RESET
+        )
+    } else if count_failed_puzzles > 0 {
+        format!(
+            " ({}{}{} failed)",
+            ANSI_RED, count_failed_puzzles, ANSI_RESET
         )
     } else {
         String::new()
     };
     println!(
-        "=================== [Total time: {:5} ms] : [{} season{}, {}{}{} puzzle{}{}, {} example{}]\n",
+        "======= Total =========== [time: {:5} ms] : {} season{}, {}{}{} puzzle{}{}, {} example{}\n",
         elapsed.as_millis(),
         count_seasons,
         get_plural(count_seasons),
@@ -111,7 +132,7 @@ pub fn run_puzzles(year: Option<usize>, day: Option<usize>, parallel: bool) -> b
         count_puzzles,
         ANSI_RESET,
         get_plural(count_puzzles),
-        msg_skip,
+        msg_skip_fail,
         count_examples,
         get_plural(count_examples),
     );
@@ -134,7 +155,7 @@ pub fn run_puzzle(puzzle: &PuzzleMetaData, solve: Solver, to_skip: bool) -> (boo
     let mut all_passed = true;
     let mut all_message = String::new();
     if to_skip {
-        all_message = format!("{}skipped{}\n", ANSI_YELLOW, ANSI_RESET);
+        all_message = format!("{}\n", MSG_SKIP);
     } else {
         let count_examples = puzzle.example_solutions.len();
         let mut cases = (1..=count_examples).collect::<Vec<_>>();

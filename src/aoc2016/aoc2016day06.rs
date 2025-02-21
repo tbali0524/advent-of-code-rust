@@ -30,8 +30,8 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         }
     }
     for freq in freqs.iter() {
-        ans1.push(*freq.iter().max_by_key(|(_, &v)| v).unwrap().0);
-        ans2.push(*freq.iter().min_by_key(|(_, &v)| v).unwrap().0);
+        ans1.push(*freq.iter().max_by_key(|&(_, &v)| v).unwrap().0);
+        ans2.push(*freq.iter().min_by_key(|&(_, &v)| v).unwrap().0);
     }
     Ok((ans1.to_string(), ans2.to_string()))
 }

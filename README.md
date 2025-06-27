@@ -54,6 +54,9 @@ cargo run --release
 ./aoc.bat --help
 # -- shortcut qa+run (Windows)
 ./qa.ps1
+# -- profiling (Windows), using [samply](https://github.com/mstange/samply/)
+cargo build --profile profiling
+samply record ./target/profiling/aoc.exe
 # -- cleanup
 cargo clean
 ```

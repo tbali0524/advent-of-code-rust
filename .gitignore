@@ -2,3 +2,6 @@
 
 # rust build directory
 /target
+
+# profiler output
+/profile.json.gz

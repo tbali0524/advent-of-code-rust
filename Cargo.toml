@@ -13,6 +13,10 @@ repository = "https://github.com/tbali0524/advent-of-code-rust/"
 license = "MIT"
 keywords = ["aoc", "algorithms"]
 
+[profile.profiling]
+inherits = "release"
+debug = true
+
 [lib]
 path = "src/lib.rs"
 name = "aoc"

@@ -35,7 +35,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     let mut ans2 = 0;
     for i in 1..n {
         ans2 = ans2 % i + 1;
-        if ans2 > (i + 1) / 2 {
+        if ans2 > i.div_ceil(2) {
             ans2 += 1;
         }
     }

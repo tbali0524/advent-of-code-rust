@@ -58,7 +58,7 @@ pub fn delta(dir: char) -> Result<(i32, i32), PuzzleError> {
         'v' => Ok((0, 1)),
         '<' => Ok((-1, 0)),
         '^' => Ok((0, -1)),
-        _ => Err(format!("direction must be >v<^, found `{}`", dir))?,
+        _ => Err(format!("direction must be >v<^, found `{dir}`"))?,
     }
 }
 
@@ -85,11 +85,11 @@ mod tests {
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(&[&"<>", &"><"], solve);
+        test_invalid(&["<>", "><"], solve);
     }
 
     #[test]
     fn invalid_only_directions() {
-        test_invalid(&[&"<a>"], solve);
+        test_invalid(&["<a>"], solve);
     }
 }

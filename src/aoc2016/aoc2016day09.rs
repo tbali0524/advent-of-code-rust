@@ -100,7 +100,7 @@ mod tests {
     #[test]
     fn invalid_marker_must_be_at_least_3_chars() {
         test_invalid_msg(
-            &[&"A(1x)BC"],
+            &["A(1x)BC"],
             solve,
             "marker in parenthesis must be at least 3 chars long",
         );
@@ -108,13 +108,13 @@ mod tests {
 
     #[test]
     fn invalid_marker_must_be_at_2_integers() {
-        test_invalid_msg(&[&"A(1xa)BC"], solve, "marker must contain integers");
+        test_invalid_msg(&["A(1xa)BC"], solve, "marker must contain integers");
     }
 
     #[test]
     fn invalid_marker_must_be_separated_by_x() {
         test_invalid_msg(
-            &[&"A(1x2x3)BC"],
+            &["A(1x2x3)BC"],
             solve,
             "marker must contain 2 integers separated by `x`",
         );

@@ -119,26 +119,26 @@ mod tests {
 
     #[test]
     fn invalid_must_be_3_lines() {
-        test_invalid(&[&"a"], solve);
+        test_invalid(&["a"], solve);
     }
 
     #[test]
     fn invalid_must_start_with_literals() {
-        test_invalid(&[&"Hit Points: 109", &"D: 8", &"Armor: 2"], solve);
+        test_invalid(&["Hit Points: 109", "D: 8", "Armor: 2"], solve);
     }
 
     #[test]
     fn invalid_hp_must_be_integer() {
-        test_invalid(&[&"Hit Points: X", &"Damage: 8", &"Armor: 2"], solve);
+        test_invalid(&["Hit Points: X", "Damage: 8", "Armor: 2"], solve);
     }
 
     #[test]
     fn invalid_damage_must_be_integer() {
-        test_invalid(&[&"Hit Points: 109", &"Damage: X", &"Armor: 2"], solve);
+        test_invalid(&["Hit Points: 109", "Damage: X", "Armor: 2"], solve);
     }
 
     #[test]
     fn invalid_armor_must_be_integer() {
-        test_invalid(&[&"Hit Points: 109", &"Damage: 8", &"Armor: X"], solve);
+        test_invalid(&["Hit Points: 109", "Damage: 8", "Armor: X"], solve);
     }
 }

@@ -28,7 +28,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             .split(',')
             .map(|x| {
                 x.parse::<ItemType>()
-                    .map_err(|_| format!("sizes must be integers, found `{}`", x).into())
+                    .map_err(|_| format!("sizes must be integers, found `{x}`").into())
             })
             .collect::<Result<Vec<_>, PuzzleError>>()?;
         if a_iter.next().is_some() {
@@ -138,18 +138,18 @@ mod tests {
 
     #[test]
     fn invalid_missing_size_list() {
-        test_invalid_msg(&[&"???.###"], solve, "missing size list");
+        test_invalid_msg(&["???.###"], solve, "missing size list");
     }
 
     #[test]
     fn invalid_sizes_must_be_integers() {
-        test_invalid_msg(&[&"???.### 1,a,3"], solve, "sizes must be integers");
+        test_invalid_msg(&["???.### 1,a,3"], solve, "sizes must be integers");
     }
 
     #[test]
     fn invalid_only_record_and_sizes() {
         test_invalid_msg(
-            &[&"???.### 1,1,3 x"],
+            &["???.### 1,1,3 x"],
             solve,
             "lines must contain only record and size list",
         );

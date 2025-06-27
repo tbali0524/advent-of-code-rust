@@ -81,18 +81,18 @@ mod tests {
 
     #[test]
     fn invalid_not_two_lines() {
-        test_invalid(&[&"Generator A starts with 1"], solve);
+        test_invalid(&["Generator A starts with 1"], solve);
     }
 
     #[test]
     fn invalid_input_format() {
-        test_invalid(&["Generator A starts with 1", &"a"], solve);
+        test_invalid(&["Generator A starts with 1", "a"], solve);
     }
 
     #[test]
     fn invalid_parameter_mas_be_int() {
         test_invalid(
-            &[&"Generator B starts with 1", &"Generator A starts with a"],
+            &["Generator B starts with 1", "Generator A starts with a"],
             solve,
         );
     }

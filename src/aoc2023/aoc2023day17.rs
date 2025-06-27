@@ -124,11 +124,11 @@ mod tests {
 
     #[test]
     fn invalid_must_be_rectangular() {
-        test_invalid_msg(&[&"12", &"123"], solve, "must be rectangular");
+        test_invalid_msg(&["12", "123"], solve, "must be rectangular");
     }
 
     #[test]
     fn invalid_must_contain_only_valid_chars() {
-        test_invalid_msg(&[&"12", &"1a3"], solve, "invalid character in grid");
+        test_invalid_msg(&["12", "1a3"], solve, "invalid character in grid");
     }
 }

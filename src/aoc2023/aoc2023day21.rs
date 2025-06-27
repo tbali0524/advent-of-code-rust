@@ -162,16 +162,16 @@ mod tests {
 
     #[test]
     fn invalid_grid_must_be_rectangular() {
-        test_invalid_msg(&[&"##", &"S"], solve, "grid must be rectangular");
+        test_invalid_msg(&["##", "S"], solve, "grid must be rectangular");
     }
 
     #[test]
     fn invalid_grid_must_contain_valid_chars() {
-        test_invalid_msg(&[&".S", &"#a"], solve, "invalid char in grid");
+        test_invalid_msg(&[".S", "#a"], solve, "invalid char in grid");
     }
 
     #[test]
     fn invalid_grid_missing_start() {
-        test_invalid_msg(&[&"#.#", &"#.#", &"#.#"], solve, "missing start");
+        test_invalid_msg(&["#.#", "#.#", "#.#"], solve, "missing start");
     }
 }

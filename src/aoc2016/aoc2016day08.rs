@@ -141,18 +141,18 @@ mod tests {
 
     #[test]
     fn invalid_rect_instruction() {
-        test_invalid_msg(&[&"rect 3x2 1x3"], solve, "invalid rect instruction");
+        test_invalid_msg(&["rect 3x2 1x3"], solve, "invalid rect instruction");
     }
 
     #[test]
     fn invalid_rect_argument_must_be_integers() {
-        test_invalid_msg(&[&"rect 3xa"], solve, "rect arguments must be integers");
+        test_invalid_msg(&["rect 3xa"], solve, "rect arguments must be integers");
     }
 
     #[test]
     fn invalid_rect_arguments_must_be_separated_by_x() {
         test_invalid_msg(
-            &[&"rect 31"],
+            &["rect 31"],
             solve,
             "rect arguments must be 2 integers separated by `x`",
         );
@@ -160,13 +160,13 @@ mod tests {
 
     #[test]
     fn invalid_instruction() {
-        test_invalid_msg(&[&"a 1"], solve, "invalid instruction");
+        test_invalid_msg(&["a 1"], solve, "invalid instruction");
     }
 
     #[test]
     fn invalid_rotate() {
         test_invalid_msg(
-            &[&"rotate column x by 1"],
+            &["rotate column x by 1"],
             solve,
             "invalid rotate instruction",
         );
@@ -175,7 +175,7 @@ mod tests {
     #[test]
     fn invalid_rotate_column_argument_must_be_integer() {
         test_invalid_msg(
-            &[&"rotate column x=a by 1"],
+            &["rotate column x=a by 1"],
             solve,
             "rotate column arguments must be integers",
         );
@@ -184,7 +184,7 @@ mod tests {
     #[test]
     fn invalid_rotate_rown_argument_must_be_integer() {
         test_invalid_msg(
-            &[&"rotate row y=a by 1"],
+            &["rotate row y=a by 1"],
             solve,
             "rotate row arguments must be integers",
         );
@@ -192,6 +192,6 @@ mod tests {
 
     #[test]
     fn invalid_rotate_instruction() {
-        test_invalid_msg(&[&"rotate a y=1 by 1"], solve, "invalid rotate instruction");
+        test_invalid_msg(&["rotate a y=1 by 1"], solve, "invalid rotate instruction");
     }
 }

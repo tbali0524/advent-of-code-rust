@@ -99,9 +99,7 @@ mod tests {
     #[test]
     fn invalid_must_be_5_chars() {
         test_invalid_msg(
-            &[
-                &"#####", &".##", &".####", &".####", &".#.#.", &".#...", &".....",
-            ],
+            &["#####", ".##", ".####", ".####", ".#.#.", ".#...", "....."],
             solve,
             "input must be 5 chars wide",
         );
@@ -111,7 +109,7 @@ mod tests {
     fn invalid_char() {
         test_invalid_msg(
             &[
-                &"#####", &".#a##", &".####", &".####", &".#.#.", &".#...", &".....",
+                "#####", ".#a##", ".####", ".####", ".#.#.", ".#...", ".....",
             ],
             solve,
             "input must contain only `#` and `.`",
@@ -122,7 +120,7 @@ mod tests {
     fn invalid_lock_top_bottom_row() {
         test_invalid_msg(
             &[
-                &"##.##", &".####", &".####", &".####", &".#.#.", &".#...", &".....",
+                "##.##", ".####", ".####", ".####", ".#.#.", ".#...", ".....",
             ],
             solve,
             "lock shapes must have filled top row and empty bottom row",
@@ -133,7 +131,7 @@ mod tests {
     fn invalid_key_top_bottom_row() {
         test_invalid_msg(
             &[
-                &"..#..", &"#....", &"#....", &"#...#", &"#.#.#", &"#.###", &"#####",
+                "..#..", "#....", "#....", "#...#", "#.#.#", "#.###", "#####",
             ],
             solve,
             "key shapes must have empty top row and filled bottom row",
@@ -144,8 +142,7 @@ mod tests {
     fn invalid_missing_empty_separator() {
         test_invalid_msg(
             &[
-                &"#####", &".####", &".####", &".####", &".#.#.", &".#...", &".....", &"a",
-                &".....",
+                "#####", ".####", ".####", ".####", ".#.#.", ".#...", ".....", "a", ".....",
             ],
             solve,
             "shapes must be separated by an empty line",

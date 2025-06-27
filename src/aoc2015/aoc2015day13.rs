@@ -130,13 +130,13 @@ mod tests {
 
     #[test]
     fn invalid_wrong_number_of_words() {
-        test_invalid(&[&"a"], solve);
+        test_invalid(&["a"], solve);
     }
 
     #[test]
     fn invalid_verb() {
         test_invalid(
-            &[&"Alice would GET 1 happiness units by sitting next to Bob."],
+            &["Alice would GET 1 happiness units by sitting next to Bob."],
             solve,
         );
     }
@@ -144,7 +144,7 @@ mod tests {
     #[test]
     fn invalid_happiness_must_be_integer() {
         test_invalid(
-            &[&"Alice would gain X happiness units by sitting next to Bob."],
+            &["Alice would gain X happiness units by sitting next to Bob."],
             solve,
         );
     }
@@ -152,7 +152,7 @@ mod tests {
     #[test]
     fn invalid_source_and_destination_must_be_different() {
         test_invalid(
-            &[&"Alice would gain 1 happiness units by sitting next to Alice."],
+            &["Alice would gain 1 happiness units by sitting next to Alice."],
             solve,
         );
     }

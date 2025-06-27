@@ -38,7 +38,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
                 .map(|x| {
                     x.trim()
                         .parse::<ItemType>()
-                        .map_err(|_| format!("win numbers must be integers, found `{}`", x).into())
+                        .map_err(|_| format!("win numbers must be integers, found `{x}`").into())
                 })
                 .collect::<Result<Vec<_>, PuzzleError>>()?,
         );
@@ -47,7 +47,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
                 .map(|x| {
                     x.trim()
                         .parse::<ItemType>()
-                        .map_err(|_| format!("have numbers must be integers, found `{}`", x).into())
+                        .map_err(|_| format!("have numbers must be integers, found `{x}`").into())
                 })
                 .collect::<Result<Vec<_>, PuzzleError>>()?,
         );
@@ -92,7 +92,7 @@ mod tests {
     #[test]
     fn invalid_must_separate_with_colon() {
         test_invalid_msg(
-            &[&"Card 1 a 41 48 83 86 17 | 83 86  6 31 17  9 48 53"],
+            &["Card 1 a 41 48 83 86 17 | 83 86  6 31 17  9 48 53"],
             solve,
             "Card numbers must be followed by a `:`",
         );
@@ -101,7 +101,7 @@ mod tests {
     #[test]
     fn invalid_must_separate_with_vertical_line() {
         test_invalid_msg(
-            &[&"Card 1: 41 48 83 86 17 a 83 86  6 31 17  9 48 53"],
+            &["Card 1: 41 48 83 86 17 a 83 86  6 31 17  9 48 53"],
             solve,
             "win and have numbers must be separated by |`:`",
         );
@@ -110,7 +110,7 @@ mod tests {
     #[test]
     fn invalid_must_start_with_card() {
         test_invalid_msg(
-            &[&"Karte 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53"],
+            &["Karte 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53"],
             solve,
             "line must start with `Card `",
         );
@@ -119,7 +119,7 @@ mod tests {
     #[test]
     fn invalid_win_number_must_be_integer() {
         test_invalid_msg(
-            &[&"Card 1: 41 a 83 86 17 | 83 86  6 31 17  9 48 53"],
+            &["Card 1: 41 a 83 86 17 | 83 86  6 31 17  9 48 53"],
             solve,
             "win numbers must be integers",
         );
@@ -128,7 +128,7 @@ mod tests {
     #[test]
     fn invalid_have_number_must_be_integer() {
         test_invalid_msg(
-            &[&"Card 1: 41 48 83 86 17 | 83 86  b 31 17  9 48 53"],
+            &["Card 1: 41 48 83 86 17 | 83 86  b 31 17  9 48 53"],
             solve,
             "have numbers must be integers",
         );

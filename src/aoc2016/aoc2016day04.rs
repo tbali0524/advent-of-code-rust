@@ -92,7 +92,7 @@ mod tests {
     #[test]
     fn invalid_id_must_be_integer() {
         test_invalid_msg(
-            &[&"aaaaa-bbb-z-y-x-aaa[abxyz]"],
+            &["aaaaa-bbb-z-y-x-aaa[abxyz]"],
             solve,
             "id part must be integer",
         );
@@ -101,7 +101,7 @@ mod tests {
     #[test]
     fn invalid_line_must_be_at_least_12_chars_long() {
         test_invalid_msg(
-            &[&"-123[abxyz]"],
+            &["-123[abxyz]"],
             solve,
             "line must be at least 12 characters",
         );

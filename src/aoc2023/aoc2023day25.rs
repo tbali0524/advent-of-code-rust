@@ -102,6 +102,6 @@ mod tests {
 
     #[test]
     fn invalid_must_have_colon() {
-        test_invalid_msg(&[&"jqt rhn xhk nvd"], solve, "lines must contain `: `");
+        test_invalid_msg(&["jqt rhn xhk nvd"], solve, "lines must contain `: `");
     }
 }

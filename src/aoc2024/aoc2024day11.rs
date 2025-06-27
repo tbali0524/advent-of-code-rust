@@ -27,7 +27,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         .split_whitespace()
         .map(|x| {
             x.parse::<ItemType>()
-                .map_err(|_| format!("input must contain only integers, found `{}`", x))
+                .map_err(|_| format!("input must contain only integers, found `{x}`"))
         })
         .collect::<Result<Vec<_>, _>>()?;
     // ---------- Part 1 + 2
@@ -103,11 +103,11 @@ mod tests {
 
     #[test]
     fn invalid_single_line() {
-        test_invalid_msg(&[&"1 2", &"3"], solve, "input must have a single line");
+        test_invalid_msg(&["1 2", "3"], solve, "input must have a single line");
     }
 
     #[test]
     fn invalid_must_have_contain_integers() {
-        test_invalid_msg(&[&"a 2"], solve, "input must contain only integers");
+        test_invalid_msg(&["a 2"], solve, "input must contain only integers");
     }
 }

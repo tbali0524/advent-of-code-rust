@@ -82,6 +82,6 @@ mod tests {
 
     #[test]
     fn invalid_direction() {
-        test_invalid_msg(&[&"A"], solve, "direction must be one of 'URDL'");
+        test_invalid_msg(&["A"], solve, "direction must be one of 'URDL'");
     }
 }

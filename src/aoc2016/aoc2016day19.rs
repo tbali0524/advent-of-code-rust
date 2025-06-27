@@ -60,15 +60,11 @@ mod tests {
 
     #[test]
     fn invalid_single_line() {
-        test_invalid_msg(&[&"a", &"b"], solve, "input must have a single line");
+        test_invalid_msg(&["a", "b"], solve, "input must have a single line");
     }
 
     #[test]
     fn invalid_must_be_non_negative_integer() {
-        test_invalid_msg(
-            &[&"a"],
-            solve,
-            "input must be a single non-negative integer",
-        );
+        test_invalid_msg(&["a"], solve, "input must be a single non-negative integer");
     }
 }

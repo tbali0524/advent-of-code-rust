@@ -62,27 +62,22 @@ impl ClawMachine {
         let axy = input[0][12..]
             .split(", Y+")
             .map(|x| {
-                x.parse::<ItemType>().map_err(|_| {
-                    format!("button config must be non-negative integer, found `{}`", x)
-                })
+                x.parse::<ItemType>()
+                    .map_err(|_| format!("button config must be non-negative integer, found `{x}`"))
             })
             .collect::<Result<Vec<_>, _>>()?;
         let bxy = input[1][12..]
             .split(", Y+")
             .map(|x| {
-                x.parse::<ItemType>().map_err(|_| {
-                    format!("button config must be non-negative integer, found `{}`", x)
-                })
+                x.parse::<ItemType>()
+                    .map_err(|_| format!("button config must be non-negative integer, found `{x}`"))
             })
             .collect::<Result<Vec<_>, _>>()?;
         let pxy = input[2][9..]
             .split(", Y=")
             .map(|x| {
                 x.parse::<ItemType>().map_err(|_| {
-                    format!(
-                        "prize coordinates must be non-negative integers, found `{}`",
-                        x
-                    )
+                    format!("prize coordinates must be non-negative integers, found `{x}`")
                 })
             })
             .collect::<Result<Vec<_>, _>>()?;
@@ -150,9 +145,9 @@ mod tests {
     fn invalid_claw_def() {
         test_invalid_msg(
             &[
-                &"Button A: X+1, Y+2",
-                &"Button C: X+3, Y+4",
-                &"Prize: X=5, Y=6",
+                "Button A: X+1, Y+2",
+                "Button C: X+3, Y+4",
+                "Prize: X=5, Y=6",
             ],
             solve,
             "invalid claw machine definition",
@@ -163,9 +158,9 @@ mod tests {
     fn invalid_button_a_config_must_be_integer() {
         test_invalid_msg(
             &[
-                &"Button A: X+1, Y+ZZ",
-                &"Button B: X+3, Y+4",
-                &"Prize: X=5, Y=6",
+                "Button A: X+1, Y+ZZ",
+                "Button B: X+3, Y+4",
+                "Prize: X=5, Y=6",
             ],
             solve,
             "button config must be non-negative integer",
@@ -176,9 +171,9 @@ mod tests {
     fn invalid_button_b_config_must_be_integer() {
         test_invalid_msg(
             &[
-                &"Button A: X+1, Y+2",
-                &"Button B: X+Q, Y+4",
-                &"Prize: X=5, Y=6",
+                "Button A: X+1, Y+2",
+                "Button B: X+Q, Y+4",
+                "Prize: X=5, Y=6",
             ],
             solve,
             "button config must be non-negative integer",
@@ -189,9 +184,9 @@ mod tests {
     fn invalid_prize_coord_must_be_integer() {
         test_invalid_msg(
             &[
-                &"Button A: X+1, Y+2",
-                &"Button B: X+3, Y+4",
-                &"Prize: X=P, Y=6",
+                "Button A: X+1, Y+2",
+                "Button B: X+3, Y+4",
+                "Prize: X=P, Y=6",
             ],
             solve,
             "prize coordinates must be non-negative integers",
@@ -201,7 +196,7 @@ mod tests {
     #[test]
     fn invalid_incorrect_number_of_values() {
         test_invalid_msg(
-            &[&"Button A: X+1, Y+2", &"Button B: X+3", &"Prize: X=5, Y=6"],
+            &["Button A: X+1, Y+2", "Button B: X+3", "Prize: X=5, Y=6"],
             solve,
             "invalid claw machine definition",
         );
@@ -211,10 +206,10 @@ mod tests {
     fn invalid_claw_separator_must_be_empty_line() {
         test_invalid_msg(
             &[
-                &"Button A: X+1, Y+2",
-                &"Button B: X+3, Y+4",
-                &"Prize: X=5, Y=6",
-                &"a",
+                "Button A: X+1, Y+2",
+                "Button B: X+3, Y+4",
+                "Prize: X=5, Y=6",
+                "a",
             ],
             solve,
             "claw machine definitions must be separated by an empty line",

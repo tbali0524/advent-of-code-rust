@@ -116,18 +116,18 @@ mod tests {
 
     #[test]
     fn invalid_must_have_contain_integers_first() {
-        test_invalid_msg(&[&"a,2"], solve, "input must contain only integers");
+        test_invalid_msg(&["a,2"], solve, "input must contain only integers");
     }
 
     #[test]
     fn invalid_must_have_contain_integers_second() {
-        test_invalid_msg(&[&"1,a"], solve, "input must contain only integers");
+        test_invalid_msg(&["1,a"], solve, "input must contain only integers");
     }
 
     #[test]
     fn invalid_must_have_2_items_1_found() {
         test_invalid_msg(
-            &[&"1"],
+            &["1"],
             solve,
             "input lines must contain two items, one found",
         );
@@ -136,7 +136,7 @@ mod tests {
     #[test]
     fn invalid_must_have_2_items_more_found() {
         test_invalid_msg(
-            &[&"1,2,3"],
+            &["1,2,3"],
             solve,
             "input lines must contain two items, more found",
         );

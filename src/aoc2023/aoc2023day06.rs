@@ -27,7 +27,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         .map(|x| {
             x.trim()
                 .parse::<ItemType>()
-                .map_err(|_| format!("times must be integers, found `{}`", x).into())
+                .map_err(|_| format!("times must be integers, found `{x}`").into())
         })
         .collect::<Result<Vec<_>, PuzzleError>>()?;
     let mut distances = input[1][11..]
@@ -35,7 +35,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         .map(|x| {
             x.trim()
                 .parse::<ItemType>()
-                .map_err(|_| format!("distances must be integers, found `{}`", x).into())
+                .map_err(|_| format!("distances must be integers, found `{x}`").into())
         })
         .collect::<Result<Vec<_>, PuzzleError>>()?;
     if times.len() != distances.len() {
@@ -117,7 +117,7 @@ mod tests {
     #[test]
     fn invalid_must_be_2_lines() {
         test_invalid_msg(
-            &[&"Time:      7  15   30", &"Distance:  9  40  200", &"a"],
+            &["Time:      7  15   30", "Distance:  9  40  200", "a"],
             solve,
             "input must be 2 lines",
         );
@@ -126,7 +126,7 @@ mod tests {
     #[test]
     fn invalid_first_line_must_start_with_time() {
         test_invalid_msg(
-            &[&"a:      7  15   30", &"Distance:  9  40  200"],
+            &["a:      7  15   30", "Distance:  9  40  200"],
             solve,
             "first starting with `Time:`",
         );
@@ -135,7 +135,7 @@ mod tests {
     #[test]
     fn invalid_second_line_must_start_with_distance() {
         test_invalid_msg(
-            &[&"Time:      7  15   30", &"a:  9  40  200"],
+            &["Time:      7  15   30", "a:  9  40  200"],
             solve,
             "second with `Distance:`",
         );
@@ -144,7 +144,7 @@ mod tests {
     #[test]
     fn invalid_times_must_be_integer() {
         test_invalid_msg(
-            &[&"Time:      7  a   30", &"Distance:  9  40  200"],
+            &["Time:      7  a   30", "Distance:  9  40  200"],
             solve,
             "times must be integers",
         );
@@ -153,7 +153,7 @@ mod tests {
     #[test]
     fn invalid_distances_must_be_integer() {
         test_invalid_msg(
-            &[&"Time:      7  15   30", &"Distance:  9  a  200"],
+            &["Time:      7  15   30", "Distance:  9  a  200"],
             solve,
             "distances must be integers",
         );

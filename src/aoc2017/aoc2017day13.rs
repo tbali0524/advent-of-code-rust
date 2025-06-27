@@ -23,7 +23,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             .split(": ")
             .map(|x| {
                 x.parse::<ItemType>()
-                    .map_err(|_| format!("input must contain only integers, found `{}`", x))
+                    .map_err(|_| format!("input must contain only integers, found `{x}`"))
             })
             .collect::<Result<Vec<_>, _>>()?;
         if a.len() != 2 {
@@ -74,11 +74,11 @@ mod tests {
 
     #[test]
     fn invalid_must_have_two_data_per_line() {
-        test_invalid(&[&"1: 2: 3"], solve);
+        test_invalid(&["1: 2: 3"], solve);
     }
 
     #[test]
     fn invalid_only_contains_int() {
-        test_invalid(&[&"1: a"], solve);
+        test_invalid(&["1: a"], solve);
     }
 }

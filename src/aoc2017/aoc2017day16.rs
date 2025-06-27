@@ -173,26 +173,26 @@ mod tests {
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(&[&"a", &"b"], solve);
+        test_invalid(&["a", "b"], solve);
     }
 
     #[test]
     fn invalid_command() {
-        test_invalid(&[&"a1"], solve);
+        test_invalid(&["a1"], solve);
     }
 
     #[test]
     fn invalid_command_s_argument_must_be_int() {
-        test_invalid(&[&"sa"], solve);
+        test_invalid(&["sa"], solve);
     }
 
     #[test]
     fn invalid_command_x_must_have_2_arguments() {
-        test_invalid(&[&"p1"], solve);
+        test_invalid(&["p1"], solve);
     }
 
     #[test]
     fn invalid_command_x_argument_must_be_int() {
-        test_invalid(&[&"pa/1"], solve);
+        test_invalid(&["pa/1"], solve);
     }
 }

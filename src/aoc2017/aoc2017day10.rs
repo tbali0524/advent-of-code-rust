@@ -24,7 +24,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         .split(',')
         .map(|x| {
             x.parse::<ItemType>()
-                .map_err(|_| format!("input must contain only integers, found `{}`", x))
+                .map_err(|_| format!("input must contain only integers, found `{x}`"))
         })
         .collect::<Result<Vec<_>, _>>()?;
     // ---------- Part 1
@@ -81,7 +81,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         for j in 0..16 {
             byte ^= list[i * 16 + j];
         }
-        ans2 += &format!("{:02x}", byte);
+        ans2 += &format!("{byte:02x}");
     }
     Ok((ans1.to_string(), ans2.to_string()))
 }
@@ -109,11 +109,11 @@ mod tests {
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(&[&"123", &"1"], solve);
+        test_invalid(&["123", "1"], solve);
     }
 
     #[test]
     fn invalid_only_contains_int() {
-        test_invalid(&[&"1,a,3"], solve);
+        test_invalid(&["1,a,3"], solve);
     }
 }

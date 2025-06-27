@@ -43,7 +43,7 @@ impl Brick {
                 pos.split(',')
                     .map(|x| {
                         x.trim().parse::<usize>().map_err(|_| {
-                            format!("coordinate must be non-negative integer, found `{}`", x).into()
+                            format!("coordinate must be non-negative integer, found `{x}`").into()
                         })
                     })
                     .collect::<Result<Vec<_>, PuzzleError>>()
@@ -227,7 +227,7 @@ mod tests {
     #[test]
     fn invalid_missing_tilde() {
         test_invalid_msg(
-            &[&"1,2,3"],
+            &["1,2,3"],
             solve,
             "brick coordinates must be separated by a single `~`",
         );
@@ -236,7 +236,7 @@ mod tests {
     #[test]
     fn invalid_coord_must_be_integer() {
         test_invalid_msg(
-            &[&"1,2,3~4,A,6"],
+            &["1,2,3~4,A,6"],
             solve,
             "coordinate must be non-negative integer, found ",
         );
@@ -245,7 +245,7 @@ mod tests {
     #[test]
     fn invalid_must_have_3_coords() {
         test_invalid_msg(
-            &[&"1,2,3~4,5,6,7"],
+            &["1,2,3~4,5,6,7"],
             solve,
             "coordinates must be 3 values separated by `,`",
         );
@@ -254,7 +254,7 @@ mod tests {
     #[test]
     fn invalid_to_must_be_higher_than_from() {
         test_invalid_msg(
-            &[&"1,2,3~4,5,1"],
+            &["1,2,3~4,5,1"],
             solve,
             "to coordinates must not be smaller than from coordinates",
         );
@@ -263,7 +263,7 @@ mod tests {
     #[test]
     fn invalid_from_z_must_not_be_zero() {
         test_invalid_msg(
-            &[&"1,2,0~4,5,6"],
+            &["1,2,0~4,5,6"],
             solve,
             "from z coordinates must not be zero",
         );

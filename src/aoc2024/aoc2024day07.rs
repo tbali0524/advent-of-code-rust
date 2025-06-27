@@ -35,9 +35,8 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             a[1..]
                 .iter()
                 .map(|&x| {
-                    x.parse::<ItemType>().map_err(|_| {
-                        format!("operands must be non-negative integers, found `{}`", x)
-                    })
+                    x.parse::<ItemType>()
+                        .map_err(|_| format!("operands must be non-negative integers, found `{x}`"))
                 })
                 .collect::<Result<Vec<_>, _>>()?,
         );
@@ -115,25 +114,21 @@ mod tests {
 
     #[test]
     fn invalid_missing_colon() {
-        test_invalid_msg(&[&"6 2 3"], solve, "result must be followed by a `:`");
+        test_invalid_msg(&["6 2 3"], solve, "result must be followed by a `:`");
     }
 
     #[test]
     fn invalid_result_must_be_integer() {
-        test_invalid_msg(&[&"a: 2 3"], solve, "result must be a non-negative integer");
+        test_invalid_msg(&["a: 2 3"], solve, "result must be a non-negative integer");
     }
 
     #[test]
     fn invalid_operand_must_be_integer() {
-        test_invalid_msg(
-            &[&"6: 2 a"],
-            solve,
-            "operands must be non-negative integers",
-        );
+        test_invalid_msg(&["6: 2 a"], solve, "operands must be non-negative integers");
     }
 
     #[test]
     fn invalid_needs_at_least_2_operands() {
-        test_invalid_msg(&[&"6: 6"], solve, "missing operands");
+        test_invalid_msg(&["6: 6"], solve, "missing operands");
     }
 }

@@ -170,13 +170,13 @@ mod tests {
 
     #[test]
     fn invalid_missing_bid() {
-        test_invalid_msg(&[&"32T3K"], solve, "missing bid");
+        test_invalid_msg(&["32T3K"], solve, "missing bid");
     }
 
     #[test]
     fn invalid_must_be_only_hand_and_bid() {
         test_invalid_msg(
-            &[&"32T3K 765 a"],
+            &["32T3K 765 a"],
             solve,
             "lines must contain only hand and bid",
         );
@@ -184,16 +184,16 @@ mod tests {
 
     #[test]
     fn invalid_bid_must_be_integer() {
-        test_invalid_msg(&[&"32T3K a"], solve, "bid must be integer");
+        test_invalid_msg(&["32T3K a"], solve, "bid must be integer");
     }
 
     #[test]
     fn invalid_must_contain_5_cards() {
-        test_invalid_msg(&[&"32T32K 765"], solve, "hand must contain 5 cards");
+        test_invalid_msg(&["32T32K 765"], solve, "hand must contain 5 cards");
     }
 
     #[test]
     fn invalid_card() {
-        test_invalid_msg(&[&"32Z3K 765"], solve, "invalid card");
+        test_invalid_msg(&["32Z3K 765"], solve, "invalid card");
     }
 }

@@ -118,6 +118,6 @@ mod tests {
 
     #[test]
     fn invalid_grid_not_rectangular() {
-        test_invalid_msg(&[&"a.", &"."], solve, "grid must be rectangular");
+        test_invalid_msg(&["a.", "."], solve, "grid must be rectangular");
     }
 }

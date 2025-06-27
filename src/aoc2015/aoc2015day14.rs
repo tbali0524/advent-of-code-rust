@@ -119,13 +119,13 @@ mod tests {
 
     #[test]
     fn invalid_input_line() {
-        test_invalid(&[&"a"], solve);
+        test_invalid(&["a"], solve);
     }
 
     #[test]
     fn invalid_speed_must_be_integer() {
         test_invalid(
-            &[&"A can fly X km/s for 10 seconds, but then must rest for 127 seconds."],
+            &["A can fly X km/s for 10 seconds, but then must rest for 127 seconds."],
             solve,
         );
     }
@@ -133,7 +133,7 @@ mod tests {
     #[test]
     fn invalid_fly_time_must_be_integer() {
         test_invalid(
-            &[&"A can fly 14 km/s for X seconds, but then must rest for 127 seconds."],
+            &["A can fly 14 km/s for X seconds, but then must rest for 127 seconds."],
             solve,
         );
     }
@@ -141,7 +141,7 @@ mod tests {
     #[test]
     fn invalid_rest_time_must_be_integer() {
         test_invalid(
-            &[&"A can fly 14 km/s for 10 seconds, but then must rest for X seconds."],
+            &["A can fly 14 km/s for 10 seconds, but then must rest for X seconds."],
             solve,
         );
     }

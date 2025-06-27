@@ -20,7 +20,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     let line = &input[0];
     for c in line.chars() {
         if !c.is_ascii_digit() {
-            Err(format!("input must contain only digits, found `{}", c))?;
+            Err(format!("input must contain only digits, found `{c}"))?;
         }
     }
     // ---------- Part 1
@@ -65,11 +65,11 @@ mod tests {
 
     #[test]
     fn invalid_single_line() {
-        test_invalid_msg(&[&"123", &"1"], solve, "input must have a single line");
+        test_invalid_msg(&["123", "1"], solve, "input must have a single line");
     }
 
     #[test]
     fn invalid_only_digits() {
-        test_invalid_msg(&[&"1a3"], solve, "input must contain only digits");
+        test_invalid_msg(&["1a3"], solve, "input must contain only digits");
     }
 }

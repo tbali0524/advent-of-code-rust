@@ -20,7 +20,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         .iter()
         .map(|&line| {
             line.parse::<ItemType>()
-                .map_err(|_| format!("input must contain only integers, found `{}`", line))
+                .map_err(|_| format!("input must contain only integers, found `{line}`"))
         })
         .collect::<Result<Vec<_>, _>>()?;
     // ---------- Part 1
@@ -60,6 +60,6 @@ mod tests {
 
     #[test]
     fn invalid_only_contains_int() {
-        test_invalid_msg(&[&"a"], solve, "input must contain only integers");
+        test_invalid_msg(&["a"], solve, "input must contain only integers");
     }
 }

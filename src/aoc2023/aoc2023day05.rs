@@ -27,7 +27,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         .map(|x| {
             x.trim()
                 .parse::<ItemType>()
-                .map_err(|_| format!("seeds must be integers, found `{}`", x).into())
+                .map_err(|_| format!("seeds must be integers, found `{x}`").into())
         })
         .collect::<Result<Vec<_>, PuzzleError>>()?;
     let mut maps = Vec::new();
@@ -47,7 +47,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             .map(|x| {
                 x.trim()
                     .parse::<ItemType>()
-                    .map_err(|_| format!("map items must be integers, found `{}`", x).into())
+                    .map_err(|_| format!("map items must be integers, found `{x}`").into())
             })
             .collect::<Result<Vec<_>, PuzzleError>>()?;
         if a.len() != 3 {
@@ -139,7 +139,7 @@ mod tests {
     #[test]
     fn invalid_at_least_4_lines() {
         test_invalid_msg(
-            &[&"seeds: 79 14 55 13", &"", &"seed-to-soil map"],
+            &["seeds: 79 14 55 13", "", "seed-to-soil map"],
             solve,
             "input must start with `seeds: `, followed by an empty line and at least 2 more lines",
         );
@@ -148,7 +148,7 @@ mod tests {
     #[test]
     fn invalid_must_start_with_seeds() {
         test_invalid_msg(
-            &[&"a: 79 14 55 13", &"", &"seed-to-soil map:", &"50 98 2"],
+            &["a: 79 14 55 13", "", "seed-to-soil map:", "50 98 2"],
             solve,
             "input must start with `seeds: `",
         );
@@ -157,12 +157,7 @@ mod tests {
     #[test]
     fn invalid_seed_must_be_followed_by_empty_line() {
         test_invalid_msg(
-            &[
-                &"seeds: 79 14 55 13",
-                &"a",
-                &"seed-to-soil map:0",
-                &"50 98 2",
-            ],
+            &["seeds: 79 14 55 13", "a", "seed-to-soil map:0", "50 98 2"],
             solve,
             "followed by an empty line",
         );
@@ -171,7 +166,7 @@ mod tests {
     #[test]
     fn invalid_seed_must_be_integer() {
         test_invalid_msg(
-            &[&"seeds: 79 a 55 13", &"", &"seed-to-soil map:", &"50 98 2"],
+            &["seeds: 79 a 55 13", "", "seed-to-soil map:", "50 98 2"],
             solve,
             "seeds must be integers",
         );
@@ -180,7 +175,7 @@ mod tests {
     #[test]
     fn invalid_map_sections_must_end_with_map() {
         test_invalid_msg(
-            &[&"seeds: 79 14 55 13", &"", &"seed-to-soil a", &"50 98 2"],
+            &["seeds: 79 14 55 13", "", "seed-to-soil a", "50 98 2"],
             solve,
             "map definition must must start with a line ending with `map:`",
         );
@@ -189,7 +184,7 @@ mod tests {
     #[test]
     fn invalid_map_items_must_be_integer() {
         test_invalid_msg(
-            &[&"seeds: 79 14 55 13", &"", &"seed-to-soil map:", &"50 a 2"],
+            &["seeds: 79 14 55 13", "", "seed-to-soil map:", "50 a 2"],
             solve,
             "map items must be integers",
         );

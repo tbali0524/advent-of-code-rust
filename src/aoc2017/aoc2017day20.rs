@@ -156,11 +156,11 @@ mod tests {
 
     #[test]
     fn invalid_variable() {
-        test_invalid(&[&"p=<0,0,0>, x=<1,2,3>, a=<0,0,0>"], solve);
+        test_invalid(&["p=<0,0,0>, x=<1,2,3>, a=<0,0,0>"], solve);
     }
 
     #[test]
     fn invalid_vector_must_have_ints() {
-        test_invalid(&[&"p=<0,a,0>, a=<1,2,3>, a=<0,0,0>"], solve);
+        test_invalid(&["p=<0,a,0>, a=<1,2,3>, a=<0,0,0>"], solve);
     }
 }

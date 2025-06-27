@@ -194,26 +194,26 @@ mod tests {
 
     #[test]
     fn invalid_short_line() {
-        test_invalid(&[&"a"], solve);
+        test_invalid(&["a"], solve);
     }
 
     #[test]
     fn invalid_instruction_too_long() {
-        test_invalid(&[&"sndda 1"], solve);
+        test_invalid(&["sndda 1"], solve);
     }
 
     #[test]
     fn invalid_istruction() {
-        test_invalid(&[&"abc a 1"], solve);
+        test_invalid(&["abc a 1"], solve);
     }
 
     #[test]
     fn invalid_first_argument() {
-        test_invalid(&[&"add - 1"], solve);
+        test_invalid(&["add - 1"], solve);
     }
 
     #[test]
     fn invalid_second_argument() {
-        test_invalid(&[&"add a *"], solve);
+        test_invalid(&["add a *"], solve);
     }
 }

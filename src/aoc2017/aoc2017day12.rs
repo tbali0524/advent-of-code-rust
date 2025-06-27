@@ -30,9 +30,8 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             .ok_or("input lines must contain an <-> arrow")?
             .split(", ")
             .map(|x| {
-                x.parse::<ItemType>().map_err(|_| {
-                    format!("adjacence list must contain only integers, found `{}`", x)
-                })
+                x.parse::<ItemType>()
+                    .map_err(|_| format!("adjacence list must contain only integers, found `{x}`"))
             })
             .collect::<Result<Vec<_>, _>>()?;
         adj_list.insert(node, list);
@@ -85,16 +84,16 @@ mod tests {
 
     #[test]
     fn invalid_lines_must_have_a_single_arrow() {
-        test_invalid(&[&"0 <-> 1, 2", &"1"], solve);
+        test_invalid(&["0 <-> 1, 2", "1"], solve);
     }
 
     #[test]
     fn invalid_right_of_arrow_only_contains_int() {
-        test_invalid(&[&"0 <-> 1, 2", &"1 <-> 2, a"], solve);
+        test_invalid(&["0 <-> 1, 2", "1 <-> 2, a"], solve);
     }
 
     #[test]
     fn invalid_left_of_arrow_only_single_int() {
-        test_invalid(&[&"a <-> 1, 2"], solve);
+        test_invalid(&["a <-> 1, 2"], solve);
     }
 }

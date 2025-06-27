@@ -141,7 +141,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     for (dx, dy) in instructions.iter() {
         if DEBUG {
             show_grid(&grid, x, y);
-            println!("------ Turn # {} : ({}, {})", k, dx, dy);
+            println!("------ Turn # {k} : ({dx}, {dy})");
             k += 1;
         }
         let mut x1 = x;
@@ -253,7 +253,7 @@ fn show_grid(grid: &[Vec<Cell>], pos_x: i32, pos_y: i32) {
             };
             s.push(char);
         }
-        println!("{}", s);
+        println!("{s}");
     }
     println!();
 }
@@ -287,7 +287,7 @@ mod tests {
     #[test]
     fn invalid_missing_pos() {
         test_invalid_msg(
-            &[&"#.", &".#", &"", &">"],
+            &["#.", ".#", "", ">"],
             solve,
             "missing start position in grid",
         );
@@ -295,20 +295,16 @@ mod tests {
 
     #[test]
     fn invalid_character() {
-        test_invalid_msg(&[&"a@", &"", &">"], solve, "invalid character in grid");
+        test_invalid_msg(&["a@", "", ">"], solve, "invalid character in grid");
     }
 
     #[test]
     fn invalid_grid_not_rectangular() {
-        test_invalid_msg(&[&"#.", &"@", &"", &">"], solve, "grid must be rectangular");
+        test_invalid_msg(&["#.", "@", "", ">"], solve, "grid must be rectangular");
     }
 
     #[test]
     fn invalid_character_instruction() {
-        test_invalid_msg(
-            &[&"@.", &"", &">a"],
-            solve,
-            "invalid character in instruction",
-        );
+        test_invalid_msg(&["@.", "", ">a"], solve, "invalid character in instruction");
     }
 }

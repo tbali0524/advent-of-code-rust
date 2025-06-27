@@ -82,18 +82,18 @@ mod tests {
 
     #[test]
     fn invalid_single_line() {
-        test_invalid_msg(&[&"rn=1,cm-", &"a"], solve, "input must have a single line");
+        test_invalid_msg(&["rn=1,cm-", "a"], solve, "input must have a single line");
     }
 
     #[test]
     fn invalid_assign_must_contain_equal_sign() {
-        test_invalid_msg(&[&"rn1,cm-"], solve, "assign commands must contain `=`");
+        test_invalid_msg(&["rn1,cm-"], solve, "assign commands must contain `=`");
     }
 
     #[test]
     fn invalid_assign_must_contain_single_equal_sign() {
         test_invalid_msg(
-            &[&"rn=1=2,cm-"],
+            &["rn=1=2,cm-"],
             solve,
             "assign commands must contain single `=`",
         );
@@ -101,6 +101,6 @@ mod tests {
 
     #[test]
     fn invalid_assign_value_must_be_integer() {
-        test_invalid_msg(&[&"rn=a,cm-"], solve, "assign value must be integer");
+        test_invalid_msg(&["rn=a,cm-"], solve, "assign value must be integer");
     }
 }

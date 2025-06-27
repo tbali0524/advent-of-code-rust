@@ -114,11 +114,11 @@ mod tests {
 
     #[test]
     fn invalid_single_line() {
-        test_invalid_msg(&[&"1", &"2"], solve, "input must have a single line");
+        test_invalid_msg(&["1", "2"], solve, "input must have a single line");
     }
 
     #[test]
     fn invalid_digit() {
-        test_invalid_msg(&[&"a"], solve, "input must contain only digits");
+        test_invalid_msg(&["a"], solve, "input must contain only digits");
     }
 }

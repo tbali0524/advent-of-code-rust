@@ -166,7 +166,7 @@ mod tests {
     #[test]
     fn invalid_missing_pos() {
         test_invalid_msg(
-            &[&"#S", &".#"],
+            &["#S", ".#"],
             solve,
             "missing start or target position in grid",
         );
@@ -174,11 +174,11 @@ mod tests {
 
     #[test]
     fn invalid_character() {
-        test_invalid_msg(&[&"aSE"], solve, "invalid character in grid");
+        test_invalid_msg(&["aSE"], solve, "invalid character in grid");
     }
 
     #[test]
     fn invalid_grid_not_rectangular() {
-        test_invalid_msg(&[&".S", &"E"], solve, "grid must be rectangular");
+        test_invalid_msg(&[".S", "E"], solve, "grid must be rectangular");
     }
 }

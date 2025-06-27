@@ -42,7 +42,7 @@ pub fn cube_delta(dir: &str) -> Result<(i32, i32, i32), PuzzleError> {
         "se" => Ok((1, 0, -1)),
         "ne" => Ok((1, -1, 0)),
         "sw" => Ok((-1, 1, 0)),
-        _ => Err(format!("invalid direction `{}", dir))?,
+        _ => Err(format!("invalid direction `{dir}"))?,
     }
 }
 
@@ -64,11 +64,11 @@ mod tests {
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(&[&"se,n", &"s"], solve);
+        test_invalid(&["se,n", "s"], solve);
     }
 
     #[test]
     fn invalid_direction() {
-        test_invalid(&[&"se,a,n"], solve);
+        test_invalid(&["se,a,n"], solve);
     }
 }

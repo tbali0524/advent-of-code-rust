@@ -74,7 +74,7 @@ fn execute(
                 }
             }
             _ => {
-                Err(format!("invalid instruction found `{}`", instruction))?;
+                Err(format!("invalid instruction found `{instruction}`"))?;
             }
         }
     }
@@ -98,11 +98,11 @@ mod tests {
 
     #[test]
     fn invalid_instruction() {
-        test_invalid(&[&"abc"], solve);
+        test_invalid(&["abc"], solve);
     }
 
     #[test]
     fn invalid_offset_must_be_integer() {
-        test_invalid(&[&"jmp X"], solve);
+        test_invalid(&["jmp X"], solve);
     }
 }

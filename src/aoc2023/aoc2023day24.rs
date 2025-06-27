@@ -163,9 +163,9 @@ impl Hailstone {
             .map(|pos| {
                 pos.split(", ")
                     .map(|x| {
-                        x.trim().parse::<ItemType>().map_err(|_| {
-                            format!("coordinate must be integer, found `{}`", x).into()
-                        })
+                        x.trim()
+                            .parse::<ItemType>()
+                            .map_err(|_| format!("coordinate must be integer, found `{x}`").into())
                     })
                     .collect::<Result<Vec<_>, PuzzleError>>()
             })
@@ -273,7 +273,7 @@ mod tests {
     #[test]
     fn invalid_missing_sepator() {
         test_invalid_msg(
-            &[&"19, 13, 30"],
+            &["19, 13, 30"],
             solve,
             "hail position and speed vectors must be separated by a single ` @ `",
         );
@@ -282,7 +282,7 @@ mod tests {
     #[test]
     fn invalid_coord_must_be_integer() {
         test_invalid_msg(
-            &[&"19, 13, 30 @ A,  1, -2"],
+            &["19, 13, 30 @ A,  1, -2"],
             solve,
             "coordinate must be integer, found ",
         );
@@ -291,7 +291,7 @@ mod tests {
     #[test]
     fn invalid_must_have_3_coords() {
         test_invalid_msg(
-            &[&"19, 13, 30 @ -2,  1, -2, 7"],
+            &["19, 13, 30 @ -2,  1, -2, 7"],
             solve,
             "vectors must be 3 values separated by `, `",
         );

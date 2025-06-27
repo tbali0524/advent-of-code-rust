@@ -104,11 +104,11 @@ mod tests {
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(&[&"123", &"1"], solve);
+        test_invalid(&["123", "1"], solve);
     }
 
     #[test]
     fn invalid_only_int() {
-        test_invalid(&[&"a"], solve);
+        test_invalid(&["a"], solve);
     }
 }

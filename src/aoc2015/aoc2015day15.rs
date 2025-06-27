@@ -106,13 +106,13 @@ mod tests {
 
     #[test]
     fn invalid_input_line() {
-        test_invalid(&[&"a"], solve);
+        test_invalid(&["a"], solve);
     }
 
     #[test]
     fn invalid_property_value_must_be_integer() {
         test_invalid(
-            &[&"Butterscotch: capacity -1, durability X, flavor 6, texture 3, calories 8"],
+            &["Butterscotch: capacity -1, durability X, flavor 6, texture 3, calories 8"],
             solve,
         );
     }

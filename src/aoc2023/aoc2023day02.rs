@@ -64,7 +64,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
                         hand.blue = count;
                         min_bag.blue = cmp::max(min_bag.blue, hand.blue);
                     }
-                    _ => Err(format!("invalid color `{}`", color))?,
+                    _ => Err(format!("invalid color `{color}`"))?,
                 }
             }
             if !hand.is_possible(&bag) {
@@ -115,13 +115,13 @@ mod tests {
 
     #[test]
     fn invalid_must_start_with_game() {
-        test_invalid_msg(&[&"a"], solve, "input lines must start with Game");
+        test_invalid_msg(&["a"], solve, "input lines must start with Game");
     }
 
     #[test]
     fn invalid_game_must_be_int() {
         test_invalid_msg(
-            &[&"Game X: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green"],
+            &["Game X: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green"],
             solve,
             "Game number must be an integer",
         );
@@ -130,7 +130,7 @@ mod tests {
     #[test]
     fn invalid_must_have_colon() {
         test_invalid_msg(
-            &[&"Game 1"],
+            &["Game 1"],
             solve,
             "Game number and hands must be separated by :",
         );
@@ -139,7 +139,7 @@ mod tests {
     #[test]
     fn invalid_color_must_be_int() {
         test_invalid_msg(
-            &[&"Game 1: 3 blue, X red; 1 red, 2 green, 6 blue"],
+            &["Game 1: 3 blue, X red; 1 red, 2 green, 6 blue"],
             solve,
             "color count must be an integer",
         );
@@ -148,7 +148,7 @@ mod tests {
     #[test]
     fn invalid_color_and_name_must_be_space_separated() {
         test_invalid_msg(
-            &[&"Game 1: 3 blue, 1 red; 1 red, 2, 6 blue"],
+            &["Game 1: 3 blue, 1 red; 1 red, 2, 6 blue"],
             solve,
             "color count and name must be space separated",
         );
@@ -157,7 +157,7 @@ mod tests {
     #[test]
     fn invalid_color_name() {
         test_invalid_msg(
-            &[&"Game 1: 3 blue, 1 red; 1 red, 2 YELLOW, 6 blue"],
+            &["Game 1: 3 blue, 1 red; 1 red, 2 YELLOW, 6 blue"],
             solve,
             "invalid color",
         );

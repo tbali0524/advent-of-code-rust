@@ -85,7 +85,7 @@ mod tests {
     #[test]
     fn invalid_single_line() {
         test_invalid_msg(
-            &[&"a, b", &"a", &"ab"],
+            &["a, b", "a", "ab"],
             solve,
             "patterns and designs must be separated by an empty line",
         );

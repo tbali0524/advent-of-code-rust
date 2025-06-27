@@ -14,7 +14,7 @@ const ARG_VERSION: &str = "--version";
 
 /// The main CLI runner.
 pub fn run() -> ExitCode {
-    println!("{}\n", MSG_TITLE);
+    println!("{MSG_TITLE}\n");
     let args = env::args().collect::<Vec<_>>();
     match parse_args(&args) {
         Err(msg) => {
@@ -25,7 +25,7 @@ pub fn run() -> ExitCode {
             if msg == ARG_HELP {
                 return ExitCode::SUCCESS;
             }
-            println!("{ANSI_RED_INV}[ERROR]{ANSI_RESET} {}\n", msg);
+            println!("{ANSI_RED_INV}[ERROR]{ANSI_RESET} {msg}\n");
             ExitCode::from(2)
         }
         Ok((year, day)) => {

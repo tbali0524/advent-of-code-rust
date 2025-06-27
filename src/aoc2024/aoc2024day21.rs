@@ -212,7 +212,7 @@ mod tests {
     #[test]
     fn invalid_must_be_4_digits() {
         test_invalid_msg(
-            &[&"1234A"],
+            &["1234A"],
             solve,
             "keycodes must be 3 digits followed by an `A`",
         );
@@ -221,7 +221,7 @@ mod tests {
     #[test]
     fn invalid_must_be_end_with_an_a() {
         test_invalid_msg(
-            &[&"123B"],
+            &["123B"],
             solve,
             "keycodes must be 3 digits followed by an `A`",
         );
@@ -229,6 +229,6 @@ mod tests {
 
     #[test]
     fn invalid_must_be_numeric() {
-        test_invalid_msg(&[&"1B3A"], solve, "keycodes must be numeric");
+        test_invalid_msg(&["1B3A"], solve, "keycodes must be numeric");
     }
 }

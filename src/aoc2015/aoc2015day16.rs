@@ -122,16 +122,16 @@ mod tests {
 
     #[test]
     fn invalid_input_line() {
-        test_invalid(&[&"a"], solve);
+        test_invalid(&["a"], solve);
     }
 
     #[test]
     fn invalid_aunt_id_must_be_integer() {
-        test_invalid(&[&"Sue X: cars: 9, akitas: 3, goldfish: 0"], solve);
+        test_invalid(&["Sue X: cars: 9, akitas: 3, goldfish: 0"], solve);
     }
 
     #[test]
     fn invalid_property_value_must_be_integer() {
-        test_invalid(&[&"Sue 1: cars: 9, akitas: X, goldfish: 0"], solve);
+        test_invalid(&["Sue 1: cars: 9, akitas: X, goldfish: 0"], solve);
     }
 }

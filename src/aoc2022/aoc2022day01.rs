@@ -25,7 +25,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         }
         calories.last_mut().unwrap().push(
             line.parse::<ItemType>()
-                .map_err(|_| format!("input must contain only integers, found `{}`", line))?,
+                .map_err(|_| format!("input must contain only integers, found `{line}`"))?,
         );
     }
     // ---------- Part 1 + 2
@@ -58,6 +58,6 @@ mod tests {
 
     #[test]
     fn invalid_only_contains_int() {
-        test_invalid_msg(&[&"a"], solve, "input must contain only integers");
+        test_invalid_msg(&["a"], solve, "input must contain only integers");
     }
 }

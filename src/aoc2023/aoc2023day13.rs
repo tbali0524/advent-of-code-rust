@@ -145,11 +145,11 @@ mod tests {
 
     #[test]
     fn invalid_must_be_rectangular() {
-        test_invalid_msg(&[&".#", &"#.#"], solve, "pattern must be rectangular");
+        test_invalid_msg(&[".#", "#.#"], solve, "pattern must be rectangular");
     }
 
     #[test]
     fn invalid_must_contain_only_valid_chars() {
-        test_invalid_msg(&[&".#", &"#a"], solve, "invalid character in pattern");
+        test_invalid_msg(&[".#", "#a"], solve, "invalid character in pattern");
     }
 }

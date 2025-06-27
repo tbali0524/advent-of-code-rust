@@ -125,6 +125,6 @@ mod tests {
 
     #[test]
     fn invalid_must_be_5_chars_with() {
-        test_invalid_msg(&[&"a"], solve, "input lines must have 5 chars");
+        test_invalid_msg(&["a"], solve, "input lines must have 5 chars");
     }
 }

@@ -32,7 +32,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         let hash = knot_hash(&key);
         for i in 0..4 {
             let dec = ItemType::from_str_radix(&hash[(8 * i)..(8 * i + 8)], 16).unwrap();
-            let bin = format!("{:032b}", dec);
+            let bin = format!("{dec:032b}");
             for (j, digit) in bin.chars().enumerate() {
                 grid[y][32 * i + j] = digit;
                 if digit == '1' {
@@ -81,7 +81,7 @@ fn knot_hash(key: &str) -> String {
         for j in 0..16 {
             byte ^= list[i * 16 + j];
         }
-        ans += &format!("{:02x}", byte);
+        ans += &format!("{byte:02x}");
     }
     ans
 }
@@ -119,6 +119,6 @@ mod tests {
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(&[&"a", &"b"], solve);
+        test_invalid(&["a", "b"], solve);
     }
 }

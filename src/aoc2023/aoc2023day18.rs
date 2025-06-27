@@ -264,32 +264,28 @@ mod tests {
 
     #[test]
     fn invalid_direction() {
-        test_invalid_msg(
-            &[&"a 6 (#70c710)"],
-            solve,
-            "direction must be one of `URDL`",
-        );
+        test_invalid_msg(&["a 6 (#70c710)"], solve, "direction must be one of `URDL`");
     }
 
     #[test]
     fn invalid_missing_step() {
-        test_invalid_msg(&[&"R"], solve, "missing step");
+        test_invalid_msg(&["R"], solve, "missing step");
     }
 
     #[test]
     fn invalid_step_must_be_integer() {
-        test_invalid_msg(&[&"R a (#70c710)"], solve, "step must be integer");
+        test_invalid_msg(&["R a (#70c710)"], solve, "step must be integer");
     }
 
     #[test]
     fn invalid_missing_hex() {
-        test_invalid_msg(&[&"R 6"], solve, "missing hex number");
+        test_invalid_msg(&["R 6"], solve, "missing hex number");
     }
 
     #[test]
     fn invalid_hex_format() {
         test_invalid_msg(
-            &[&"R 6 (a70c710)"],
+            &["R 6 (a70c710)"],
             solve,
             "hex number must be in format `(#abcdef)`",
         );
@@ -298,7 +294,7 @@ mod tests {
     #[test]
     fn invalid_too_many_items() {
         test_invalid_msg(
-            &[&"R 6 (#70c710) a"],
+            &["R 6 (#70c710) a"],
             solve,
             "each line must contain 3 items, separated by space",
         );
@@ -306,17 +302,13 @@ mod tests {
 
     #[test]
     fn invalid_direction_index_must_be_digit() {
-        test_invalid_msg(
-            &[&"R 6 (#70c71a)"],
-            solve,
-            "direction index must be a digit",
-        );
+        test_invalid_msg(&["R 6 (#70c71a)"], solve, "direction index must be a digit");
     }
 
     #[test]
     fn invalid_direction_index_must_be_below_four() {
         test_invalid_msg(
-            &[&"R 6 (#70c714)"],
+            &["R 6 (#70c714)"],
             solve,
             "direction index must be a between 0 and 3",
         );
@@ -324,6 +316,6 @@ mod tests {
 
     #[test]
     fn invalid_hex_number() {
-        test_invalid_msg(&[&"R 6 (#70g710)"], solve, "invalid hex number");
+        test_invalid_msg(&["R 6 (#70g710)"], solve, "invalid hex number");
     }
 }

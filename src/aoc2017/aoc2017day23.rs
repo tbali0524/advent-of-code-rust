@@ -154,26 +154,26 @@ mod tests {
 
     #[test]
     fn invalid_short_line() {
-        test_invalid(&[&"a"], solve);
+        test_invalid(&["a"], solve);
     }
 
     #[test]
     fn invalid_instruction_too_long() {
-        test_invalid(&[&"setaa 1"], solve);
+        test_invalid(&["setaa 1"], solve);
     }
 
     #[test]
     fn invalid_istruction() {
-        test_invalid(&[&"abc a 1"], solve);
+        test_invalid(&["abc a 1"], solve);
     }
 
     #[test]
     fn invalid_first_argument() {
-        test_invalid(&[&"set - 1"], solve);
+        test_invalid(&["set - 1"], solve);
     }
 
     #[test]
     fn invalid_second_argument() {
-        test_invalid(&[&"set a *"], solve);
+        test_invalid(&["set a *"], solve);
     }
 }

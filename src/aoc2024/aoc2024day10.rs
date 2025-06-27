@@ -157,11 +157,11 @@ mod tests {
 
     #[test]
     fn invalid_character() {
-        test_invalid_msg(&[&"a"], solve, "input must contain only digits or `.`");
+        test_invalid_msg(&["a"], solve, "input must contain only digits or `.`");
     }
 
     #[test]
     fn invalid_grid_not_rectangular() {
-        test_invalid_msg(&[&"01", &"2"], solve, "grid must be rectangular");
+        test_invalid_msg(&["01", "2"], solve, "grid must be rectangular");
     }
 }

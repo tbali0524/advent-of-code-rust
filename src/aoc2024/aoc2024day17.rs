@@ -46,12 +46,11 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         .map(|x| {
             let parsed = x
                 .parse::<ItemType>()
-                .map_err(|_| format!("program code must be non-negative integers, found `{}`", x));
+                .map_err(|_| format!("program code must be non-negative integers, found `{x}`"));
             if let Ok(value) = parsed {
                 if !(0..=7).contains(&value) {
                     Err(format!(
-                        "program code must be between 0 and 7, found `{}`",
-                        value
+                        "program code must be between 0 and 7, found `{value}`"
                     ))
                 } else {
                     parsed
@@ -218,18 +217,18 @@ mod tests {
 
     #[test]
     fn invalid_must_be_5_lines() {
-        test_invalid_msg(&[&"a", &"b"], solve, "input must be 5 lines");
+        test_invalid_msg(&["a", "b"], solve, "input must be 5 lines");
     }
 
     #[test]
     fn invalid_missing_empty_line() {
         test_invalid_msg(
             &[
-                &"Register A: 1",
-                &"Register B: 0",
-                &"Register C: 0",
-                &"a",
-                &"Program: 0,1",
+                "Register A: 1",
+                "Register B: 0",
+                "Register C: 0",
+                "a",
+                "Program: 0,1",
             ],
             solve,
             "registers and program must be separated by an empty line",
@@ -240,11 +239,11 @@ mod tests {
     fn invalid_first_3_lines_must_start_with_register() {
         test_invalid_msg(
             &[
-                &"Register A: 1",
-                &"R B: 0",
-                &"Register C: 0",
-                &"",
-                &"Program: 0,1",
+                "Register A: 1",
+                "R B: 0",
+                "Register C: 0",
+                "",
+                "Program: 0,1",
             ],
             solve,
             "first 3 lines must start with `Register `",
@@ -255,11 +254,11 @@ mod tests {
     fn invalid_register_must_be_integer() {
         test_invalid_msg(
             &[
-                &"Register A: 1",
-                &"Register B: a",
-                &"Register C: 0",
-                &"",
-                &"Program: 0,1",
+                "Register A: 1",
+                "Register B: a",
+                "Register C: 0",
+                "",
+                "Program: 0,1",
             ],
             solve,
             "register value must be non-negative integer",
@@ -270,11 +269,11 @@ mod tests {
     fn invalid_line_5_must_start_with_program() {
         test_invalid_msg(
             &[
-                &"Register A: 1",
-                &"Register B: 0",
-                &"Register C: 0",
-                &"",
-                &"P: 0,1",
+                "Register A: 1",
+                "Register B: 0",
+                "Register C: 0",
+                "",
+                "P: 0,1",
             ],
             solve,
             "5th line must start with `Program: `",
@@ -285,11 +284,11 @@ mod tests {
     fn invalid_program_code_must_be_integer() {
         test_invalid_msg(
             &[
-                &"Register A: 1",
-                &"Register B: 0",
-                &"Register C: 0",
-                &"",
-                &"Program: 0,a",
+                "Register A: 1",
+                "Register B: 0",
+                "Register C: 0",
+                "",
+                "Program: 0,a",
             ],
             solve,
             "program code must be non-negative integers",
@@ -300,11 +299,11 @@ mod tests {
     fn invalid_program_code_must_be_between_0_and_7() {
         test_invalid_msg(
             &[
-                &"Register A: 1",
-                &"Register B: 0",
-                &"Register C: 0",
-                &"",
-                &"Program: 0,8,1",
+                "Register A: 1",
+                "Register B: 0",
+                "Register C: 0",
+                "",
+                "Program: 0,8,1",
             ],
             solve,
             "program code must be between 0 and 7",

@@ -63,7 +63,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Part 1
     let mut ans1 = 0u64;
     for i in 0..64 {
-        let name = format!("z{:0>2}", i);
+        let name = format!("z{i:0>2}");
         if !gates.contains_key(&name) {
             break;
         }
@@ -78,7 +78,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // Part 2 was originally solved manually in Excel:
     //    result = vec!["cpm", "ghp", "gpr", "krs", "nks", "z10", "z21", "z33"].iter().map(|v| v.to_string()).collect();
     // What follows is finding the problematic gates, it works for my input, but most likely not for every inputs.
-    let highest_bit = format!("z{:0>2}", count_bits);
+    let highest_bit = format!("z{count_bits:0>2}");
     for (name, gate) in gates.iter() {
         match gate.operator {
             Operator::Input => {
@@ -219,7 +219,7 @@ mod tests {
     #[test]
     fn invalid_input_must_be_6_chars_with() {
         test_invalid_msg(
-            &[&"x01: 0a"],
+            &["x01: 0a"],
             solve,
             "input definitions must be 3 letters, followed by `: ` and 0 or 1",
         );
@@ -228,7 +228,7 @@ mod tests {
     #[test]
     fn invalid_input_must_have_colon() {
         test_invalid_msg(
-            &[&"x01| 0"],
+            &["x01| 0"],
             solve,
             "input definitions must be 3 letters, followed by `: ` and 0 or 1",
         );
@@ -236,13 +236,13 @@ mod tests {
 
     #[test]
     fn invalid_input_must_be_0_or_1() {
-        test_invalid_msg(&[&"x01: 2"], solve, "input values must be 0 or 1");
+        test_invalid_msg(&["x01: 2"], solve, "input values must be 0 or 1");
     }
 
     #[test]
     fn invalid_missing_empty_separator() {
         test_invalid_msg(
-            &[&"x01: 0"],
+            &["x01: 0"],
             solve,
             "input and gate definitions must be separated by an empty line",
         );
@@ -251,7 +251,7 @@ mod tests {
     #[test]
     fn invalid_gate_must_be_5_words() {
         test_invalid_msg(
-            &[&"x01: 0", &"", &"x00 AND y00 -> z00 a"],
+            &["x01: 0", "", "x00 AND y00 -> z00 a"],
             solve,
             "gate definitions must be 5 words",
         );
@@ -260,7 +260,7 @@ mod tests {
     #[test]
     fn invalid_gate_must_have_arrow() {
         test_invalid_msg(
-            &[&"x01: 0", &"", &"x00 AND y00 a z00"],
+            &["x01: 0", "", "x00 AND y00 a z00"],
             solve,
             "gate definition 4th word must be `->`",
         );
@@ -269,7 +269,7 @@ mod tests {
     #[test]
     fn invalid_gate_operator() {
         test_invalid_msg(
-            &[&"x01: 0", &"", &"x00 a y00 -> z00"],
+            &["x01: 0", "", "x00 a y00 -> z00"],
             solve,
             "gate operator must be AND, OR, XOR",
         );
@@ -278,7 +278,7 @@ mod tests {
     #[test]
     fn invalid_duplicate_gate() {
         test_invalid_msg(
-            &[&"x01: 0", &"", &"x00 AND y00 -> x01"],
+            &["x01: 0", "", "x00 AND y00 -> x01"],
             solve,
             "duplicate gate definition",
         );
@@ -287,7 +287,7 @@ mod tests {
     #[test]
     fn invalid_gate_name() {
         test_invalid_msg(
-            &[&"x01: 0", &"", &"x00 AND y00 -> z00"],
+            &["x01: 0", "", "x00 AND y00 -> z00"],
             solve,
             "invalid gate name",
         );

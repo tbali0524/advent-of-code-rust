@@ -270,21 +270,21 @@ mod tests {
 
     #[test]
     fn invalid_must_be_2_lines() {
-        test_invalid(&[&"a"], solve);
+        test_invalid(&["a"], solve);
     }
 
     #[test]
     fn invalid_must_start_with_literals() {
-        test_invalid(&[&"Hit Points: 109", &"D: 8"], solve);
+        test_invalid(&["Hit Points: 109", "D: 8"], solve);
     }
 
     #[test]
     fn invalid_hp_must_be_integer() {
-        test_invalid(&[&"Hit Points: X", &"Damage: 8"], solve);
+        test_invalid(&["Hit Points: X", "Damage: 8"], solve);
     }
 
     #[test]
     fn invalid_damage_must_be_integer() {
-        test_invalid(&[&"Hit Points: 109", &"Damage: X"], solve);
+        test_invalid(&["Hit Points: 109", "Damage: X"], solve);
     }
 }

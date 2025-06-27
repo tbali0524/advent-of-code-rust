@@ -49,7 +49,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
                 .split(',')
                 .map(|x| {
                     x.parse::<ItemType>()
-                        .map_err(|_| format!("page list must contain only integers, found `{}`", x))
+                        .map_err(|_| format!("page list must contain only integers, found `{x}`"))
                 })
                 .collect::<Result<Vec<_>, _>>()?,
         );
@@ -112,7 +112,7 @@ mod tests {
     #[test]
     fn invalid_rule_must_contain_integer() {
         test_invalid_msg(
-            &[&"1|a", &"", &"1,2"],
+            &["1|a", "", "1,2"],
             solve,
             "rules must contain only integers",
         );
@@ -121,7 +121,7 @@ mod tests {
     #[test]
     fn invalid_rule_must_contain_2_found_1() {
         test_invalid_msg(
-            &[&"1", &"", &"1,2"],
+            &["1", "", "1,2"],
             solve,
             "rules must contain two items separated by `|`, one found",
         );
@@ -130,7 +130,7 @@ mod tests {
     #[test]
     fn invalid_rule_must_contain_2_found_more() {
         test_invalid_msg(
-            &[&"1|2|3", &"", &"1,2"],
+            &["1|2|3", "", "1,2"],
             solve,
             "rules must contain two items separated by `|`, more found",
         );
@@ -139,7 +139,7 @@ mod tests {
     #[test]
     fn invalid_pagelist_missing() {
         test_invalid_msg(
-            &[&"1|2"],
+            &["1|2"],
             solve,
             "missing page list, must come after after rules and an empty line",
         );
@@ -148,7 +148,7 @@ mod tests {
     #[test]
     fn invalid_pagelist_must_contain_integer() {
         test_invalid_msg(
-            &[&"1|2", &"", &"1,a"],
+            &["1|2", "", "1,a"],
             solve,
             "page list must contain only integers",
         );

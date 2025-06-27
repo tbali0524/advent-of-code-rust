@@ -114,6 +114,6 @@ mod tests {
 
     #[test]
     fn invalid_input() {
-        test_invalid(&[&"a"], solve);
+        test_invalid(&["a"], solve);
     }
 }

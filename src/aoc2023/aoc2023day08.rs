@@ -149,13 +149,13 @@ mod tests {
 
     #[test]
     fn invalid_at_least_3_lines() {
-        test_invalid_msg(&[&"RL", &""], solve, "input must have at least 3 lines");
+        test_invalid_msg(&["RL", ""], solve, "input must have at least 3 lines");
     }
 
     #[test]
     fn invalid_second_line_empty() {
         test_invalid_msg(
-            &[&"RL", &"a", &"AAA = (BBB, CCC)"],
+            &["RL", "a", "AAA = (BBB, CCC)"],
             solve,
             "second line must be empty",
         );
@@ -164,7 +164,7 @@ mod tests {
     #[test]
     fn invalid_line_separator() {
         test_invalid_msg(
-            &[&"RL", &"", &"AAA =a (BBB, CCC)"],
+            &["RL", "", "AAA =a (BBB, CCC)"],
             solve,
             "lines must contain ` = (`",
         );
@@ -173,7 +173,7 @@ mod tests {
     #[test]
     fn invalid_must_end_closing_par() {
         test_invalid_msg(
-            &[&"RL", &"", &"AAA = (BBB, CCC"],
+            &["RL", "", "AAA = (BBB, CCC"],
             solve,
             "lines must end with `)`",
         );
@@ -182,7 +182,7 @@ mod tests {
     #[test]
     fn invalid_must_have_two_targets_not_one() {
         test_invalid_msg(
-            &[&"RL", &"", &"AAA = (BBB)"],
+            &["RL", "", "AAA = (BBB)"],
             solve,
             "each node must be connected to 2 nodes, 1 found",
         );
@@ -191,7 +191,7 @@ mod tests {
     #[test]
     fn invalid_must_have_two_targets_not_more() {
         test_invalid_msg(
-            &[&"RL", &"", &"AAA = (BBB, CCC, DDD)"],
+            &["RL", "", "AAA = (BBB, CCC, DDD)"],
             solve,
             "each node must be connected to 2 nodes, more found",
         );
@@ -200,7 +200,7 @@ mod tests {
     #[test]
     fn invalid_direction_must_be_lr() {
         test_invalid_msg(
-            &[&"RaL", &"", &"AAA = (BBB, CCC)"],
+            &["RaL", "", "AAA = (BBB, CCC)"],
             solve,
             "directions must contain only L and R",
         );
@@ -208,6 +208,6 @@ mod tests {
 
     #[test]
     fn invalid_target_node() {
-        test_invalid_msg(&[&"RL", &"", &"AAA = (BBB, CCC)"], solve, "invalid node");
+        test_invalid_msg(&["RL", "", "AAA = (BBB, CCC)"], solve, "invalid node");
     }
 }

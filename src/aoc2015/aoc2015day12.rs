@@ -79,11 +79,11 @@ mod tests {
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(&[&"a", &"b"], solve);
+        test_invalid(&["a", "b"], solve);
     }
 
     #[test]
     fn invalid_must_be_valid_json() {
-        test_invalid(&[&"[1,"], solve);
+        test_invalid(&["[1,"], solve);
     }
 }

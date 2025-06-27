@@ -93,16 +93,16 @@ mod tests {
 
     #[test]
     fn invalid_must_have_3_or_more_lines() {
-        test_invalid(&[&"a"], solve);
+        test_invalid(&["a"], solve);
     }
 
     #[test]
     fn invalid_line_before_last_must_be_empty() {
-        test_invalid(&[&"a => b", &"a => c", &"b"], solve);
+        test_invalid(&["a => b", "a => c", "b"], solve);
     }
 
     #[test]
     fn invalid_must_have_arrow() {
-        test_invalid(&[&"a", &"", &"a"], solve);
+        test_invalid(&["a", "", "a"], solve);
     }
 }

@@ -54,6 +54,6 @@ mod tests {
 
     #[test]
     fn invalid_must_have_multiple_of_3_rows() {
-        test_invalid_msg(&[&"a", &"ab"], solve, "each row must have same length");
+        test_invalid_msg(&["a", "ab"], solve, "each row must have same length");
     }
 }

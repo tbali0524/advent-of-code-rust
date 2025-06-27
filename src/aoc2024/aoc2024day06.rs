@@ -124,25 +124,21 @@ mod tests {
 
     #[test]
     fn invalid_missing_pos() {
-        test_invalid_msg(&[&"#.", &".#"], solve, "missing start position in grid");
+        test_invalid_msg(&["#.", ".#"], solve, "missing start position in grid");
     }
 
     #[test]
     fn invalid_character() {
-        test_invalid_msg(&[&"a"], solve, "invalid character in grid");
+        test_invalid_msg(&["a"], solve, "invalid character in grid");
     }
 
     #[test]
     fn invalid_grid_not_rectangular() {
-        test_invalid_msg(&[&"#.", &"^"], solve, "grid must be rectangular");
+        test_invalid_msg(&["#.", "^"], solve, "grid must be rectangular");
     }
 
     #[test]
     fn invalid_grid_contains_loop() {
-        test_invalid_msg(
-            &[&"###", &"#^#", &"###"],
-            solve,
-            "input already contains loop",
-        );
+        test_invalid_msg(&["###", "#^#", "###"], solve, "input already contains loop");
     }
 }

@@ -23,8 +23,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     for c in line.chars() {
         if c != '(' && c != ')' {
             Err(format!(
-                "input must contain only `(` or `)` chars, found `{}`",
-                c
+                "input must contain only `(` or `)` chars, found `{c}`"
             ))?;
         }
     }
@@ -69,11 +68,11 @@ mod tests {
 
     #[test]
     fn invalid_single_line() {
-        test_invalid_msg(&[&"(())", &"()"], solve, "input must have a single line");
+        test_invalid_msg(&["(())", "()"], solve, "input must have a single line");
     }
 
     #[test]
     fn invalid_only_parentheses() {
-        test_invalid_msg(&[&"(a)"], solve, "input must contain only `(` or `)`");
+        test_invalid_msg(&["(a)"], solve, "input must contain only `(` or `)`");
     }
 }

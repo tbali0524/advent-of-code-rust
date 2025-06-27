@@ -107,7 +107,7 @@ impl Circuit {
         let gate = self
             .gates
             .get(id)
-            .ok_or(format!("invalid wire id `{}`", id))?;
+            .ok_or(format!("invalid wire id `{id}`"))?;
         if let Some(x) = gate.value {
             return Ok(x);
         }
@@ -132,7 +132,7 @@ impl Circuit {
                     "OR" => a | b,
                     "LSHIFT" => a << b,
                     "RSHIFT" => a >> b,
-                    _ => Err(format!("invalid operator `{}`", operator))?,
+                    _ => Err(format!("invalid operator `{operator}`"))?,
                 }
             }
         };
@@ -160,26 +160,26 @@ mod tests {
 
     #[test]
     fn invalid_must_have_arrow() {
-        test_invalid(&[&"a"], solve);
+        test_invalid(&["a"], solve);
     }
 
     #[test]
     fn invalid_too_many_operands() {
-        test_invalid(&[&"x LSHIFT 2 3 -> y"], solve);
+        test_invalid(&["x LSHIFT 2 3 -> y"], solve);
     }
 
     #[test]
     fn invalid_unary_operator() {
-        test_invalid(&[&"AND x -> y"], solve);
+        test_invalid(&["AND x -> y"], solve);
     }
 
     #[test]
     fn invalid_binary_operator() {
-        test_invalid(&[&"x XOR y -> z"], solve);
+        test_invalid(&["x XOR y -> z"], solve);
     }
 
     #[test]
     fn invalid_wire_id() {
-        test_invalid(&[&"x AND 1 -> y"], solve);
+        test_invalid(&["x AND 1 -> y"], solve);
     }
 }

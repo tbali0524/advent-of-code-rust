@@ -80,7 +80,7 @@ mod tests {
     #[test]
     fn invalid() {
         test_invalid_msg(
-            &[&"a"],
+            &["a"],
             solve,
             "input must contain only non-negative integers",
         );

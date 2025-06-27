@@ -22,7 +22,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             line.split_whitespace()
                 .map(|x| {
                     x.parse::<ItemType>()
-                        .map_err(|_| format!("input must contain only integers, found `{}`", x))
+                        .map_err(|_| format!("input must contain only integers, found `{x}`"))
                 })
                 .collect::<Result<Vec<_>, _>>()
         })
@@ -72,7 +72,7 @@ mod tests {
     #[test]
     fn invalid_must_contain_integer() {
         test_invalid_msg(
-            &[&"1 a 3"],
+            &["1 a 3"],
             solve,
             "input must contain only integers, found ",
         );
@@ -80,13 +80,13 @@ mod tests {
 
     #[test]
     fn invalid_must_have_multiple_of_3_rows() {
-        test_invalid_msg(&[&"1 2 3"], solve, "number of rows must be multiple of 3");
+        test_invalid_msg(&["1 2 3"], solve, "number of rows must be multiple of 3");
     }
 
     #[test]
     fn invalid_must_containg_3_integers_per_line() {
         test_invalid_msg(
-            &[&"1 2 3", &"4 5", &"7 8 9"],
+            &["1 2 3", "4 5", "7 8 9"],
             solve,
             "each row must contain 3 integers",
         );

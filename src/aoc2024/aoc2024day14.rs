@@ -37,7 +37,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             .split(",")
             .map(|x| {
                 x.parse::<ItemType>()
-                    .map_err(|_| format!("position must contain only integers, found `{}`", x))
+                    .map_err(|_| format!("position must contain only integers, found `{x}`"))
             })
             .collect::<Result<Vec<_>, _>>()?;
         let v = row_iter
@@ -46,7 +46,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             .split(",")
             .map(|x| {
                 x.parse::<ItemType>()
-                    .map_err(|_| format!("velocity must contain only integers, found `{}`", x))
+                    .map_err(|_| format!("velocity must contain only integers, found `{x}`"))
             })
             .collect::<Result<Vec<_>, _>>()?;
         if row_iter.next().is_some() {
@@ -107,7 +107,7 @@ fn find_xmas_tree(positions: &[Vec<i32>], velocities: &[Vec<i32>]) -> ItemType {
         for row in &grid {
             if row.windows(pattern.len()).any(|window| window == pattern) {
                 if DRAW_RESULT {
-                    println!("Turn # {}", turn);
+                    println!("Turn # {turn}");
                     for print_row in &grid {
                         println!("{}", print_row.iter().collect::<String>());
                     }
@@ -137,13 +137,13 @@ mod tests {
 
     #[test]
     fn invalid_line_start() {
-        test_invalid_msg(&[&"X=0,4 v=3,-3"], solve, "line must start with `p=`");
+        test_invalid_msg(&["X=0,4 v=3,-3"], solve, "line must start with `p=`");
     }
 
     #[test]
     fn invalid_p_must_be_integer() {
         test_invalid_msg(
-            &[&"p=0,a v=3,-3"],
+            &["p=0,a v=3,-3"],
             solve,
             "position must contain only integers",
         );
@@ -152,7 +152,7 @@ mod tests {
     #[test]
     fn invalid_missing_v() {
         test_invalid_msg(
-            &[&"p=0,4"],
+            &["p=0,4"],
             solve,
             "missing velocity, must be preceded by ` v=`",
         );
@@ -161,7 +161,7 @@ mod tests {
     #[test]
     fn invalid_v_must_be_integer() {
         test_invalid_msg(
-            &[&"p=0,4 v=a,-3"],
+            &["p=0,4 v=a,-3"],
             solve,
             "velocity must contain only integers",
         );
@@ -170,7 +170,7 @@ mod tests {
     #[test]
     fn invalid_multiple_velocity() {
         test_invalid_msg(
-            &[&"p=0,4 v=3,-3 v=1,1"],
+            &["p=0,4 v=3,-3 v=1,1"],
             solve,
             "input lines must contain one velocity vector, more found",
         );
@@ -179,7 +179,7 @@ mod tests {
     #[test]
     fn invalid_coordinates_must_be_2d() {
         test_invalid_msg(
-            &[&"p=0,4,3 v=3,-3"],
+            &["p=0,4,3 v=3,-3"],
             solve,
             "there must be 2 coordinates for p and v",
         );

@@ -78,8 +78,7 @@ impl TryFrom<PuzzleInput<'_>> for Tree {
             tree.nodes
                 .get_mut(child)
                 .ok_or(format!(
-                    "invalid node referenced in children list: `{}`",
-                    child
+                    "invalid node referenced in children list: `{child}`"
                 ))?
                 .parent = Some(parent.to_owned());
         }
@@ -184,16 +183,16 @@ mod tests {
 
     #[test]
     fn invalid_missing_weight() {
-        test_invalid(&[&"a"], solve);
+        test_invalid(&["a"], solve);
     }
 
     #[test]
     fn invalid_weight_must_be_int() {
-        test_invalid(&[&"a (b)"], solve);
+        test_invalid(&["a (b)"], solve);
     }
 
     #[test]
     fn invalid_node_reference() {
-        test_invalid(&[&"a (1)", &"b (2) -> c"], solve);
+        test_invalid(&["a (1)", "b (2) -> c"], solve);
     }
 }

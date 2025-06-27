@@ -96,6 +96,6 @@ mod tests {
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(&[&"a", &"b"], solve);
+        test_invalid(&["a", "b"], solve);
     }
 }

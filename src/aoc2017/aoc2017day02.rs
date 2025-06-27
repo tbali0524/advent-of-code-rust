@@ -23,7 +23,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             line.split_whitespace()
                 .map(|x| {
                     x.parse::<ItemType>()
-                        .map_err(|_| format!("input must contain only integers, found `{}`", x))
+                        .map_err(|_| format!("input must contain only integers, found `{x}`"))
                 })
                 .collect::<Result<Vec<_>, _>>()
         })
@@ -74,6 +74,6 @@ mod tests {
 
     #[test]
     fn invalid_only_2d_array_of_ints() {
-        test_invalid(&[&"1 2 3", &"4 a 6"], solve);
+        test_invalid(&["1 2 3", "4 a 6"], solve);
     }
 }

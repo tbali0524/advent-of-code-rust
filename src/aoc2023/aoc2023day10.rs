@@ -299,21 +299,21 @@ mod tests {
 
     #[test]
     fn invalid_grid_not_rectangular() {
-        test_invalid_msg(&[&"S-", &"---"], solve, "grid must be rectangular");
+        test_invalid_msg(&["S-", "---"], solve, "grid must be rectangular");
     }
 
     #[test]
     fn invalid_char() {
-        test_invalid_msg(&[&"a"], solve, "invalid character in grid");
+        test_invalid_msg(&["a"], solve, "invalid character in grid");
     }
 
     #[test]
     fn invalid_missing_start() {
-        test_invalid_msg(&[&"...."], solve, "missing start position in grid");
+        test_invalid_msg(&["...."], solve, "missing start position in grid");
     }
 
     #[test]
     fn invalid_pipe_leaves_grid() {
-        test_invalid_msg(&[&"S--"], solve, "pipe is not a closed loop");
+        test_invalid_msg(&["S--"], solve, "pipe is not a closed loop");
     }
 }

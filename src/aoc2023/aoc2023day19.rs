@@ -256,18 +256,18 @@ mod tests {
 
     #[test]
     fn invalid_missing_workflow() {
-        test_invalid_msg(&[&"", &"{x=1,m=2,a=3,s=4}"], solve, "invalid input");
+        test_invalid_msg(&["", "{x=1,m=2,a=3,s=4}"], solve, "invalid input");
     }
 
     #[test]
     fn invalid_missing_part() {
-        test_invalid_msg(&[&"p{a>1:R,A}"], solve, "invalid input");
+        test_invalid_msg(&["p{a>1:R,A}"], solve, "invalid input");
     }
 
     #[test]
     fn invalid_wf_missing_open_par() {
         test_invalid_msg(
-            &[&"p a>1:R,A}", &"", &"{x=1,m=2,a=3,s=4}"],
+            &["p a>1:R,A}", "", "{x=1,m=2,a=3,s=4}"],
             solve,
             "workflow definition lines must contain `{`",
         );
@@ -276,7 +276,7 @@ mod tests {
     #[test]
     fn invalid_wf_missing_close_par() {
         test_invalid_msg(
-            &[&"p{a>1:R,A", &"", &"{x=1,m=2,a=3,s=4}"],
+            &["p{a>1:R,A", "", "{x=1,m=2,a=3,s=4}"],
             solve,
             "workflow definition lines must end with `}`",
         );
@@ -285,7 +285,7 @@ mod tests {
     #[test]
     fn invalid_wf_missing_colon() {
         test_invalid_msg(
-            &[&"p{a>1,A}", &"", &"{x=1,m=2,a=3,s=4}"],
+            &["p{a>1,A}", "", "{x=1,m=2,a=3,s=4}"],
             solve,
             "conditions except the last one must contain a `:`",
         );
@@ -294,7 +294,7 @@ mod tests {
     #[test]
     fn invalid_wf_condition_too_short() {
         test_invalid_msg(
-            &[&"p{a>:R,A}", &"", &"{x=1,m=2,a=3,s=4}"],
+            &["p{a>:R,A}", "", "{x=1,m=2,a=3,s=4}"],
             solve,
             "invalid input",
         );
@@ -303,7 +303,7 @@ mod tests {
     #[test]
     fn invalid_wf_property_must_be_xmas() {
         test_invalid_msg(
-            &[&"p{Z>1:R,A}", &"", &"{x=1,m=2,a=3,s=4}"],
+            &["p{Z>1:R,A}", "", "{x=1,m=2,a=3,s=4}"],
             solve,
             "property must be one of `xmas`",
         );
@@ -312,7 +312,7 @@ mod tests {
     #[test]
     fn invalid_wf_condition_must_be_comparison() {
         test_invalid_msg(
-            &[&"p{a=1:R,A}", &"", &"{x=1,m=2,a=3,s=4}"],
+            &["p{a=1:R,A}", "", "{x=1,m=2,a=3,s=4}"],
             solve,
             "condition must contain one of `<>`",
         );
@@ -321,7 +321,7 @@ mod tests {
     #[test]
     fn invalid_wf_condition_must_be_value() {
         test_invalid_msg(
-            &[&"p{a<A:R,A}", &"", &"{x=1,m=2,a=3,s=4}"],
+            &["p{a<A:R,A}", "", "{x=1,m=2,a=3,s=4}"],
             solve,
             "condition value must be integer",
         );
@@ -330,7 +330,7 @@ mod tests {
     #[test]
     fn invalid_part() {
         test_invalid_msg(
-            &[&"p{a>1:R,A}", &"", &"{x=1,m=2,a=3,Z=4}"],
+            &["p{a>1:R,A}", "", "{x=1,m=2,a=3,Z=4}"],
             solve,
             "invalid part",
         );
@@ -339,7 +339,7 @@ mod tests {
     #[test]
     fn invalid_property_must_be_integer() {
         test_invalid_msg(
-            &[&"p{a>1:R,A}", &"", &"{x=A,m=2,a=3,s=4}"],
+            &["p{a>1:R,A}", "", "{x=A,m=2,a=3,s=4}"],
             solve,
             "invalid part",
         );
@@ -348,7 +348,7 @@ mod tests {
     #[test]
     fn invalid_nonexistent_workflow_name() {
         test_invalid_msg(
-            &[&"in{a>1:w1,A}", &"", &"{x=1,m=2,a=3,s=4}"],
+            &["in{a>1:w1,A}", "", "{x=1,m=2,a=3,s=4}"],
             solve,
             "nonexistent workflow name",
         );

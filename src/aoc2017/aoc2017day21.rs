@@ -166,11 +166,11 @@ mod tests {
 
     #[test]
     fn invalid_missing_arrow() {
-        test_invalid(&[&"a"], solve);
+        test_invalid(&["a"], solve);
     }
 
     #[test]
     fn invalid_missing_rule() {
-        test_invalid(&[&"../.# => ##./#../..."], solve);
+        test_invalid(&["../.# => ##./#../..."], solve);
     }
 }

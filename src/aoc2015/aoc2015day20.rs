@@ -85,11 +85,11 @@ mod tests {
 
     #[test]
     fn invalid_single_line() {
-        test_invalid(&[&"1", &"2"], solve);
+        test_invalid(&["1", "2"], solve);
     }
 
     #[test]
     fn invalid_must_be_integer() {
-        test_invalid(&[&"a"], solve);
+        test_invalid(&["a"], solve);
     }
 }

@@ -459,17 +459,13 @@ mod tests {
 
     #[test]
     fn invalid_missing_arrow() {
-        test_invalid_msg(
-            &[&"broadcaster"],
-            solve,
-            "module name must be followed `->`",
-        );
+        test_invalid_msg(&["broadcaster"], solve, "module name must be followed `->`");
     }
 
     #[test]
     fn invalid_must_have_one_arrow() {
         test_invalid_msg(
-            &[&"broadcaster -> a, b, c -> d"],
+            &["broadcaster -> a, b, c -> d"],
             solve,
             "line must contain only a single `->`",
         );
@@ -477,6 +473,6 @@ mod tests {
 
     #[test]
     fn invalid_module_type() {
-        test_invalid_msg(&[&"mod -> a, b, c"], solve, "invalid module type");
+        test_invalid_msg(&["mod -> a, b, c"], solve, "invalid module type");
     }
 }

@@ -18,6 +18,7 @@ pub fn metadata() -> PuzzleMetaData<'static> {
     }
 }
 
+#[expect(clippy::needless_range_loop)]
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     let max_y = input.len() as i32;

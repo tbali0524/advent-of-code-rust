@@ -51,7 +51,6 @@ struct Platform {
 }
 
 impl Platform {
-    #[expect(clippy::needless_range_loop)]
     fn new(input: &[&str]) -> Result<Self, PuzzleError> {
         let max_y = input.len();
         let max_x = input[0].len();

@@ -53,8 +53,8 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             let op2 = next_op2.unwrap();
             ans1 += op1 * op2;
             let last_command = commands.iter().rfind(|(i, _)| *i < start);
-            if last_command.is_some() {
-                is_enabled = last_command.unwrap().1;
+            if let Some(last_command_inner) = last_command {
+                is_enabled = last_command_inner.1;
             }
             if is_enabled {
                 ans2 += op1 * op2;
@@ -62,8 +62,8 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             start = close + 1;
         }
         let last_command = commands.iter().last();
-        if last_command.is_some() {
-            is_enabled = last_command.unwrap().1;
+        if let Some(last_command_inner) = last_command {
+            is_enabled = last_command_inner.1;
         }
     }
     Ok((ans1.to_string(), ans2.to_string()))

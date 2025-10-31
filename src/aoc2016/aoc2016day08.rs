@@ -26,7 +26,7 @@ enum Instruction {
 
 type ItemType = usize;
 
-#[allow(clippy::needless_range_loop)]
+#[expect(clippy::needless_range_loop)]
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     let mut instructions = Vec::new();

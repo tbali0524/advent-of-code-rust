@@ -6,7 +6,7 @@ pub mod error;
 pub mod runner;
 
 pub const START_SEASON: usize = 2015;
-pub const MAX_SEASONS: usize = 11; // empty YYYY season also included as a template
+pub const MAX_SEASONS: usize = 12; // empty YYYY season also included as a template
 pub const MAX_DAYS: usize = 25;
 
 // very slow puzzles (taking >5s) are excluded by default. They can be run individually.
@@ -61,5 +61,6 @@ pub const PUZZLES: [Option<Season>; MAX_SEASONS] = [
     Some(crate::aoc2022::PUZZLES),
     Some(crate::aoc2023::PUZZLES),
     Some(crate::aoc2024::PUZZLES),
+    Some(crate::aoc2025::PUZZLES),
     None, // Some(crate::aocYYYY::PUZZLES),
 ];

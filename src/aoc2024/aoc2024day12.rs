@@ -84,24 +84,22 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         if dir % 2 == 0 {
             for x in 0..max_x {
                 for y in 0..max_y {
-                    if let Some(idx_region) = side_grid[y as usize][x as usize][dir] {
-                        if y == 0
-                            || side_grid[(y - 1) as usize][x as usize][dir] != Some(idx_region)
-                        {
-                            sides[idx_region] += 1;
-                        }
+                    if let Some(idx_region) = side_grid[y as usize][x as usize][dir]
+                        && (y == 0
+                            || side_grid[(y - 1) as usize][x as usize][dir] != Some(idx_region))
+                    {
+                        sides[idx_region] += 1;
                     }
                 }
             }
         } else {
             for y in 0..max_y {
                 for x in 0..max_x {
-                    if let Some(idx_region) = side_grid[y as usize][x as usize][dir] {
-                        if x == 0
-                            || side_grid[y as usize][(x - 1) as usize][dir] != Some(idx_region)
-                        {
-                            sides[idx_region] += 1;
-                        }
+                    if let Some(idx_region) = side_grid[y as usize][x as usize][dir]
+                        && (x == 0
+                            || side_grid[y as usize][(x - 1) as usize][dir] != Some(idx_region))
+                    {
+                        sides[idx_region] += 1;
                     }
                 }
             }

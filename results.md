@@ -1,6 +1,6 @@
 # Results for all seasons
 
-Output of local run using Rust `1.87` with `cargo run --release` on `2025.05.21`.
+Output of local run using Rust `1.91.1` with `cargo run --release` on `2025.12.01`.
 
 ```txt
 Advent of Code - solutions in Rust, (c) 2025 by TBali
@@ -30,7 +30,7 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 2592
 [ OK ] Puzzle     part #2 : 2360
 
-=== AoC 2015 Day  4 ===== [time:  1331 ms] : The Ideal Stocking Stuffer
+=== AoC 2015 Day  4 ===== [time:  1454 ms] : The Ideal Stocking Stuffer
 [ OK ] Puzzle     part #1 : 254575
 [ OK ] Puzzle     part #2 : 1038736
 
@@ -42,7 +42,7 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 238
 [ OK ] Puzzle     part #2 : 69
 
-=== AoC 2015 Day  6 ===== [time:   123 ms] : Probably a Fire Hazard
+=== AoC 2015 Day  6 ===== [time:   142 ms] : Probably a Fire Hazard
 [ OK ] Example #1 part #1 : 1000000
 [ OK ] Example #1 part #2 : 2000000
 [ OK ] Example #2 part #1 : 1
@@ -62,19 +62,19 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 1371
 [ OK ] Puzzle     part #2 : 2117
 
-=== AoC 2015 Day  9 ===== [time:    10 ms] : All in a Single Night
+=== AoC 2015 Day  9 ===== [time:    14 ms] : All in a Single Night
 [ OK ] Example #1 part #1 : 605
 [ OK ] Example #1 part #2 : 982
 [ OK ] Puzzle     part #1 : 207
 [ OK ] Puzzle     part #2 : 804
 
-=== AoC 2015 Day 10 ===== [time:  1203 ms] : Elves Look, Elves Say
+=== AoC 2015 Day 10 ===== [time:  1072 ms] : Elves Look, Elves Say
 [ OK ] Example #1 part #1 : 6
        Example #1 part #2 : n/a
 [ OK ] Puzzle     part #1 : 360154
 [ OK ] Puzzle     part #2 : 5103798
 
-=== AoC 2015 Day 11 ===== [time:   158 ms] : Corporate Policy
+=== AoC 2015 Day 11 ===== [time:   185 ms] : Corporate Policy
 [ OK ] Example #1 part #1 : abcdffaa
        Example #1 part #2 : n/a
 [ OK ] Example #2 part #1 : ghjaabcc
@@ -90,7 +90,7 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 111754
 [ OK ] Puzzle     part #2 : 65402
 
-=== AoC 2015 Day 13 ===== [time:   293 ms] : Knights of the Dinner Table
+=== AoC 2015 Day 13 ===== [time:   338 ms] : Knights of the Dinner Table
 [ OK ] Example #1 part #1 : 330
        Example #1 part #2 : n/a
 [ OK ] Puzzle     part #1 : 709
@@ -102,7 +102,7 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 2696
 [ OK ] Puzzle     part #2 : 1084
 
-=== AoC 2015 Day 15 ===== [time:   181 ms] : Science for Hungry People
+=== AoC 2015 Day 15 ===== [time:   164 ms] : Science for Hungry People
 [ OK ] Example #1 part #1 : 62842880
 [ OK ] Example #1 part #2 : 57600000
 [ OK ] Puzzle     part #1 : 21367368
@@ -112,23 +112,23 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 373
 [ OK ] Puzzle     part #2 : 260
 
-=== AoC 2015 Day 17 ===== [time:    19 ms] : No Such Thing as Too Much
+=== AoC 2015 Day 17 ===== [time:    20 ms] : No Such Thing as Too Much
 [ OK ] Example #1 part #1 : 4
 [ OK ] Example #1 part #2 : 3
 [ OK ] Puzzle     part #1 : 1304
 [ OK ] Puzzle     part #2 : 18
 
-=== AoC 2015 Day 18 ===== [time:    42 ms] : Like a GIF For Your Yard
+=== AoC 2015 Day 18 ===== [time:    35 ms] : Like a GIF For Your Yard
 [ OK ] Example #1 part #1 : 4
 [ OK ] Example #1 part #2 : 17
 [ OK ] Puzzle     part #1 : 814
 [ OK ] Puzzle     part #2 : 924
 
-=== AoC 2015 Day 19 ===== [time:     0 ms] : Medicine for Rudolph
+=== AoC 2015 Day 19 ===== [time:     1 ms] : Medicine for Rudolph
 [ OK ] Puzzle     part #1 : 535
 [ OK ] Puzzle     part #2 : 212
 
-=== AoC 2015 Day 20 ===== [time:   476 ms] : Infinite Elves and Infinite Houses
+=== AoC 2015 Day 20 ===== [time:   524 ms] : Infinite Elves and Infinite Houses
 [ OK ] Example #1 part #1 : 8
        Example #1 part #2 : n/a
 [ OK ] Example #2 part #1 : 6
@@ -140,7 +140,7 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 111
 [ OK ] Puzzle     part #2 : 188
 
-=== AoC 2015 Day 22 ===== [time:    42 ms] : izard Simulator 20XX
+=== AoC 2015 Day 22 ===== [time:    34 ms] : izard Simulator 20XX
 [ OK ] Puzzle     part #1 : 900
 [ OK ] Puzzle     part #2 : 1216
 
@@ -150,13 +150,13 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 170
 [ OK ] Puzzle     part #2 : 247
 
-=== AoC 2015 Day 24 ===== [time:    55 ms] : It Hangs in the Balance
+=== AoC 2015 Day 24 ===== [time:    63 ms] : It Hangs in the Balance
 [ OK ] Example #1 part #1 : 99
 [ OK ] Example #1 part #2 : 44
 [ OK ] Puzzle     part #1 : 10439961859
 [ OK ] Puzzle     part #2 : 72050269
 
-=== AoC 2015 Day 25 ===== [time:   105 ms] : Let It Snow
+=== AoC 2015 Day 25 ===== [time:   118 ms] : Let It Snow
 [ OK ] Example #1 part #1 : 31916031
 [ OK ] Example #2 part #1 : 27995004
 [ OK ] Puzzle     part #1 : 19980801
@@ -215,7 +215,7 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 74532
 [ OK ] Puzzle     part #2 : 11558231665
 
-=== AoC 2016 Day 19 ===== [time:    12 ms] : An Elephant Named Joseph
+=== AoC 2016 Day 19 ===== [time:    15 ms] : An Elephant Named Joseph
 [ OK ] Example #1 part #1 : 3
 [ OK ] Example #1 part #2 : 2
 [ OK ] Puzzle     part #1 : 1841611
@@ -254,7 +254,7 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 386
 [ OK ] Puzzle     part #2 : 208
 
-=== AoC 2017 Day  5 ===== [time:    50 ms] : A Maze of Twisty Trampolines, All Alike
+=== AoC 2017 Day  5 ===== [time:    49 ms] : A Maze of Twisty Trampolines, All Alike
 [ OK ] Example #1 part #1 : 5
 [ OK ] Example #1 part #2 : 10
 [ OK ] Puzzle     part #1 : 396086
@@ -308,37 +308,37 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 288
 [ OK ] Puzzle     part #2 : 211
 
-=== AoC 2017 Day 13 ===== [time:   276 ms] : Packet Scanners
+=== AoC 2017 Day 13 ===== [time:   316 ms] : Packet Scanners
 [ OK ] Example #1 part #1 : 24
 [ OK ] Example #1 part #2 : 10
 [ OK ] Puzzle     part #1 : 1728
 [ OK ] Puzzle     part #2 : 3946838
 
-=== AoC 2017 Day 14 ===== [time:    16 ms] : Disk Defragmentation
+=== AoC 2017 Day 14 ===== [time:    18 ms] : Disk Defragmentation
 [ OK ] Example #1 part #1 : 8108
 [ OK ] Example #1 part #2 : 1242
 [ OK ] Puzzle     part #1 : 8204
 [ OK ] Puzzle     part #2 : 1089
 
-=== AoC 2017 Day 15 ===== [time:  1276 ms] : Dueling Generators
+=== AoC 2017 Day 15 ===== [time:  1248 ms] : Dueling Generators
 [ OK ] Example #1 part #1 : 588
 [ OK ] Example #1 part #2 : 309
 [ OK ] Puzzle     part #1 : 650
 [ OK ] Puzzle     part #2 : 336
 
-=== AoC 2017 Day 16 ===== [time:    13 ms] : Permutation Promenade
+=== AoC 2017 Day 16 ===== [time:    16 ms] : Permutation Promenade
 [ OK ] Example #1 part #1 : baedc
        Example #1 part #2 : n/a
 [ OK ] Puzzle     part #1 : eojfmbpkldghncia
 [ OK ] Puzzle     part #2 : iecopnahgdflmkjb
 
-=== AoC 2017 Day 17 ===== [time:   223 ms] : Spinlock
+=== AoC 2017 Day 17 ===== [time:   246 ms] : Spinlock
 [ OK ] Example #1 part #1 : 638
        Example #1 part #2 : n/a
 [ OK ] Puzzle     part #1 : 1642
 [ OK ] Puzzle     part #2 : 33601318
 
-=== AoC 2017 Day 18 ===== [time:     5 ms] : Duet
+=== AoC 2017 Day 18 ===== [time:     6 ms] : Duet
 [ OK ] Example #1 part #1 : 4
        Example #1 part #2 : n/a
        Example #2 part #1 : n/a
@@ -352,7 +352,7 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : LXWCKGRAOY
 [ OK ] Puzzle     part #2 : 17302
 
-=== AoC 2017 Day 20 ===== [time:   708 ms] : Particle Swarm
+=== AoC 2017 Day 20 ===== [time:   840 ms] : Particle Swarm
 [ OK ] Example #1 part #1 : p0
 [ OK ] Example #1 part #2 : 2
 [ OK ] Example #2 part #1 : p2
@@ -360,34 +360,34 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : p243
 [ OK ] Puzzle     part #2 : 648
 
-=== AoC 2017 Day 21 ===== [time:   101 ms] : Fractal Art
+=== AoC 2017 Day 21 ===== [time:   113 ms] : Fractal Art
 [ OK ] Example #1 part #1 : 12
 [ OK ] Example #1 part #2 : 12
 [ OK ] Puzzle     part #1 : 125
 [ OK ] Puzzle     part #2 : 1782917
 
-=== AoC 2017 Day 22 ===== [time:  1004 ms] : Sporifica Virus
+=== AoC 2017 Day 22 ===== [time:  1391 ms] : Sporifica Virus
 [ OK ] Example #1 part #1 : 5587
 [ OK ] Example #1 part #2 : 2511944
 [ OK ] Puzzle     part #1 : 5538
 [ OK ] Puzzle     part #2 : 2511090
 
-=== AoC 2017 Day 23 ===== [time:     1 ms] : Coprocessor Conflagration
+=== AoC 2017 Day 23 ===== [time:     3 ms] : Coprocessor Conflagration
 [ OK ] Puzzle     part #1 : 8281
 [ OK ] Puzzle     part #2 : 911
 
-=== AoC 2017 Day 24 ===== [time:    39 ms] : Electromagnetic Moat
+=== AoC 2017 Day 24 ===== [time:    38 ms] : Electromagnetic Moat
 [ OK ] Example #1 part #1 : 31
 [ OK ] Example #1 part #2 : 19
 [ OK ] Puzzle     part #1 : 1656
 [ OK ] Puzzle     part #2 : 1642
 
-=== AoC 2017 Day 25 ===== [time:  1335 ms] : The Halting Problem
+=== AoC 2017 Day 25 ===== [time:  1402 ms] : The Halting Problem
 [ OK ] Example #1 part #1 : 3
 [ OK ] Puzzle     part #1 : 2832
 
 ======= 2018 ===================================================
-=== AoC 2018 Day  1 ===== [time:    15 ms] : Chronal Calibration
+=== AoC 2018 Day  1 ===== [time:     8 ms] : Chronal Calibration
 [ OK ] Example #1 part #1 : 3
 [ OK ] Example #1 part #2 : 2
 [ OK ] Puzzle     part #1 : 590
@@ -401,7 +401,7 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #2 : 4928567
 
 ======= 2020 ===================================================
-=== AoC 2020 Day  1 ===== [time:     9 ms] : Report Repair
+=== AoC 2020 Day  1 ===== [time:     1 ms] : Report Repair
 [ OK ] Example #1 part #1 : 514579
 [ OK ] Example #1 part #2 : 241861950
 [ OK ] Puzzle     part #1 : 988771
@@ -442,7 +442,7 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 530849
 [ OK ] Puzzle     part #2 : 84900879
 
-=== AoC 2023 Day  4 ===== [time:     0 ms] : Scratchcards
+=== AoC 2023 Day  4 ===== [time:     1 ms] : Scratchcards
 [ OK ] Example #1 part #1 : 13
 [ OK ] Example #1 part #2 : 30
 [ OK ] Puzzle     part #1 : 21088
@@ -466,7 +466,7 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 251121738
 [ OK ] Puzzle     part #2 : 251421071
 
-=== AoC 2023 Day  8 ===== [time:    47 ms] : Haunted Wasteland
+=== AoC 2023 Day  8 ===== [time:    46 ms] : Haunted Wasteland
 [ OK ] Example #1 part #1 : 2
        Example #1 part #2 : n/a
 [ OK ] Example #2 part #1 : 6
@@ -482,7 +482,7 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 1861775706
 [ OK ] Puzzle     part #2 : 1082
 
-=== AoC 2023 Day 10 ===== [time:     9 ms] : Pipe Maze
+=== AoC 2023 Day 10 ===== [time:     8 ms] : Pipe Maze
 [ OK ] Example #1 part #1 : 4
 [ OK ] Example #1 part #2 : 1
 [ OK ] Example #2 part #1 : 8
@@ -498,25 +498,25 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 6820
 [ OK ] Puzzle     part #2 : 337
 
-=== AoC 2023 Day 11 ===== [time:    13 ms] : Cosmic Expansion
+=== AoC 2023 Day 11 ===== [time:    11 ms] : Cosmic Expansion
 [ OK ] Example #1 part #1 : 374
 [ OK ] Example #1 part #2 : 8410
 [ OK ] Puzzle     part #1 : 9329143
 [ OK ] Puzzle     part #2 : 710674907809
 
-=== AoC 2023 Day 12 ===== [time:  1594 ms] : Hot Springs
+=== AoC 2023 Day 12 ===== [time:  1637 ms] : Hot Springs
 [ OK ] Example #1 part #1 : 21
 [ OK ] Example #1 part #2 : 525152
 [ OK ] Puzzle     part #1 : 8193
 [ OK ] Puzzle     part #2 : 45322533163795
 
-=== AoC 2023 Day 13 ===== [time:     0 ms] : Point of Incidence
+=== AoC 2023 Day 13 ===== [time:     1 ms] : Point of Incidence
 [ OK ] Example #1 part #1 : 405
 [ OK ] Example #1 part #2 : 400
 [ OK ] Puzzle     part #1 : 29165
 [ OK ] Puzzle     part #2 : 32192
 
-=== AoC 2023 Day 14 ===== [time:   142 ms] : Parabolic Reflector Dish
+=== AoC 2023 Day 14 ===== [time:   154 ms] : Parabolic Reflector Dish
 [ OK ] Example #1 part #1 : 136
 [ OK ] Example #1 part #2 : 64
 [ OK ] Puzzle     part #1 : 112048
@@ -528,13 +528,13 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 517015
 [ OK ] Puzzle     part #2 : 286104
 
-=== AoC 2023 Day 16 ===== [time:   723 ms] : The Floor Will Be Lava
+=== AoC 2023 Day 16 ===== [time:   799 ms] : The Floor Will Be Lava
 [ OK ] Example #1 part #1 : 46
 [ OK ] Example #1 part #2 : 51
 [ OK ] Puzzle     part #1 : 7472
 [ OK ] Puzzle     part #2 : 7716
 
-=== AoC 2023 Day 17 ===== [time:   672 ms] : Clumsy Crucible
+=== AoC 2023 Day 17 ===== [time:   717 ms] : Clumsy Crucible
 [ OK ] Example #1 part #1 : 102
 [ OK ] Example #1 part #2 : 94
        Example #2 part #1 : n/a
@@ -542,19 +542,19 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 684
 [ OK ] Puzzle     part #2 : 822
 
-=== AoC 2023 Day 18 ===== [time:    70 ms] : Lavaduct Lagoon
+=== AoC 2023 Day 18 ===== [time:    95 ms] : Lavaduct Lagoon
 [ OK ] Example #1 part #1 : 62
 [ OK ] Example #1 part #2 : 952408144115
 [ OK ] Puzzle     part #1 : 40131
 [ OK ] Puzzle     part #2 : 104454050898331
 
-=== AoC 2023 Day 19 ===== [time:    58 ms] : Aplenty
+=== AoC 2023 Day 19 ===== [time:    76 ms] : Aplenty
 [ OK ] Example #1 part #1 : 19114
 [ OK ] Example #1 part #2 : 167409079868000
 [ OK ] Puzzle     part #1 : 432434
 [ OK ] Puzzle     part #2 : 132557544578569
 
-=== AoC 2023 Day 20 ===== [time:   116 ms] : Pulse Propagation
+=== AoC 2023 Day 20 ===== [time:   140 ms] : Pulse Propagation
 [ OK ] Example #1 part #1 : 32000000
        Example #1 part #2 : n/a
 [ OK ] Example #2 part #1 : 11687500
@@ -562,13 +562,13 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 919383692
 [ OK ] Puzzle     part #2 : 247702167614647
 
-=== AoC 2023 Day 21 ===== [time:  1081 ms] : Step Counter
+=== AoC 2023 Day 21 ===== [time:  1127 ms] : Step Counter
 [ OK ] Example #1 part #1 : 16
        Example #1 part #2 : n/a
 [ OK ] Puzzle     part #1 : 3820
 [ OK ] Puzzle     part #2 : 632421652138917
 
-=== AoC 2023 Day 22 ===== [time:   129 ms] : Sand Slabs
+=== AoC 2023 Day 22 ===== [time:   140 ms] : Sand Slabs
 [ OK ] Example #1 part #1 : 5
 [ OK ] Example #1 part #2 : 7
 [ OK ] Puzzle     part #1 : 434
@@ -577,13 +577,13 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 === AoC 2023 Day 23 ===== [time:     0 ms] : A Long Walk
 [SKIP]
 
-=== AoC 2023 Day 24 ===== [time:   162 ms] : Never Tell Me The Odds
+=== AoC 2023 Day 24 ===== [time:   263 ms] : Never Tell Me The Odds
 [ OK ] Example #1 part #1 : 2
 [ OK ] Example #1 part #2 : 47
 [ OK ] Puzzle     part #1 : 31208
 [ OK ] Puzzle     part #2 : 580043851566574
 
-=== AoC 2023 Day 25 ===== [time:     2 ms] : Snowverload
+=== AoC 2023 Day 25 ===== [time:     4 ms] : Snowverload
 [ OK ] Example #1 part #1 : 54
 [ OK ] Puzzle     part #1 : 619225
 
@@ -594,7 +594,7 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 936063
 [ OK ] Puzzle     part #2 : 23150395
 
-=== AoC 2024 Day  2 ===== [time:     0 ms] : Red-Nosed Reports
+=== AoC 2024 Day  2 ===== [time:     1 ms] : Red-Nosed Reports
 [ OK ] Example #1 part #1 : 2
 [ OK ] Example #1 part #2 : 4
 [ OK ] Puzzle     part #1 : 572
@@ -622,7 +622,7 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 5639
 [ OK ] Puzzle     part #2 : 5273
 
-=== AoC 2024 Day  6 ===== [time:  1869 ms] : Guard Gallivant
+=== AoC 2024 Day  6 ===== [time:  1960 ms] : Guard Gallivant
 [ OK ] Example #1 part #1 : 41
 [ OK ] Example #1 part #2 : 6
 [ OK ] Puzzle     part #1 : 4515
@@ -639,7 +639,7 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 320
 [ OK ] Puzzle     part #2 : 1157
 
-=== AoC 2024 Day  9 ===== [time:   143 ms] : Disk Fragmenter
+=== AoC 2024 Day  9 ===== [time:    34 ms] : Disk Fragmenter
 [ OK ] Example #1 part #1 : 1928
 [ OK ] Example #1 part #2 : 2858
 [ OK ] Puzzle     part #1 : 6332189866718
@@ -667,7 +667,7 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 674
 [ OK ] Puzzle     part #2 : 1372
 
-=== AoC 2024 Day 11 ===== [time:    36 ms] : Plutonian Pebbles
+=== AoC 2024 Day 11 ===== [time:    34 ms] : Plutonian Pebbles
 [ OK ] Example #1 part #1 : 7
        Example #1 part #2 : n/a
 [ OK ] Example #2 part #1 : 55312
@@ -695,7 +695,7 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 26599
 [ OK ] Puzzle     part #2 : 106228669504887
 
-=== AoC 2024 Day 14 ===== [time:   310 ms] : Restroom Redoubt
+=== AoC 2024 Day 14 ===== [time:   295 ms] : Restroom Redoubt
 [ OK ] Example #1 part #1 : 12
        Example #1 part #2 : n/a
 [ OK ] Puzzle     part #1 : 229069152
@@ -711,7 +711,7 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 1383666
 [ OK ] Puzzle     part #2 : 1412866
 
-=== AoC 2024 Day 16 ===== [time:   770 ms] : Reindeer Maze
+=== AoC 2024 Day 16 ===== [time:   928 ms] : Reindeer Maze
 [ OK ] Example #1 part #1 : 7036
 [ OK ] Example #1 part #2 : 45
 [ OK ] Example #2 part #1 : 11048
@@ -729,31 +729,31 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 2,7,2,5,1,2,7,3,7
 [ OK ] Puzzle     part #2 : 247839002892474
 
-=== AoC 2024 Day 18 ===== [time:  1263 ms] : RAM Run
+=== AoC 2024 Day 18 ===== [time:  1105 ms] : RAM Run
 [ OK ] Example #1 part #1 : 22
 [ OK ] Example #1 part #2 : 6,1
 [ OK ] Puzzle     part #1 : 322
 [ OK ] Puzzle     part #2 : 60,21
 
-=== AoC 2024 Day 19 ===== [time:     4 ms] : Linen Layout
+=== AoC 2024 Day 19 ===== [time:     5 ms] : Linen Layout
 [ OK ] Example #1 part #1 : 6
 [ OK ] Example #1 part #2 : 16
 [ OK ] Puzzle     part #1 : 247
 [ OK ] Puzzle     part #2 : 692596560138745
 
-=== AoC 2024 Day 20 ===== [time:   628 ms] : Race Condition
+=== AoC 2024 Day 20 ===== [time:   732 ms] : Race Condition
 [ OK ] Example #1 part #1 : 10
 [ OK ] Example #1 part #2 : 285
 [ OK ] Puzzle     part #1 : 1450
 [ OK ] Puzzle     part #2 : 1015247
 
-=== AoC 2024 Day 21 ===== [time:     0 ms] : Keypad Conundrum
+=== AoC 2024 Day 21 ===== [time:     1 ms] : Keypad Conundrum
 [ OK ] Example #1 part #1 : 126384
        Example #1 part #2 : n/a
 [ OK ] Puzzle     part #1 : 163086
 [ OK ] Puzzle     part #2 : 198466286401228
 
-=== AoC 2024 Day 22 ===== [time:   552 ms] : Monkey Market
+=== AoC 2024 Day 22 ===== [time:   509 ms] : Monkey Market
 [ OK ] Example #1 part #1 : 37327623
        Example #1 part #2 : n/a
        Example #2 part #1 : n/a
@@ -761,7 +761,7 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 18261820068
 [ OK ] Puzzle     part #2 : 2044
 
-=== AoC 2024 Day 23 ===== [time:   268 ms] : LAN Party
+=== AoC 2024 Day 23 ===== [time:   251 ms] : LAN Party
 [ OK ] Example #1 part #1 : 7
 [ OK ] Example #1 part #2 : co,de,ka,ta
 [ OK ] Puzzle     part #1 : 1200
@@ -779,7 +779,14 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Example #1 part #1 : 3
 [ OK ] Puzzle     part #1 : 3317
 
-======= Total =========== [time:  2288 ms] : 10 seasons, 115 puzzles (3 skipped), 160 examples
+======= 2025 ===================================================
+=== AoC 2025 Day  1 ===== [time:     0 ms] : Secret Entrance
+[ OK ] Example #1 part #1 : 3
+[ OK ] Example #1 part #2 : 6
+[ OK ] Puzzle     part #1 : 1092
+[ OK ] Puzzle     part #2 : 6616
+
+======= Total =========== [time:  2344 ms] : 11 seasons, 116 puzzles (3 skipped), 161 examples
 
 [ OK ] All tests passed.
 ```

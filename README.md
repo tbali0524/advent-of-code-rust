@@ -1,6 +1,6 @@
 # Advent of Code solutions in Rust by TBali
 
-![rust v1.85](https://shields.io/badge/rust-1.85-blue?logo=rust)
+![rust v1.91](https://shields.io/badge/rust-1.85-blue?logo=rust)
 ![build](https://img.shields.io/github/actions/workflow/status/tbali0524/advent-of-code-rust/qa.yml)
 ![AoC stars](https://img.shields.io/badge/total%20AoC%20⭐-230-green)
 ![license](https://img.shields.io/github/license/tbali0524/advent-of-code-rust)
@@ -24,7 +24,7 @@ rustup update stable
 cargo version
 cargo tree
 # -- lint
-cargo audit
+cargo audit # needs cargo plugin: cargo-audit
 cargo check
 cargo fmt
 cargo clippy

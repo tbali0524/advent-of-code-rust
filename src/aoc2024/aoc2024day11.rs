@@ -68,7 +68,7 @@ fn blink(
         result = blink(1, count_blinks - 1, memo);
     } else {
         let stone_string = stone.to_string();
-        if stone_string.len() % 2 == 0 {
+        if stone_string.len().is_multiple_of(2) {
             let divisor = (10 as ItemType).pow(stone_string.len() as u32 / 2);
             result = blink(stone / divisor, count_blinks - 1, memo)
                 + blink(stone % divisor, count_blinks - 1, memo);

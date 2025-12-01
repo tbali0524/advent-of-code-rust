@@ -86,11 +86,11 @@ fn solve_part(grid: &[Vec<Option<u32>>], is_part1: bool) -> u64 {
                         continue;
                     }
                     let c = grid[y1 as usize][x1 as usize];
-                    if let Some(height1) = c {
-                        if height1 == height + 1 {
-                            visited.insert((x1, y1));
-                            q.push((x1, y1, height1));
-                        }
+                    if let Some(height1) = c
+                        && height1 == height + 1
+                    {
+                        visited.insert((x1, y1));
+                        q.push((x1, y1, height1));
                     }
                 }
             }

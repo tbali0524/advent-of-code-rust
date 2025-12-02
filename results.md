@@ -786,7 +786,13 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 1092
 [ OK ] Puzzle     part #2 : 6616
 
-======= Total =========== [time:  2344 ms] : 11 seasons, 116 puzzles (3 skipped), 161 examples
+=== AoC 2025 Day  2 ===== [time:     2 ms] : Gift Shop
+[ OK ] Example #1 part #1 : 1227775554
+[ OK ] Example #1 part #2 : 4174379265
+[ OK ] Puzzle     part #1 : 40055209690
+[ OK ] Puzzle     part #2 : 50857215650
+
+======= Total =========== [time:  2195 ms] : 11 seasons, 117 puzzles (3 skipped), 162 examples
 
 [ OK ] All tests passed.
 ```

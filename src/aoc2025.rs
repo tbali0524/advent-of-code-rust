@@ -1,7 +1,7 @@
 //! Solutions for season 2025
 
 pub mod aoc2025day01;
-// pub mod aoc2025day02;
+pub mod aoc2025day02;
 // pub mod aoc2025day03;
 // pub mod aoc2025day04;
 // pub mod aoc2025day05;
@@ -16,7 +16,7 @@ pub mod aoc2025day01;
 /// array of implemented solutions for the season
 pub const PUZZLES: crate::aoc::Season = [
     Some((aoc2025day01::metadata, aoc2025day01::solve)),
-    None, // Some((aoc2025day02::metadata, aoc2025day02::solve)),
+    Some((aoc2025day02::metadata, aoc2025day02::solve)),
     None, // Some((aoc2025day03::metadata, aoc2025day03::solve)),
     None, // Some((aoc2025day04::metadata, aoc2025day04::solve)),
     None, // Some((aoc2025day05::metadata, aoc2025day05::solve)),

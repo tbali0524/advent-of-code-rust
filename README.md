@@ -1,8 +1,8 @@
 # Advent of Code solutions in Rust by TBali
 
-![rust v1.91](https://shields.io/badge/rust-1.85-blue?logo=rust)
+![rust v1.91](https://shields.io/badge/rust-1.91-blue?logo=rust)
 ![build](https://img.shields.io/github/actions/workflow/status/tbali0524/advent-of-code-rust/qa.yml)
-![AoC stars](https://img.shields.io/badge/total%20AoC%20⭐-230-green)
+![AoC stars](https://img.shields.io/badge/total%20AoC%20⭐-234-green)
 ![license](https://img.shields.io/github/license/tbali0524/advent-of-code-rust)
 
 * [AoC website](https://adventofcode.com/)
@@ -33,24 +33,24 @@ cargo doc --no-deps --document-private-items --open
 # -- test
 cargo nextest run # needs cargo plugin: <https://nexte.st/>
 cargo test
-cargo test 2024
-cargo test 2024day01
+cargo test 2025
+cargo test 2025day01
 cargo test cli
 # in Powershell:
 $Env:RUST_BACKTRACE=1; cargo test
 cargo run
-cargo run -- 2024
-cargo run -- 2024 1
+cargo run -- 2025
+cargo run -- 2025 1
 # -- run
 cargo build --release
 target/release/aoc.exe
-target/release/aoc.exe 2024
-target/release/aoc.exe 2024 1
+target/release/aoc.exe 2025
+target/release/aoc.exe 2025 1
 cargo run --release
 # -- shortcut run (Windows)
 ./aoc.bat
-./aoc.bat 2024
-./aoc.bat 2024 1
+./aoc.bat 2025
+./aoc.bat 2025 1
 ./aoc.bat --help
 # -- shortcut qa+run (Windows)
 ./qa.ps1

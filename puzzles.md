@@ -14,8 +14,8 @@
 |[2022](#2022)|![-](https://img.shields.io/badge/stars%20⭐-2-red)          |
 |[2023](#2023)|![-](https://img.shields.io/badge/stars%20⭐-50-green)       |
 |[2024](#2024)|![-](https://img.shields.io/badge/stars%20⭐-50-green)       |
-|[2025](#2025)|![-](https://img.shields.io/badge/stars%20⭐-6-yellow)      |
-|__Total__    |![total](https://img.shields.io/badge/stars%20⭐-236-green)  |
+|[2025](#2025)|![-](https://img.shields.io/badge/stars%20⭐-8-yellow)      |
+|__Total__    |![total](https://img.shields.io/badge/stars%20⭐-238-green)  |
 
 ## Puzzles
 
@@ -346,7 +346,7 @@ Hint from `subreddit` was used for Day 14 part 2 (what shape to look for).
 |  +  |2025|  1|Secret Entrance                           |                                                         |
 |  +  |2025|  2|Gift Shop                                 |                                                         |
 |  +  |2025|  3|Lobby                                     |                                                         |
-|     |2025|  4|                                          |                                                         |
+|  +  |2025|  4|Printing Department                       |                                                         |
 |     |2025|  5|                                          |                                                         |
 |     |2025|  6|                                          |                                                         |
 |     |2025|  7|                                          |                                                         |

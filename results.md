@@ -804,7 +804,19 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 1416
 [ OK ] Puzzle     part #2 : 9086
 
-======= Total =========== [time:  2159 ms] : 11 seasons, 119 puzzles (3 skipped), 164 examples
+=== AoC 2025 Day  5 ===== [time:     0 ms] : Cafeteria
+[ OK ] Example #1 part #1 : 3
+[ OK ] Example #1 part #2 : 14
+[ OK ] Puzzle     part #1 : 607
+[ OK ] Puzzle     part #2 : 342433357244012
+
+=== AoC 2025 Day  6 ===== [time:     0 ms] : Trash Compactor
+[ OK ] Example #1 part #1 : 4277556
+[ OK ] Example #1 part #2 : 3263827
+[ OK ] Puzzle     part #1 : 6378679666679
+[ OK ] Puzzle     part #2 : 11494432585168
+
+======= Total =========== [time:  2448 ms] : 11 seasons, 121 puzzles (3 skipped), 166 examples
 
 [ OK ] All tests passed.
 ```

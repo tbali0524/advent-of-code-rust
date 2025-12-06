@@ -7,7 +7,7 @@ pub fn metadata() -> PuzzleMetaData<'static> {
         year: 2025,
         day: 5,
         title: "Cafeteria",
-        solution: ("607", "0"),
+        solution: ("607", "342433357244012"),
         example_solutions: vec![("3", "14")],
     }
 }
@@ -72,9 +72,6 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
                 fresh[i] = true;
             }
         }
-    }
-    if ranges.len() == 4 {
-        eprintln!("{:?}", fresh);
     }
     for i in 0..count {
         if fresh[i] {

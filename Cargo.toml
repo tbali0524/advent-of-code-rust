@@ -4,7 +4,6 @@
 [package]
 name = "advent-of-code-rust"
 version = "0.1.0"
-authors = ["Balint Toth"]
 edition = "2024"
 rust-version = "1.91"
 description = "Advent of Code puzzle solutions in Rust by TBali"

@@ -29,7 +29,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             .map_err(|_| "x coordinate must be an integer")?;
         let y = line_iter
             .next()
-            .ok_or("missing x coordinate")?
+            .ok_or("missing y coordinate")?
             .parse::<ItemType>()
             .map_err(|_| "y coordinate must be an integer")?;
         let z = line_iter
@@ -144,6 +144,16 @@ mod tests {
     #[test]
     fn invalid_z_must_be_integer() {
         test_invalid_msg(&[&"1,2,a"], solve, "z coordinate must be an integer");
+    }
+
+    #[test]
+    fn invalid_missing_y() {
+        test_invalid_msg(&[&"1"], solve, "missing y coordinate");
+    }
+
+    #[test]
+    fn invalid_missing_z() {
+        test_invalid_msg(&[&"1,2"], solve, "missing z coordinate");
     }
 
     #[test]

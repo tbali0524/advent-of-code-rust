@@ -24,37 +24,8 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     } else {
         Err("first input line must contain an `S`")?
     };
-    // ---------- Part 1
+    // ---------- Part 1 + 2
     let mut ans1 = 0;
-    let mut tachyons = vec![start];
-    for y in 1..input.len() {
-        let mut next_tachyons = Vec::new();
-        for &x in &tachyons {
-            if grid[y][x] == '.' {
-                if let Some(&prev) = next_tachyons.last()
-                    && prev == x
-                {
-                } else {
-                    next_tachyons.push(x);
-                }
-                continue;
-            }
-            if grid[y][x] != '^' {
-                Err("input lines except first line must contain only `.` or `^`")?;
-            }
-            if let Some(&prev) = next_tachyons.last()
-                && x > 0
-                && prev == x - 1
-            {
-            } else {
-                next_tachyons.push(x - 1);
-            }
-            next_tachyons.push(x + 1);
-            ans1 += 1;
-        }
-        tachyons = next_tachyons;
-    }
-    // ---------- Part 1
     let mut ans2 = 0;
     let mut tachyons = vec![(start, 1)];
     for y in 1..input.len() {
@@ -74,6 +45,10 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
                 next_tachyons.push((x, t + prev_t));
                 continue;
             }
+            if grid[y][x] != '^' {
+                Err("input lines except first line must contain only `.` or `^`")?;
+            }
+            ans1 += 1;
             if next_tachyons.is_empty() {
                 next_tachyons.push((x - 1, t));
                 next_tachyons.push((x + 1, t));

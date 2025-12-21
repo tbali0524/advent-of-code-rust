@@ -8,6 +8,7 @@ pub mod runner;
 pub const START_SEASON: usize = 2015;
 pub const MAX_SEASONS: usize = 12; // empty YYYY season also included as a template
 pub const MAX_DAYS: usize = 25;
+pub const MAX_DAYS_2025: usize = 12;
 
 // very slow puzzles (taking >5s) are excluded by default. They can be run individually.
 pub const SKIP_SLOW: bool = true;

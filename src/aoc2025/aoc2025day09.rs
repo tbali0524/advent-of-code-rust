@@ -15,7 +15,7 @@ pub fn metadata() -> PuzzleMetaData<'static> {
 
 type ItemType = i64;
 
-#[allow(clippy::int_plus_one)]
+#[expect(clippy::int_plus_one)]
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     let mut points = Vec::new();

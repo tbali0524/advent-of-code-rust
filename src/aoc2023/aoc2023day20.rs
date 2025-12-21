@@ -1,4 +1,4 @@
-//! [aoc](https://adventofcode.com/2023/day20)
+//! [aoc](https://adventofcode.com/2023/day/20)
 
 use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
 use priority_queue::PriorityQueue;

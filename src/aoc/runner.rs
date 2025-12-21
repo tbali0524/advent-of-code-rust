@@ -2,7 +2,7 @@
 
 use super::ansi::{ANSI_GREEN, ANSI_RED, ANSI_RESET, ANSI_YELLOW};
 use super::{DURATION_THRESHOLD_MILLIS, PUZZLES_TO_SKIP, SKIP_SLOW};
-use super::{MAX_DAYS, PUZZLES, START_SEASON};
+use super::{MAX_DAYS, MAX_DAYS_2025, PUZZLES, START_SEASON};
 use super::{PuzzleError, PuzzleExpected, PuzzleMetaData, Solver};
 use indicatif::ParallelProgressIterator;
 use rayon::prelude::*;
@@ -192,6 +192,9 @@ pub fn run_case(puzzle: &PuzzleMetaData, solve: Solver, case: usize) -> (bool, S
     let mut all_passed = true;
     for part in 1..=2 {
         if part == 2 && puzzle.day == MAX_DAYS {
+            continue;
+        }
+        if part == 2 && puzzle.year >= 2025 && puzzle.day == MAX_DAYS_2025 {
             continue;
         }
         let expected_case;

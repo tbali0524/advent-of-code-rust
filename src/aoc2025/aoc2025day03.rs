@@ -16,7 +16,7 @@ type ItemType = u64;
 
 const COUNT_DIGITS_PART2: usize = 12;
 
-#[allow(clippy::needless_range_loop)]
+#[expect(clippy::needless_range_loop)]
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     let mut banks = Vec::new();

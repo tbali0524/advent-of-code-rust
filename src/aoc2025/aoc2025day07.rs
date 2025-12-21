@@ -12,7 +12,7 @@ pub fn metadata() -> PuzzleMetaData<'static> {
     }
 }
 
-#[allow(clippy::needless_range_loop)]
+#[expect(clippy::needless_range_loop)]
 pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Parse and Check input
     let mut grid = Vec::new();

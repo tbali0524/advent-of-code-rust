@@ -1,7 +1,7 @@
 //! [aoc](https://adventofcode.com/2025/day/10)
 
 use crate::aoc::{PuzzleError, PuzzleInput, PuzzleMetaData, PuzzleResult};
-// use std::cmp::Reverse;
+use std::cmp::Reverse;
 use std::collections::HashSet;
 
 pub fn metadata() -> PuzzleMetaData<'static> {
@@ -10,7 +10,7 @@ pub fn metadata() -> PuzzleMetaData<'static> {
         day: 10,
         title: "Factory",
         solution: ("509", "0"),
-        example_solutions: vec![("7", "0")], // 33
+        example_solutions: vec![("7", "33")],
     }
 }
 
@@ -20,166 +20,49 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     for &line in input.iter() {
         machines.push(Machine::from_str(line)?);
     }
-    // eprintln!(
-    //     "len but {}",
-    //     machines.iter().map(|x| x.buttons.len()).max().unwrap()
-    // );
-    // eprintln!(
-    //     "len jolt {}",
-    //     machines.iter().map(|x| x.joltages.len()).max().unwrap()
-    // );
-    // eprintln!(
-    //     "max jolt {}",
-    //     machines
-    //         .iter()
-    //         .map(|x| x.joltages.iter().max().unwrap())
-    //         .max()
-    //         .unwrap()
-    // );
-    // eprintln!(
-    //     "sum jolt {}",
-    //     machines
-    //         .iter()
-    //         .map(|x| x.joltages.iter().sum::<usize>())
-    //         .max()
-    //         .unwrap()
-    // );
     // ---------- Part 1
     let mut ans1 = 0;
-    for machine in &machines {
-        let mut visited = HashSet::new();
-        let mut q = Vec::new();
-        q.push((0, 0));
-        visited.insert(0);
-        let mut idx_read = 0;
-        while idx_read < q.len() {
-            let (state, step) = q[idx_read];
-            idx_read += 1;
-            if state == machine.target {
-                ans1 += step;
-                break;
-            }
-            for wiring in &machine.buttons {
-                let next_state = state ^ wiring;
-                if visited.contains(&next_state) {
-                    continue;
-                }
-                visited.insert(next_state);
-                q.push((next_state, step + 1));
-            }
-        }
+    for machine in machines.iter() {
+        ans1 += machine.solve_part1();
     }
     // ---------- Part 2
-    let ans2 = 0;
-    // for machine in &machines {}
-
-    // greedy method -> fast, but not correct
-    // -----------------------------
-    // for machine in &machines {
-    //     let mut res = 0;
-    //     let mut wirings = machine.levers.iter().zip(machine.buttons.iter()).collect::<Vec<_>>();
-    //     wirings.sort_by_key(|x| Reverse(x.0));
-    //     let mut remaining = machine.joltages.clone();
-    //     let mut remaining_map = machine.joltages_map;
-    //     if input.len() == 3 {
-    //         eprintln!("========= M: {:?}", machine);
-    //         eprintln!("wirings: {:?}", wirings);
-    //     }
-    //     for (_, button) in wirings {
-    //         if input.len() == 3 {
-    //             eprintln!("trying: {}", button);
-    //         }
-    //         while remaining_map & *button == *button {
-    //             res += 1;
-    //             if input.len() == 3 {
-    //                 eprintln!("...pushed");
-    //             }
-    //             let mut bit_pos = 0;
-    //             let mut w = *button;
-    //             while w != 0 {
-    //                 if w & 1 != 0 {
-    //                     remaining[bit_pos] -= 1;
-    //                     if remaining[bit_pos] == 0 {
-    //                         remaining_map &= !(1 << bit_pos);
-    //                     }
-    //                 }
-    //                 bit_pos += 1;
-    //                 w >>= 1;
-    //             }
-    //             if input.len() == 3 {
-    //                 eprintln!("...... rem: {:?}", remaining);
-    //                 eprintln!("...... rem_map: {}", remaining_map);
-    //             }
-    //         }
-    //     }
-    //     if input.len() == 3 {
-    //         eprintln!("res: {}", res);
-    //     }
-    //     ans2 += res;
-    // }
-    // eprintln!("ans2: {}", ans2);
-
-    // BFS -> correct but too slow
-    // -----------------------------
-    // if input.len() > 3 {
-    //     return Ok((ans1.to_string(), ans2.to_string()));
-    // }
-    // for machine in &machines {
-    //     let mut visited = HashSet::new();
-    //     let mut q = VecDeque::new();
-    //     let counters = vec![0; machine.joltages.len()];
-    //     visited.insert(counters.to_owned());
-    //     q.push_back((counters, 0));
-    //     while let Some(item) = q.pop_front() {
-    //         let (counters, step) = item;
-    //         if *counters == machine.joltages {
-    //             ans2 += step;
-    //             break;
-    //         }
-    //         for wiring in &machine.buttons {
-    //             let mut next_counters = counters.clone();
-    //             let mut w = *wiring;
-    //             let mut bit_pos = 0;
-    //             let mut is_ok = true;
-    //             while w != 0 {
-    //                 if w & 1 != 0 {
-    //                     next_counters[bit_pos] += 1;
-    //                     if next_counters[bit_pos] > machine.joltages[bit_pos] {
-    //                         is_ok = false;
-    //                         break;
-    //                     }
-    //                 }
-    //                 w >>= 1;
-    //                 bit_pos += 1;
-    //             }
-    //             if !is_ok || visited.contains(&next_counters) {
-    //                 continue;
-    //             }
-    //             visited.insert(next_counters.to_owned());
-    //             q.push_back((next_counters, step + 1));
-    //         }
-    //     }
-    // }
+    let mut ans2 = 0;
+    for machine in machines.iter_mut() {
+        ans2 += machine.solve_part2();
+        // if machine.best_part2.is_some() {
+        //     eprint!(".");
+        // } else {
+        //     eprint!("?");
+        // }
+        // eprintln!("======== M: {:?}", machine);
+    }
+    eprintln!();
     Ok((ans1.to_string(), ans2.to_string()))
 }
 
-#[allow(dead_code)]
 #[derive(Debug)]
 struct Machine {
-    target: usize,       // indicator light diagram as bitmap
-    buttons: Vec<usize>, // button wiring schematics as bitmap
-    levers: Vec<usize>,  // number of levers for each button
-    joltages: Vec<usize>,
-    joltages_map: usize, // which buttons have nonzero joltage, as bitmap
+    // used for part 1:
+    target_bitmap: usize, // input: indicator light diagram target as bitmap
+    button_bitmaps: Vec<usize>, // input: 7button wiring schematics as bitmap
+    // used for part 2:
+    buttons: Vec<Vec<usize>>, // input: buttons as list of counter ids
+    joltages: Vec<usize>,     // input: joltage targets
+    sorted_button_ids: Vec<usize>,
+    total_joltage: usize,
+    counters: Vec<usize>,
+    count_push: usize,
+    sum_joltage: usize,
+    best_part2: Option<usize>,
+    count_iter: usize,
 }
 
 impl Machine {
     fn from_str(line: &str) -> Result<Self, PuzzleError> {
-        let mut target = 0;
+        let mut target_bitmap = 0;
+        let mut button_bitmaps = Vec::new();
         let mut buttons = Vec::new();
-        let mut levers = Vec::new();
         let mut joltages = Vec::new();
-        let mut joltages_map = 0;
         for (idx, item) in line.split(' ').enumerate() {
             if item.len() < 3 {
                 Err("all items must be at least 3 chars long")?;
@@ -196,58 +79,148 @@ impl Machine {
                             '.' => 0,
                             _ => Err("indicator light diagram must contain only `.` or `#`")?,
                         };
-                        target |= bit << bit_pos;
+                        target_bitmap |= bit << bit_pos;
                     }
                 }
                 '(' => {
                     if !joltages.is_empty() {
                         Err("joltage list must be the last item in the line")?;
                     }
+                    let button = inside
+                        .split(',')
+                        .map(|x| {
+                            x.parse::<usize>()
+                                .map_err(|_| "wiring schematics must be comma-separated integers")
+                        })
+                        .collect::<Result<Vec<_>, _>>()?;
                     let mut wiring = 0;
-                    let mut count_lever = 0;
-                    for num in inside.split(',') {
-                        let pos = num
-                            .parse::<usize>()
-                            .map_err(|_| "wiring schematics must be comma-separated integers")?;
+                    for &pos in &button {
                         wiring |= 1 << pos;
-                        count_lever += 1;
                     }
-                    buttons.push(wiring);
-                    levers.push(count_lever);
+                    button_bitmaps.push(wiring);
+                    buttons.push(button);
                 }
                 '{' => {
                     if !joltages.is_empty() {
                         Err("there must be only 1 joltage list per line, more found")?;
                     }
-                    for (bit_pos, num) in inside.split(',').enumerate() {
-                        let joltage = num
-                            .parse::<usize>()
-                            .map_err(|_| "joltages must be comma-separated integers")?;
-                        joltages.push(joltage);
-                        if joltage != 0 {
-                            joltages_map |= 1 << bit_pos;
-                        }
-                    }
+                    joltages = inside
+                        .split(',')
+                        .map(|x| {
+                            x.parse::<usize>()
+                                .map_err(|_| "joltages must be comma-separated integers")
+                        })
+                        .collect::<Result<Vec<_>, _>>()?;
                 }
                 _ => Err("all items in input must start with `[`, `(` or `{`")?,
             }
         }
-        if target == 0 {
+        if target_bitmap == 0 {
             Err("missing indicator light diagram")?;
         }
-        if buttons.is_empty() {
+        if button_bitmaps.is_empty() {
             Err("missing wiring schematics")?;
         }
         if joltages.is_empty() {
             Err("missing joltages list")?;
         }
+        let total_joltage = joltages.iter().sum();
         Ok(Machine {
-            target,
+            target_bitmap,
+            button_bitmaps,
             buttons,
-            levers,
             joltages,
-            joltages_map,
+            total_joltage,
+            sorted_button_ids: Vec::new(),
+            counters: Vec::new(),
+            count_push: 0,
+            sum_joltage: 0,
+            best_part2: None,
+            count_iter: 0,
         })
+    }
+
+    fn solve_part1(&self) -> usize {
+        let mut visited = HashSet::new();
+        let mut q = Vec::new();
+        q.push((0, 0));
+        visited.insert(0);
+        let mut idx_read = 0;
+        while idx_read < q.len() {
+            let (state, step) = q[idx_read];
+            idx_read += 1;
+            if state == self.target_bitmap {
+                return step;
+            }
+            for button_bitmap in &self.button_bitmaps {
+                let next_state = state ^ button_bitmap;
+                if visited.contains(&next_state) {
+                    continue;
+                }
+                visited.insert(next_state);
+                q.push((next_state, step + 1));
+            }
+        }
+        0
+    }
+
+    fn solve_part2(&mut self) -> usize {
+        self.sorted_button_ids = (0..self.buttons.len()).collect::<Vec<_>>();
+        self.sorted_button_ids
+            .sort_by_key(|x| Reverse(self.buttons[*x].len()));
+        self.counters = vec![0; self.joltages.len()];
+        self.count_push = 0;
+        self.best_part2 = None;
+        self.backtrack(0);
+        self.best_part2.unwrap_or_default()
+    }
+
+    fn backtrack(&mut self, next_button: usize) {
+        // current implementation is either too slow, or does not find all solutions...
+        if self.count_iter >= 100_000 {
+            return;
+        }
+        self.count_iter += 1;
+        if next_button == self.buttons.len() {
+            let result = self.counters == self.joltages;
+            if result && (self.best_part2.is_none() || self.best_part2.unwrap() > self.count_push) {
+                self.best_part2 = Some(self.count_push);
+            }
+            return;
+        }
+        let button_id = self.sorted_button_ids[next_button];
+        if let Some(best) = self.best_part2 {
+            let remaining_push = best - self.count_push;
+            let remaining_joltage = self.total_joltage - self.sum_joltage;
+            if remaining_push * self.buttons[button_id].len() < remaining_joltage {
+                return;
+            }
+        }
+        let mut max_push = usize::MAX;
+        for &counter_id in self.buttons[button_id].iter() {
+            let push = self.joltages[counter_id].saturating_sub(self.counters[counter_id]);
+            if push < max_push {
+                max_push = push;
+            }
+        }
+        self.count_push += max_push;
+        self.sum_joltage += max_push * self.buttons[button_id].len();
+        for &counter_id in self.buttons[button_id].iter() {
+            self.counters[counter_id] += max_push;
+        }
+        for _ in 0..max_push {
+            if self.best_part2.is_none() || self.best_part2.unwrap() > self.count_push {
+                self.backtrack(next_button + 1);
+            }
+            self.count_push -= 1;
+            self.sum_joltage -= self.buttons[button_id].len();
+            for &counter_id in self.buttons[button_id].iter() {
+                self.counters[counter_id] -= 1;
+            }
+        }
+        if self.best_part2.is_none() || self.best_part2.unwrap() > self.count_push {
+            self.backtrack(next_button + 1);
+        }
     }
 }
 

@@ -1,6 +1,6 @@
 # Results for all seasons
 
-Output of local run using Rust `1.91.1` with `cargo run --release` on `2025.12.09`.
+Output of local run using Rust `1.92` with `cargo run --release` on `2025.12.21`.
 
 ```txt
 Advent of Code - solutions in Rust, (c) 2025 by TBali
@@ -834,7 +834,25 @@ Advent of Code - solutions in Rust, (c) 2025 by TBali
 [ OK ] Puzzle     part #1 : 4774877510
 [ OK ] Puzzle     part #2 : 1560475800
 
-======= Total =========== [time:  2560 ms] : 11 seasons, 127 puzzles (3 skipped), 173 examples
+=== AoC 2025 Day 10 ===== [time:   586 ms] : Factory
+[ OK ] Example #1 part #1 : 7
+[ OK ] Example #1 part #2 : 33
+[ OK ] Puzzle     part #1 : 509
+       Puzzle     part #2 : 7112 [missing expected solution]
+
+=== AoC 2025 Day 11 ===== [time:     1 ms] : Reactor
+[ OK ] Example #1 part #1 : 5
+       Example #1 part #2 : n/a
+       Example #2 part #1 : n/a
+[ OK ] Example #2 part #2 : 2
+[ OK ] Puzzle     part #1 : 428
+[ OK ] Puzzle     part #2 : 331468292364745
+
+=== AoC 2025 Day 12 ===== [time:     0 ms] : Christmas Tree Farm
+[ OK ] Example #1 part #1 : 2
+[ OK ] Puzzle     part #1 : 505
+
+======= Total =========== [time:  2459 ms] : 11 seasons, 127 puzzles (3 skipped), 173 examples
 
 [ OK ] All tests passed.
 ```

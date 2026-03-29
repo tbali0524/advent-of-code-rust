@@ -1,6 +1,6 @@
 # Advent of Code solutions in Rust by TBali
 
-![rust v1.91](https://shields.io/badge/rust-1.91-blue?logo=rust)
+![rust v1.93](https://shields.io/badge/rust-1.93-blue?logo=rust)
 ![build](https://img.shields.io/github/actions/workflow/status/tbali0524/advent-of-code-rust/qa.yml)
 ![AoC stars](https://img.shields.io/badge/total%20AoC%20⭐-252-green)
 ![license](https://img.shields.io/github/license/tbali0524/advent-of-code-rust)
@@ -20,6 +20,7 @@ This repo contains my AoC solutions in Rust, and a simple CLI runner. The first 
 # -- setup
 # install Rust: https://www.rust-lang.org/tools/install
 rustup update stable
+cargo update
 # -- info
 cargo version
 cargo tree
@@ -43,23 +44,23 @@ cargo run -- 2025
 cargo run -- 2025 1
 # -- run
 cargo build --release
-target/release/aoc.exe
-target/release/aoc.exe 2025
-target/release/aoc.exe 2025 1
+target/release/aoc
+target/release/aoc 2025
+target/release/aoc 2025 1
 cargo run --release
 # -- shortcut run (Windows)
 ./aoc.bat
 ./aoc.bat 2025
 ./aoc.bat 2025 1
 ./aoc.bat --help
-# -- shortcut qa+run (Windows)
-./qa.ps1
 # -- profiling (Windows), using [samply](https://github.com/mstange/samply/)
 cargo build --profile profiling
 samply record ./target/profiling/aoc.exe
 # -- cleanup
 cargo clean
 ```
+
+See also the [justfile](./justfile) for possible usage.
 
 ## Adding a new solution
 

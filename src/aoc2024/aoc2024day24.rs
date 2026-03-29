@@ -176,8 +176,8 @@ impl Gate {
 
 fn evaluate(gates: &mut HashMap<String, Gate>, name: &str) -> Result<u8, PuzzleError> {
     let gate = gates.get(name).ok_or("invalid gate name")?;
-    if gate.output.is_some() {
-        return Ok(gate.output.unwrap());
+    if let Some(inner) = gate.output {
+        return Ok(inner);
     }
     let operand1_name = gate.inputs[0].clone();
     let operand2_name = gate.inputs[1].clone();

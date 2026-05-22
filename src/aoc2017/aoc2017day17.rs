@@ -29,6 +29,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     let mut nexts = [0; MAX_SIZE];
     let mut size = 1;
     let mut idx_current = 0;
+    #[expect(clippy::explicit_counter_loop)]
     for turn in 1..=MAX_TURNS_PART1 {
         let mut delta = max_steps % turn as ItemType;
         while delta > 0 {

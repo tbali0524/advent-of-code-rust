@@ -34,7 +34,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     // ---------- Part 2
     let mut ans2 = particles.len();
     let mut last_col_turn = 0;
-    particles.sort_by(|a, b| a.id.cmp(&b.id));
+    particles.sort_by_key(|a| a.id);
     let mut particles_map = HashMap::new();
     for particle in particles {
         particles_map.insert(particle.id, particle);

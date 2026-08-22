@@ -77,7 +77,9 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
     }
     // ---------- Part 2
     let mut prev_ranges = seeds
-        .chunks_exact(2)
+        .as_chunks::<2>()
+        .0
+        .iter()
         .map(|x| (x[0], x[1]))
         .collect::<Vec<_>>();
     let mut next_ranges = Vec::new();

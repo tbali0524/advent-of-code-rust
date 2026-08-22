@@ -48,7 +48,7 @@ fn next_password(prev: &str) -> Result<String, PuzzleError> {
             continue;
         }
         let mut count = 0;
-        for needle in [b'i', b'o', b'l'] {
+        for needle in *b"iol" {
             count += pw.iter().filter(|&x| *x == needle).count();
         }
         if count > 0 {

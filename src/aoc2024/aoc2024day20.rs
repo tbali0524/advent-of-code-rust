@@ -85,15 +85,17 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         }
         dist += 1;
     }
-    let ans1;
-    let ans2;
-    if max_y == 15 {
-        ans1 = solve_part(&grid, MAX_CHEAT_LEN_PART1, SAVING_THRESHOLD_PART1_EXAMPLE);
-        ans2 = solve_part(&grid, MAX_CHEAT_LEN_PART2, SAVING_THRESHOLD_PART2_EXAMPLE);
+    let (ans1, ans2) = if max_y == 15 {
+        (
+            solve_part(&grid, MAX_CHEAT_LEN_PART1, SAVING_THRESHOLD_PART1_EXAMPLE),
+            solve_part(&grid, MAX_CHEAT_LEN_PART2, SAVING_THRESHOLD_PART2_EXAMPLE),
+        )
     } else {
-        ans1 = solve_part(&grid, MAX_CHEAT_LEN_PART1, SAVING_THRESHOLD);
-        ans2 = solve_part(&grid, MAX_CHEAT_LEN_PART2, SAVING_THRESHOLD);
-    }
+        (
+            solve_part(&grid, MAX_CHEAT_LEN_PART1, SAVING_THRESHOLD),
+            solve_part(&grid, MAX_CHEAT_LEN_PART2, SAVING_THRESHOLD),
+        )
+    };
     Ok((ans1.to_string(), ans2.to_string()))
 }
 

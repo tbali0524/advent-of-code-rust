@@ -268,7 +268,7 @@ impl Circuit {
                         let m = Broadcast::new(line)?;
                         circuit.modules.insert(m.name().to_owned(), Box::new(m));
                     } else {
-                        return Err("invalid module type")?;
+                        Err("invalid module type")?;
                     }
                 }
             }
@@ -289,7 +289,7 @@ impl Circuit {
     }
 
     fn init(&mut self) {
-        for (_, module) in self.modules.iter_mut() {
+        for module in self.modules.values_mut() {
             module.init();
         }
         self.count_low = 0;

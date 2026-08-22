@@ -36,18 +36,11 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
         bytes.push((x, y));
     }
     // ---------- Part 1
-    let max_x;
-    let max_y;
-    let max_bytes;
-    if input.len() == 25 {
-        max_x = 7;
-        max_y = 7;
-        max_bytes = 12;
+    let (max_x, max_y, max_bytes) = if input.len() == 25 {
+        (7, 7, 12)
     } else {
-        max_x = 71;
-        max_y = 71;
-        max_bytes = 1024;
-    }
+        (71, 71, 1024)
+    };
     let mut has_byte = HashSet::new();
     for &byte in bytes.iter().take(max_bytes) {
         has_byte.insert(byte);

@@ -194,7 +194,7 @@ pub fn solve(input: PuzzleInput) -> PuzzleResult {
             }
         }
         if DEBUG {
-            println!("trying to move boxes: {:?}:", &moving_boxes);
+            println!("trying to move boxes: {:?}:", moving_boxes);
         }
         if !is_ok {
             if DEBUG {

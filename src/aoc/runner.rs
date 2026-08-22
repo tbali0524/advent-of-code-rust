@@ -197,15 +197,11 @@ pub fn run_case(puzzle: &PuzzleMetaData, solve: Solver, case: usize) -> (bool, S
         if part == 2 && puzzle.year >= 2025 && puzzle.day == MAX_DAYS_2025 {
             continue;
         }
-        let expected_case;
-        let ans_case;
-        if part == 1 {
-            expected_case = &expected.0;
-            ans_case = &ans.0;
+        let (expected_case, ans_case) = if part == 1 {
+            (&expected.0, &ans.0)
         } else {
-            expected_case = &expected.1;
-            ans_case = &ans.1;
-        }
+            (&expected.1, &ans.1)
+        };
         let mut pre_msg = MSG_NONE;
         let mut ans_msg = String::new();
         let mut post_msg = String::new();
